@@ -865,3 +865,27 @@
   color: var(--accent);
   background: rgba(232,247,42,0.08);
 }
+
+/* ── Terms note below generate button ── */
+.termsNote {
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.6;
+  text-align: center;
+  margin: 4px 0 0;
+  line-height: 1.5;
+}
+.termsNoteLink {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.termsNoteLink:hover { opacity: 0.9; }
+.termsAsterisk {
+  font-size: 10px;
+  color: var(--muted);
+  opacity: 0.45;
+  text-align: center;
+  margin: 2px 0 0;
+  line-height: 1.5;
+}

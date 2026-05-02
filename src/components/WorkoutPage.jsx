@@ -343,6 +343,16 @@ export default function WorkoutPage({ onGenerate }) {
             <button className={styles.generateBtn} onClick={handleGenerate} disabled={!focus || !style || loading}>
               {loading ? 'Building...' : 'Generate Workout →'}
             </button>
+            <p className={styles.termsNote}>
+              By generating a workout you agree to our{' '}
+              <a href="/terms.html" target="_blank" rel="noopener noreferrer" className={styles.termsNoteLink}>
+                Terms &amp; Conditions
+              </a>
+              .*
+            </p>
+            <p className={styles.termsAsterisk}>
+              * Workouts are suggestions only. You are solely responsible for your safety. 18+ only. Not medical advice.
+            </p>
           </div>
 
           {/* My Workouts */}
