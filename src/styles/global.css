@@ -1,0 +1,47 @@
+:root {
+  --bg:       #0d0d0d;
+  --surface:  #161616;
+  --surface2: #1f1f1f;
+  --border:   #2a2a2a;
+  --border2:  #363636;
+  --text:     #f0f0f0;
+  --muted:    #666;
+  --accent:   #e8f72a;
+  --accent2:  #c8d800;
+  --red:      #ff4444;
+  --green:    #22c55e;
+  --upper:    #3b82f6;
+  --lower:    #f97316;
+  --core:     #a855f7;
+  --hiit:     #ef4444;
+  --display:  'Barlow Condensed', sans-serif;
+  --sans:     'Barlow', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+@keyframes fadeUp  { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+
+.fade-up { animation: fadeUp 0.35s ease both; }
+.fade-in { animation: fadeIn 0.25s ease both; }
+
+/* Delay helpers */
+.d1{animation-delay:.05s} .d2{animation-delay:.1s} .d3{animation-delay:.15s} .d4{animation-delay:.2s}

@@ -1,0 +1,867 @@
+.page {
+  padding-bottom: calc(60px + env(safe-area-inset-bottom, 12px)); /* space for floating breather bar + system UI */ display: flex; flex-direction: column; gap: 16px; }
+
+/* ── Hero — compact on mobile ── */
+.hero { text-align: center; padding: 8px 0 4px; }
+
+.heroTitle {
+  font-family: var(--display);
+  font-size: clamp(36px, 9vw, 64px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #fff 30%, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 6px;
+}
+
+.heroSub { font-size: 14px; color: var(--muted); font-weight: 300; }
+
+/* ── Form ── */
+.form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.question { display: flex; flex-direction: column; gap: 8px; }
+
+.questionLabel {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.options { display: flex; gap: 8px; flex-wrap: nowrap; }
+
+.option {
+  flex: 1;
+  padding: 11px 8px;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+  line-height: 1.3;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.option:active { transform: scale(0.97); }
+.option.selected {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(232,247,42,0.07);
+}
+
+.equipHint { font-size: 11px; color: var(--muted); }
+
+.error {
+  background: rgba(255,68,68,0.1);
+  border: 1px solid rgba(255,68,68,0.3);
+  color: #ff8888;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+}
+
+.generateBtn {
+  background: var(--accent);
+  color: #0d0d0d;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+.generateBtn:active { transform: scale(0.98); }
+.generateBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Workout output ── */
+.workout { display: flex; flex-direction: column; gap: 14px; }
+
+.workoutHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.workoutTitle {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.workoutMeta { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.resetBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+.resetBtn:hover, .resetBtn:active { border-color: var(--accent); color: var(--accent); }
+
+.footer {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  text-align: center;
+}
+.footer strong { color: var(--text); }
+
+.newWorkoutBtn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.newWorkoutBtn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── Motivational quote bar ── */
+.quoteBar {
+  background: rgba(232,247,42,0.06);
+  border: 1px solid rgba(232,247,42,0.15);
+  border-radius: 10px;
+  padding: 14px 18px;
+  animation: fadeUp 0.5s ease both;
+}
+
+.quoteText {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  line-height: 1.3;
+}
+
+/* ── Style options (3 tall cards) ── */
+.styleOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.styleOption {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 12px 14px;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.styleOption:active { transform: scale(0.98); }
+
+.styleOption.selected {
+  border-color: var(--accent);
+  background: rgba(232,247,42,0.07);
+}
+
+.styleLabel {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text);
+}
+
+.styleOption.selected .styleLabel { color: var(--accent); }
+
+.styleSub {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+}
+
+/* ── Add third circuit button ── */
+.addCircuitBtn {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  border: 2px dashed var(--border2);
+  border-radius: 12px;
+  color: var(--muted);
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.addCircuitBtn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(232,247,42,0.04);
+}
+
+.addCircuitBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Workout History ── */
+.historyWrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.historyToggle {
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.historyToggle:active { background: rgba(255,255,255,0.02); }
+
+.historyList {
+  border-top: 1px solid var(--border);
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  gap: 10px;
+  animation: fadeIn 0.2s ease;
+}
+
+.historyItem:last-child { border-bottom: none; }
+
+.historyDate {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.historyTags { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+
+.historyTag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ── Section toggles (history + favs) ── */
+.section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.sectionToggle {
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sectionCount {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 1px 8px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.chevron { margin-left: auto; font-size: 11px; color: var(--muted); }
+
+/* ── Favourites ── */
+.favList { border-top: 1px solid var(--border); }
+
+.favItem {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.favItem:last-child { border-bottom: none; }
+
+.favMeta { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.favName { font-size: 14px; font-weight: 600; color: var(--text); }
+.favSub  { font-size: 11px; color: var(--muted); }
+.favExercises { font-size: 11px; color: var(--muted); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; }
+
+.favActions { display: flex; gap: 6px; flex-shrink: 0; align-items: flex-start; }
+
+.favLoadBtn {
+  background: var(--accent);
+  color: #0d0d0d;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.favDelBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.favDelBtn:active { border-color: var(--red); color: var(--red); }
+
+/* ── History ── */
+.historyList { border-top: 1px solid var(--border); }
+
+.historyItem {
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+}
+.historyItem:last-child { border-bottom: none; }
+
+.historyTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.historyName { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.historyMeta { font-size: 11px; color: var(--muted); }
+
+.historyBtns { display: flex; gap: 6px; flex-shrink: 0; }
+
+.historyExpand {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.historyLoad {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.historyExercises { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+
+.historyCircuit {}
+.historyCircuitLabel {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.historyExercise {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  padding: 3px 0;
+  border-bottom: 1px solid var(--border);
+}
+.historyExercise:last-child { border-bottom: none; }
+.historyExName { color: var(--text); }
+.historyExReps { color: var(--muted); font-size: 11px; white-space: nowrap; }
+
+/* ── Fav save toast ── */
+.favMsg {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  z-index: 200;
+  animation: fadeIn 0.3s ease;
+  white-space: nowrap;
+}
+
+/* ── Section header (always visible) ── */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sectionTitle {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ── My Workouts section ── */
+.myWorkouts {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.myWorkoutsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.myWorkoutsTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.myWorkoutsTabs {
+  display: flex;
+  gap: 4px;
+}
+
+.mwTab {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mwTabActive {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(232,247,42,0.06);
+}
+
+.mwBadge {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 0 5px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.mwList { display: flex; flex-direction: column; }
+
+.mwEmpty {
+  padding: 20px 16px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.mwItem {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.mwItem:last-child { border-bottom: none; }
+
+.mwMeta { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.mwName { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mwSub  { font-size: 11px; color: var(--muted); }
+.mwExercises { font-size: 11px; color: var(--muted); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.mwActions { display: flex; gap: 6px; flex-shrink: 0; }
+
+.mwLoadBtn {
+  background: var(--accent);
+  color: #0d0d0d;
+  border: none;
+  border-radius: 7px;
+  padding: 6px 14px;
+  font-family: var(--display);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mwExpandBtn {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 7px;
+  padding: 6px 10px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* Expanded exercise list */
+.mwExpanded {
+  border-top: 1px solid var(--border);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--surface2);
+}
+
+.mwCircuit {}
+.mwCircuitLabel {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.mwExerciseRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 3px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.mwExerciseRow:last-child { border-bottom: none; }
+.mwReps { color: var(--muted); font-size: 11px; white-space: nowrap; }
+
+/* ── Save Workout button ── */
+.workoutTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.saveWorkoutBtn {
+  background: transparent;
+  border: 1.5px solid var(--border2);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--sans);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.saveWorkoutBtn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.saveWorkoutSaved {
+  border-color: var(--green) !important;
+  color: var(--green) !important;
+  background: rgba(34,209,122,0.07);
+  cursor: default;
+}
+
+/* ── Fav type badge ── */
+.mwTypeBadge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 7px;
+  vertical-align: middle;
+}
+
+.mwTypeFull {
+  background: rgba(232,247,42,0.1);
+  color: var(--accent);
+  border: 1px solid rgba(232,247,42,0.3);
+}
+
+.mwTypeCircuit {
+  background: var(--surface2);
+  color: var(--muted);
+  border: 1px solid var(--border2);
+}
+
+/* ── Equipment toggles ── */
+.equipmentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.equipmentLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.equipmentHint {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.equipmentToggles {
+  display: flex;
+  gap: 10px;
+}
+
+.equipToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border2);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  flex: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.equipToggle input {
+  display: none;
+}
+
+.equipToggle:active { transform: scale(0.97); }
+
+.equipActive {
+  border-color: var(--accent);
+  background: rgba(232,247,42,0.07);
+}
+
+.equipIcon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.equipName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.equipActive .equipName {
+  color: var(--accent);
+}
+
+/* ── Custom focus options ── */
+.customOptions {
+  margin-top: 6px;
+}
+
+.customOption {
+  background: var(--surface2);
+  border: 1px dashed var(--border2);
+  border-radius: 8px;
+  padding: 7px 14px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.customOption:active { transform: scale(0.98); }
+
+.customOption.selected {
+  border-color: var(--accent);
+  border-style: solid;
+  background: rgba(232,247,42,0.07);
+  color: var(--accent);
+}
+
+/* ── Custom toggle button ── */
+.customToggle {
+  width: 100%;
+  background: transparent;
+  border: 1.5px solid var(--border2);
+  border-radius: 6px;
+  padding: 6px 14px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.customToggleActive {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(232,247,42,0.05);
+}
+
+/* ── Custom muscle group grid ── */
+.customGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+  animation: fadeIn 0.2s ease;
+}
+
+.customChip {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.12s;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+
+.customChip:active { transform: scale(0.95); }
+
+.customChipActive {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(232,247,42,0.08);
+}

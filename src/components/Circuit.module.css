@@ -1,0 +1,304 @@
+.circuit {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.circuitHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+}
+
+.circuitLabel {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+}
+
+.circuitMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.circuitCount {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.circuitRounds {
+  font-size: 11px;
+  color: var(--muted);
+  background: var(--border);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* ── Exercise card ── */
+.card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+  animation: fadeUp 0.3s ease both;
+}
+.card:last-child { border-bottom: none; }
+.card:active { background: rgba(255,255,255,0.02); }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+.number {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.cardBody { flex: 1; min-width: 0; }
+
+.exerciseName {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: var(--text);
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reps {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-top: 1px;
+}
+
+.description {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.cardRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.categoryBadge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 20px;
+  border: 1.5px solid;
+  white-space: nowrap;
+}
+
+.swapBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+.swapBtn:active { border-color: var(--text); color: var(--text); background: var(--surface2); }
+.swapBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Footer ── */
+.circuitFooter {
+  padding: 9px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--surface2);
+  border-top: 1px solid var(--border);
+}
+.circuitFooter strong { color: var(--text); }
+
+/* ── Core card highlight ── */
+.coreCard { border-left: 2px solid var(--core); }
+
+/* ── Timer ── */
+.timerWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.timerRing {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.timerSvg {
+  width: 44px;
+  height: 44px;
+  transform: rotate(-90deg);
+}
+
+.timerTrack {
+  fill: none;
+  stroke: var(--border2);
+  stroke-width: 3;
+}
+
+.timerProgress {
+  fill: none;
+  stroke: var(--core);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.9s linear;
+}
+
+.timerDone { stroke: var(--green); }
+
+.timerDisplay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.timerControls {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.timerBtn {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 5px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.12s;
+  min-width: 42px;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.timerStart { border-color: var(--core); color: var(--core); }
+.timerStop  { border-color: var(--amber); color: var(--amber); }
+.timerBtn:active { opacity: 0.7; }
+
+.timerPlus {
+  background: transparent;
+  border: 1px solid var(--border2);
+  border-radius: 5px;
+  padding: 3px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.timerPlus:active { color: var(--text); border-color: var(--border2); }
+
+/* ── User flag button ── */
+.flagUserBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 5px;
+  padding: 4px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.flagUserBtn:active { border-color: #f97316; color: #f97316; }
+.flagUserActive { border-color: #f97316; color: #f97316; background: rgba(249,115,22,0.08); }
+
+/* ── Favourite button on circuit header ── */
+.favBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1;
+}
+.favBtn:active { transform: scale(1.2); }
+
+/* ── Saved state for fav button ── */
+.favBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-family: var(--sans);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.favBtn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.favBtnSaved {
+  border-color: var(--green) !important;
+  color: var(--green) !important;
+  background: rgba(34,209,122,0.08);
+  cursor: default;
+}

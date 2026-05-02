@@ -1,0 +1,106 @@
+.app {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #0d0d0d;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(13,13,13,0.95);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.logo {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 0;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.counter {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(232,247,42,0.08);
+  border: 1px solid rgba(232,247,42,0.2);
+  border-radius: 20px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.navLink {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.navLink:hover { color: var(--text); border-color: var(--border2); }
+.navLink.active { color: var(--accent); border-color: var(--accent); }
+
+.main {
+  flex: 1;
+  padding: 16px 14px 32px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logoWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  cursor: pointer;
+}
+
+.tagline {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+  opacity: 0.7;
+  font-family: var(--sans);
+  text-transform: none;
+}
+
+.termsNavLink {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.4;
+  text-decoration: none;
+  padding: 4px 6px;
+  letter-spacing: 0.2px;
+  transition: opacity 0.15s;
+}
+.termsNavLink:hover { opacity: 0.75; }

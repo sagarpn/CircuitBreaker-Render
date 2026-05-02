@@ -1,0 +1,245 @@
+/* ── Floating trigger button ── */
+.floatBtn {
+  position: fixed;
+  bottom: 24px;
+  right: 16px;
+  z-index: 100;
+  background: var(--surface);
+  border: 1.5px solid var(--border2);
+  color: var(--text);
+  border-radius: 24px;
+  padding: 10px 18px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.floatBtn:active { transform: scale(0.96); }
+
+.floatBtnRunning {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Pulsing dot when running */
+.pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulseAnim 1.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulseAnim {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ── Backdrop ── */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(0,0,0,0.5);
+}
+
+/* ── Slide-up sheet ── */
+.sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-radius: 20px 20px 0 0;
+  padding: 0 20px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.sheetOpen { transform: translateY(0); }
+
+/* ── Sheet header ── */
+.sheetHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 0;
+}
+
+.sheetTitle {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+
+.sheetHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hintBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hintBtn:active { transform: scale(0.9); }
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Hint text ── */
+.hint {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.6;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 100%;
+}
+
+/* ── Ring ── */
+.ring {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.svg {
+  width: 120px;
+  height: 120px;
+  transform: rotate(-90deg);
+}
+
+.track {
+  fill: none;
+  stroke: var(--border2);
+  stroke-width: 5;
+}
+
+.progress {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.timeDisplay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 800;
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  border-radius: 10px;
+  padding: 10px 24px;
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1.5px solid;
+  background: transparent;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.start { color: var(--green); border-color: var(--green); }
+.start:active { background: rgba(34,209,122,0.1); }
+.stop  { color: var(--amber); border-color: var(--amber); }
+.stop:active  { background: rgba(245,197,66,0.1); }
+
+.resetBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.resetBtn:active { border-color: var(--text); color: var(--text); }
+
+/* ── Presets ── */
+.presets {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.preset {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.preset:active { border-color: var(--text); color: var(--text); }
+
+.activePreset {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(232,247,42,0.07);
+}

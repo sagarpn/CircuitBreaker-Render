@@ -1,0 +1,292 @@
+/* ── Bar ── */
+.bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: #111;
+  border-top: 2px solid var(--accent);
+  max-width: 600px;
+  margin: 0 auto;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ── Trigger ── */
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  min-height: 52px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.triggerLeft { display: flex; align-items: center; gap: 9px; }
+.triggerIcon  { font-size: 18px; line-height: 1; }
+.triggerLabel {
+  font-family: var(--sans);
+  font-size: 14px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.2px;
+}
+.triggerArrow { font-size: 11px; color: var(--accent); opacity: 0.7; }
+
+/* ── Accordion ── */
+.body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.bodyOpen { max-height: 480px; }
+
+.bodyInner {
+  padding: 4px 20px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Mode tabs ── */
+.modeTabs {
+  display: flex;
+  gap: 6px;
+}
+
+.modeTab {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 7px 6px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.modeActive {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(232,247,42,0.07);
+}
+
+/* ── Mode content ── */
+.modeContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Hint text ── */
+.hint {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.breathHint {
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.breathStep { font-weight: 600; }
+
+.breathCycles {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* ── Timer row ── */
+.timerRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ── Ring ── */
+.ring {
+  position: relative;
+  width: 90px; height: 90px;
+  flex-shrink: 0;
+}
+.svg {
+  width: 90px; height: 90px;
+  transform: rotate(-90deg);
+}
+.track    { fill: none; stroke: var(--border2); stroke-width: 5; }
+.progress { fill: none; stroke-width: 5; stroke-linecap: round; }
+
+.timeDisplay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display);
+  font-size: 22px; font-weight: 800;
+  background: none; border: none; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Breathing center ── */
+.breathCenter {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2px;
+}
+.breathPhase {
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.breathCount {
+  font-family: var(--display);
+  font-size: 20px; font-weight: 800;
+}
+
+/* ── Right column ── */
+.rightCol {
+  flex: 1;
+  display: flex; flex-direction: column;
+  gap: 10px;
+}
+
+.cycleBadge {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.doneMsg {
+  font-size: 13px;
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* ── Controls ── */
+.controls { display: flex; gap: 8px; }
+
+.btn {
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-family: var(--display);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  cursor: pointer; border: 1.5px solid;
+  background: transparent; transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.start { color: var(--green); border-color: var(--green); }
+.start:active { background: rgba(34,209,122,0.1); }
+.stop  { color: var(--amber); border-color: var(--amber); }
+.stop:active  { background: rgba(245,197,66,0.1); }
+
+.resetBtn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 9px 14px; font-size: 15px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.resetBtn:active { border-color: var(--text); color: var(--text); }
+
+/* ── Presets ── */
+.presets { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.preset {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 7px;
+  padding: 5px 10px;
+  font-family: var(--mono);
+  font-size: 11px; color: var(--muted);
+  cursor: pointer; transition: all 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.preset:active { border-color: var(--text); color: var(--text); }
+.activePreset {
+  border-color: var(--accent); color: var(--accent);
+  background: rgba(232,247,42,0.07);
+}
+
+/* ── Breathing coach text ── */
+.coachText {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 0.3px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Breath header row ── */
+.breathHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.breathHint { font-size: 11px; line-height: 1.5; }
+.breathStep { font-weight: 600; }
+
+/* ── Cycle picker ── */
+.cyclePicker {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.cycleBtn {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  width: 26px; height: 26px;
+  font-size: 15px; font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.12s;
+}
+.cycleBtn:active { border-color: var(--accent); color: var(--accent); }
+.cycleBtn:disabled { opacity: 0.3; cursor: default; }
+
+.cycleNum {
+  font-family: var(--display);
+  font-size: 16px; font-weight: 800;
+  color: var(--accent);
+  min-width: 22px; text-align: center;
+}
+
+.cycleLabel {
+  font-size: 11px; color: var(--muted);
+}
+
+/* ── Coaching text ── */
+.coachText {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--muted);
+  text-align: left;
+  letter-spacing: 0.3px;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
