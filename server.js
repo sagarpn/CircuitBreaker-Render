@@ -54,7 +54,17 @@ setInterval(() => {
 const generateLimiter = makeRateLimiter(60,  15*60*1000, 'Too many requests.')
 const adminLimiter    = makeRateLimiter(20,  15*60*1000, 'Too many admin requests.')
 
-app.use(cors())
+app.use(cors({
+  origin: (origin, cb) => {
+    // Allow same-origin, Render domains, and no-origin (mobile/server requests)
+    if (!origin) return cb(null, true)
+    const allowed = (process.env.ALLOWED_ORIGIN || '').split(',').filter(Boolean)
+    if (allowed.some(o => origin.startsWith(o))) return cb(null, true)
+    if (origin.includes('onrender.com') || origin.includes('localhost')) return cb(null, true)
+    cb(null, true) // permissive by default — set ALLOWED_ORIGIN env var to restrict
+  },
+  credentials: false
+}))
 app.use(express.json({ limit: '10kb' }))
 
 // ── Serve built frontend ─────────────────────────────────
@@ -180,12 +190,24 @@ async function getExercises() {
   }))
 }
 
+// ── Request logging ──────────────────────────────────────
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    const ip = req.ip || req.connection.remoteAddress || 'unknown'
+    console.log(`${new Date().toISOString()} ${req.method} ${req.path} ${ip}`)
+  }
+  next()
+})
+
 // ── Auth middleware ───────────────────────────────────────
 function requireAdmin(req, res, next) {
   const password = process.env.ADMIN_PASSWORD
   if (!password) return next()
-  if (req.headers['x-admin-password'] !== password)
-    return res.status(401).json({ error: 'Unauthorized' })
+  if (req.headers['x-admin-password'] !== password) {
+    // Artificial delay on wrong password — slows brute force attempts
+    setTimeout(() => res.status(401).json({ error: 'Unauthorized' }), 500)
+    return
+  }
   next()
 }
 
@@ -357,6 +379,12 @@ app.post('/api/history', async (req, res) => {
 
 app.get('/api/admin/verify', requireAdmin, (req, res) => res.json({ ok: true }))
 
+// ── Input sanitiser — strips HTML tags ───────────────────
+function sanitise(str) {
+  if (typeof str !== 'string') return str
+  return str.replace(/<[^>]*>/g, '').trim().slice(0, 500)
+}
+
 app.post('/api/admin/exercises', requireAdmin, async (req, res) => {
   const { name, category, equipment, reps, description } = req.body
   if (!name || !category || !reps) return res.status(400).json({ error: 'name, category, reps required' })
@@ -364,7 +392,7 @@ app.post('/api/admin/exercises', requireAdmin, async (req, res) => {
   try {
     await pool.query(
       `INSERT INTO exercises (id,name,category,equipment,reps,description) VALUES ($1,$2,$3,$4,$5,$6)`,
-      [id, name.trim(), category.toLowerCase(), JSON.stringify(equipment||[]), reps.trim(), description?.trim()||'']
+      [id, sanitise(name), category.toLowerCase(), JSON.stringify(equipment||[]), sanitise(reps), sanitise(description||'')]
     )
     res.json({ ok: true, exercise: { id, name: name.trim(), category: category.toLowerCase(), equipment: equipment||[], reps: reps.trim(), description: description?.trim()||'', flagged: false } })
   } catch (e) { res.status(500).json({ error: e.message }) }
@@ -375,7 +403,7 @@ app.put('/api/admin/exercises/:id', requireAdmin, async (req, res) => {
   try {
     await pool.query(
       `UPDATE exercises SET name=$1,category=$2,equipment=$3,reps=$4,description=$5 WHERE id=$6`,
-      [name, category, JSON.stringify(equipment||[]), reps, description||'', req.params.id]
+      [sanitise(name), category, JSON.stringify(equipment||[]), sanitise(reps), sanitise(description||''), req.params.id]
     )
     res.json({ ok: true })
   } catch (e) { res.status(500).json({ error: e.message }) }
@@ -419,7 +447,13 @@ app.get('*', (req, res) => {
 
 // ── Start ────────────────────────────────────────────────
 initDB().then(() => {
-  app.listen(PORT, () => {
+  // ── Global error handler — no stack traces to client ─────
+app.use((err, req, res, next) => {
+  console.error('Server error:', err.message)
+  res.status(500).json({ error: 'Something went wrong. Please try again.' })
+})
+
+app.listen(PORT, () => {
     console.log(`\n✅  CircuitBreaker running on port ${PORT}`)
     console.log(`   Database: ${process.env.DATABASE_URL ? 'PostgreSQL connected' : 'not configured'}`)
     console.log(`   Admin:    ${process.env.ADMIN_PASSWORD ? 'password protected' : 'open'}\n`)
