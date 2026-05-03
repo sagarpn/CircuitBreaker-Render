@@ -881,11 +881,3 @@
   text-underline-offset: 2px;
 }
 .termsNoteLink:hover { opacity: 0.9; }
-.termsAsterisk {
-  font-size: 10px;
-  color: var(--muted);
-  opacity: 0.45;
-  text-align: center;
-  margin: 2px 0 0;
-  line-height: 1.5;
-}

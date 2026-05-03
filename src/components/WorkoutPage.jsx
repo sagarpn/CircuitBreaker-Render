@@ -344,14 +344,10 @@ export default function WorkoutPage({ onGenerate }) {
               {loading ? 'Building...' : 'Generate Workout →'}
             </button>
             <p className={styles.termsNote}>
-              By generating a workout you agree to our{' '}
+              For adults 18+ only. Workouts are suggestions — exercise at your own risk.{' '}
               <a href="/terms.html" target="_blank" rel="noopener noreferrer" className={styles.termsNoteLink}>
                 Terms &amp; Conditions
               </a>
-              .*
-            </p>
-            <p className={styles.termsAsterisk}>
-              * Workouts are suggestions only. You are solely responsible for your safety. 18+ only. Not medical advice.
             </p>
           </div>
 

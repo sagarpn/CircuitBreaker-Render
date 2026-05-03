@@ -41,29 +41,60 @@ function vibrate(pattern) {
   try { navigator.vibrate?.(pattern) } catch(e) {}
 }
 
-// ── Phase sounds — each feels like its phase ─────────────
+// ── Phase sounds — single clean sine tones, slow fade ────
+// Simple is better: one note per phase, long smooth envelope
+// Works cleanly on all devices, nothing harsh
 
-// INHALE — two gentle rising notes (C5 → G5), soft triangle
-// Feels like breath coming in, opens upward
+// INHALE — single soft rising tone, slow fade in
+// A4 (440Hz) — neutral, universally pleasant
 function soundInhale() {
-  tone(523.25, 0.00, 0.45, 0.16, 'triangle') // C5
-  tone(784.00, 0.30, 0.50, 0.14, 'triangle') // G5 — rises
-  vibrate([30, 20, 30])                        // two soft pulses
+  try {
+    const c    = ctx()
+    const osc  = c.createOscillator()
+    const gain = c.createGain()
+    osc.connect(gain); gain.connect(c.destination)
+    osc.type = 'sine'; osc.frequency.value = 440
+    const t = c.currentTime
+    gain.gain.setValueAtTime(0, t)
+    gain.gain.linearRampToValueAtTime(0.12, t + 0.3)  // slow breath-in attack
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 1.2) // long fade
+    osc.start(t); osc.stop(t + 1.3)
+  } catch(e) {}
+  vibrate([20])
 }
 
-// HOLD — warm single sustained note (E4), pure sine
-// Feels like stillness, no movement
+// HOLD — very soft barely-there tone, D4 (294Hz) — low, calm
 function soundHold() {
-  tone(329.63, 0.00, 0.70, 0.13, 'sine')     // E4 — centred, calm
-  vibrate([60])                                // one steady pulse
+  try {
+    const c    = ctx()
+    const osc  = c.createOscillator()
+    const gain = c.createGain()
+    osc.connect(gain); gain.connect(c.destination)
+    osc.type = 'sine'; osc.frequency.value = 294
+    const t = c.currentTime
+    gain.gain.setValueAtTime(0, t)
+    gain.gain.linearRampToValueAtTime(0.07, t + 0.1)
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.8)
+    osc.start(t); osc.stop(t + 0.9)
+  } catch(e) {}
+  vibrate([40])
 }
 
-// EXHALE — two gently falling notes (G5 → C5), triangle
-// Feels like breath leaving, settles downward
+// EXHALE — single soft falling tone, E4 (330Hz), longer fade
 function soundExhale() {
-  tone(784.00, 0.00, 0.45, 0.16, 'triangle') // G5
-  tone(523.25, 0.30, 0.55, 0.13, 'triangle') // C5 — falls
-  vibrate([30, 20, 30])                        // two soft pulses
+  try {
+    const c    = ctx()
+    const osc  = c.createOscillator()
+    const gain = c.createGain()
+    osc.connect(gain); gain.connect(c.destination)
+    osc.type = 'sine'; osc.frequency.value = 330
+    const t = c.currentTime
+    gain.gain.setValueAtTime(0, t)
+    gain.gain.linearRampToValueAtTime(0.10, t + 0.1)
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 1.5) // longest — feels like exhale
+    osc.start(t); osc.stop(t + 1.6)
+  } catch(e) {}
+  vibrate([20])
 }
 
 // TICK — tiny soft tap each second
@@ -100,9 +131,9 @@ function soundRestEnd() {
 
 // BREATHING DONE — soft descending resolution, calming
 function soundBreathDone() {
-  tone(659, 0.00, 0.40, 0.20, 'triangle')
-  tone(523, 0.35, 0.45, 0.18, 'triangle')
-  tone(392, 0.72, 0.60, 0.16, 'triangle')
+  tone(659, 0.00, 0.40, 0.16, 'sine')
+  tone(523, 0.35, 0.45, 0.14, 'sine')
+  tone(392, 0.72, 0.60, 0.12, 'sine')
   vibrate([80, 40, 80, 40, 80])
 }
 
@@ -113,14 +144,23 @@ export async function initAudio() {
   if (initialised) return
   initialised = true
   try {
-    // Wake up AudioContext (required after user gesture)
-    ctx()
+    const c = ctx()
 
-    // Android lock screen: register MediaSession so audio keeps playing
+    // Silent keepalive oscillator — keeps AudioContext alive on Android
+    // when screen locks. Simple and lightweight — one inaudible node.
+    const keepalive = c.createOscillator()
+    const muteGain  = c.createGain()
+    keepalive.connect(muteGain)
+    muteGain.connect(c.destination)
+    muteGain.gain.value = 0.0001  // effectively silent
+    keepalive.start()
+    // Note: iOS Safari still blocks audio on lock — Apple policy, not fixable in web apps
+
+    // Android lock screen: MediaSession keeps audio session active
     if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({
-        title:  'CircuitBreaker',
-        artist: 'Breathing Timer',
+        title:  'Breathing Timer',
+        artist: 'Take a Breather',
       })
       navigator.mediaSession.setActionHandler('play',  () => {})
       navigator.mediaSession.setActionHandler('pause', () => {})
