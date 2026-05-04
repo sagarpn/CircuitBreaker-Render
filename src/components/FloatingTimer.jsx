@@ -13,8 +13,8 @@ const PRESETS = [
 
 const DEEP_SEQ = [
   { phase: 'Inhale', secs: 4, sound: () => sounds.inhale() },
-  { phase: 'Hold',   secs: 7, sound: () => sounds.hold()   },
-  { phase: 'Exhale', secs: 8, sound: () => sounds.exhale() },
+  { phase: 'Hold',   secs: 6, sound: () => sounds.hold()   },
+  { phase: 'Exhale', secs: 4, sound: () => sounds.exhale() },
 ]
 const BOX_SEQ = [
   { phase: 'Inhale', secs: 5, sound: () => sounds.inhale() },
