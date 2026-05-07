@@ -93,15 +93,6 @@ async function initDB() {
         created_at  TIMESTAMPTZ DEFAULT NOW()
       )
     `)
-    // Add V2 columns safely — ignored if already exist
-    for (const col of [
-      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS movement  TEXT',
-      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS intensity INTEGER',
-      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS skill     INTEGER',
-      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS fatigue   INTEGER',
-      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS format    TEXT',
-      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS ex_tags   TEXT',
-    ]) { await client.query(col).catch(() => {}) }
     await client.query(`
       CREATE TABLE IF NOT EXISTS favourites (
         id          TEXT PRIMARY KEY,
@@ -129,73 +120,59 @@ async function initDB() {
       )
     `)
 
-    // ── V2 Seed sync — upsert from exercises_v2.json ─────────
-    const seedPath   = path.join(__dirname, 'exercises_v2.json')
-    const legacyPath = path.join(__dirname, 'exercises.seed.json')
-    const activeSeed = fs.existsSync(seedPath) ? seedPath : legacyPath
-
-    if (fs.existsSync(activeSeed)) {
-      const seed = JSON.parse(fs.readFileSync(activeSeed, 'utf8'))
+    // ── Seed sync — APPEND new, UPDATE existing (category/equipment/reps/desc only)
+    // Rules:
+    //   1. INSERT exercises whose name does not exist in DB
+    //   2. UPDATE category, equipment, reps, description for existing exercises
+    //      — name changes are NOT applied (name is the key)
+    //   3. NEVER update flagged status — admin decides
+    //   4. NEVER delete exercises — admin panel only
+    const seedPath = path.join(__dirname, 'exercises.seed.json')
+    if (fs.existsSync(seedPath)) {
+      const seed = JSON.parse(fs.readFileSync(seedPath, 'utf8'))
       const { rows: existing } = await client.query('SELECT name, id FROM exercises')
       const existingMap = new Map(existing.map(r => [r.name.toLowerCase().trim(), r.id]))
 
-      let added = 0, updated = 0, skipped = 0
-      await client.query('BEGIN')
-      try {
-        for (const ex of seed) {
-          const name = (ex.exercise || ex.name || '').trim()
-          if (!name) { skipped++; continue }
-          const key = name.toLowerCase()
+      let added = 0, updated = 0
+      for (const ex of seed) {
+        if (!ex.name || !ex.name.trim()) continue
+        const key = ex.name.toLowerCase().trim()
 
-          // Normalise equipment
-          let equipArr = []
-          if (Array.isArray(ex.equipment)) {
-            equipArr = ex.equipment
-          } else if (typeof ex.equipment === 'string' && ex.equipment !== 'none') {
-            equipArr = ex.equipment.split(',').map(e => e.trim()).filter(Boolean)
-          }
-
-          // Normalise tags
-          const tagsArr = typeof ex.tags === 'string'
-            ? ex.tags.split(',').map(t => t.trim()).filter(Boolean)
-            : (Array.isArray(ex.tags) ? ex.tags : [])
-
-          const cat = ex.category || (ex.movement === 'core' ? 'core' :
-            ['squat','lunge','hinge','explosive'].includes(ex.movement) ? 'lower' :
-            ['horizontal_push','horizontal_pull','vertical_push'].includes(ex.movement) ? 'upper' :
-            ex.movement === 'conditioning' ? 'hiit' : 'upper')
-
-          if (existingMap.has(key)) {
+        if (existingMap.has(key)) {
+          // UPDATE existing — category, equipment, reps, description only
+          try {
             await client.query(
-              `UPDATE exercises SET category=$1,equipment=$2,reps=$3,description=$4,
-               movement=$5,intensity=$6,skill=$7,fatigue=$8,format=$9,ex_tags=$10
-               WHERE id=$11`,
-              [cat, JSON.stringify(equipArr), ex.reps||ex.format||'reps', ex.description||'',
-               ex.movement||null, ex.intensity||null, ex.skill||null, ex.fatigue||null,
-               ex.format||'reps', JSON.stringify(tagsArr), existingMap.get(key)]
+              `UPDATE exercises SET category=$1, equipment=$2, reps=$3, description=$4 WHERE id=$5`,
+              [ex.category, JSON.stringify(ex.equipment || []), ex.reps, ex.description || '', existingMap.get(key)]
             )
             updated++
-          } else {
+          } catch (e) {
+            console.warn(`   Seed sync: could not update "${ex.name}": ${e.message}`)
+          }
+        } else {
+          // INSERT new exercise
+          try {
             const id = (Date.now() + added + updated).toString()
             await client.query(
-              `INSERT INTO exercises
-               (id,name,category,equipment,reps,description,flagged,movement,intensity,skill,fatigue,format,ex_tags)
-               VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)`,
-              [id, name, cat, JSON.stringify(equipArr), ex.reps||ex.format||'reps',
-               ex.description||'', false, ex.movement||null, ex.intensity||null,
-               ex.skill||null, ex.fatigue||null, ex.format||'reps', JSON.stringify(tagsArr)]
+              `INSERT INTO exercises (id, name, category, equipment, reps, description, flagged)
+               VALUES ($1,$2,$3,$4,$5,$6,$7)`,
+              [id, ex.name.trim(), ex.category, JSON.stringify(ex.equipment || []),
+               ex.reps, ex.description || '', false]
             )
             added++
+          } catch (e) {
+            console.warn(`   Seed sync: could not insert "${ex.name}": ${e.message}`)
           }
         }
-        await client.query('COMMIT')
-        console.log(`   Seed sync V2: ${added} added, ${updated} updated, ${skipped} skipped`)
-      } catch (e) {
-        await client.query('ROLLBACK')
-        console.error(`   Seed sync FAILED — rolled back: ${e.message}`)
+      }
+
+      if (added > 0 || updated > 0) {
+        console.log(`   Seed sync: ${added} added, ${updated} updated`)
+      } else {
+        console.log(`   Seed sync: database is up to date (${existing.length} exercises)`)
       }
     }
-            console.log('   Database ready')
+        console.log('   Database ready')
   } catch (e) {
     console.error('DB init error:', e.message)
   } finally {

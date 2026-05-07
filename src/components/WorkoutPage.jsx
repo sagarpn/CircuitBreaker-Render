@@ -99,7 +99,6 @@ export default function WorkoutPage({ onGenerate }) {
   const [quote,       setQuote]       = useState(null)
   const [workoutName, setWorkoutName] = useState(null)
   const [circuit3,    setCircuit3]    = useState(null)
-  const [burnout,     setBurnout]     = useState(null)
   const [hasBench,    setHasBench]    = useState(false)
   const [hasKettlebell,setHasKettlebell] = useState(false)
   const [loadingC3,   setLoadingC3]   = useState(false)
@@ -210,7 +209,7 @@ export default function WorkoutPage({ onGenerate }) {
   }
 
   function handleReset() {
-    setWorkout(null); setGenerated(false); setQuote(null); setBurnout(null)
+    setWorkout(null); setGenerated(false); setQuote(null)
     setWorkoutName(null); setFocus(null); setStyle(null)
     setError(null); setCircuit3(null); setSplashing(false)
     setWorkoutSaved(false); setSavedDate(null)
@@ -486,22 +485,6 @@ export default function WorkoutPage({ onGenerate }) {
             <button className={styles.addCircuitBtn} onClick={handleAddCircuit} disabled={loadingC3}>
               {loadingC3 ? 'Building...' : '+ Add a Third Circuit'}
             </button>
-          )}
-
-          {burnout && burnout.length > 0 && (
-            <div className={styles.burnoutSection}>
-              <div className={styles.burnoutHeader}>
-                <span className={styles.burnoutBadge}>🔥 Burnout</span>
-                <span className={styles.burnoutSub}>All out · {burnout.length === 1 ? '1 exercise' : `${burnout.length} exercises`} · max effort</span>
-              </div>
-              {burnout.map((ex, i) => (
-                <div key={ex.id || i} className={styles.burnoutExercise}>
-                  <span className={styles.burnoutName}>{ex.name}</span>
-                  <span className={styles.burnoutReps}>{ex.reps || ex.format || 'max reps'}</span>
-                  {ex.description && <span className={styles.burnoutDesc}>{ex.description}</span>}
-                </div>
-              ))}
-            </div>
           )}
           <div className={styles.footer}>
             Repeat each circuit <strong>2–3 times</strong> · Rest 60–90 sec between rounds
