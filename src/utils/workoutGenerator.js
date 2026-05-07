@@ -84,24 +84,40 @@ function buildPool(exercises, opts) {
     if (ex.flagged || usedIds.has(ex.id)) return false
     if (!equipOk(ex, { ...opts, isHiit })) return false
 
+    const tags = getTags(ex)
+    const hasV2Tags = tags.length > 0       // V2 exercise with full tags
+    const mv = getMovement(ex)
+    // Legacy category fallback for exercises without V2 tags
+    const legacyCat = ex.category || ''
+
     if (style === 'hiit') {
-      const tags = getTags(ex)
-      if (!tags.includes('hiit') && !tags.includes('conditioning') && ex.movement !== 'core') return false
+      // V2: filter by hiit/conditioning tag. Legacy: use category === 'hiit'
+      if (hasV2Tags) {
+        if (!tags.includes('hiit') && !tags.includes('conditioning') && mv !== 'core') return false
+      } else {
+        if (legacyCat !== 'hiit' && legacyCat !== 'core') return false
+      }
       if (focus === 'upper') {
-        const mv = getMovement(ex)
-        if (['squat','lunge','hinge'].includes(mv) && !tags.includes('upper')) return false
+        if (hasV2Tags && ['squat','lunge','hinge'].includes(mv)) return false
+        if (!hasV2Tags && legacyCat === 'lower') return false
       }
       if (focus === 'lower') {
-        const mv = getMovement(ex)
-        if (['horizontal_push','horizontal_pull','vertical_push'].includes(mv)) return false
+        if (hasV2Tags && ['horizontal_push','horizontal_pull','vertical_push'].includes(mv)) return false
+        if (!hasV2Tags && legacyCat === 'upper') return false
       }
       return true
     }
 
     // Strength/combo — filter by focus
-    const mv = getMovement(ex)
-    if (focus === 'upper') return ['horizontal_push','horizontal_pull','vertical_push','core'].includes(mv)
-    if (focus === 'lower') return ['squat','lunge','hinge','explosive'].includes(mv)
+    // V2: use movement field. Legacy: use category field
+    if (hasV2Tags || mv) {
+      if (focus === 'upper') return ['horizontal_push','horizontal_pull','vertical_push','core'].includes(mv) || (!mv && legacyCat === 'upper')
+      if (focus === 'lower') return ['squat','lunge','hinge','explosive'].includes(mv) || (!mv && legacyCat === 'lower')
+      return true
+    }
+    // Legacy fallback
+    if (focus === 'upper') return ['upper','core'].includes(legacyCat)
+    if (focus === 'lower') return ['lower'].includes(legacyCat)
     return true // whole body
   })
 }
@@ -168,8 +184,14 @@ function pickPushCircuit(pool, usedIds, slots) {
 function pickUpperFoundation(pool, usedIds) {
   // Circuit 1: compound push → secondary upper → isolation
   const available = shuffle(pool.filter(e => !usedIds.has(e.id) && e.movement !== 'core'))
-  const pushExs = available.filter(e => e.movement === 'horizontal_push')
-  const pullExs = available.filter(e => e.movement === 'horizontal_pull' || e.movement === 'vertical_push')
+  const pushExs = available.filter(e =>
+    e.movement === 'horizontal_push' ||
+    (!e.movement && (e.category === 'upper') && getTags(e).some(t => ['chest','triceps'].includes(t)))
+  )
+  const pullExs = available.filter(e =>
+    e.movement === 'horizontal_pull' || e.movement === 'vertical_push' ||
+    (!e.movement && e.category === 'upper' && getTags(e).some(t => ['back','biceps'].includes(t)))
+  )
   const isoExs  = available.filter(e => hasTag(e, 'isolation'))
   const picked  = []
 
@@ -243,8 +265,14 @@ function pickUpperPush(pool, usedIds) {
 function pickLowerFoundation(pool, usedIds) {
   // Circuit 1: squat + hinge + unilateral/accessory
   const available = shuffle(pool.filter(e => !usedIds.has(e.id)))
-  const squats  = available.filter(e => e.movement === 'squat')
-  const hinges  = available.filter(e => e.movement === 'hinge')
+  const squats  = available.filter(e =>
+    e.movement === 'squat' || (!e.movement && e.category === 'lower' &&
+      ['squat','goblet','sumo squat'].some(k => (e.name||'').toLowerCase().includes(k)))
+  )
+  const hinges  = available.filter(e =>
+    e.movement === 'hinge' || (!e.movement && e.category === 'lower' &&
+      ['deadlift','rdl','hinge','hip thrust','glute bridge'].some(k => (e.name||'').toLowerCase().includes(k)))
+  )
   const picked  = []
 
   const squat = squats.find(e => getSkill(e) <= 3 && getIntensity(e) <= 3)
@@ -275,10 +303,21 @@ function pickLowerFoundation(pool, usedIds) {
 function pickLowerPush(pool, usedIds) {
   // Circuit 2: lunge + hinge/hamstring + explosive lower + glute
   const available = shuffle(pool.filter(e => !usedIds.has(e.id)))
-  const lunges    = available.filter(e => e.movement === 'lunge')
-  const hinges    = available.filter(e => e.movement === 'hinge')
-  const explosive = available.filter(e => e.movement === 'explosive' || hasTag(e, 'plyometric'))
-  const glute     = available.filter(e => hasTag(e, 'glutes') && e.movement !== 'lunge')
+  const lunges    = available.filter(e =>
+    e.movement === 'lunge' || (!e.movement && e.category === 'lower' &&
+      ['lunge','split squat','curtsy','step up'].some(k => (e.name||'').toLowerCase().includes(k)))
+  )
+  const hinges    = available.filter(e =>
+    e.movement === 'hinge' || (!e.movement && e.category === 'lower' &&
+      ['deadlift','rdl','hip thrust','glute bridge'].some(k => (e.name||'').toLowerCase().includes(k)))
+  )
+  const explosive = available.filter(e =>
+    e.movement === 'explosive' || hasTag(e, 'plyometric') ||
+    (!e.movement && e.category === 'hiit')
+  )
+  const glute     = available.filter(e =>
+    (hasTag(e, 'glutes') || (e.name||'').toLowerCase().includes('glute')) && e.movement !== 'lunge'
+  )
   const picked    = []
 
   const lunge = lunges[0]
@@ -436,11 +475,15 @@ function pickBurnout(pool, usedIds, focus) {
   const candidates = available.filter(e =>
     hasTag(e, 'burnout') || hasTag(e, 'finisher')
   )
+  // Fallback if no tagged burnout exercises (e.g. old DB)
+  const fallbackBurnout = candidates.length === 0
+    ? shuffle(available).slice(0, 2)
+    : candidates
 
   // Prefer timed format
   const timed   = candidates.filter(e => e.format === 'timed')
   const untimed = candidates.filter(e => e.format !== 'timed')
-  const pool_   = [...timed, ...untimed]
+  const pool_   = candidates.length > 0 ? [...timed, ...untimed] : fallbackBurnout
 
   const picked = []
 
@@ -509,6 +552,13 @@ export function generateWorkout(exercises, answers) {
     if (c.length >= 3) return c
     const fillers = shuffle(p.filter(e => !usedIds.has(e.id) && !c.find(x => x.id === e.id)))
     while (c.length < 3 && fillers.length > 0) c.push(fillers.shift())
+    // Last resort: pull from all exercises if pool is too small
+    if (c.length < 3) {
+      const lastResort = shuffle(exercises.filter(e =>
+        !e.flagged && !usedIds.has(e.id) && !c.find(x => x.id === e.id)
+      ))
+      while (c.length < 3 && lastResort.length > 0) c.push(lastResort.shift())
+    }
     return c
   }
 
