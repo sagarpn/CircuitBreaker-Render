@@ -74,7 +74,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, shoulder_load, wrist_load, core, finisher"
+    "tags": "strength, floor_based, shoulder_load, wrist_load, core, finisher"
   },
   {
     "exercise": "Tricep Dips",
@@ -151,7 +151,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, triceps, accessory"
+    "tags": "strength, standing, triceps, accessory"
   },
   {
     "exercise": "DB Renegade Rows",
@@ -162,7 +162,7 @@
     "skill": 5,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, unilateral, standing, wrist_load, low_back_load, back, core, anchor"
+    "tags": "strength, unilateral, standing, wrist_load, low_back_load, back, core, anchor"
   },
   {
     "exercise": "DB Bent Over Rows",
@@ -261,7 +261,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, standing, knee_load, quads, anchor, finisher"
+    "tags": "strength, hiit, standing, knee_load, quads, anchor, finisher"
   },
   {
     "exercise": "Lateral Squats",
@@ -294,7 +294,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, unilateral, standing, knee_load, glutes, quads, anchor, finisher"
+    "tags": "strength, hiit, unilateral, standing, knee_load, glutes, quads, anchor, finisher"
   },
   {
     "exercise": "Bodyweight Lunges",
@@ -349,7 +349,7 @@
     "skill": 5,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, unilateral, floor_based, low_back_load, glutes, hamstrings, accessory"
+    "tags": "strength, unilateral, floor_based, low_back_load, glutes, hamstrings, accessory"
   },
   {
     "exercise": "Step-Ups",
@@ -371,7 +371,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, standing, knee_load, quads, finisher"
+    "tags": "strength, standing, knee_load, quads, finisher"
   },
   {
     "exercise": "Ice Skaters",
@@ -404,7 +404,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, standing, knee_load, quads, finisher"
+    "tags": "strength, standing, knee_load, quads, finisher"
   },
   {
     "exercise": "DB Walking Lunges",
@@ -415,7 +415,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, knee_load, glutes, quads, anchor"
+    "tags": "strength, standing, knee_load, glutes, quads, anchor"
   },
   {
     "exercise": "DB Reverse Lunges",
@@ -437,7 +437,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "dumbbells",
-    "tags": "strength, stability, unilateral, standing, knee_load, glutes, quads, accessory"
+    "tags": "strength, unilateral, standing, knee_load, glutes, quads, accessory"
   },
   {
     "exercise": "DB Bulgarian Split Squat",
@@ -459,7 +459,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, knee_load, quads, anchor"
+    "tags": "strength, standing, knee_load, quads, anchor"
   },
   {
     "exercise": "DB Goblet Squat Press",
@@ -492,7 +492,7 @@
     "skill": 5,
     "fatigue": 4,
     "equipment": "dumbbells",
-    "tags": "strength, stability, unilateral, standing, low_back_load, glutes, hamstrings, back, anchor"
+    "tags": "strength, unilateral, standing, low_back_load, glutes, hamstrings, back, anchor"
   },
   {
     "exercise": "DB Sumo Squat",
@@ -503,7 +503,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, knee_load, glutes, quads, accessory"
+    "tags": "strength, standing, knee_load, glutes, quads, accessory"
   },
   {
     "exercise": "DB Lateral Squat",
@@ -547,7 +547,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "dumbbells",
-    "tags": "strength, hiit, plyometric, stability, standing, knee_load, quads, anchor, finisher"
+    "tags": "strength, hiit, standing, knee_load, quads, anchor, finisher"
   },
   {
     "exercise": "DB Lateral Shuffle",
@@ -558,7 +558,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, hiit, stability, standing, back, accessory"
+    "tags": "strength, hiit, standing, back, accessory"
   },
   {
     "exercise": "Plank",
@@ -569,7 +569,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "Side Plank",
@@ -580,7 +580,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "Plank Hip Drops",
@@ -591,7 +591,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "Plank Up-Downs",
@@ -602,7 +602,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "Dead Bug",
@@ -734,7 +734,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, low_back_load, hamstrings, back, core, finisher"
+    "tags": "strength, floor_based, low_back_load, hamstrings, back, core, finisher"
   },
   {
     "exercise": "DB Russian Twists",
@@ -745,7 +745,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, floor_based, core, accessory"
+    "tags": "strength, floor_based, core, accessory"
   },
   {
     "exercise": "DB Side Plank Raise",
@@ -756,7 +756,7 @@
     "skill": 2,
     "fatigue": 2,
     "equipment": "dumbbells",
-    "tags": "strength, isolation, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, isolation, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "Burpees",
@@ -767,7 +767,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, stability, standing, shoulder_load, wrist_load, anchor, finisher, chest, quads, shoulders"
+    "tags": "strength, hiit, standing, shoulder_load, wrist_load, anchor, finisher, chest, quads, shoulders"
   },
   {
     "exercise": "Burpee + Lateral Jump",
@@ -778,7 +778,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "hiit, plyometric, standing, shoulder_load, wrist_load, knee_load, back, anchor, finisher"
+    "tags": "hiit, standing, shoulder_load, wrist_load, knee_load, back, anchor, finisher"
   },
   {
     "exercise": "Mountain Climbers",
@@ -789,7 +789,7 @@
     "skill": 2,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "strength, hiit, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, hiit, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "High Knees",
@@ -811,7 +811,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "hiit, plyometric, standing, knee_load, finisher, shoulders, quads"
+    "tags": "hiit, standing, knee_load, finisher, shoulders, quads"
   },
   {
     "exercise": "Jump Squats Wide to Narrow",
@@ -822,7 +822,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, standing, knee_load, low_back_load, quads, back, anchor, finisher"
+    "tags": "strength, hiit, standing, knee_load, low_back_load, quads, back, anchor, finisher"
   },
   {
     "exercise": "Bear Crawl",
@@ -855,7 +855,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, chest, accessory"
+    "tags": "strength, floor_based, wrist_load, chest, accessory"
   },
   {
     "exercise": "Lateral Shuffle",
@@ -998,7 +998,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, isolation, stability, standing, back, accessory"
+    "tags": "strength, isolation, standing, back, accessory"
   },
   {
     "exercise": "Reverse Grip Curl",
@@ -1020,7 +1020,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, knee_load, quads, accessory"
+    "tags": "strength, standing, knee_load, quads, accessory"
   },
   {
     "exercise": "Curtsy Lunge",
@@ -1042,7 +1042,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, standing, knee_load, quads, finisher"
+    "tags": "strength, standing, knee_load, quads, finisher"
   },
   {
     "exercise": "Front Hold Reverse Lunge",
@@ -1053,7 +1053,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, standing, knee_load, glutes, quads, anchor, finisher"
+    "tags": "strength, standing, knee_load, glutes, quads, anchor, finisher"
   },
   {
     "exercise": "Front Hold Forward Lunge",
@@ -1064,7 +1064,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, standing, knee_load, glutes, quads, anchor, finisher"
+    "tags": "strength, standing, knee_load, glutes, quads, anchor, finisher"
   },
   {
     "exercise": "Front Hold Curtsy Lunge",
@@ -1075,7 +1075,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, standing, knee_load, glutes, quads, anchor, finisher"
+    "tags": "strength, standing, knee_load, glutes, quads, anchor, finisher"
   },
   {
     "exercise": "Front Hold Sumo Squat",
@@ -1086,7 +1086,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, standing, knee_load, glutes, quads, finisher"
+    "tags": "strength, standing, knee_load, glutes, quads, finisher"
   },
   {
     "exercise": "Kickstand Deadlift",
@@ -1152,7 +1152,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, standing, core, accessory"
+    "tags": "strength, standing, core, accessory"
   },
   {
     "exercise": "Goblet Lateral Lunge",
@@ -1163,7 +1163,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, knee_load, glutes, quads, back, anchor"
+    "tags": "strength, standing, knee_load, glutes, quads, back, anchor"
   },
   {
     "exercise": "Hamstring Walkout",
@@ -1185,7 +1185,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, low_back_load, glutes, hamstrings, accessory"
+    "tags": "strength, floor_based, low_back_load, glutes, hamstrings, accessory"
   },
   {
     "exercise": "Weighted Glute Bridge",
@@ -1207,7 +1207,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, knee_load, low_back_load, quads, back, anchor"
+    "tags": "strength, standing, knee_load, low_back_load, quads, back, anchor"
   },
   {
     "exercise": "Sumo Squat",
@@ -1229,7 +1229,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, standing, shoulder_load, shoulders, accessory"
+    "tags": "strength, hiit, standing, shoulder_load, shoulders, accessory"
   },
   {
     "exercise": "Thruster",
@@ -1251,7 +1251,7 @@
     "skill": 5,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, standing, wrist_load, low_back_load, chest, back, core, anchor"
+    "tags": "strength, standing, wrist_load, low_back_load, chest, back, core, anchor"
   },
   {
     "exercise": "DB Bent-Over Triceps Kickback",
@@ -1273,7 +1273,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, shoulder_load, shoulders, accessory"
+    "tags": "strength, standing, shoulder_load, shoulders, accessory"
   },
   {
     "exercise": "Plank Dumbbell Drag",
@@ -1284,7 +1284,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "Quadruped Row",
@@ -1328,7 +1328,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, floor_based, wrist_load, glutes, chest, accessory"
+    "tags": "strength, floor_based, wrist_load, glutes, chest, accessory"
   },
   {
     "exercise": "Crush Grip Chest Press",
@@ -1350,7 +1350,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, standing, shoulder_load, shoulders, accessory"
+    "tags": "strength, standing, shoulder_load, shoulders, accessory"
   },
   {
     "exercise": "Seesaw Bent-Over Row",
@@ -1372,7 +1372,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, standing, shoulder_load, shoulders, accessory"
+    "tags": "strength, standing, shoulder_load, shoulders, accessory"
   },
   {
     "exercise": "Kneeling Shoulder Press",
@@ -1394,7 +1394,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, isolation, stability, floor_based, wrist_load, hamstrings, core, finisher"
+    "tags": "strength, isolation, floor_based, wrist_load, hamstrings, core, finisher"
   },
   {
     "exercise": "Neutral Grip Bent-Over Row",
@@ -1460,7 +1460,7 @@
     "skill": 2,
     "fatigue": 2,
     "equipment": "none",
-    "tags": "strength, isolation, stability, unilateral, standing, chest, accessory"
+    "tags": "strength, isolation, unilateral, standing, chest, accessory"
   },
   {
     "exercise": "Bent-Over Reverse Fly to Lateral Raise",
@@ -1482,7 +1482,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, unilateral, standing, accessory, shoulders, chest"
+    "tags": "strength, unilateral, standing, accessory, shoulders, chest"
   },
   {
     "exercise": "Kneeling Triceps Extension",
@@ -1493,7 +1493,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, isolation, stability, kneeling, shoulder_load, triceps, accessory, shoulders"
+    "tags": "strength, isolation, kneeling, shoulder_load, triceps, accessory, shoulders"
   },
   {
     "exercise": "Chest Fly in Bridge",
@@ -1504,7 +1504,7 @@
     "skill": 2,
     "fatigue": 2,
     "equipment": "dumbbells",
-    "tags": "strength, isolation, stability, floor_based, low_back_load, glutes, chest, accessory"
+    "tags": "strength, isolation, floor_based, low_back_load, glutes, chest, accessory"
   },
   {
     "exercise": "DB Reverse Curl",
@@ -1526,7 +1526,7 @@
     "skill": 3,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, floor_based, wrist_load, low_back_load, glutes, chest, back, accessory"
+    "tags": "strength, floor_based, wrist_load, low_back_load, glutes, chest, back, accessory"
   },
   {
     "exercise": "Supported Single Arm Reverse Fly",
@@ -1570,7 +1570,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "High-to-Low Plank",
@@ -1581,7 +1581,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "Superman Back Extension",
@@ -1592,7 +1592,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, isolation, stability, floor_based, low_back_load, hamstrings, back, triceps, core, accessory"
+    "tags": "strength, isolation, floor_based, low_back_load, hamstrings, back, triceps, core, accessory"
   },
   {
     "exercise": "V-Sit Leg Extension",
@@ -1625,7 +1625,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, chest, triceps, core, finisher"
+    "tags": "strength, floor_based, wrist_load, chest, triceps, core, finisher"
   },
   {
     "exercise": "Bear Crawl Forward",
@@ -1658,7 +1658,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "Mountain Climber with Pause",
@@ -1680,7 +1680,7 @@
     "skill": 5,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, unilateral, floor_based, low_back_load, glutes, hamstrings, finisher"
+    "tags": "strength, unilateral, floor_based, low_back_load, glutes, hamstrings, finisher"
   },
   {
     "exercise": "Lateral Bound",
@@ -1691,7 +1691,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "hiit, plyometric, standing, back, accessory"
+    "tags": "hiit, standing, back, accessory"
   },
   {
     "exercise": "Walkout to Push-Up",
@@ -1702,7 +1702,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, hamstrings, chest, accessory"
+    "tags": "strength, floor_based, wrist_load, hamstrings, chest, accessory"
   },
   {
     "exercise": "Plyo Push-Up",
@@ -1713,7 +1713,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, standing, wrist_load, chest, finisher"
+    "tags": "strength, hiit, standing, wrist_load, chest, finisher"
   },
   {
     "exercise": "Lunge Jump",
@@ -1724,7 +1724,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, standing, knee_load, glutes, quads, anchor, finisher"
+    "tags": "strength, hiit, standing, knee_load, glutes, quads, anchor, finisher"
   },
   {
     "exercise": "DB Squat Jump",
@@ -1735,7 +1735,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "dumbbells",
-    "tags": "strength, hiit, plyometric, stability, standing, knee_load, quads, anchor, finisher"
+    "tags": "strength, hiit, standing, knee_load, quads, anchor, finisher"
   },
   {
     "exercise": "Inchworm Push-Up Walk",
@@ -1746,7 +1746,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, shoulder_load, wrist_load, chest, accessory"
+    "tags": "strength, floor_based, shoulder_load, wrist_load, chest, accessory"
   },
   {
     "exercise": "Crunch",
@@ -1790,7 +1790,7 @@
     "skill": 5,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "hiit, plyometric, standing, knee_load, anchor, finisher, quads, glutes"
+    "tags": "hiit, standing, knee_load, anchor, finisher, quads, glutes"
   },
   {
     "exercise": "Dumbbell Woodchop",
@@ -1801,7 +1801,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, low_back_load, back, core, accessory"
+    "tags": "strength, standing, low_back_load, back, core, accessory"
   },
   {
     "exercise": "Farmers Carry",
@@ -1812,7 +1812,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, accessory, back, core"
+    "tags": "strength, standing, accessory, back, core"
   },
   {
     "exercise": "Reverse Lunge to Bicep Curl",
@@ -1856,7 +1856,7 @@
     "skill": 3,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, isolation, stability, standing, low_back_load, glutes, back, triceps, anchor"
+    "tags": "strength, isolation, standing, low_back_load, glutes, back, triceps, anchor"
   },
   {
     "exercise": "Lateral Raise to Front Raise",
@@ -1889,7 +1889,7 @@
     "skill": 3,
     "fatigue": 2,
     "equipment": "none",
-    "tags": "strength, isolation, stability, standing, shoulder_load, low_back_load, back, shoulders, anchor"
+    "tags": "strength, isolation, standing, shoulder_load, low_back_load, back, shoulders, anchor"
   },
   {
     "exercise": "Burpee to Tuck Jump",
@@ -1900,7 +1900,7 @@
     "skill": 5,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "hiit, plyometric, standing, shoulder_load, wrist_load, knee_load, anchor, finisher, chest, quads, shoulders"
+    "tags": "hiit, standing, shoulder_load, wrist_load, knee_load, anchor, finisher, chest, quads, shoulders"
   },
   {
     "exercise": "Mountain Climber to Push-Up",
@@ -1966,7 +1966,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, standing, shoulder_load, shoulders, finisher"
+    "tags": "strength, standing, shoulder_load, shoulders, finisher"
   },
   {
     "exercise": "Around the World",
@@ -1977,7 +1977,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, standing, shoulder_load, shoulders, accessory"
+    "tags": "strength, standing, shoulder_load, shoulders, accessory"
   },
   {
     "exercise": "Shoulder Press to Lateral Raise",
@@ -2021,7 +2021,7 @@
     "skill": 2,
     "fatigue": 2,
     "equipment": "none",
-    "tags": "strength, isolation, stability, standing, biceps, accessory"
+    "tags": "strength, isolation, standing, biceps, accessory"
   },
   {
     "exercise": "Seated Bicep Curl",
@@ -2065,7 +2065,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, hiit, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "Commando Plank",
@@ -2076,7 +2076,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "Push-Up to Side Plank",
@@ -2087,7 +2087,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, chest, core, finisher"
+    "tags": "strength, floor_based, wrist_load, chest, core, finisher"
   },
   {
     "exercise": "Clap Push-Up",
@@ -2098,7 +2098,7 @@
     "skill": 5,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, standing, wrist_load, chest, anchor, finisher"
+    "tags": "strength, hiit, standing, wrist_load, chest, anchor, finisher"
   },
   {
     "exercise": "Speed Bag",
@@ -2142,7 +2142,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "hiit, plyometric, stability, standing, shoulder_load, wrist_load, core, anchor, finisher"
+    "tags": "hiit, standing, shoulder_load, wrist_load, core, anchor, finisher"
   },
   {
     "exercise": "Arm Hauler",
@@ -2230,7 +2230,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells, bench",
-    "tags": "strength, stability, standing, chest, accessory"
+    "tags": "strength, standing, chest, accessory"
   },
   {
     "exercise": "Incline DB Row",
@@ -2252,7 +2252,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "kettlebells",
-    "tags": "hiit, plyometric, standing, low_back_load, glutes, hamstrings, back, anchor"
+    "tags": "hiit, standing, low_back_load, glutes, hamstrings, back, anchor"
   },
   {
     "exercise": "KB Goblet Squat",
@@ -2263,7 +2263,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "dumbbells, kettlebells",
-    "tags": "strength, stability, standing, knee_load, quads, anchor"
+    "tags": "strength, standing, knee_load, quads, anchor"
   },
   {
     "exercise": "KB Clean",
@@ -2274,7 +2274,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "kettlebells",
-    "tags": "hiit, plyometric, standing, low_back_load, back, shoulders, anchor"
+    "tags": "hiit, standing, low_back_load, back, shoulders, anchor"
   },
   {
     "exercise": "KB Sumo High Pull",
@@ -2285,7 +2285,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "kettlebells",
-    "tags": "hiit, plyometric, standing, shoulder_load, knee_load, low_back_load, back, shoulders, accessory"
+    "tags": "hiit, standing, shoulder_load, knee_load, low_back_load, back, shoulders, accessory"
   },
   {
     "exercise": "KB Press",
@@ -2296,7 +2296,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "kettlebells",
-    "tags": "strength, stability, standing, shoulder_load, shoulders, accessory"
+    "tags": "strength, standing, shoulder_load, shoulders, accessory"
   },
   {
     "exercise": "KB Halo",
@@ -2307,7 +2307,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "kettlebells",
-    "tags": "strength, stability, standing, shoulder_load, shoulders, accessory"
+    "tags": "strength, standing, shoulder_load, shoulders, accessory"
   },
   {
     "exercise": "KB Figure Eight",
@@ -2406,7 +2406,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, shoulder_load, knee_load, quads, anchor, shoulders"
+    "tags": "strength, standing, shoulder_load, knee_load, quads, anchor, shoulders"
   },
   {
     "exercise": "Sumo Squat to Upright Row",
@@ -2483,7 +2483,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, standing, shoulder_load, wrist_load, chest, accessory"
+    "tags": "strength, standing, shoulder_load, wrist_load, chest, accessory"
   },
   {
     "exercise": "Dip to Knee Raise",
@@ -2538,7 +2538,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, standing, knee_load, glutes, quads, anchor, finisher"
+    "tags": "strength, hiit, standing, knee_load, glutes, quads, anchor, finisher"
   },
   {
     "exercise": "Squat Hold Pulse",
@@ -2549,7 +2549,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, stability, standing, knee_load, quads, finisher"
+    "tags": "strength, standing, knee_load, quads, finisher"
   },
   {
     "exercise": "Sprint in Place",
@@ -2582,7 +2582,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, stability, standing, knee_load, quads, finisher"
+    "tags": "strength, hiit, standing, knee_load, quads, finisher"
   },
   {
     "exercise": "Cossack Squat",
@@ -2615,7 +2615,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "hiit, plyometric, standing, accessory, shoulders, quads"
+    "tags": "hiit, standing, accessory, shoulders, quads"
   },
   {
     "exercise": "Cross Jacks",
@@ -2626,7 +2626,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "hiit, plyometric, standing, accessory, shoulders, quads"
+    "tags": "hiit, standing, accessory, shoulders, quads"
   },
   {
     "exercise": "Squat Jacks",
@@ -2637,7 +2637,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, standing, knee_load, quads, finisher"
+    "tags": "strength, hiit, standing, knee_load, quads, finisher"
   },
   {
     "exercise": "Power Jacks",
@@ -2648,7 +2648,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "hiit, isolation, plyometric, standing, knee_load, accessory, quads, glutes"
+    "tags": "hiit, isolation, standing, knee_load, accessory, quads, glutes"
   },
   {
     "exercise": "Slow Mountain Climbers",
@@ -2703,7 +2703,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, floor_based, core, accessory"
+    "tags": "strength, floor_based, core, accessory"
   },
   {
     "exercise": "DB Toe Touch",
@@ -2725,7 +2725,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, core, accessory"
+    "tags": "strength, standing, core, accessory"
   },
   {
     "exercise": "DB Plank Row",
@@ -2736,7 +2736,7 @@
     "skill": 3,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, unilateral, floor_based, wrist_load, low_back_load, back, core, finisher"
+    "tags": "strength, unilateral, floor_based, wrist_load, low_back_load, back, core, finisher"
   },
   {
     "exercise": "Explosive Sit-Up",
@@ -2747,7 +2747,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "hiit, plyometric, floor_based, core, accessory"
+    "tags": "hiit, floor_based, core, accessory"
   },
   {
     "exercise": "V-Up Jack",
@@ -2769,7 +2769,7 @@
     "skill": 5,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, core, finisher"
+    "tags": "strength, floor_based, wrist_load, core, finisher"
   },
   {
     "exercise": "Alternating V-Up",
@@ -2802,7 +2802,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, floor_based, chest, back, accessory"
+    "tags": "strength, floor_based, chest, back, accessory"
   },
   {
     "exercise": "Single Arm Overhead Press",
@@ -2813,7 +2813,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, unilateral, standing, shoulder_load, shoulders, accessory"
+    "tags": "strength, unilateral, standing, shoulder_load, shoulders, accessory"
   },
   {
     "exercise": "DB Spider Curl",
@@ -2868,7 +2868,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, accessory, core, back"
+    "tags": "strength, standing, accessory, core, back"
   },
   {
     "exercise": "DB Sumo Squat Hold",
@@ -2879,7 +2879,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, knee_load, glutes, quads, finisher"
+    "tags": "strength, standing, knee_load, glutes, quads, finisher"
   },
   {
     "exercise": "DB Step Up",
@@ -2890,7 +2890,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells, bench",
-    "tags": "strength, stability, standing, knee_load, glutes, quads, accessory"
+    "tags": "strength, standing, knee_load, glutes, quads, accessory"
   },
   {
     "exercise": "DB Curtsy Lunge",
@@ -2901,7 +2901,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, knee_load, glutes, quads, anchor"
+    "tags": "strength, standing, knee_load, glutes, quads, anchor"
   },
   {
     "exercise": "DB Lateral Step Squat",
@@ -2934,7 +2934,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, isolation, stability, floor_based, wrist_load, triceps, core, finisher"
+    "tags": "strength, isolation, floor_based, wrist_load, triceps, core, finisher"
   },
   {
     "exercise": "Suitcase Crunch",
@@ -2956,7 +2956,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "dumbbells",
-    "tags": "strength, stability, floor_based, core, accessory"
+    "tags": "strength, floor_based, core, accessory"
   },
   {
     "exercise": "Lateral Shuffle Touch",
@@ -2967,7 +2967,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, hiit, compound, athletic, standing, back, accessory"
+    "tags": "strength, hiit, compound, standing, back, accessory"
   },
   {
     "exercise": "Lateral Shuffle to Squat",
@@ -2978,7 +2978,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, hiit, compound, athletic, standing, knee_load, quads, back, accessory"
+    "tags": "strength, hiit, compound, standing, knee_load, quads, back, accessory"
   },
   {
     "exercise": "Lateral Shuffle Sprint",
@@ -2989,7 +2989,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "hiit, compound, athletic, conditioning, standing, back, finisher"
+    "tags": "hiit, compound, standing, back, finisher"
   },
   {
     "exercise": "Shuffle to Broad Jump",
@@ -3000,7 +3000,7 @@
     "skill": 3,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "hiit, plyometric, athletic, standing, knee_load, anchor, finisher, quads, glutes"
+    "tags": "hiit, standing, knee_load, anchor, finisher, quads, glutes"
   },
   {
     "exercise": "High Knees with Arms",
@@ -3011,7 +3011,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "hiit, compound, conditioning, standing, finisher, quads, shoulders, core"
+    "tags": "hiit, compound, standing, finisher, quads, shoulders, core"
   },
   {
     "exercise": "High Knees to Squat",
@@ -3022,7 +3022,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, hiit, compound, athletic, standing, knee_load, quads, finisher"
+    "tags": "strength, hiit, compound, standing, knee_load, quads, finisher"
   },
   {
     "exercise": "High Knees Sprint Intervals",
@@ -3033,7 +3033,7 @@
     "skill": 2,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "hiit, conditioning, burnout, standing, finisher, quads, core"
+    "tags": "hiit, burnout, standing, finisher, quads, core"
   },
   {
     "exercise": "Slow High Knees (Marching)",
@@ -3044,7 +3044,7 @@
     "skill": 2,
     "fatigue": 2,
     "equipment": "none",
-    "tags": "strength, hiit, compound, stability, standing, biceps, finisher"
+    "tags": "strength, hiit, compound, standing, biceps, finisher"
   },
   {
     "exercise": "Speed Skaters",
@@ -3055,7 +3055,7 @@
     "skill": 2,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "hiit, plyometric, athletic, unilateral, standing, knee_load, finisher, glutes, quads"
+    "tags": "hiit, unilateral, standing, knee_load, finisher, glutes, quads"
   },
   {
     "exercise": "Skater Hop to Hold",
@@ -3066,7 +3066,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, stability, unilateral, standing, knee_load, finisher, glutes, quads"
+    "tags": "strength, hiit, unilateral, standing, knee_load, finisher, glutes, quads"
   },
   {
     "exercise": "Skater Squat",
@@ -3077,7 +3077,7 @@
     "skill": 4,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, hiit, unilateral, stability, standing, knee_load, quads, anchor"
+    "tags": "strength, hiit, unilateral, standing, knee_load, quads, anchor"
   },
   {
     "exercise": "Skater Lunge",
@@ -3088,7 +3088,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, hiit, unilateral, athletic, standing, knee_load, glutes, quads, anchor"
+    "tags": "strength, hiit, unilateral, standing, knee_load, glutes, quads, anchor"
   },
   {
     "exercise": "Sprint in Place Accelerations",
@@ -3099,7 +3099,7 @@
     "skill": 2,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "hiit, conditioning, burnout, standing, finisher, quads, core"
+    "tags": "hiit, burnout, standing, finisher, quads, core"
   },
   {
     "exercise": "Lateral Bound to Stick",
@@ -3110,7 +3110,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "hiit, plyometric, stability, unilateral, standing, back, finisher"
+    "tags": "hiit, unilateral, standing, back, finisher"
   },
   {
     "exercise": "Diagonal Lunge",
@@ -3121,7 +3121,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "strength, hiit, compound, athletic, standing, knee_load, glutes, quads, anchor"
+    "tags": "strength, hiit, compound, standing, knee_load, glutes, quads, anchor"
   },
   {
     "exercise": "Reactive Step Touch",
@@ -3132,7 +3132,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, hiit, compound, athletic, standing, accessory, quads, glutes"
+    "tags": "strength, hiit, compound, standing, accessory, quads, glutes"
   },
   {
     "exercise": "Power Skip",
@@ -3143,7 +3143,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "hiit, plyometric, athletic, standing, finisher, quads, glutes"
+    "tags": "hiit, standing, finisher, quads, glutes"
   },
   {
     "exercise": "Alternating Lateral Bound",
@@ -3154,7 +3154,7 @@
     "skill": 3,
     "fatigue": 4,
     "equipment": "none",
-    "tags": "hiit, plyometric, athletic, unilateral, standing, back, finisher"
+    "tags": "hiit, unilateral, standing, back, finisher"
   },
   {
     "exercise": "In-Out Squat Jump",
@@ -3165,7 +3165,7 @@
     "skill": 3,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, burnout, standing, knee_load, quads, anchor, finisher"
+    "tags": "strength, hiit, burnout, standing, knee_load, quads, anchor, finisher"
   },
   {
     "exercise": "Lateral Raise Hold",
@@ -3176,7 +3176,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, burnout, isolation, stability, standing, shoulder_load, back, shoulders, finisher"
+    "tags": "strength, burnout, isolation, standing, shoulder_load, back, shoulders, finisher"
   },
   {
     "exercise": "Curl Burn Hold",
@@ -3220,7 +3220,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, burnout, stability, floor_based, wrist_load, chest, core, finisher"
+    "tags": "strength, burnout, floor_based, wrist_load, chest, core, finisher"
   },
   {
     "exercise": "Split Squat Hold",
@@ -3242,7 +3242,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "bench",
-    "tags": "strength, burnout, stability, floor_based, low_back_load, glutes, hamstrings, finisher"
+    "tags": "strength, burnout, floor_based, low_back_load, glutes, hamstrings, finisher"
   },
   {
     "exercise": "Lunge Hold",
@@ -3275,7 +3275,7 @@
     "skill": 2,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "hiit, burnout, conditioning, standing, finisher, quads, core"
+    "tags": "hiit, burnout, standing, finisher, quads, core"
   },
   {
     "exercise": "Alternating Jump Lunge",
@@ -3286,7 +3286,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "strength, hiit, burnout, plyometric, standing, knee_load, glutes, quads, anchor, finisher"
+    "tags": "strength, hiit, burnout, standing, knee_load, glutes, quads, anchor, finisher"
   },
   {
     "exercise": "Archer Row",
@@ -3308,7 +3308,7 @@
     "skill": 1,
     "fatigue": 1,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, back, core, accessory"
+    "tags": "strength, floor_based, back, core, accessory"
   },
   {
     "exercise": "Crab Walk",
@@ -3374,7 +3374,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, core, accessory"
+    "tags": "strength, floor_based, core, accessory"
   },
   {
     "exercise": "Plank Leg Lift",
@@ -3385,7 +3385,7 @@
     "skill": 2,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, wrist_load, core, glutes, accessory"
+    "tags": "strength, floor_based, wrist_load, core, glutes, accessory"
   },
   {
     "exercise": "Single Leg Hinge",
@@ -3429,7 +3429,7 @@
     "skill": 4,
     "fatigue": 5,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, standing, knee_load, quads, glutes, anchor, finisher"
+    "tags": "strength, hiit, standing, knee_load, quads, glutes, anchor, finisher"
   },
   {
     "exercise": "Stepback Hinge",
@@ -3451,7 +3451,7 @@
     "skill": 2,
     "fatigue": 1,
     "equipment": "none",
-    "tags": "strength, stability, kneeling, core, accessory"
+    "tags": "strength, kneeling, core, accessory"
   },
   {
     "exercise": "Updog",
@@ -3462,7 +3462,7 @@
     "skill": 1,
     "fatigue": 1,
     "equipment": "none",
-    "tags": "strength, stability, floor_based, back, core, accessory"
+    "tags": "strength, floor_based, back, core, accessory"
   },
   {
     "exercise": "Waiter's Carry",
@@ -3473,7 +3473,7 @@
     "skill": 3,
     "fatigue": 2,
     "equipment": "dumbbells",
-    "tags": "strength, stability, standing, shoulder_load, shoulders, core, accessory"
+    "tags": "strength, standing, shoulder_load, shoulders, core, accessory"
   },
   {
     "exercise": "Hip Extension",
@@ -3495,7 +3495,7 @@
     "skill": 3,
     "fatigue": 3,
     "equipment": "none",
-    "tags": "strength, hiit, plyometric, standing, knee_load, quads, glutes, accessory"
+    "tags": "strength, hiit, standing, knee_load, quads, glutes, accessory"
   },
   {
     "exercise": "L Raise",

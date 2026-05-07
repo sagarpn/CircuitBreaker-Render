@@ -80,10 +80,21 @@ function isHiitExercise(ex) {
 }
 
 // ── Safety — no stacking back-to-back + session load caps ──
+// knee_load cap applied dynamically — higher for lower body focus
 const SESSION_LOAD_CAPS = {
   shoulder_load:  2,   // max 2 shoulder-load exercises per full workout
   wrist_load:     3,   // max 3 wrist-load exercises per full workout
   low_back_load:  2,   // max 2 low-back-load exercises per full workout
+  // knee_load cap set per focus in buildPools
+}
+
+function getLoadCaps(focus) {
+  return {
+    shoulder_load: 2,
+    wrist_load:    3,
+    low_back_load: 2,
+    knee_load:     focus === 'lower' ? 6 : 3, // lower body = lots of knee work, that's fine
+  }
 }
 
 function countLoad(allPicked, loadTag) {
@@ -92,7 +103,8 @@ function countLoad(allPicked, loadTag) {
 
 // picked     = exercises in current circuit
 // allSession = all exercises across all circuits so far (for load caps)
-function wouldStack(picked, candidate, allSession = []) {
+// focus      = workout focus (affects knee_load cap)
+function wouldStack(picked, candidate, allSession = [], focus = 'upper') {
   if (picked.length === 0 && allSession.length === 0) return false
 
   // Back-to-back checks within circuit
@@ -102,12 +114,13 @@ function wouldStack(picked, candidate, allSession = []) {
     if (getSkill(last)   >= 4 && getSkill(candidate)   >= 4) return true
     if (hasTag(last, 'shoulder_load') && hasTag(candidate, 'shoulder_load')) return true
     if (hasTag(last, 'wrist_load')    && hasTag(candidate, 'wrist_load'))    return true
-    if (hasTag(last, 'plyometric')    && hasTag(candidate, 'plyometric'))    return true
+    if (hasTag(last, 'knee_load')     && hasTag(candidate, 'knee_load'))     return true
   }
 
   // Session-wide load caps
+  const caps = getLoadCaps(focus)
   const session = [...allSession, ...picked]
-  for (const [loadTag, cap] of Object.entries(SESSION_LOAD_CAPS)) {
+  for (const [loadTag, cap] of Object.entries(caps)) {
     if (hasTag(candidate, loadTag) && countLoad(session, loadTag) >= cap) return true
   }
 
@@ -142,7 +155,7 @@ function equipOk(ex, { hasDumbbells, hasBench, hasKettlebell, isHiit }) {
 
 // ── Build focused pools ───────────────────────────────────
 function buildPools(exercises, opts) {
-  const { focus, style, hasDumbbells, hasBench, hasKettlebell, usedIds = new Set() } = opts
+  const { focus = 'upper', style, hasDumbbells, hasBench, hasKettlebell, usedIds = new Set() } = opts
   const isHiit = style === 'hiit'
 
   const filtered = exercises.filter(ex => {
@@ -150,9 +163,19 @@ function buildPools(exercises, opts) {
     return equipOk(ex, { hasDumbbells, hasBench, hasKettlebell, isHiit })
   })
 
-  const upper   = filtered.filter(e => getExerciseFocus(e) === 'upper')
-  const lower   = filtered.filter(e => getExerciseFocus(e) === 'lower')
-  const core    = filtered.filter(e => getExerciseFocus(e) === 'core')
+  const isStr = style === 'strength' || style === 'combo'
+
+  // upper/lower pools: exclude hiit-tagged exercises when building strength circuits
+  // HIIT exercises belong in the hiit pool only
+  const upper   = filtered.filter(e =>
+    getExerciseFocus(e) === 'upper' && !(isStr && isHiitExercise(e))
+  )
+  const lower   = filtered.filter(e =>
+    getExerciseFocus(e) === 'lower' && !(isStr && isHiitExercise(e))
+  )
+  const core    = filtered.filter(e =>
+    getExerciseFocus(e) === 'core' && !(isStr && isHiitExercise(e))
+  )
   const hiit    = filtered.filter(e => isHiitExercise(e) && (!isHiit || equipOk(e, {hasDumbbells:false,hasBench:false,hasKettlebell:false,isHiit:true})))
   const all     = filtered
 
@@ -169,7 +192,7 @@ function pickUpperStrength(pools, usedIds, isCircuit1, allSession = []) {
 
   const pushMvs = ['horizontal_push']
   const pullMvs = ['horizontal_pull', 'vertical_push']
-  const ws = (p, c) => wouldStack(p, c, allSession)
+  const ws = (p, c) => wouldStack(p, c, allSession, 'upper')
 
   if (isCircuit1) {
     const compPush = available.find(e =>
@@ -219,7 +242,7 @@ function pickLowerStrength(pools, usedIds, isCircuit1, allSession = []) {
   const { lower } = pools
   const available = shuffle(lower.filter(e => !usedIds.has(e.id)))
   const picked = []
-  const ws = (p, c) => wouldStack(p, c, allSession)
+  const ws = (p, c) => wouldStack(p, c, allSession, 'lower')
 
   const squats    = available.filter(e => getMovement(e) === 'squat')
   const lunges    = available.filter(e => getMovement(e) === 'lunge')
@@ -261,7 +284,7 @@ function pickWholeStrength(pools, usedIds, allSession = []) {
   const availUpper = shuffle(upper.filter(e => !usedIds.has(e.id)))
   const availCore  = shuffle(core.filter(e => !usedIds.has(e.id)))
   const picked = []
-  const ws = (p, c) => wouldStack(p, c, allSession)
+  const ws = (p, c) => wouldStack(p, c, allSession, 'whole')
 
   const l1 = availLower.find(e => (hasTag(e,'compound') || hasTag(e,'anchor')) && !ws(picked,e)) || availLower.find(e => !ws(picked,e))
   if (l1) picked.push(l1)
@@ -286,7 +309,7 @@ function pickHiitCircuit(pools, usedIds, count, focus, allSession = []) {
   const availHiit = shuffle(hiit.filter(e => !usedIds.has(e.id)))
   const availCore = shuffle(core.filter(e => !usedIds.has(e.id)))
   const picked = []
-  const ws = (p, c) => wouldStack(p, c, allSession)
+  const ws = (p, c) => wouldStack(p, c, allSession, 'whole')
   const minHiit = Math.ceil(count * 0.6)
 
   // Filter hiit by focus
