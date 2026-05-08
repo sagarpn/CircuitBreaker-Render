@@ -881,3 +881,46 @@
   text-underline-offset: 2px;
 }
 .termsNoteLink:hover { opacity: 0.9; }
+
+/* ── Extra round buttons ── */
+.extraRoundBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+.burnerRoundBtn {
+  width: 100%;
+  padding: 13px;
+  background: transparent;
+  border: 1.5px dashed #e84242;
+  border-radius: 10px;
+  color: #e84242;
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.burnerRoundBtn:hover { background: rgba(232,66,66,0.06); }
+
+.coreRoundBtn {
+  width: 100%;
+  padding: 13px;
+  background: transparent;
+  border: 1.5px dashed var(--accent);
+  border-radius: 10px;
+  color: var(--accent);
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.coreRoundBtn:hover { background: rgba(232,247,42,0.05); }

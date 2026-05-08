@@ -1,97 +1,28 @@
 /**
- * workoutGenerator.js
+ * workoutGenerator.js — V1.8
  *
- * Fixed circuit rules:
- *  UPPER    → 4 exercises, core LAST, both circuits
- *  LOWER    → 4 exercises, min 1 squat + 1 hinge, no core
- *  WHOLE    → 4 exercises, core LAST, both circuits, upper + lower mix
- *  HIIT     → Circuit 1 = 3 exercises, Circuit 2 = 4 exercises
- *  COMBO    → 4 exercises, core LAST, both circuits, 1 HIIT move per circuit
+ * CIRCUIT STRUCTURE:
+ *
+ * HIIT:
+ *   C1: 1 HIIT + 1 HIIT burner + 1 lower burner
+ *   C2: 1 HIIT + 1 HIIT + 1 HIIT burner + 1 core (last)
+ *
+ * UPPER STRENGTH:
+ *   C1: compound → secondary → isolation (all same muscle group, 3 ex)
+ *   C2: compound → secondary → isolation → upper burner (4 ex)
+ *
+ * LOWER STRENGTH:
+ *   C1: squat → squat/lunge/hinge → filler (3 ex)
+ *   C2: lunge → squat/lunge → hinge → lower burner (4 ex)
+ *
+ * WHOLE BODY:
+ *   C1: lower + upper + upper burner + core (4 ex)
+ *   C2: lower + upper + lower burner (3 ex)
+ *
+ * COMBO (HIIT+Strength):
+ *   C1: strength compound + same-muscle burner + 1 HIIT (3 ex)
+ *   C2: lower compound + same-muscle lower burner + jumping HIIT + timed core (4 ex)
  */
-
-const SQUAT_KEYWORDS  = ['squat', 'lunge', 'goblet', 'curtsy lunge']
-// Pure squat patterns (no lunges)
-const PURE_SQUAT_KW   = ['squat', 'goblet', 'front hold squat', 'sumo squat', 'narrow goblet', 'suitcase squat', 'duck walk', 'box squat', 'wall sit']
-const HINGE_KEYWORDS  = ['hinge', 'rdl', 'deadlift', 'dead lift', 'good morning', 'romanian', 'stiff leg']
-const LUNGE_KEYWORDS  = [
-  'lunge', 'curtsy lunge', 'curtsy', 'split squat', 'step up',
-  'step-up', 'reverse lunge', 'forward lunge', 'lateral lunge',
-  'angled lunge', 'front rack lunge', 'front rack curtsy',
-  'curtsy lunge to knee'
-]
-
-function isSQuat(ex) {
-  const n = ex.name.toLowerCase()
-  return SQUAT_KEYWORDS.some(k => n.includes(k))
-}
-
-function isPureSquat(ex) {
-  const n = ex.name.toLowerCase()
-  return PURE_SQUAT_KW.some(k => n.includes(k))
-}
-
-function isHinge(ex) {
-  const n = ex.name.toLowerCase()
-  return HINGE_KEYWORDS.some(k => n.includes(k))
-}
-
-/** Returns true if the exercise is a lunge-pattern movement */
-function isLunge(ex) {
-  const n = ex.name.toLowerCase()
-  return LUNGE_KEYWORDS.some(k => n.includes(k))
-}
-
-/** Returns true if the exercise is a push-up variation */
-function isPushUp(ex) {
-  const n = ex.name.toLowerCase()
-  return n.includes('push-up') || n.includes('push up') || n.includes('pushup')
-}
-
-// ── Push / Pull classification ──────────────────────────
-const PUSH_KEYWORDS = ['press','push','fly','flye','dip','chest','tricep','lateral raise','front raise','around the world','overhead','skull','arnold','halo']
-const PULL_KEYWORDS = ['row','curl','pull','shrug','rear delt','reverse fly','face pull','upright row','lawnmower','renegade','pullover','hammer curl','drag curl','concentration','seated bicep','incline curl']
-
-function isPush(ex) {
-  if (ex.category !== 'upper') return false
-  const n = ex.name.toLowerCase()
-  const pushScore = PUSH_KEYWORDS.filter(k => n.includes(k)).length
-  const pullScore = PULL_KEYWORDS.filter(k => n.includes(k)).length
-  return pushScore >= pullScore && pushScore > 0
-}
-
-function isPull(ex) {
-  if (ex.category !== 'upper') return false
-  const n = ex.name.toLowerCase()
-  const pushScore = PUSH_KEYWORDS.filter(k => n.includes(k)).length
-  const pullScore = PULL_KEYWORDS.filter(k => n.includes(k)).length
-  return pullScore > pushScore
-}
-
-// Big compound moves — should go first in circuit
-const BIG_PUSH = ['chest press','bench press','db press','push press','incline','flat bench','thruster','chest fly','flat bench db']
-const BIG_PULL = ['bent over row','single arm row','renegade row','db row','lawnmower','gorilla','pullover','incline db row']
-
-function isBigPush(ex) { const n = ex.name.toLowerCase(); return BIG_PUSH.some(k => n.includes(k)) }
-function isBigPull(ex) { const n = ex.name.toLowerCase(); return BIG_PULL.some(k => n.includes(k)) }
-
-/** Returns true if a HIIT exercise is lower-body dominant — excluded from upper HIIT focus */
-const LOWER_HIIT_KEYWORDS = [
-  'squat', 'lunge', 'jump squat', 'bound', 'broad jump', 'vertical jump',
-  'ice skater', 'skater', 'tuck jump', 'star jump', 'high knee', 'high knees',
-  'lunge jump', 'jump lunge', 'box jump', 'step up'
-]
-function isLowerDominantHiit(ex) {
-  if (ex.category !== 'hiit') return false
-  const n = ex.name.toLowerCase()
-  return LOWER_HIIT_KEYWORDS.some(k => n.includes(k))
-}
-
-/** Filters a candidate list to avoid a second lunge if one already picked */
-function filterLunges(candidates, picked) {
-  const hasLunge = picked.some(isLunge)
-  if (!hasLunge) return candidates
-  return candidates.filter(e => !isLunge(e))
-}
 
 function shuffle(arr) {
   const a = [...arr]
@@ -102,298 +33,408 @@ function shuffle(arr) {
   return a
 }
 
-// ── Build available pool ─────────────────────────────────────
-function buildPool(exercises, { focus, style, hasDumbbells, hasPullupBar, hasBench, hasKettlebell }) {
-  return exercises.filter(ex => {
-    // HIIT = bodyweight only
-    if (style === 'hiit' && ex.equipment.length > 0) return false
-
-    // Equipment
-    const eq = Array.isArray(ex.equipment) ? ex.equipment : []
-    if (eq.includes('dumbbells')  && !hasDumbbells)  return false
-    if (eq.includes('pullup_bar') && !hasPullupBar)  return false
-    if (eq.includes('bench')      && !hasBench)      return false
-    if (eq.includes('kettlebell') && !hasKettlebell) return false
-
-    // Style → category
-    if (style === 'hiit')     { if (!['hiit', 'core'].includes(ex.category)) return false }
-    if (style === 'strength') { if (ex.category === 'hiit') return false }
-    // combo = everything
-
-    // Focus — for HIIT style, always allow hiit category regardless of focus
-    if (style === 'hiit') {
-      if (focus === 'upper') {
-        if (!['hiit', 'core', 'upper'].includes(ex.category)) return false
-        if (isLowerDominantHiit(ex)) return false  // exclude leg-heavy HIIT from upper
-        return true
-      }
-      if (focus === 'lower') return ['hiit', 'lower'].includes(ex.category)
-      if (focus === 'legs_shoulders') return ['hiit', 'lower', 'core'].includes(ex.category)
-      return true // whole
-    }
-    if (focus === 'upper') return ['upper', 'core'].includes(ex.category)
-    if (focus === 'lower') return ['lower'].includes(ex.category) // no core for lower
-    if (focus === 'legs_shoulders') {
-      // Lower body exercises + shoulder exercises from upper + core
-      if (ex.category === 'lower') return true
-      if (ex.category === 'core')  return true
-      if (ex.category === 'upper') return isShoulder(ex)
-      return false
-    }
-    return true // whole = all
-  })
+// ── Tag helpers ───────────────────────────────────────────
+function isBurner(ex) {
+  const t = ex.tags || ''
+  return t === 'burnout' || (typeof t === 'string' && t.includes('burnout')) ||
+    (Array.isArray(t) && t.includes('burnout'))
 }
 
-// ── UPPER circuit: 4 exercises, core last ────────────────────
-// Rules: no dup push-ups, no dup lunges, exactly 1 core always last
-function pickUpperCircuit(pool, usedIds) {
-  const available = shuffle(pool.filter(e => !usedIds.has(e.id)))
-  const cores     = available.filter(e => e.category === 'core')
-  const nonCore   = available.filter(e => e.category !== 'core')
-  const picked    = []
+function isRegular(ex) { return !isBurner(ex) }
 
-  for (const ex of nonCore) {
-    if (picked.length >= 3) break
-    if (isLunge(ex)  && picked.some(isLunge))  continue
-    if (isPushUp(ex) && picked.some(isPushUp)) continue
-    picked.push(ex)
-  }
+function isTimed(ex) {
+  return ex.format === 'timed' || isBurner(ex) ||
+    (ex.reps || '').toLowerCase().includes('second') ||
+    (ex.name || '').toLowerCase().includes('hold')
+}
 
-  // Exactly 1 core last
-  const core = cores.find(c => !picked.find(p => p.id === c.id))
-  if (core) picked.push(core)
+function equipOk(ex, hasDumbbells) {
+  const eq = Array.isArray(ex.equipment) ? ex.equipment
+    : (() => { try { return JSON.parse(ex.equipment || '[]') } catch {
+        const s = ex.equipment || ''
+        return s === 'none' || !s ? [] : s.split(',').map(e=>e.trim())
+      }})()
+  if (eq.includes('dumbbells') && !hasDumbbells) return false
+  return true
+}
+
+// ── Pool builders ─────────────────────────────────────────
+function pool(exercises, category, { hasDumbbells = true, burner = false, usedIds = new Set() } = {}) {
+  return shuffle(exercises.filter(ex => {
+    if (ex.flagged) return false
+    if (usedIds.has(ex.id)) return false
+    if (ex.category !== category) return false
+    if (!equipOk(ex, hasDumbbells)) return false
+    if (burner && !isBurner(ex)) return false
+    if (!burner && isBurner(ex)) return false
+    return true
+  }))
+}
+
+// ── Muscle group detection ────────────────────────────────
+function muscleGroup(ex) {
+  const name = (ex.name || '').toLowerCase()
+  if (['chest','push-up','pushup','fly','press','dip','pullover','decline'].some(k=>name.includes(k))) return 'chest'
+  if (['row','pull','lat','back','rear','pulldown','pullover'].some(k=>name.includes(k))) return 'back'
+  if (['shoulder','lateral raise','front raise','arnold','upright row','overhead'].some(k=>name.includes(k))) return 'shoulder'
+  if (['bicep','curl','hammer'].some(k=>name.includes(k))) return 'bicep'
+  if (['tricep','dip','extension','kickback'].some(k=>name.includes(k))) return 'tricep'
+  return 'general'
+}
+
+function isJumpingHiit(ex) {
+  const name = (ex.name||'').toLowerCase()
+  return ['jump','tuck','lunge jump','frog','bound','star jump','box jump'].some(k=>name.includes(k))
+}
+
+function isPureSquat(ex) {
+  const name = (ex.name||'').toLowerCase()
+  return (name.includes('squat') && !name.includes('lunge') && !name.includes('jump'))
+}
+
+function isLunge(ex) {
+  return (ex.name||'').toLowerCase().includes('lunge')
+}
+
+function isHinge(ex) {
+  const name = (ex.name||'').toLowerCase()
+  return ['deadlift','rdl','hip hinge','good morning','hip thrust','glute bridge'].some(k=>name.includes(k))
+}
+
+// ── HIIT Circuits ─────────────────────────────────────────
+function pickHiitC1(exercises, usedIds, hasDumbbells) {
+  const hiit    = pool(exercises, 'hiit',  { hasDumbbells, burner:false, usedIds })
+  const hBurner = pool(exercises, 'hiit',  { hasDumbbells, burner:true,  usedIds })
+  const lBurner = pool(exercises, 'lower', { hasDumbbells, burner:true,  usedIds })
+  const picked  = []
+
+  const h1 = hiit[0]; if (h1) picked.push(h1)
+  const hb = hBurner.find(e => !picked.find(p=>p.id===e.id))
+  if (hb) picked.push(hb)
+  const lb = lBurner[0]; if (lb) picked.push(lb)
 
   return picked
 }
 
-// ── PUSH circuit: big push first, no dup push-ups, 1 core last ─
-function pickPushCircuit(pool, usedIds) {
-  const available = shuffle(pool.filter(e => !usedIds.has(e.id)))
-  const cores     = available.filter(e => e.category === 'core')
-  const pushExs   = shuffle(available.filter(e => isPush(e)))
-  const bigPushes = pushExs.filter(isBigPush)
-  const picked    = []
-  const big = bigPushes[0] || pushExs[0]
-  if (big) picked.push(big)
-  for (const ex of pushExs) {
-    if (picked.length >= 3) break
-    if (picked.find(p => p.id === ex.id)) continue
-    if (isPushUp(ex) && picked.some(isPushUp)) continue
-    picked.push(ex)
-  }
-  const core = cores.find(c => !picked.find(p => p.id === c.id))
-  if (core) picked.push(core)
+function pickHiitC2(exercises, usedIds, hasDumbbells) {
+  const hiit    = pool(exercises, 'hiit', { hasDumbbells, burner:false, usedIds })
+  const hBurner = pool(exercises, 'hiit', { hasDumbbells, burner:true,  usedIds })
+  const cores   = pool(exercises, 'core', { hasDumbbells, burner:false, usedIds })
+  const picked  = []
+
+  const h1 = hiit[0]; if (h1) picked.push(h1)
+  const h2 = hiit.find(e => !picked.find(p=>p.id===e.id))
+  if (h2) picked.push(h2)
+  const hb = hBurner.find(e => !picked.find(p=>p.id===e.id))
+  if (hb) picked.push(hb)
+  const core = cores[0]; if (core) picked.push(core)
+
   return picked
 }
 
-// ── PULL circuit: big pull first, 1 core last ─────────────
-function pickPullCircuit(pool, usedIds) {
-  const available = shuffle(pool.filter(e => !usedIds.has(e.id)))
-  const cores     = available.filter(e => e.category === 'core')
-  const pullExs   = shuffle(available.filter(e => isPull(e)))
-  const bigPulls  = pullExs.filter(isBigPull)
-  const picked    = []
-  const big = bigPulls[0] || pullExs[0]
-  if (big) picked.push(big)
-  for (const ex of pullExs) {
-    if (picked.length >= 3) break
-    if (picked.find(p => p.id === ex.id)) continue
-    picked.push(ex)
-  }
-  const core = cores.find(c => !picked.find(p => p.id === c.id))
-  if (core) picked.push(core)
+// ── Upper Strength Circuits ───────────────────────────────
+// Pick a random muscle group, then fill slots from that group
+function pickUpperC1(exercises, usedIds, hasDumbbells) {
+  const upper = pool(exercises, 'upper', { hasDumbbells, burner:false, usedIds })
+  const GROUPS = ['chest','back','shoulder','bicep','tricep']
+  const chosenGroup = GROUPS[Math.floor(Math.random() * GROUPS.length)]
+
+  const grouped = upper.filter(e => muscleGroup(e) === chosenGroup)
+  const fallback = upper
+
+  // Compound: prefer exercises that are not isolation
+  const compPool = grouped.length >= 3 ? grouped : fallback
+  const comp = compPool.find(e => {
+    const n = (e.name||'').toLowerCase()
+    return ['press','row','pull','fly','curl','raise','dip','push-up','pushup'].some(k=>n.includes(k))
+  }) || compPool[0]
+  const picked = [comp].filter(Boolean)
+
+  // Secondary: same group if possible, different exercise
+  const secPool = (grouped.length >= 2 ? grouped : fallback)
+    .filter(e => !picked.find(p=>p.id===e.id))
+  const sec = secPool[0]
+  if (sec) picked.push(sec)
+
+  // Isolation
+  const isoPool = (grouped.length >= 3 ? grouped : fallback)
+    .filter(e => !picked.find(p=>p.id===e.id))
+  const iso = isoPool.find(e => {
+    const n = (e.name||'').toLowerCase()
+    return ['curl','raise','fly','extension','kickback','shrug','pullover'].some(k=>n.includes(k))
+  }) || isoPool[0]
+  if (iso) picked.push(iso)
+
   return picked
 }
 
-// ── LOWER circuit: 3 or 4 exercises, 1 squat + 1 hinge min, no core
-function pickLowerCircuit(pool, usedIds, count = 4, circuitNum = 1) {
-  const available = shuffle(pool.filter(e => !usedIds.has(e.id)))
-  const squats = available.filter(isPureSquat)
-  const lunges = available.filter(e => isLunge(e) && !isPureSquat(e))
-  const hinges = available.filter(isHinge)
-  const others = available.filter(e => !isSQuat(e) && !isHinge(e))
+function pickUpperC2(exercises, usedIds, hasDumbbells) {
+  const upper   = pool(exercises, 'upper',  { hasDumbbells, burner:false, usedIds })
+  const uBurner = pool(exercises, 'upper',  { hasDumbbells, burner:true,  usedIds })
+  const GROUPS  = ['chest','back','shoulder','bicep','tricep']
+  const chosenGroup = GROUPS[Math.floor(Math.random() * GROUPS.length)]
+
+  const grouped = upper.filter(e => muscleGroup(e) === chosenGroup)
+  const pool2   = grouped.length >= 3 ? grouped : upper
+  const picked  = []
+
+  const comp = pool2.find(e => {
+    const n = (e.name||'').toLowerCase()
+    return ['press','row','pull','fly','curl','raise','dip','push-up','pushup'].some(k=>n.includes(k))
+  }) || pool2[0]
+  if (comp) picked.push(comp)
+
+  const sec = pool2.find(e => !picked.find(p=>p.id===e.id))
+  if (sec) picked.push(sec)
+
+  const iso = pool2.find(e => {
+    const n = (e.name||'').toLowerCase()
+    return !picked.find(p=>p.id===e.id) &&
+      ['curl','raise','fly','extension','kickback','shrug','pullover'].some(k=>n.includes(k))
+  }) || pool2.find(e => !picked.find(p=>p.id===e.id))
+  if (iso) picked.push(iso)
+
+  // Upper burner last
+  const burner = uBurner[0]
+  if (burner) picked.push(burner)
+
+  return picked
+}
+
+// ── Lower Strength Circuits ───────────────────────────────
+function pickLowerC1(exercises, usedIds, hasDumbbells) {
+  const lower  = pool(exercises, 'lower', { hasDumbbells, burner:false, usedIds })
   const picked = []
 
-  // Circuit 1: lead with squat | Circuit 2: lead with lunge
-  if (circuitNum === 1) {
-    if (squats[0]) picked.push(squats[0])
-    const hinge = hinges.find(h => !picked.find(p => p.id === h.id))
-    if (hinge) picked.push(hinge)
-  } else {
-    const lunge = lunges[0] || squats[0]
-    if (lunge) picked.push(lunge)
-    const hinge = hinges.find(h => !picked.find(p => p.id === h.id))
-    if (hinge) picked.push(hinge)
-  }
+  // Slot 1: squat
+  const sq = lower.find(isPureSquat) || lower[0]
+  if (sq) picked.push(sq)
 
-  // Fill remaining — no dup squats or lunges per circuit
-  const fillers = shuffle([
-    ...squats.filter(s => !picked.find(p => p.id === s.id)),
-    ...lunges.filter(l => !picked.find(p => p.id === l.id)),
-    ...hinges.filter(h => !picked.find(p => p.id === h.id)),
-    ...others
-  ])
-  for (const ex of fillers) {
-    if (picked.length >= count) break
-    if (picked.find(p => p.id === ex.id)) continue
-    if (isPureSquat(ex) && picked.some(isPureSquat)) continue
-    if (isLunge(ex)     && picked.some(isLunge))     continue
-    if (isPushUp(ex)    && picked.some(isPushUp))    continue
-    picked.push(ex)
-  }
+  // Slot 2: squat/lunge/hinge (not same as slot 1)
+  const s2 = lower.find(e =>
+    !picked.find(p=>p.id===e.id) && !isPureSquat(e)
+  )
+  if (s2) picked.push(s2)
+
+  // Slot 3: filler — anything not already picked
+  const s3 = lower.find(e => !picked.find(p=>p.id===e.id))
+  if (s3) picked.push(s3)
 
   return picked
 }
 
-// ── WHOLE BODY circuit: 4 exercises — 40-50% legs, 1 upper, 1 core last
-// Layout: Lower → Upper → Lower (hinge) → Core
-function pickWholeCircuit(pool, usedIds, style) {
-  const available = shuffle(pool.filter(e => !usedIds.has(e.id)))
-  const cores     = available.filter(e => e.category === 'core')
-  const uppers    = available.filter(e => e.category === 'upper')
-  const lowers    = available.filter(e => e.category === 'lower')
-  const hiits     = available.filter(e => e.category === 'hiit')
-  const picked    = []
+function pickLowerC2(exercises, usedIds, hasDumbbells) {
+  const lower   = pool(exercises, 'lower', { hasDumbbells, burner:false, usedIds })
+  const lBurner = pool(exercises, 'lower', { hasDumbbells, burner:true,  usedIds })
+  const picked  = []
 
-  // Combo: 1 HIIT move first
-  if (style === 'combo' && hiits.length) {
-    picked.push(hiits[0])
-  }
+  // Slot 1: lunge
+  const lu = lower.find(isLunge) || lower[0]
+  if (lu) picked.push(lu)
 
-  // Slot 1: Lower — squat or lunge
-  const lower1 = lowers.find(l =>
-    !picked.find(p => p.id === l.id) &&
-    !(isPureSquat(l) && picked.some(isPureSquat)) &&
-    !(isLunge(l) && picked.some(isLunge))
+  // Slot 2: squat or lunge (no repeats)
+  const s2 = lower.find(e =>
+    !picked.find(p=>p.id===e.id) &&
+    (isPureSquat(e) || isLunge(e))
   )
-  if (lower1) picked.push(lower1)
+  if (s2) picked.push(s2)
 
-  // Slot 2: Upper — no dup push-ups
-  const upper1 = uppers.find(u =>
-    !picked.find(p => p.id === u.id) &&
-    !(isPushUp(u) && picked.some(isPushUp))
-  )
-  if (upper1) picked.push(upper1)
+  // Slot 3: hinge
+  const hi = lower.find(e =>
+    !picked.find(p=>p.id===e.id) && isHinge(e)
+  ) || lower.find(e => !picked.find(p=>p.id===e.id))
+  if (hi) picked.push(hi)
 
-  // Slot 3: Second lower — prefer hinge for balance
-  const hinges    = lowers.filter(isHinge).filter(h => !picked.find(p => p.id === h.id))
-  const moreLower = lowers.filter(l =>
-    !picked.find(p => p.id === l.id) &&
-    !(isPureSquat(l) && picked.some(isPureSquat)) &&
-    !(isLunge(l) && picked.some(isLunge))
-  )
-  const lower2 = hinges[0] || moreLower[0]
-  if (lower2 && picked.length < 3) picked.push(lower2)
-
-  // Slot 4: Core last
-  const core = cores.find(c => !picked.find(p => p.id === c.id))
-  if (core) picked.push(core)
+  // Slot 4: lower burner
+  const burner = lBurner[0]
+  if (burner) picked.push(burner)
 
   return picked
 }
 
-// ── HIIT circuit ─────────────────────────────────────────────
-// Guarantees at least 50% true HIIT moves per circuit
-function pickHiitCircuit(pool, usedIds, count) {
-  const available = shuffle(pool.filter(e => !usedIds.has(e.id)))
-  const hiits     = available.filter(e => e.category === 'hiit')
-  const cores     = available.filter(e => e.category === 'core')
-  const picked    = []
+// ── Whole Body Circuits ───────────────────────────────────
+function pickWholeC1(exercises, usedIds, hasDumbbells) {
+  const lower   = pool(exercises, 'lower', { hasDumbbells, burner:false, usedIds })
+  const upper   = pool(exercises, 'upper', { hasDumbbells, burner:false, usedIds })
+  const uBurner = pool(exercises, 'upper', { hasDumbbells, burner:true,  usedIds })
+  const cores   = pool(exercises, 'core',  { hasDumbbells, burner:false, usedIds })
+  const picked  = []
 
-  // Minimum HIIT slots = ceil(count/2) guarantees 50%+
-  const minHiit = Math.ceil(count / 2)
+  const lo = lower[0]; if (lo) picked.push(lo)
+  const up = upper[0]; if (up) picked.push(up)
+  const ub = uBurner[0]; if (ub) picked.push(ub)
+  const co = cores[0]; if (co) picked.push(co)
 
-  // Fill HIIT slots first
-  for (const ex of hiits) {
-    if (picked.length >= minHiit) break
-    if (isPushUp(ex) && picked.some(isPushUp)) continue
-    if (isLunge(ex)  && picked.some(isLunge))  continue
-    picked.push(ex)
-  }
-
-  // Fill remaining with more HIIT then core
-  const fillers = shuffle([
-    ...hiits.filter(h => !picked.find(p => p.id === h.id)),
-    ...cores
-  ])
-  for (const ex of fillers) {
-    if (picked.length >= count - 1) break
-    if (!picked.find(p => p.id === ex.id)) {
-      if (isPushUp(ex) && picked.some(isPushUp)) continue
-      picked.push(ex)
-    }
-  }
-
-  // Last slot = core
-  const hasCoreAlready = picked.some(e => e.category === 'core')
-  if (!hasCoreAlready && picked.length < count) {
-    const core = cores.find(c => !picked.find(p => p.id === c.id))
-    if (core) picked.push(core)
-  }
-
-  return picked.slice(0, count)
+  return picked
 }
 
-/**
- * Main generator
- * @param {Array}  exercises
- * @param {Object} answers  { focus, style, hasDumbbells, hasPullupBar }
- */
+function pickWholeC2(exercises, usedIds, hasDumbbells) {
+  const lower   = pool(exercises, 'lower', { hasDumbbells, burner:false, usedIds })
+  const upper   = pool(exercises, 'upper', { hasDumbbells, burner:false, usedIds })
+  const lBurner = pool(exercises, 'lower', { hasDumbbells, burner:true,  usedIds })
+  const picked  = []
+
+  const lo = lower[0]; if (lo) picked.push(lo)
+  const up = upper[0]; if (up) picked.push(up)
+  const lb = lBurner[0]; if (lb) picked.push(lb)
+
+  return picked
+}
+
+// ── Combo Circuits ────────────────────────────────────────
+function pickComboC1(exercises, usedIds, hasDumbbells) {
+  const upper   = pool(exercises, 'upper', { hasDumbbells, burner:false, usedIds })
+  const lower   = pool(exercises, 'lower', { hasDumbbells, burner:false, usedIds })
+  const allStr  = shuffle([...upper, ...lower])
+  const hiit    = pool(exercises, 'hiit',  { hasDumbbells, burner:false, usedIds })
+  const picked  = []
+
+  // Slot 1: strength compound
+  const comp = allStr.find(e => {
+    const n = (e.name||'').toLowerCase()
+    return ['press','squat','row','deadlift','lunge','pull'].some(k=>n.includes(k))
+  }) || allStr[0]
+  if (!comp) return picked
+  picked.push(comp)
+
+  // Slot 2: burner from same category as compound
+  const sameCatBurner = pool(exercises, comp.category, { hasDumbbells, burner:true, usedIds })
+  const burner = sameCatBurner[0]
+  if (burner) picked.push(burner)
+
+  // Slot 3: HIIT
+  const h = hiit.find(e => !picked.find(p=>p.id===e.id))
+  if (h) picked.push(h)
+
+  return picked
+}
+
+function pickComboC2(exercises, usedIds, hasDumbbells) {
+  const lower   = pool(exercises, 'lower', { hasDumbbells, burner:false, usedIds })
+  const lBurner = pool(exercises, 'lower', { hasDumbbells, burner:true,  usedIds })
+  const hiit    = pool(exercises, 'hiit',  { hasDumbbells, burner:false, usedIds })
+  const cores   = pool(exercises, 'core',  { hasDumbbells, burner:false, usedIds })
+  const cBurner = pool(exercises, 'core',  { hasDumbbells, burner:true,  usedIds })
+  const picked  = []
+
+  // Slot 1: lower compound
+  const comp = lower.find(e => {
+    const n = (e.name||'').toLowerCase()
+    return ['squat','lunge','deadlift','rdl'].some(k=>n.includes(k))
+  }) || lower[0]
+  if (comp) picked.push(comp)
+
+  // Slot 2: lower burner (same muscle group)
+  const lb = lBurner[0]
+  if (lb) picked.push(lb)
+
+  // Slot 3: jumping HIIT
+  const jump = hiit.find(e => isJumpingHiit(e) && !picked.find(p=>p.id===e.id))
+    || hiit.find(e => !picked.find(p=>p.id===e.id))
+  if (jump) picked.push(jump)
+
+  // Slot 4: timed core
+  const timedCore = cores.find(e => isTimed(e) && !picked.find(p=>p.id===e.id))
+    || cBurner[0]
+    || cores[0]
+  if (timedCore) picked.push(timedCore)
+
+  return picked
+}
+
+// ── Circuit 3 / Burner / Core rounds ─────────────────────
+export function generateExtraRound(exercises, type, existingCircuits, hasDumbbells = true) {
+  const usedIds = new Set(existingCircuits.flat().map(e=>e.id))
+
+  if (type === 'circuit3') {
+    // C1 rules based on what style was used — passed as focus in existingCircuits[2]
+    const focus = existingCircuits[2] || 'upper'
+    if (focus === 'upper') return pickUpperC1(exercises, usedIds, hasDumbbells)
+    if (focus === 'lower') return pickLowerC1(exercises, usedIds, hasDumbbells)
+    if (focus === 'whole') return pickWholeC1(exercises, usedIds, hasDumbbells)
+    // HIIT/combo — use hiit C1
+    return pickHiitC1(exercises, usedIds, hasDumbbells)
+  }
+
+  if (type === 'burner') {
+    // 2 burners from same category
+    const cats = ['upper','lower','hiit','core']
+    const cat = cats[Math.floor(Math.random() * cats.length)]
+    const burners = pool(exercises, cat, { hasDumbbells, burner:true, usedIds })
+    return burners.slice(0, 2)
+  }
+
+  if (type === 'core') {
+    // 2 core + 1 core burner
+    const cores   = pool(exercises, 'core', { hasDumbbells, burner:false, usedIds })
+    const cBurner = pool(exercises, 'core', { hasDumbbells, burner:true,  usedIds })
+    const picked  = []
+    if (cores[0]) picked.push(cores[0])
+    if (cores[1]) picked.push(cores[1])
+    if (cBurner[0]) picked.push(cBurner[0])
+    return picked
+  }
+
+  return []
+}
+
+// ── Ensure minimum ────────────────────────────────────────
+function ensure(circuit, min, exercises, usedIds, hasDumbbells) {
+  if (circuit.length >= min) return circuit
+  const all = shuffle(exercises.filter(e =>
+    !e.flagged && !usedIds.has(e.id) &&
+    !circuit.find(c=>c.id===e.id) &&
+    equipOk(e, hasDumbbells)
+  ))
+  while (circuit.length < min && all.length > 0) circuit.push(all.shift())
+  return circuit
+}
+
+// ── Main generator ────────────────────────────────────────
 export function generateWorkout(exercises, answers) {
-  const { focus, style } = answers
-  // Allow passing in already-used IDs to avoid repeats in third circuit
+  const {
+    focus        = 'upper',
+    style        = 'strength',
+    hasDumbbells = true,
+    usedIds: existingIds = new Set()
+  } = answers
 
-  const opts = {
-    ...answers,
-    hasDumbbells:   style === 'hiit' ? false : answers.hasDumbbells,
-    hasPullupBar:   style === 'hiit' ? false : answers.hasPullupBar,
-    hasBench:       style === 'hiit' ? false : (answers.hasBench || false),
-    hasKettlebell:  style === 'hiit' ? false : (answers.hasKettlebell || false),
-  }
-
-  const pool = buildPool(exercises, opts)
-
-  if (pool.length < 8) {
-    throw new Error('Not enough exercises for this combination. Add more in the admin panel!')
-  }
-
-  const usedIds = answers.usedIds instanceof Set
-    ? new Set(answers.usedIds)
-    : new Set(answers.usedIds || [])
-  let circuit1, circuit2
+  const usedIds = new Set(existingIds)
+  let circuit1 = [], circuit2 = []
 
   if (style === 'hiit') {
-    // Circuit 1 = 3, Circuit 2 = 4
-    circuit1 = pickHiitCircuit(pool, usedIds, 3)
-    circuit1.forEach(e => usedIds.add(e.id))
-    circuit2 = pickHiitCircuit(pool, usedIds, 4)
+    circuit1 = pickHiitC1(exercises, usedIds, hasDumbbells)
+    circuit1.forEach(e=>usedIds.add(e.id))
+    circuit2 = pickHiitC2(exercises, usedIds, hasDumbbells)
 
-  } else if (focus === 'lower') {
-    // Randomly assign which circuit gets 4 exercises
-    const lowerSizes = Math.random() < 0.5 ? [3, 4] : [4, 3]
-    circuit1 = pickLowerCircuit(pool, usedIds, lowerSizes[0], 1)
-    circuit1.forEach(e => usedIds.add(e.id))
-    circuit2 = pickLowerCircuit(pool, usedIds, lowerSizes[1], 2)
-
-  } else if (focus === 'upper') {
-    if (style === 'strength' || style === 'combo') {
-      // Push/Pull split — randomly assign which goes first
-      const pushFirst = Math.random() < 0.5
-      circuit1 = pushFirst ? pickPushCircuit(pool, usedIds) : pickPullCircuit(pool, usedIds)
-      circuit1.forEach(e => usedIds.add(e.id))
-      circuit2 = pushFirst ? pickPullCircuit(pool, usedIds) : pickPushCircuit(pool, usedIds)
-    } else {
-      circuit1 = pickUpperCircuit(pool, usedIds)
-      circuit1.forEach(e => usedIds.add(e.id))
-      circuit2 = pickUpperCircuit(pool, usedIds)
-    }
+  } else if (style === 'combo') {
+    circuit1 = pickComboC1(exercises, usedIds, hasDumbbells)
+    circuit1.forEach(e=>usedIds.add(e.id))
+    circuit2 = pickComboC2(exercises, usedIds, hasDumbbells)
 
   } else {
-    // whole body or combo
-    circuit1 = pickWholeCircuit(pool, usedIds, style)
-    circuit1.forEach(e => usedIds.add(e.id))
-    circuit2 = pickWholeCircuit(pool, usedIds, style)
+    // Strength
+    if (focus === 'upper') {
+      circuit1 = pickUpperC1(exercises, usedIds, hasDumbbells)
+      circuit1.forEach(e=>usedIds.add(e.id))
+      circuit2 = pickUpperC2(exercises, usedIds, hasDumbbells)
+
+    } else if (focus === 'lower') {
+      circuit1 = pickLowerC1(exercises, usedIds, hasDumbbells)
+      circuit1.forEach(e=>usedIds.add(e.id))
+      circuit2 = pickLowerC2(exercises, usedIds, hasDumbbells)
+
+    } else {
+      circuit1 = pickWholeC1(exercises, usedIds, hasDumbbells)
+      circuit1.forEach(e=>usedIds.add(e.id))
+      circuit2 = pickWholeC2(exercises, usedIds, hasDumbbells)
+    }
   }
 
-  return { circuit1, circuit2 }
+  circuit2.forEach(e=>usedIds.add(e.id))
+
+  circuit1 = ensure(circuit1, 3, exercises, usedIds, hasDumbbells)
+  circuit2 = ensure(circuit2, 3, exercises, usedIds, hasDumbbells)
+
+  return { circuit1, circuit2, usedIds }
 }

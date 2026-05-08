@@ -99,8 +99,6 @@ export default function WorkoutPage({ onGenerate }) {
   const [quote,       setQuote]       = useState(null)
   const [workoutName, setWorkoutName] = useState(null)
   const [circuit3,    setCircuit3]    = useState(null)
-  const [hasBench,    setHasBench]    = useState(false)
-  const [hasKettlebell,setHasKettlebell] = useState(false)
   const [loadingC3,   setLoadingC3]   = useState(false)
   const [history,     setHistory]     = useState([])
   const [favourites,  setFavourites]  = useState([])
@@ -144,12 +142,13 @@ export default function WorkoutPage({ onGenerate }) {
   }, [generated])
 
   async function handleGenerate() {
-    if (!focus || !style) return
+    const activeFocus = focus || (style !== 'strength' ? 'whole' : null)
+    if (!activeFocus || !style) return
     setLoading(true); setError(null)
     try {
       const res  = await fetch('/api/generate', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ focus, style, hasDumbbells: style !== 'hiit', hasPullupBar: false, hasBench: style !== 'hiit' && hasBench, hasKettlebell: style !== 'hiit' && hasKettlebell }),
+        body: JSON.stringify({ focus: activeFocus, style, hasDumbbells: style !== 'hiit' }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Failed to generate')
@@ -176,18 +175,20 @@ export default function WorkoutPage({ onGenerate }) {
     } catch {}
   }
 
-  async function handleAddCircuit() {
-    setLoadingC3(true)
+  async function handleAddCircuit(type = 'circuit3') {
+    setLoadingC3(type)
     try {
       const allUsedIds = [...workout.circuit1, ...workout.circuit2, ...(circuit3||[])].map(e => e.id)
       const res  = await fetch('/api/generate-circuit', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ focus, style, hasDumbbells: style !== 'hiit', hasPullupBar: false, hasBench: style !== 'hiit' && hasBench, hasKettlebell: style !== 'hiit' && hasKettlebell, usedIds: allUsedIds }),
+        body: JSON.stringify({
+          focus: focus || 'whole', style, hasDumbbells: style !== 'hiit',
+          usedIds: allUsedIds, roundType: type
+        }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error)
       setCircuit3(data.circuit)
-      // Update history with circuit3
       try {
         await fetch('/api/history', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -249,7 +250,6 @@ export default function WorkoutPage({ onGenerate }) {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           label: `${workoutName} · ${d}`,
-          hasBench, hasKettlebell,
           focus, style, type: 'workout',
           circuit1: workout.circuit1,
           circuit2: workout.circuit2,
@@ -304,14 +304,6 @@ export default function WorkoutPage({ onGenerate }) {
           {/* Questions */}
           <div className={`${styles.form} fade-up`} style={{animationDelay:'0.05s'}}>
             <div className={styles.question}>
-              <div className={styles.questionLabel}>What are you training?</div>
-              <div className={styles.options}>
-                {FOCUS_OPTIONS.map(o => (
-                  <button key={o.value} className={`${styles.option} ${focus===o.value?styles.selected:''}`} onClick={() => setFocus(o.value)}>{o.label}</button>
-                ))}
-              </div>
-            </div>
-            <div className={styles.question}>
               <div className={styles.questionLabel}>What's your style?</div>
               <div className={styles.styleOptions}>
                 {STYLE_OPTIONS.map(o => (
@@ -322,25 +314,26 @@ export default function WorkoutPage({ onGenerate }) {
                 ))}
               </div>
             </div>
-            {/* Equipment toggles — strength only */}
-            {style && style !== 'hiit' && (
-              <div className={styles.equipmentSection}>
-                <div className={styles.equipmentLabel}>⚙️ Additional Equipment <span className={styles.equipmentHint}>(Strength only)</span></div>
-                <div className={styles.equipmentToggles}>
-                  <label className={`${styles.equipToggle} ${hasBench ? styles.equipActive : ''}`}>
-                    <input type="checkbox" checked={hasBench} onChange={e => setHasBench(e.target.checked)} />
-                    <span className={styles.equipName}>Bench</span>
-                  </label>
-                  <label className={`${styles.equipToggle} ${hasKettlebell ? styles.equipActive : ''}`}>
-                    <input type="checkbox" checked={hasKettlebell} onChange={e => setHasKettlebell(e.target.checked)} />
-                    <span className={styles.equipName}>Kettlebell</span>
-                  </label>
+            {/* Focus question — strength only */}
+            {style === 'strength' && (
+              <div className={styles.question}>
+                <div className={styles.questionLabel}>What are you training?</div>
+                <div className={styles.options}>
+                  {FOCUS_OPTIONS.map(o => (
+                    <button key={o.value} className={`${styles.option} ${focus===o.value?styles.selected:''}`} onClick={() => setFocus(o.value)}>{o.label}</button>
+                  ))}
                 </div>
+              </div>
+            )}
+            {/* Dumbbells note — strength only */}
+            {style === 'strength' && (
+              <div className={styles.equipmentSection}>
+                <div className={styles.equipmentLabel}>🏋️ Dumbbells included by default</div>
               </div>
             )}
 
             {error && <div className={styles.error}>⚠️ {error}</div>}
-            <button className={styles.generateBtn} onClick={handleGenerate} disabled={!focus || !style || loading}>
+            <button className={styles.generateBtn} onClick={handleGenerate} disabled={(!focus && style === 'strength') || !style || loading}>
               {loading ? 'Building...' : 'Generate Workout →'}
             </button>
             <p className={styles.termsNote}>
@@ -482,9 +475,17 @@ export default function WorkoutPage({ onGenerate }) {
             </>
           )}
           {!circuit3 && (
-            <button className={styles.addCircuitBtn} onClick={handleAddCircuit} disabled={loadingC3}>
-              {loadingC3 ? 'Building...' : '+ Add a Third Circuit'}
-            </button>
+            <div className={styles.extraRoundBtns}>
+              <button className={styles.addCircuitBtn} onClick={() => handleAddCircuit('circuit3')} disabled={loadingC3}>
+                {loadingC3 === 'circuit3' ? 'Building...' : '+ Add Circuit 3'}
+              </button>
+              <button className={styles.burnerRoundBtn} onClick={() => handleAddCircuit('burner')} disabled={loadingC3}>
+                {loadingC3 === 'burner' ? 'Building...' : '🔥 Add Burner Round'}
+              </button>
+              <button className={styles.coreRoundBtn} onClick={() => handleAddCircuit('core')} disabled={loadingC3}>
+                {loadingC3 === 'core' ? 'Building...' : '💪 Add Core Round'}
+              </button>
+            </div>
           )}
           <div className={styles.footer}>
             Repeat each circuit <strong>2–3 times</strong> · Rest 60–90 sec between rounds

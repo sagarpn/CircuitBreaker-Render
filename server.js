@@ -199,6 +199,16 @@ app.use((req, res, next) => {
   next()
 })
 
+function shuffle(arr) {
+  const a = [...arr]
+  for (let i = a.length-1; i>0; i--) { const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]] }
+  return a
+}
+function isBurner(ex) {
+  const t = ex.tags || ex.ex_tags || ''
+  return t==='burnout'||(typeof t==='string'&&t.includes('burnout'))||(Array.isArray(t)&&t.includes('burnout'))
+}
+
 // ── Auth middleware ───────────────────────────────────────
 function requireAdmin(req, res, next) {
   const password = process.env.ADMIN_PASSWORD
@@ -241,20 +251,36 @@ app.post('/api/generate', generateLimiter, async (req, res) => {
 })
 
 app.post('/api/generate-circuit', generateLimiter, async (req, res) => {
-  const { focus, style, hasDumbbells, hasPullupBar, usedIds } = req.body
-  if (!focus || !style) return res.status(400).json({ error: 'focus and style required' })
+  const { focus, style, hasDumbbells, usedIds, roundType = 'circuit3' } = req.body
+  if (!style) return res.status(400).json({ error: 'style required' })
   try {
-    const exercises = await getExercises()
-    const { hasBench: hb, hasKettlebell: hk } = req.body
-    const result    = generateWorkout(exercises.filter(e => !e.flagged), {
-      focus, style,
-      hasDumbbells:  style === 'hiit' ? false : !!hasDumbbells,
-      hasPullupBar:  style === 'hiit' ? false : !!hasPullupBar,
-      hasBench:      style === 'hiit' ? false : !!hb,
-      hasKettlebell: style === 'hiit' ? false : !!hk,
-      usedIds: new Set(usedIds || []),
-    })
-    res.json({ circuit: result.circuit1 })
+    const exercises  = await getExercises()
+    const cleanEx    = exercises.filter(e => !e.flagged)
+    const usedSet    = new Set(usedIds || [])
+    const dbFlag     = style !== 'hiit' ? !!hasDumbbells : false
+
+    if (roundType === 'circuit3') {
+      const result = generateWorkout(cleanEx, { focus: focus||'whole', style, hasDumbbells: dbFlag, usedIds: usedSet })
+      return res.json({ circuit: result.circuit1 })
+    }
+
+    // Burner round — 2 burners from same category
+    if (roundType === 'burner') {
+      const cats = focus === 'upper' ? ['upper'] : focus === 'lower' ? ['lower'] : ['upper','lower','hiit','core']
+      const cat  = cats[Math.floor(Math.random() * cats.length)]
+      const burners = shuffle(cleanEx.filter(e => e.category === cat && isBurner(e) && !usedSet.has(e.id)))
+      return res.json({ circuit: burners.slice(0,2) })
+    }
+
+    // Core round — 2 core + 1 core burner
+    if (roundType === 'core') {
+      const cores   = shuffle(cleanEx.filter(e => e.category==='core' && !isBurner(e) && !usedSet.has(e.id)))
+      const cBurner = shuffle(cleanEx.filter(e => e.category==='core' && isBurner(e) && !usedSet.has(e.id)))
+      const circuit = [...cores.slice(0,2), ...(cBurner.slice(0,1))]
+      return res.json({ circuit })
+    }
+
+    res.status(400).json({ error: 'unknown roundType' })
   } catch (e) { res.status(400).json({ error: e.message }) }
 })
 

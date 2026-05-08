@@ -164,6 +164,16 @@ function ExerciseCard({ exercise, index, focus, style, hasDumbbells, hasPullupBa
           : <div className={styles.reps}>{exercise.reps}</div>
         }
 
+        {/* Timer hint for burner/timed exercises */}
+        {!isCore && (() => {
+          const tags = exercise.tags || exercise.ex_tags || ''
+          const isBurner = tags === 'burnout' || (typeof tags === 'string' && tags.includes('burnout')) || (Array.isArray(tags) && tags.includes('burnout'))
+          const isTimed  = exercise.format === 'timed' || isBurner ||
+            (exercise.reps||'').toLowerCase().includes('second') ||
+            (exercise.name||'').toLowerCase().includes('hold')
+          return isTimed ? <div className={styles.timerHint}>⏱ use timer below</div> : null
+        })()}
+
         {exercise.description && (
           <div className={styles.description}>{exercise.description}</div>
         )}

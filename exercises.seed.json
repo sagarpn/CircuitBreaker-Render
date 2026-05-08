@@ -1,2664 +1,2986 @@
 [
   {
     "id": "1",
-    "name": "Push-Ups",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 12 reps",
-    "description": "Hands shoulder-width, lower chest to floor, push back up"
-  },
-  {
-    "id": "2",
-    "name": "Incline Push-Ups",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Hands on a chair or step, body straight, lower chest down \u2014 upper chest focus"
-  },
-  {
-    "id": "3",
-    "name": "Pike Push-Ups",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Inverted V position, bend elbows to lower head toward floor"
-  },
-  {
-    "id": "4",
-    "name": "Bench Dips",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Hands on a chair behind you, lower body by bending elbows \u2014 triceps"
-  },
-  {
-    "id": "5",
-    "name": "Diamond Push-Ups",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Hands close together forming a diamond, targets triceps"
-  },
-  {
-    "id": "6",
-    "name": "Spiderman Push-Ups",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "As you lower, bring one knee to the same-side elbow"
-  },
-  {
-    "id": "7",
-    "name": "Plank Shoulder Taps",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 20 reps",
-    "description": "High plank, alternate tapping opposite shoulder \u2014 keep hips still"
-  },
-  {
-    "id": "8",
-    "name": "Tricep Dips",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 12 reps",
-    "description": "Use a sturdy chair, lower body by bending elbows to 90\u00b0"
-  },
-  {
-    "id": "9",
-    "name": "DB Shoulder Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Press dumbbells overhead from shoulder height, full lockout"
-  },
-  {
-    "id": "10",
-    "name": "DB Lateral Raise",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Arms at sides, raise to shoulder height, lower slowly"
-  },
-  {
-    "id": "11",
-    "name": "DB Front Raise",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Arms forward, raise to shoulder height, controlled descent"
-  },
-  {
-    "id": "12",
-    "name": "DB Bicep Curls",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Curl dumbbells from hip to shoulder, squeeze at top"
-  },
-  {
-    "id": "13",
-    "name": "DB Alternating Curls",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Alternate arms, keep elbows pinned to sides"
-  },
-  {
-    "id": "14",
-    "name": "DB Overhead Tricep Ext",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Hold one dumbbell overhead with both hands, lower behind head"
-  },
-  {
-    "id": "15",
-    "name": "DB Renegade Rows",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Plank on dumbbells, row one arm at a time \u2014 core tight"
-  },
-  {
-    "id": "16",
-    "name": "DB Bent Over Rows",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Hinge forward 45\u00b0, row both dumbbells to hips"
-  },
-  {
-    "id": "17",
-    "name": "DB Single Arm Row",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Brace one hand on your thigh, row dumbbell to hip \u2014 squeeze back at top"
-  },
-  {
-    "id": "18",
-    "name": "DB High Pull",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Pull dumbbells from thigh height up to chin, elbows flare out"
-  },
-  {
-    "id": "19",
-    "name": "DB Reverse Flye",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Hinged forward, raise arms out to sides \u2014 rear delts"
-  },
-  {
-    "id": "20",
-    "name": "DB Squat to Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Squat with dumbbells at shoulders, stand and press overhead"
-  },
-  {
-    "id": "21",
-    "name": "DB Curl to Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Curl dumbbells up then press overhead in one fluid motion"
-  },
-  {
-    "id": "22",
-    "name": "DB Lateral Lunge + Raise",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Lateral lunge while raising dumbbells to shoulder height"
-  },
-  {
-    "id": "23",
-    "name": "Bodyweight Squats",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 20 reps",
-    "description": "Feet shoulder-width, sit back and down, thighs parallel to floor"
-  },
-  {
-    "id": "24",
-    "name": "Jump Squats",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Squat down, explode upward, land softly with bent knees"
-  },
-  {
-    "id": "25",
-    "name": "Lateral Squats",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 12 reps each",
-    "description": "Step wide, bend one knee, keep other leg straight"
-  },
-  {
-    "id": "26",
-    "name": "Split Squats",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 12 reps each",
-    "description": "Stationary lunge position, lower back knee toward floor"
-  },
-  {
-    "id": "27",
-    "name": "Jump Split Squats",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 12 reps",
-    "description": "Split squat position, jump and switch legs in mid-air"
-  },
-  {
-    "id": "28",
-    "name": "Bodyweight Lunges",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 12 reps each",
-    "description": "Step forward, lower back knee, push back to start"
-  },
-  {
-    "id": "29",
-    "name": "Reverse Lunges",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 12 reps each",
-    "description": "Step backward into lunge \u2014 easier on knees than forward"
-  },
-  {
-    "id": "30",
-    "name": "Lateral Lunges",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 12 reps each",
-    "description": "Step wide to the side, bend that knee, keep other leg straight"
-  },
-  {
-    "id": "31",
-    "name": "Glute Bridges",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 20 reps",
-    "description": "Lie on back, push hips up, squeeze glutes hard at top"
-  },
-  {
-    "id": "32",
-    "name": "Single Leg Glute Bridge",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 15 reps each",
-    "description": "One leg extended, push hips up on the other \u2014 hold at top"
-  },
-  {
-    "id": "33",
-    "name": "Step-Ups",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 15 reps each",
-    "description": "Step onto a sturdy surface, drive through the heel"
-  },
-  {
-    "id": "34",
-    "name": "Wall Sit",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Back flat against wall, thighs parallel to floor \u2014 hold"
-  },
-  {
-    "id": "35",
-    "name": "Ice Skaters",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Bound side to side landing on one foot, mimic speed skater"
-  },
-  {
-    "id": "36",
-    "name": "Calf Raises",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 20 reps",
-    "description": "Rise up onto toes, pause 1 second at top, lower slowly"
-  },
-  {
-    "id": "37",
-    "name": "Squat Hold",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Sit in squat position, thighs parallel, hold still"
-  },
-  {
-    "id": "38",
-    "name": "DB Walking Lunges",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 20 reps",
-    "description": "Walking lunge holding dumbbells at sides, long stride"
-  },
-  {
-    "id": "39",
-    "name": "DB Reverse Lunges",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Step back into lunge, dumbbells at sides"
-  },
-  {
-    "id": "40",
-    "name": "DB Split Squat",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Stationary lunge holding dumbbells, lower back knee to floor"
-  },
-  {
-    "id": "41",
-    "name": "DB Bulgarian Split Squat",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Rear foot on a chair or sofa, dumbbell in each hand, lower front leg \u2014 quad and glute focus"
-  },
-  {
-    "id": "42",
-    "name": "DB Goblet Squat",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 15 reps",
-    "description": "Hold one dumbbell at chest, squat deep, elbows inside knees"
-  },
-  {
-    "id": "43",
-    "name": "DB Goblet Squat Press",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Goblet squat, stand up and press dumbbell overhead"
-  },
-  {
-    "id": "44",
-    "name": "DB Romanian Deadlift",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Hinge at hips, lower dumbbells along legs, feel hamstrings"
-  },
-  {
-    "id": "45",
-    "name": "DB Single Leg Deadlift",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Hinge on one leg holding dumbbells, extend other leg back"
-  },
-  {
-    "id": "46",
-    "name": "DB Sumo Squat",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 15 reps",
-    "description": "Wide stance, toes pointed out, hold dumbbell at chest, squat deep"
-  },
-  {
-    "id": "47",
-    "name": "DB Lateral Squat",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Wide stance, sit to one side, keep other leg straight, alternate"
-  },
-  {
-    "id": "48",
-    "name": "DB Squat to Reverse Lunge",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Squat, stand, step back into reverse lunge \u2014 alternating legs"
-  },
-  {
-    "id": "49",
-    "name": "DB Walking Lunge + Curl",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 20 reps",
-    "description": "Walking lunge, curl dumbbells as you step forward"
-  },
-  {
-    "id": "50",
-    "name": "DB Jump Squats",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Hold light dumbbells, squat and explode upward, land soft"
-  },
-  {
-    "id": "51",
-    "name": "DB Lateral Shuffle",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 45 seconds",
-    "description": "Shuffle side to side holding dumbbells at chest"
-  },
-  {
-    "id": "52",
-    "name": "Plank",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Forearms on floor, body straight, squeeze everything tight"
-  },
-  {
-    "id": "53",
-    "name": "Side Plank",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds each",
-    "description": "Forearm on floor, body in straight line, hips up"
-  },
-  {
-    "id": "54",
-    "name": "Plank Hip Drops",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 20 reps",
-    "description": "Forearm plank, rotate hips to tap each side to floor"
-  },
-  {
-    "id": "55",
-    "name": "Plank Up-Downs",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Alternate between forearm plank and high plank \u2014 controlled"
-  },
-  {
-    "id": "56",
-    "name": "Dead Bug",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 10 reps each",
-    "description": "On back, extend opposite arm and leg, lower back stays flat"
-  },
-  {
-    "id": "57",
-    "name": "Bicycle Crunches",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 20 reps",
-    "description": "Alternate elbow to opposite knee in a cycling motion"
-  },
-  {
-    "id": "58",
-    "name": "V-Ups",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Lift legs and upper body simultaneously to touch toes at top"
-  },
-  {
-    "id": "59",
-    "name": "Air Bikes",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "On back, crunch and rotate elbow to opposite knee, cycle fast"
-  },
-  {
-    "id": "60",
-    "name": "Hollow Body Hold",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds",
-    "description": "On back, arms overhead, lower back pressed to floor \u2014 hold"
-  },
-  {
-    "id": "61",
-    "name": "Double Crunch",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 20 reps",
-    "description": "Bring knees to chest while crunching upper body \u2014 meet in middle"
-  },
-  {
-    "id": "62",
-    "name": "Leg Lift",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Lie on back, raise straight legs to 90\u00b0, lower slowly"
-  },
-  {
-    "id": "63",
-    "name": "Flutter Kicks",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds",
-    "description": "Lie on back, alternate small kicks \u2014 keep lower back down"
-  },
-  {
-    "id": "64",
-    "name": "Frog Sit-Ups",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Soles of feet together, butterfly legs, crunch up"
-  },
-  {
-    "id": "65",
-    "name": "Russian Twists",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 20 reps",
-    "description": "Seated, lean back, rotate side to side \u2014 feet can be elevated"
-  },
-  {
-    "id": "66",
-    "name": "V-Up to Crunch",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Full v-up followed by a slow crunch \u2014 alternate each rep"
-  },
-  {
-    "id": "67",
-    "name": "Snow Angels",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Lie on back, make snow angel arm + leg motion \u2014 lower back down"
-  },
-  {
-    "id": "68",
-    "name": "Superman Hold",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 12 reps",
-    "description": "Face down, lift arms and legs off floor simultaneously, hold 2s"
-  },
-  {
-    "id": "69",
-    "name": "DB Russian Twists",
-    "category": "core",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 20 reps",
-    "description": "Seated, hold one dumbbell, rotate side to side \u2014 lean back slightly"
-  },
-  {
-    "id": "70",
-    "name": "DB Side Plank Raise",
-    "category": "core",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Side plank, hold dumbbell on top hip, raise and lower"
-  },
-  {
-    "id": "71",
-    "name": "Burpees",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Squat, jump back to plank, push-up, jump feet in, jump up"
-  },
-  {
-    "id": "72",
-    "name": "Burpee + Lateral Jump",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Full burpee, then jump laterally over a line or marker"
-  },
-  {
-    "id": "73",
-    "name": "Mountain Climbers",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds",
-    "description": "Plank position, drive knees to chest alternately \u2014 fast as possible"
-  },
-  {
-    "id": "74",
-    "name": "High Knees",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds",
-    "description": "Run in place, drive knees as high as possible each step"
-  },
-  {
-    "id": "75",
-    "name": "Jumping Jacks",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Classic \u2014 arms and legs out simultaneously, jump back together"
-  },
-  {
-    "id": "76",
-    "name": "Jump Squats Wide to Narrow",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 60 seconds",
-    "description": "Jump squat, alternate between wide and narrow foot positions"
-  },
-  {
-    "id": "77",
-    "name": "Bear Crawl",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds",
-    "description": "On all fours, knees an inch off floor \u2014 crawl forward and back"
-  },
-  {
-    "id": "78",
-    "name": "Spiderman Crawl",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 60 seconds",
-    "description": "Crawl forward bringing each knee to the same-side elbow"
-  },
-  {
-    "id": "79",
-    "name": "Inch Worm Push-Up",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Hinge forward, walk hands out to plank, push-up, walk back"
-  },
-  {
-    "id": "80",
-    "name": "Lateral Shuffle",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Athletic stance, shuffle side to side as fast as possible"
-  },
-  {
-    "id": "81",
-    "name": "Single Leg Burpees",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 8 reps each",
-    "description": "Full burpee performed on one leg \u2014 advanced version"
-  },
-  {
-    "id": "82",
-    "name": "Tabata Mountain Climbers",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 20 seconds",
-    "description": "20 seconds all-out mountain climbers, 10 seconds rest \u2014 repeat"
-  },
-  {
-    "id": "83",
-    "name": "Lateral Lunge Burpee",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Lateral lunge, bring feet together, drop into burpee, repeat"
-  },
-  {
-    "id": "84",
-    "name": "DB Thrusters",
-    "category": "hiit",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Squat with dumbbells at shoulders, explode up and press overhead"
-  },
-  {
-    "id": "85",
-    "name": "DB Lateral Shuffle Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 45 seconds",
-    "description": "Shuffle laterally, stop and press dumbbells overhead each side"
-  },
-  {
-    "id": "86",
-    "name": "DB Walking Lunge Burpee",
-    "category": "hiit",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 8 reps",
-    "description": "Walking lunge into a burpee at the end of each lunge"
-  },
-  {
-    "id": "87",
-    "name": "DB Face Pulls",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 15 reps",
-    "description": "Bent over, pull dumbbells toward face with elbows high \u2014 rear delts"
-  },
-  {
-    "id": "88",
-    "name": "DB Upright Row",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Pull dumbbells straight up, elbows flare out to ear height"
-  },
-  {
-    "id": "89",
-    "name": "DB Arnold Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Start with palms facing you, rotate and press overhead in one motion"
-  },
-  {
-    "id": "90",
-    "name": "Bird Dog",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 10 reps each",
-    "description": "On all fours, extend opposite arm and leg simultaneously \u2014 hold 2s"
-  },
-  {
-    "id": "91",
-    "name": "Good Mornings",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Stand feet hip-width, hinge forward at hips, feel hamstrings and lower back"
-  },
-  {
-    "id": "92",
-    "name": "DB Deadlift",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Hinge with dumbbells, drive hips forward to stand \u2014 full posterior chain"
-  },
-  {
-    "id": "93",
-    "name": "Back Extensions",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Lie face down on floor, hands behind head or out in front, lift chest up \u2014 lower and mid back"
-  },
-  {
-    "id": "94",
-    "name": "DB Bent Over Row Wide Grip",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Wide grip row, pull to lower chest \u2014 hits upper back and rear delts"
-  },
-  {
-    "id": "95",
-    "name": "Glute Kickbacks",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 15 reps each",
-    "description": "On all fours, kick one leg straight back and up \u2014 squeeze glute at top"
-  },
-  {
-    "id": "96",
-    "name": "Donkey Kicks",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 15 reps each",
-    "description": "On all fours, push one foot toward ceiling with knee bent \u2014 glutes"
-  },
-  {
-    "id": "97",
-    "name": "DB Shrugs",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 15 reps",
-    "description": "Hold dumbbells at sides, shrug shoulders straight up \u2014 upper traps"
-  },
-  {
-    "id": "98",
-    "name": "Reverse Grip Curl",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Curl up with palms facing up, rotate to palms facing down and lower slowly \u2014 full bicep and forearm"
-  },
-  {
-    "id": "99",
-    "name": "Suitcase Squat",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 15 reps",
-    "description": "Hold dumbbells at sides like suitcases, squat down keeping chest up"
-  },
-  {
-    "id": "100",
-    "name": "Curtsy Lunge",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 12 reps each",
-    "description": "Step one leg behind and across the other, lower into a lunge \u2014 targets glutes"
-  },
-  {
-    "id": "101",
-    "name": "Front Hold Squat",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Rest dumbbells on shoulders at chest height, squat deep \u2014 quad focus"
-  },
-  {
-    "id": "102",
-    "name": "Front Hold Reverse Lunge",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Hold dumbbells at shoulders, step back into a lunge \u2014 upright torso hits quads hard"
-  },
-  {
-    "id": "103",
-    "name": "Front Hold Forward Lunge",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Hold dumbbells at shoulders, step forward and lower \u2014 keep torso tall"
-  },
-  {
-    "id": "104",
-    "name": "Front Hold Curtsy Lunge",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Hold dumbbells at shoulders, step back and across into a curtsy lunge"
-  },
-  {
-    "id": "105",
-    "name": "Front Hold Sumo Squat",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Hold dumbbells at shoulders, feet wide and toes out \u2014 squat deep into sumo position"
-  },
-  {
-    "id": "106",
-    "name": "Kickstand Deadlift",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Back foot on toes for balance, hinge forward on front leg keeping back flat \u2014 single leg focus"
-  },
-  {
-    "id": "107",
-    "name": "Sumo Deadlift",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Wide stance, toes out, hinge forward with flat back \u2014 inner thigh and glutes"
-  },
-  {
-    "id": "108",
-    "name": "Curtsy Lunge to Knee Drive",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step one foot behind and across, lower into a lunge, drive that knee forward as you stand"
-  },
-  {
-    "id": "109",
-    "name": "Angled Reverse Lunge",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step back at a 45 degree angle instead of straight \u2014 shifts emphasis to outer glute"
-  },
-  {
-    "id": "110",
-    "name": "Angled Forward Lunge",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step forward at a 45 degree angle \u2014 targets outer glute and hip differently"
-  },
-  {
-    "id": "111",
-    "name": "Hip Tap Out",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Stand with slight bend in knees, tap one foot out to the side and back, alternate \u2014 hip stability"
-  },
-  {
-    "id": "112",
-    "name": "Goblet Lateral Lunge",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Hold dumbbell at chest, step wide into a lateral lunge \u2014 upright torso, quad and inner thigh"
-  },
-  {
-    "id": "113",
-    "name": "Hamstring Walkout",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "From a bridge, walk feet out until legs are nearly straight, walk back in \u2014 hamstrings"
-  },
-  {
-    "id": "114",
-    "name": "Glute Bridge March",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 20 reps",
-    "description": "Hold a glute bridge, alternate lifting each leg \u2014 glute stability and control"
-  },
-  {
-    "id": "115",
-    "name": "Side Lying Hip Abduction",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 15 reps each",
-    "description": "Lie on side, lift top leg up and slowly lower \u2014 outer glute and hip abductor"
-  },
-  {
-    "id": "116",
-    "name": "Clamshell",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 20 reps each",
-    "description": "Lie on side, feet together, open top knee like a clamshell \u2014 external hip rotator"
-  },
-  {
-    "id": "117",
-    "name": "Single Leg Squat",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 8 reps each",
-    "description": "Hold dumbbell to chest, balance on one leg and squat down \u2014 advanced leg strength"
-  },
-  {
-    "id": "118",
-    "name": "Weighted Glute Bridge",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 15 reps",
-    "description": "Dumbbell across hips, drive hips up and squeeze glutes hard at top"
-  },
-  {
-    "id": "119",
-    "name": "Narrow Goblet Squat",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Feet together holding dumbbell at chest, squat as deep as you can \u2014 inner quads"
-  },
-  {
-    "id": "120",
-    "name": "Sumo Squat",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 15 reps",
-    "description": "Feet wider than hip-width, toes out, dumbbell between legs \u2014 inner thigh and glutes"
-  },
-  {
-    "id": "121",
-    "name": "Push Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Dip knees slightly and drive dumbbells overhead explosively \u2014 power shoulder press"
-  },
-  {
-    "id": "122",
-    "name": "Thruster",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Front squat into overhead press in one fluid motion \u2014 full body compound move"
-  },
-  {
-    "id": "123",
-    "name": "Renegade Row to Push-Up",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 8 reps",
-    "description": "Row each arm in a plank, then do one push-up \u2014 back, chest and core together"
-  },
-  {
-    "id": "124",
-    "name": "DB Bent-Over Triceps Kickback",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Hinge forward, upper arm parallel to floor, extend forearm straight back \u2014 triceps"
-  },
-  {
-    "id": "125",
-    "name": "Dumbbell Halo",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 each way",
-    "description": "Hold one dumbbell by the ends, slowly circle it around your head \u2014 shoulder control and stability"
-  },
-  {
-    "id": "126",
-    "name": "Plank Dumbbell Drag",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "High plank, drag a dumbbell under your body from one side to the other \u2014 core stability"
-  },
-  {
-    "id": "127",
-    "name": "Quadruped Row",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "On all fours with knees hovering, row one dumbbell to hip \u2014 back activation"
-  },
-  {
-    "id": "128",
-    "name": "Row with Leg Raise",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Hinge forward, extend one leg back, row dumbbell with the opposite arm \u2014 balance and back"
-  },
-  {
-    "id": "129",
-    "name": "Lawnmower Row",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Wide stance, pull one dumbbell up and back like starting a lawnmower \u2014 lat focus"
-  },
-  {
-    "id": "130",
-    "name": "Chest Press in Bridge",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Hold a glute bridge, press dumbbells up from chest \u2014 chest and glutes simultaneously"
-  },
-  {
-    "id": "131",
-    "name": "Crush Grip Chest Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Press dumbbells together throughout the press \u2014 inner chest activation"
-  },
-  {
-    "id": "132",
-    "name": "Seesaw Overhead Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Alternate arms pressing overhead in a see-saw motion \u2014 shoulder stability"
-  },
-  {
-    "id": "133",
-    "name": "Seesaw Bent-Over Row",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Alternate arms rowing in a see-saw motion \u2014 unilateral back strength"
-  },
-  {
-    "id": "134",
-    "name": "Step Back Overhead Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step one foot back as you press a dumbbell overhead \u2014 core and shoulder stability"
-  },
-  {
-    "id": "135",
-    "name": "Kneeling Shoulder Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "One knee on floor, press dumbbell overhead \u2014 removes leg drive for pure shoulder work"
-  },
-  {
-    "id": "136",
-    "name": "Walkout to Plank",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Stand, hinge forward, walk hands out to a full plank, briefly hold, walk hands back and stand"
-  },
-  {
-    "id": "137",
-    "name": "Neutral Grip Bent-Over Row",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Hinge forward, row with palms facing each other \u2014 mid-back focus"
-  },
-  {
-    "id": "138",
-    "name": "Supinated Bent-Over Row",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Underhand grip row \u2014 hits lower lats and biceps more than standard row"
-  },
-  {
-    "id": "139",
-    "name": "Kneeling Single Arm Row",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "One knee down, row dumbbell to hip \u2014 removes lower body so back does all the work"
-  },
-  {
-    "id": "140",
-    "name": "Push-Up with Leg Lift",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Do a push-up, at the top lift one leg behind you \u2014 glute activation added"
-  },
-  {
-    "id": "141",
-    "name": "Kneeling Push-Up",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Knees on floor, hands wide, lower chest to floor \u2014 beginner-friendly push-up"
-  },
-  {
-    "id": "142",
-    "name": "Hand Release Push-Up",
-    "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Lower all the way to the floor, lift hands briefly, then push back up \u2014 full range chest"
-  },
-  {
-    "id": "143",
     "name": "Alternating Chest Fly",
     "category": "upper",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 12 reps each",
-    "description": "Lie on back, open one arm wide and return, alternate \u2014 chest with core stability"
+    "description": "Lie on back, open one arm wide and return, alternate \u2014 chest with core stability",
+    "flagged": false
   },
   {
-    "id": "144",
-    "name": "Bent-Over Reverse Fly to Lateral Raise",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Fly in a hinge then stand and raise to sides \u2014 rear delt and lateral delt combo"
-  },
-  {
-    "id": "145",
-    "name": "Step Back Single Arm Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step one leg back as you press one dumbbell \u2014 core stability and shoulder control"
-  },
-  {
-    "id": "146",
-    "name": "Kneeling Triceps Extension",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Kneel on floor, hold dumbbell overhead with both hands, lower behind head and press"
-  },
-  {
-    "id": "147",
-    "name": "Chest Fly in Bridge",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Hold a glute bridge position, open arms wide in a fly motion \u2014 chest stretch and strength"
-  },
-  {
-    "id": "148",
-    "name": "DB Reverse Curl",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Curl with palms facing down throughout \u2014 forearms and brachialis focus"
-  },
-  {
-    "id": "149",
-    "name": "Narrow Chest Press in Bridge",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Hold a glute bridge, press dumbbells with elbows close to body \u2014 triceps-focused press"
-  },
-  {
-    "id": "150",
-    "name": "Supported Single Arm Reverse Fly",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Hand supported on thigh in a hinge, fly one arm out to side \u2014 rear delt isolation"
-  },
-  {
-    "id": "151",
-    "name": "DB Full Can Front Raise",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Thumbs pointing up at 30-45 degrees, raise to shoulder height \u2014 rotator cuff safe"
-  },
-  {
-    "id": "152",
-    "name": "Tall Kneeling Overhead Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Both knees on floor, press dumbbells overhead \u2014 no leg assist, pure shoulder strength"
-  },
-  {
-    "id": "153",
-    "name": "Bear Hold",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds",
-    "description": "On all fours, lift knees 1 inch off floor and hold still \u2014 full body tension"
-  },
-  {
-    "id": "154",
-    "name": "High-to-Low Plank",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 10 reps each",
-    "description": "Alternate between forearm plank and high plank \u2014 shoulder and core stability"
-  },
-  {
-    "id": "155",
-    "name": "Superman Back Extension",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 12 reps",
-    "description": "Face down, sweep arms out to sides, lift chest and arms off floor and hold \u2014 lower and mid back"
-  },
-  {
-    "id": "156",
-    "name": "Side Plank Clamshell",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 12 reps each",
-    "description": "Side plank on forearm, open top knee like a clamshell \u2014 hip and core together"
-  },
-  {
-    "id": "157",
-    "name": "Reverse Plank",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds",
-    "description": "Sit with hands behind you, lift hips until body is straight \u2014 glutes and back of shoulders"
-  },
-  {
-    "id": "158",
-    "name": "V-Sit Leg Extension",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 12 reps each",
-    "description": "Sit in a V position with hands supported, alternate extending each leg out straight"
-  },
-  {
-    "id": "159",
-    "name": "Tuck Crunch",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Lie on back, pull knees to chest while crunching upper body up to meet them \u2014 full abs"
-  },
-  {
-    "id": "160",
-    "name": "Elbow Plank Hip Dips",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 20 reps",
-    "description": "Forearm plank, rotate hips to each side tapping the floor \u2014 oblique focus"
-  },
-  {
-    "id": "161",
-    "name": "Bear Crawl Forward",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds",
-    "description": "Knees 1 inch off floor, crawl forward then backward keeping hips low \u2014 full core challenge"
-  },
-  {
-    "id": "162",
-    "name": "Back Extension Arms Out",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 12 reps",
-    "description": "Face down, arms in a T, lift chest and arms off floor together \u2014 upper and mid back"
-  },
-  {
-    "id": "163",
-    "name": "Kneeling Side Plank",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds each",
-    "description": "Side plank with bottom knee down \u2014 easier entry but still effective oblique hold"
-  },
-  {
-    "id": "164",
-    "name": "Mountain Climber with Pause",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 10 reps each",
-    "description": "Drive knee to chest and pause 2 seconds before switching \u2014 slow and controlled climbers"
-  },
-  {
-    "id": "165",
-    "name": "Single Leg Bridge Hold",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds each",
-    "description": "Hold a glute bridge on one leg \u2014 glutes and core working hard to keep hips level"
-  },
-  {
-    "id": "166",
-    "name": "Lateral Bound",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Jump laterally from one foot to the other, land softly on one leg \u2014 power and agility"
-  },
-  {
-    "id": "167",
-    "name": "Broad Jump",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 8 reps",
-    "description": "Jump forward as far as possible, land softly, walk back and reset \u2014 explosive legs"
-  },
-  {
-    "id": "168",
-    "name": "Vertical Jump",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Jump straight up as high as possible, land softly and reset fully between jumps"
-  },
-  {
-    "id": "169",
-    "name": "Walkout to Push-Up",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 8 reps",
-    "description": "Hinge forward, walk hands to plank, do a push-up, walk back to standing \u2014 total body"
-  },
-  {
-    "id": "170",
-    "name": "Plyo Push-Up",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 8 reps",
-    "description": "Kneeling push-up with enough force to lift hands off floor \u2014 explosive chest power"
-  },
-  {
-    "id": "171",
-    "name": "Lunge Jump",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps each",
-    "description": "Start in a lunge, jump and switch legs in the air \u2014 explosive lower body conditioning"
-  },
-  {
-    "id": "172",
-    "name": "Skater Striders",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Bound laterally landing on one foot, reach opposite hand down \u2014 speed skater pattern"
-  },
-  {
-    "id": "173",
-    "name": "DB Squat Jump",
-    "category": "hiit",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Hold light dumbbells, squat and explode upward \u2014 adds load to a classic jump squat"
-  },
-  {
-    "id": "174",
-    "name": "Inchworm Push-Up Walk",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 8 reps",
-    "description": "Walk hands out to plank, do a push-up, walk hands back and stand \u2014 mobile and strong"
-  },
-  {
-    "id": "175",
-    "name": "Crunch",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 20 reps",
-    "description": "Lie on back, knees bent, hands behind head, curl shoulders up \u2014 squeeze abs at top"
-  },
-  {
-    "id": "176",
-    "name": "Sit-Up",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Lie on back, knees bent, sit all the way up and lower slowly \u2014 full range abs"
-  },
-  {
-    "id": "177",
-    "name": "Toe Touch Crunch",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Lie on back, legs straight up, reach hands up to touch toes \u2014 upper abs"
-  },
-  {
-    "id": "178",
-    "name": "Hip Thrust",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 15 reps",
-    "description": "Upper back on a sofa or sturdy chair, dumbbell on hips, drive hips up and squeeze glutes at top"
-  },
-  {
-    "id": "179",
-    "name": "Fire Hydrant",
-    "category": "lower",
-    "equipment": [],
-    "reps": "3 sets x 15 reps each",
-    "description": "On all fours, lift one knee out to the side like a dog at a fire hydrant \u2014 outer glute"
-  },
-  {
-    "id": "180",
-    "name": "Tuck Jump",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Jump and drive both knees to chest at the peak \u2014 maximum explosive power"
-  },
-  {
-    "id": "181",
-    "name": "Star Jump",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Jump and simultaneously spread arms and legs wide like a star, land softly and reset"
-  },
-  {
-    "id": "182",
-    "name": "Dumbbell Woodchop",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Hold one dumbbell, rotate and chop diagonally from shoulder down to opposite hip \u2014 core rotation"
-  },
-  {
-    "id": "183",
-    "name": "Farmers Carry",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 45 seconds",
-    "description": "Hold heavy dumbbells at sides, walk tall with tight core \u2014 grip, traps and full body stability"
-  },
-  {
-    "id": "184",
-    "name": "Reverse Lunge to Bicep Curl",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step back into lunge, curl both dumbbells as you drive back to standing \u2014 legs and biceps"
-  },
-  {
-    "id": "185",
-    "name": "Squat to Lateral Raise",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Squat down with dumbbells at sides, raise arms to shoulder height as you stand \u2014 legs and shoulders"
-  },
-  {
-    "id": "186",
-    "name": "Lateral Lunge to Hammer Curl",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step into a lateral lunge, curl both dumbbells as you push back to centre \u2014 legs and biceps"
-  },
-  {
-    "id": "187",
-    "name": "Bent Over Row to Triceps Kickback",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Row dumbbells to hips, hold at top, extend both arms back in a kickback, lower and reset \u2014 back and triceps"
-  },
-  {
-    "id": "188",
-    "name": "Lateral Raise to Front Raise",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Raise dumbbells out to the sides, lower, then raise straight in front \u2014 full shoulder burnout"
-  },
-  {
-    "id": "189",
+    "id": "2",
     "name": "Arnold Press to Lateral Raise",
     "category": "upper",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 10 reps",
-    "description": "Press overhead with rotation (arnold press), lower, then raise arms to the sides \u2014 complete shoulder workout"
+    "description": "Press overhead with rotation (arnold press), lower, then raise arms to the sides \u2014 complete shoulder workout",
+    "flagged": false
   },
   {
-    "id": "190",
-    "name": "Bent Over Row to Reverse Fly",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Row dumbbells to hips, hold the hinge, open arms out wide in a reverse fly, reset \u2014 back and rear delts"
-  },
-  {
-    "id": "191",
-    "name": "Burpee to Tuck Jump",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 8 reps",
-    "description": "Full burpee, then at the top drive both knees to chest in a tuck jump \u2014 maximum full body intensity"
-  },
-  {
-    "id": "192",
-    "name": "Mountain Climber to Push-Up",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds",
-    "description": "4 fast mountain climbers then 1 push-up, repeat continuously \u2014 core and chest combo"
-  },
-  {
-    "id": "193",
-    "name": "Staggered Stance Deadlift",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "One foot slightly behind the other, hinge forward on the front leg \u2014 easier than single leg but still targets each side"
-  },
-  {
-    "id": "194",
-    "name": "DB Chest Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Lie on back, dumbbells at chest, press both arms straight up and lower slowly \u2014 flat chest"
-  },
-  {
-    "id": "195",
-    "name": "DB Chest Fly",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Lie on back, arms wide, bring dumbbells together above chest in an arc \u2014 chest stretch"
-  },
-  {
-    "id": "196",
-    "name": "Chest Press to Chest Fly",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Press both dumbbells up, then open arms wide in a fly on the way down \u2014 chest combo"
-  },
-  {
-    "id": "197",
-    "name": "Shoulder Hold",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 30 seconds",
-    "description": "Arms out to sides at shoulder height, hold still \u2014 isometric shoulder burn"
-  },
-  {
-    "id": "198",
+    "id": "3",
     "name": "Around the World",
     "category": "upper",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 10 reps",
-    "description": "Hold light dumbbells at hips, arc both arms up and overhead in a wide circle then reverse"
+    "description": "Hold light dumbbells at hips, arc both arms up and overhead in a wide circle then reverse",
+    "flagged": false
   },
   {
-    "id": "199",
-    "name": "Shoulder Press to Lateral Raise",
+    "id": "4",
+    "name": "Chair Dips",
     "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Press dumbbells overhead, lower to shoulders, then raise arms out to sides \u2014 full shoulder"
-  },
-  {
-    "id": "200",
-    "name": "DB Skull Crusher",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Lie on back, arms straight up, bend elbows to lower dumbbells toward forehead, press back up"
-  },
-  {
-    "id": "201",
-    "name": "Close Grip Chest Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Lie on back, elbows tight to ribs, press dumbbells straight up \u2014 tricep-focused press"
-  },
-  {
-    "id": "202",
-    "name": "Hammer Curl",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Hold dumbbells with palms facing each other, curl straight up keeping elbows tucked \u2014 hits brachialis"
-  },
-  {
-    "id": "203",
-    "name": "Seated Bicep Curl",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Sit on floor or chair edge, curl both dumbbells strict with no body swing \u2014 pure bicep isolation"
-  },
-  {
-    "id": "204",
-    "name": "Concentration Curl",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Sit with elbow braced on inner thigh, curl one dumbbell slowly \u2014 maximum bicep squeeze"
-  },
-  {
-    "id": "205",
-    "name": "Drag Curl",
-    "category": "upper",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Curl dumbbells while dragging them up your body with elbows pulled back \u2014 unique bicep angle"
-  },
-  {
-    "id": "206",
-    "name": "Plank Jack",
-    "category": "hiit",
     "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "High plank, jump feet wide and back in repeatedly \u2014 shoulders and core under constant tension"
-  },
-  {
-    "id": "207",
-    "name": "Commando Plank",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Alternate between forearm plank and high plank as fast as you can \u2014 triceps and shoulder burner"
-  },
-  {
-    "id": "208",
-    "name": "Push-Up to Side Plank",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps each",
-    "description": "Do a push-up, rotate into a side plank at the top, alternate sides \u2014 chest, shoulder and core"
-  },
-  {
-    "id": "209",
-    "name": "Clap Push-Up",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 8 reps",
-    "description": "Explosive push-up with enough force to clap hands at the top \u2014 chest power"
-  },
-  {
-    "id": "210",
-    "name": "Speed Bag",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Fast circular punching motion in the air \u2014 shoulders and arms under continuous burn"
-  },
-  {
-    "id": "211",
-    "name": "Weighted Wall Sit",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 45 seconds",
-    "description": "Wall sit position with a dumbbell on each thigh \u2014 adds load for serious quad burn"
-  },
-  {
-    "id": "212",
-    "name": "Hindu Push-Up",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "From a pike position, swoop chest forward and up in a smooth arc \u2014 chest, shoulders and back in one fluid move"
-  },
-  {
-    "id": "213",
-    "name": "Shoulder Tap Burpee",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 8 reps",
-    "description": "Full burpee, but at the top plank position do 4 shoulder taps before jumping up \u2014 upper body focused burpee"
-  },
-  {
-    "id": "214",
-    "name": "Arm Hauler",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds",
-    "description": "Face down, sweep both arms from hips all the way overhead and back \u2014 back and shoulder endurance"
-  },
-  {
-    "id": "215",
-    "name": "Flat Bench DB Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells",
-      "bench"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Lie on bench, press dumbbells up from chest \u2014 or do this on the floor for the same chest work"
-  },
-  {
-    "id": "216",
-    "name": "Flat Bench DB Fly",
-    "category": "upper",
-    "equipment": [
-      "dumbbells",
-      "bench"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Lie on bench, open arms wide in an arc and bring back together \u2014 or do this on the floor"
-  },
-  {
-    "id": "217",
-    "name": "Incline DB Press",
-    "category": "upper",
-    "equipment": [
-      "dumbbells",
-      "bench"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Upper back on incline bench, press dumbbells up \u2014 or prop upper back on a sofa edge"
-  },
-  {
-    "id": "218",
-    "name": "Incline DB Fly",
-    "category": "upper",
-    "equipment": [
-      "dumbbells",
-      "bench"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Upper back on incline, open arms wide and bring together \u2014 or prop upper back on sofa edge"
-  },
-  {
-    "id": "219",
-    "name": "Incline DB Curl",
-    "category": "upper",
-    "equipment": [
-      "dumbbells",
-      "bench"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Sit on incline bench, let arms hang back, curl up \u2014 full bicep stretch at the bottom"
-  },
-  {
-    "id": "220",
-    "name": "Flat Bench Tricep Extension",
-    "category": "upper",
-    "equipment": [
-      "dumbbells",
-      "bench"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Lie on bench, arms straight up, lower dumbbells to forehead and press back \u2014 or do on the floor"
-  },
-  {
-    "id": "221",
-    "name": "Flat Bench Pullover",
-    "category": "upper",
-    "equipment": [
-      "dumbbells",
-      "bench"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Lie on bench, hold one dumbbell overhead, arc it back behind head and return \u2014 or do on the floor"
-  },
-  {
-    "id": "222",
-    "name": "Incline DB Row",
-    "category": "upper",
-    "equipment": [
-      "dumbbells",
-      "bench"
-    ],
-    "reps": "3 sets x 12 reps each",
-    "description": "Chest on incline bench, row dumbbell to hip \u2014 pure back work with no lower body assist"
-  },
-  {
-    "id": "223",
-    "name": "KB Swing",
-    "category": "hiit",
-    "equipment": [
-      "kettlebell"
-    ],
-    "reps": "3 sets x 20 reps",
-    "description": "Hinge with KB between legs, drive hips forward explosively to swing it to shoulder height \u2014 full body power"
-  },
-  {
-    "id": "224",
-    "name": "KB Goblet Squat",
-    "category": "lower",
-    "equipment": [
-      "kettlebell"
-    ],
     "reps": "3 sets x 15 reps",
-    "description": "Hold KB by the horns at chest, squat deep \u2014 the weight pulls you into a better position naturally"
+    "description": "Hands on a chair behind you, lower body by bending elbows \u2014 triceps",
+    "flagged": false
   },
   {
-    "id": "225",
-    "name": "KB Clean",
-    "category": "lower",
-    "equipment": [
-      "kettlebell"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Hinge and pull KB from floor to rack position at shoulder in one explosive movement \u2014 legs and upper back"
-  },
-  {
-    "id": "226",
-    "name": "KB Sumo High Pull",
-    "category": "lower",
-    "equipment": [
-      "kettlebell"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Wide stance KB between feet, pull explosively to chin with elbows flaring \u2014 legs, traps and shoulders"
-  },
-  {
-    "id": "227",
-    "name": "KB Press",
+    "id": "5",
+    "name": "Bent Over Row to Reverse Fly",
     "category": "upper",
     "equipment": [
-      "kettlebell"
+      "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
-    "description": "KB in rack position at shoulder, press straight overhead \u2014 shoulder stability different to dumbbell"
+    "reps": "3 sets x 10 reps",
+    "description": "Row dumbbells to hips, hold the hinge, open arms out wide in a reverse fly, reset \u2014 back and rear delts",
+    "flagged": false
   },
   {
-    "id": "228",
-    "name": "KB Halo",
+    "id": "6",
+    "name": "Bent Over Row to Triceps Kickback",
     "category": "upper",
     "equipment": [
-      "kettlebell"
-    ],
-    "reps": "3 sets x 10 each way",
-    "description": "Hold KB by the horns, circle it slowly around your head \u2014 shoulder mobility and stability"
-  },
-  {
-    "id": "229",
-    "name": "KB Figure Eight",
-    "category": "lower",
-    "equipment": [
-      "kettlebell"
-    ],
-    "reps": "3 sets x 30 seconds",
-    "description": "In a wide hinge, pass KB between legs in a figure eight pattern \u2014 coordination, grip and hip hinge"
-  },
-  {
-    "id": "230",
-    "name": "Forward Lunge to Bicep Curl",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step forward into a lunge, curl both dumbbells at the bottom, step back and reset"
-  },
-  {
-    "id": "231",
-    "name": "Reverse Lunge to Shoulder Press",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step back into a lunge, press both dumbbells overhead as you drive back to standing"
-  },
-  {
-    "id": "232",
-    "name": "Lateral Lunge to Lateral Raise",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step wide into lateral lunge, raise arms to shoulder height as you return to centre"
-  },
-  {
-    "id": "233",
-    "name": "Curtsy Lunge to Single Arm Press",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step behind into curtsy lunge, press same side arm overhead as you stand up"
-  },
-  {
-    "id": "234",
-    "name": "Forward Lunge to Tricep Extension",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step forward into lunge, extend both dumbbells overhead at the bottom of the lunge"
-  },
-  {
-    "id": "235",
-    "name": "Reverse Lunge to Front Raise",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step back into lunge, raise both arms forward to shoulder height as you stand"
-  },
-  {
-    "id": "236",
-    "name": "Squat to Upright Row",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Squat down, pull dumbbells to chin with elbows flaring as you stand \u2014 legs and traps"
-  },
-  {
-    "id": "237",
-    "name": "Squat to Hammer Curl",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Squat down, hammer curl both dumbbells with neutral grip as you stand \u2014 legs and biceps"
-  },
-  {
-    "id": "238",
-    "name": "Goblet Squat to Press",
-    "category": "lower",
-    "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 10 reps",
-    "description": "Hold dumbbell at chest, squat deep, press it overhead as you stand \u2014 full body"
+    "description": "Row dumbbells to hips, hold at top, extend both arms back in a kickback, lower and reset \u2014 back and triceps",
+    "flagged": false
   },
   {
-    "id": "239",
-    "name": "Sumo Squat to Upright Row",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Wide stance squat, pull dumbbells to chin as you stand \u2014 inner thighs, traps and shoulders"
-  },
-  {
-    "id": "240",
-    "name": "Squat to Bent Over Row",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Squat down, hinge and row both dumbbells at the bottom, stand \u2014 legs and back together"
-  },
-  {
-    "id": "241",
-    "name": "Squat to Curl to Press",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 8 reps",
-    "description": "Squat down, curl both dumbbells as you stand, press overhead at the top \u2014 full body chain"
-  },
-  {
-    "id": "242",
-    "name": "Deadlift to Shrug",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 12 reps",
-    "description": "Hinge into a deadlift, shrug both shoulders hard at the top \u2014 posterior chain and traps"
-  },
-  {
-    "id": "243",
-    "name": "RDL to Bent Over Row",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Hinge into Romanian deadlift, row both dumbbells at the bottom, stand \u2014 hamstrings and back"
-  },
-  {
-    "id": "244",
-    "name": "Good Morning to Overhead Press",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Hinge forward in a good morning, stand and press dumbbells overhead \u2014 hamstrings and shoulders"
-  },
-  {
-    "id": "245",
-    "name": "Deadlift to Curl",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps",
-    "description": "Hinge into a deadlift, curl both dumbbells at the top as you stand \u2014 full body to bicep finish"
-  },
-  {
-    "id": "246",
-    "name": "Push-Up to Shoulder Tap",
+    "id": "7",
+    "name": "Bent-Over Reverse Fly to Lateral Raise",
     "category": "upper",
-    "equipment": [],
+    "equipment": [
+      "dumbbells"
+    ],
     "reps": "3 sets x 10 reps",
-    "description": "Do a push-up, tap each shoulder at the top plank position \u2014 chest and core stability"
+    "description": "Fly in a hinge then stand and raise to sides \u2014 rear delt and lateral delt combo",
+    "flagged": false
   },
   {
-    "id": "247",
-    "name": "Dip to Knee Raise",
+    "id": "8",
+    "name": "Chest Fly in Bridge",
     "category": "upper",
-    "equipment": [],
-    "reps": "3 sets x 10 reps",
-    "description": "Tricep dip on chair, drive one knee up at the top of each rep \u2014 triceps and core"
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hold a glute bridge position, open arms wide in a fly motion \u2014 chest stretch and strength",
+    "flagged": false
   },
   {
-    "id": "248",
+    "id": "9",
+    "name": "Chest Press in Bridge",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hold a glute bridge, press dumbbells up from chest \u2014 chest and glutes simultaneously",
+    "flagged": false
+  },
+  {
+    "id": "10",
+    "name": "Chest Press to Chest Fly",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Press both dumbbells up, then open arms wide in a fly on the way down \u2014 chest combo",
+    "flagged": false
+  },
+  {
+    "id": "11",
     "name": "Clean to Press",
     "category": "upper",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 8 reps",
-    "description": "Pull dumbbells from hips to shoulders in a clean, immediately press overhead \u2014 full body power"
+    "description": "Pull dumbbells from hips to shoulders in a clean, immediately press overhead \u2014 full body power",
+    "flagged": false
   },
   {
-    "id": "249",
-    "name": "Deadlift to High Pull to Press",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 6 reps",
-    "description": "Hinge into deadlift, pull to chin, press overhead in one chained movement \u2014 total body"
-  },
-  {
-    "id": "250",
-    "name": "Lunge to Curl to Press",
-    "category": "lower",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 8 reps each",
-    "description": "Step into a lunge, curl on the way up, press overhead at the top \u2014 three moves one flow"
-  },
-  {
-    "id": "251",
-    "name": "Jumping Lunge Twist",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps each",
-    "description": "Jump into a lunge and rotate your torso toward the front knee at the bottom \u2014 power and rotation combined"
-  },
-  {
-    "id": "252",
-    "name": "Squat Hold Pulse",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Sink into a squat and hold, then pulse up and down a few inches \u2014 quad and glute endurance burn"
-  },
-  {
-    "id": "253",
-    "name": "Sprint in Place",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds",
-    "description": "Drive knees up and pump arms as fast as possible while staying in place \u2014 pure cardio output"
-  },
-  {
-    "id": "254",
-    "name": "Lateral Skater Squat",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps each",
-    "description": "Balance on one leg, sink into a single leg squat to the side, touch the floor \u2014 control meets power"
-  },
-  {
-    "id": "255",
-    "name": "Squat Thrust",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 12 reps",
-    "description": "Hinge, place hands on floor, kick feet back to plank, return and stand \u2014 burpee without the jump"
-  },
-  {
-    "id": "256",
-    "name": "Cossack Squat",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps each",
-    "description": "Wide stance, shift weight into one leg sinking deep, other leg straight to the side \u2014 mobility and leg strength"
-  },
-  {
-    "id": "257",
-    "name": "Alternating Lateral Lunge Hop",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 10 reps each",
-    "description": "Step into a lateral lunge, hop and switch to the other side \u2014 lateral power and coordination"
-  },
-  {
-    "id": "258",
-    "name": "Seal Jacks",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Jumping jack but arms swing forward and back like a seal clap instead of up and out \u2014 shoulder focus"
-  },
-  {
-    "id": "259",
-    "name": "Cross Jacks",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Jumping jack but arms cross in front at the bottom instead of staying at sides \u2014 chest activation"
-  },
-  {
-    "id": "260",
-    "name": "Squat Jacks",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Jump feet wide and sink into a squat, jump back together \u2014 jumping jack meets squat"
-  },
-  {
-    "id": "261",
-    "name": "Power Jacks",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 30 seconds",
-    "description": "Explosive jumping jack \u2014 jump as high as possible each time, full arm extension overhead"
-  },
-  {
-    "id": "262",
-    "name": "Slow Mountain Climbers",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 10 reps each",
-    "description": "Mountain climbers at a controlled slow tempo \u2014 pause each knee at the chest for 2 seconds"
-  },
-  {
-    "id": "263",
-    "name": "Cross Body Mountain Climber",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Drive each knee toward the opposite elbow instead of straight \u2014 oblique and core focus"
-  },
-  {
-    "id": "264",
-    "name": "Wide Mountain Climber",
-    "category": "hiit",
-    "equipment": [],
-    "reps": "3 sets x 45 seconds",
-    "description": "Drive feet wide to outside of hands instead of straight \u2014 inner thigh and hip focus"
-  },
-  {
-    "id": "265",
-    "name": "DB Russian Twists Feet Up",
-    "category": "core",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 20 reps",
-    "description": "Russian twists with feet elevated off the floor \u2014 harder on the hip flexors and obliques"
-  },
-  {
-    "id": "266",
-    "name": "DB Weighted Sit-Up",
-    "category": "core",
+    "id": "12",
+    "name": "Close Grip Chest Press",
+    "category": "upper",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 12 reps",
-    "description": "Hold one dumbbell at chest or overhead, perform a full sit-up \u2014 adds load to abs"
+    "description": "Lie on back, elbows tight to ribs, press dumbbells straight up \u2014 tricep-focused press",
+    "flagged": false
   },
   {
-    "id": "267",
-    "name": "DB Toe Touch",
-    "category": "core",
+    "id": "13",
+    "name": "Concentration Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Sit with elbow braced on inner thigh, curl one dumbbell slowly \u2014 maximum bicep squeeze",
+    "flagged": false
+  },
+  {
+    "id": "14",
+    "name": "Crush Grip Chest Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Press dumbbells together throughout the press \u2014 inner chest activation",
+    "flagged": false
+  },
+  {
+    "id": "15",
+    "name": "DB Alternating Curls",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Alternate arms, keep elbows pinned to sides",
+    "flagged": false
+  },
+  {
+    "id": "16",
+    "name": "DB Arnold Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Start with palms facing you, rotate and press overhead in one motion",
+    "flagged": false
+  },
+  {
+    "id": "17",
+    "name": "DB Bent Over Row Wide Grip",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Wide grip row, pull to lower chest \u2014 hits upper back and rear delts",
+    "flagged": false
+  },
+  {
+    "id": "18",
+    "name": "DB Bent Over Rows",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hinge forward 45\u00b0, row both dumbbells to hips",
+    "flagged": false
+  },
+  {
+    "id": "19",
+    "name": "DB Bent-Over Triceps Kickback",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Hinge forward, upper arm parallel to floor, extend forearm straight back \u2014 triceps",
+    "flagged": false
+  },
+  {
+    "id": "20",
+    "name": "DB Bicep Curls",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Curl dumbbells from hip to shoulder, squeeze at top",
+    "flagged": false
+  },
+  {
+    "id": "21",
+    "name": "DB Chest Fly",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Lie on back, arms wide, bring dumbbells together above chest in an arc \u2014 chest stretch",
+    "flagged": false
+  },
+  {
+    "id": "22",
+    "name": "DB Chest Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Lie on back, dumbbells at chest, press both arms straight up and lower slowly \u2014 flat chest",
+    "flagged": false
+  },
+  {
+    "id": "23",
+    "name": "DB Curl to Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Curl dumbbells up then press overhead in one fluid motion",
+    "flagged": false
+  },
+  {
+    "id": "24",
+    "name": "DB Face Pulls",
+    "category": "upper",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 15 reps",
-    "description": "Lie on back legs straight up, reach dumbbell to toes \u2014 upper abs with added weight"
+    "description": "Bent over, pull dumbbells toward face with elbows high \u2014 rear delts",
+    "flagged": false
   },
   {
-    "id": "268",
-    "name": "DB Side Bend",
-    "category": "core",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 15 reps each",
-    "description": "Hold dumbbell in one hand, bend sideways toward it then return \u2014 oblique isolation"
-  },
-  {
-    "id": "269",
-    "name": "DB Plank Row",
-    "category": "core",
-    "equipment": [
-      "dumbbells"
-    ],
-    "reps": "3 sets x 10 reps each",
-    "description": "High plank on dumbbells, row one arm to hip \u2014 core stability and back activation"
-  },
-  {
-    "id": "270",
-    "name": "Explosive Sit-Up",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 15 reps",
-    "description": "Sit-up with enough momentum to reach arms overhead at the top \u2014 dynamic core power"
-  },
-  {
-    "id": "271",
-    "name": "V-Up Jack",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 12 reps",
-    "description": "V-up but open legs wide as you lower \u2014 combines V-up with a jack motion"
-  },
-  {
-    "id": "272",
-    "name": "Plank to Knee Tuck",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 12 reps each",
-    "description": "High plank, drive one knee to same side elbow and back \u2014 oblique and hip flexor"
-  },
-  {
-    "id": "273",
-    "name": "Alternating V-Up",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 12 reps each",
-    "description": "Lie flat, lift opposite arm and leg to meet in the middle \u2014 full body core tension"
-  },
-  {
-    "id": "274",
+    "id": "25",
     "name": "DB Floor Press",
     "category": "upper",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 12 reps",
-    "description": "Lie on the floor, press dumbbells up from chest \u2014 chest and triceps without a bench"
+    "description": "Lie on the floor, press dumbbells up from chest \u2014 chest and triceps without a bench",
+    "flagged": false
   },
   {
-    "id": "275",
+    "id": "26",
     "name": "DB Floor Pullover",
     "category": "upper",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 12 reps",
-    "description": "Lie on floor, hold one dumbbell overhead with both hands, arc it behind head and return \u2014 chest and lats"
+    "description": "Lie on floor, hold one dumbbell overhead with both hands, arc it behind head and return \u2014 chest and lats",
+    "flagged": false
   },
   {
-    "id": "276",
-    "name": "Single Arm Overhead Press",
+    "id": "27",
+    "name": "DB Front Raise",
     "category": "upper",
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Press one dumbbell straight overhead, keep core tight \u2014 shoulder stability with anti-rotation"
+    "reps": "3 sets x 12 reps",
+    "description": "Arms forward, raise to shoulder height, controlled descent",
+    "flagged": false
   },
   {
-    "id": "277",
-    "name": "DB Spider Curl",
+    "id": "28",
+    "name": "DB Full Can Front Raise",
     "category": "upper",
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
-    "description": "Lean forward at 45 degrees, curl one arm at a time hanging straight down \u2014 peak bicep contraction"
+    "reps": "3 sets x 12 reps",
+    "description": "Thumbs pointing up at 30-45 degrees, raise to shoulder height \u2014 rotator cuff safe",
+    "flagged": false
   },
   {
-    "id": "278",
+    "id": "29",
+    "name": "DB High Pull",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Pull dumbbells from thigh height up to chin, elbows flare out",
+    "flagged": false
+  },
+  {
+    "id": "30",
     "name": "DB Incline Curl Floor",
     "category": "upper",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 12 reps",
-    "description": "Sit on floor leaning back at 45 degrees, curl both dumbbells \u2014 arms hang back for full bicep stretch"
+    "description": "Sit on floor leaning back at 45 degrees, curl both dumbbells \u2014 arms hang back for full bicep stretch",
+    "flagged": false
   },
   {
-    "id": "279",
-    "name": "DB Wrist Curl",
+    "id": "31",
+    "name": "DB Lateral Lunge + Raise",
     "category": "upper",
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 15 reps",
-    "description": "Forearms on thighs, curl dumbbells with wrists only \u2014 forearm and grip strength"
+    "reps": "3 sets x 10 reps each",
+    "description": "Lateral lunge while raising dumbbells to shoulder height",
+    "flagged": false
   },
   {
-    "id": "280",
+    "id": "32",
+    "name": "DB Lateral Raise",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Arms at sides, raise to shoulder height, lower slowly",
+    "flagged": false
+  },
+  {
+    "id": "33",
+    "name": "DB Lateral Shuffle Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 45 seconds",
+    "description": "Shuffle laterally, stop and press dumbbells overhead each side",
+    "flagged": false
+  },
+  {
+    "id": "34",
+    "name": "DB Overhead Tricep Ext",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hold one dumbbell overhead with both hands, lower behind head",
+    "flagged": false
+  },
+  {
+    "id": "35",
+    "name": "DB Renegade Rows",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Plank on dumbbells, row one arm at a time \u2014 core tight",
+    "flagged": false
+  },
+  {
+    "id": "36",
+    "name": "DB Reverse Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Curl with palms facing down throughout \u2014 forearms and brachialis focus",
+    "flagged": false
+  },
+  {
+    "id": "37",
+    "name": "DB Reverse Fly",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hinged forward, raise arms out to sides \u2014 rear delts",
+    "flagged": false
+  },
+  {
+    "id": "38",
     "name": "DB Reverse Wrist Curl",
     "category": "upper",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 15 reps",
-    "description": "Forearms on thighs palms down, lift dumbbells with wrists only \u2014 forearm extensor strength"
+    "description": "Forearms on thighs palms down, lift dumbbells with wrists only \u2014 forearm extensor strength",
+    "flagged": false
   },
   {
-    "id": "281",
-    "name": "Suitcase Carry Walk",
-    "category": "lower",
+    "id": "39",
+    "name": "DB Shoulder Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Press dumbbells overhead from shoulder height, full lockout",
+    "flagged": false
+  },
+  {
+    "id": "40",
+    "name": "DB Shrugs",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 15 reps",
+    "description": "Hold dumbbells at sides, shrug shoulders straight up \u2014 upper traps",
+    "flagged": false
+  },
+  {
+    "id": "41",
+    "name": "DB Single Arm Row",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Brace one hand on your thigh, row dumbbell to hip \u2014 squeeze back at top",
+    "flagged": false
+  },
+  {
+    "id": "42",
+    "name": "DB Skull Crusher",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Lie on back, arms straight up, bend elbows to lower dumbbells toward forehead, press back up",
+    "flagged": false
+  },
+  {
+    "id": "43",
+    "name": "DB Spider Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Lean forward at 45 degrees, curl one arm at a time hanging straight down \u2014 peak bicep contraction",
+    "flagged": false
+  },
+  {
+    "id": "44",
+    "name": "DB Squat to Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Squat with dumbbells at shoulders, stand and press overhead",
+    "flagged": false
+  },
+  {
+    "id": "45",
+    "name": "DB Upright Row",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Pull dumbbells straight up, elbows flare out to ear height",
+    "flagged": false
+  },
+  {
+    "id": "46",
+    "name": "DB Wrist Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 15 reps",
+    "description": "Forearms on thighs, curl dumbbells with wrists only \u2014 forearm and grip strength",
+    "flagged": false
+  },
+  {
+    "id": "47",
+    "name": "Diamond Push-Ups",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Hands close together forming a diamond, targets triceps",
+    "flagged": false
+  },
+  {
+    "id": "48",
+    "name": "Dip to Knee Raise",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Tricep dip on chair, drive one knee up at the top of each rep \u2014 triceps and core",
+    "flagged": false
+  },
+  {
+    "id": "49",
+    "name": "Drag Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Curl dumbbells while dragging them up your body with elbows pulled back \u2014 unique bicep angle",
+    "flagged": false
+  },
+  {
+    "id": "50",
+    "name": "Dumbbell Halo",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 each way",
+    "description": "Hold one dumbbell by the ends, slowly circle it around your head \u2014 shoulder control and stability",
+    "flagged": false
+  },
+  {
+    "id": "51",
+    "name": "Dumbbell Woodchop",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Hold one dumbbell, rotate and chop diagonally from shoulder down to opposite hip \u2014 core rotation",
+    "flagged": false
+  },
+  {
+    "id": "52",
+    "name": "DB Chest Fly",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "Lie on bench, open arms wide in an arc and bring back together \u2014 or do this on the floor",
+    "flagged": false
+  },
+  {
+    "id": "53",
+    "name": "DB Floor Press",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "Lie on bench, press dumbbells up from chest \u2014 or do this on the floor for the same chest work",
+    "flagged": false
+  },
+  {
+    "id": "54",
+    "name": "DB Pullover",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "Lie on bench, hold one dumbbell overhead, arc it back behind head and return \u2014 or do on the floor",
+    "flagged": false
+  },
+  {
+    "id": "55",
+    "name": "DB Tricep Extension",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "Lie on bench, arms straight up, lower dumbbells to forehead and press back \u2014 or do on the floor",
+    "flagged": false
+  },
+  {
+    "id": "56",
+    "name": "Hammer Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hold dumbbells with palms facing each other, curl straight up keeping elbows tucked \u2014 hits brachialis",
+    "flagged": false
+  },
+  {
+    "id": "57",
+    "name": "Hand Release Push-Up",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Lower all the way to the floor, lift hands briefly, then push back up \u2014 full range chest",
+    "flagged": false
+  },
+  {
+    "id": "58",
+    "name": "DB Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Sit on incline bench, let arms hang back, curl up \u2014 full bicep stretch at the bottom",
+    "flagged": false
+  },
+  {
+    "id": "59",
+    "name": "DB Fly",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Upper back on incline, open arms wide and bring together \u2014 or prop upper back on sofa edge",
+    "flagged": false
+  },
+  {
+    "id": "60",
+    "name": "DB Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Upper back on incline bench, press dumbbells up \u2014 or prop upper back on a sofa edge",
+    "flagged": false
+  },
+  {
+    "id": "61",
+    "name": "DB Row",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Chest on incline bench, row dumbbell to hip \u2014 pure back work with no lower body assist",
+    "flagged": false
+  },
+  {
+    "id": "62",
+    "name": "Incline Push-Ups",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 15 reps",
+    "description": "Hands on a chair or step, body straight, lower chest down \u2014 upper chest focus",
+    "flagged": false
+  },
+  {
+    "id": "63",
+    "name": "Kneeling Push-Up",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 15 reps",
+    "description": "Knees on floor, hands wide, lower chest to floor \u2014 beginner-friendly push-up",
+    "flagged": false
+  },
+  {
+    "id": "64",
+    "name": "Kneeling Shoulder Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "One knee on floor, press dumbbell overhead \u2014 removes leg drive for pure shoulder work",
+    "flagged": false
+  },
+  {
+    "id": "65",
+    "name": "Kneeling Single Arm Row",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "One knee down, row dumbbell to hip \u2014 removes lower body so back does all the work",
+    "flagged": false
+  },
+  {
+    "id": "66",
+    "name": "Kneeling Triceps Extension",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Kneel on floor, hold dumbbell overhead with both hands, lower behind head and press",
+    "flagged": false
+  },
+  {
+    "id": "67",
+    "name": "Lateral Raise to Front Raise",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Raise dumbbells out to the sides, lower, then raise straight in front \u2014 full shoulder burnout",
+    "flagged": false
+  },
+  {
+    "id": "68",
+    "name": "Lawnmower Row",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Wide stance, pull one dumbbell up and back like starting a lawnmower \u2014 lat focus",
+    "flagged": false
+  },
+  {
+    "id": "69",
+    "name": "Narrow Chest Press in Bridge",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hold a glute bridge, press dumbbells with elbows close to body \u2014 triceps-focused press",
+    "flagged": false
+  },
+  {
+    "id": "70",
+    "name": "Neutral Grip Bent-Over Row",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hinge forward, row with palms facing each other \u2014 mid-back focus",
+    "flagged": false
+  },
+  {
+    "id": "71",
+    "name": "Plank Dumbbell Drag",
+    "category": "core",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "High plank, drag a dumbbell under your body from one side to the other \u2014 core stability",
+    "flagged": false
+  },
+  {
+    "id": "72",
+    "name": "Plank Shoulder Taps",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 20 reps",
+    "description": "High plank, alternate tapping opposite shoulder \u2014 keep hips still",
+    "flagged": false
+  },
+  {
+    "id": "73",
+    "name": "Push Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Dip knees slightly and drive dumbbells overhead explosively \u2014 power shoulder press",
+    "flagged": false
+  },
+  {
+    "id": "74",
+    "name": "Push-Up to Shoulder Tap",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Do a push-up, tap each shoulder at the top plank position \u2014 chest and core stability",
+    "flagged": false
+  },
+  {
+    "id": "75",
+    "name": "Push-Up with Leg Lift",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Do a push-up, at the top lift one leg behind you \u2014 glute activation added",
+    "flagged": false
+  },
+  {
+    "id": "76",
+    "name": "Push-Ups",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "Hands shoulder-width, lower chest to floor, push back up",
+    "flagged": false
+  },
+  {
+    "id": "77",
+    "name": "Quadruped Row",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "On all fours with knees hovering, row one dumbbell to hip \u2014 back activation",
+    "flagged": false
+  },
+  {
+    "id": "78",
+    "name": "Renegade Row to Push-Up",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 8 reps",
+    "description": "Row each arm in a plank, then do one push-up \u2014 back, chest and core together",
+    "flagged": false
+  },
+  {
+    "id": "79",
+    "name": "Reverse Grip Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Curl up with palms facing up, rotate to palms facing down and lower slowly \u2014 full bicep and forearm",
+    "flagged": false
+  },
+  {
+    "id": "80",
+    "name": "Row with Leg Raise",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Hinge forward, extend one leg back, row dumbbell with the opposite arm \u2014 balance and back",
+    "flagged": false
+  },
+  {
+    "id": "81",
+    "name": "Seated Bicep Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Sit on floor or chair edge, curl both dumbbells strict with no body swing \u2014 pure bicep isolation",
+    "flagged": false
+  },
+  {
+    "id": "82",
+    "name": "Seesaw Bent-Over Row",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Alternate arms rowing in a see-saw motion \u2014 unilateral back strength",
+    "flagged": false
+  },
+  {
+    "id": "83",
+    "name": "Seesaw Overhead Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Alternate arms pressing overhead in a see-saw motion \u2014 shoulder stability",
+    "flagged": false
+  },
+  {
+    "id": "84",
+    "name": "Shoulder Hold",
+    "category": "upper",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 30 seconds",
-    "description": "Hold one heavy dumbbell at side, walk a straight line \u2014 anti-lateral core and grip"
+    "description": "Arms out to sides at shoulder height, hold still \u2014 isometric shoulder burn",
+    "flagged": false
   },
   {
-    "id": "282",
-    "name": "DB Sumo Squat Hold",
-    "category": "lower",
+    "id": "85",
+    "name": "Shoulder Press to Lateral Raise",
+    "category": "upper",
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 30 seconds",
-    "description": "Wide stance hold at parallel \u2014 isometric quad and inner thigh endurance"
+    "reps": "3 sets x 10 reps",
+    "description": "Press dumbbells overhead, lower to shoulders, then raise arms out to sides \u2014 full shoulder",
+    "flagged": false
   },
   {
-    "id": "283",
-    "name": "DB Step Up",
+    "id": "86",
+    "name": "Single Arm Overhead Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Press one dumbbell straight overhead, keep core tight \u2014 shoulder stability with anti-rotation",
+    "flagged": false
+  },
+  {
+    "id": "87",
+    "name": "Spiderman Push-Ups",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "As you lower, bring one knee to the same-side elbow",
+    "flagged": false
+  },
+  {
+    "id": "88",
+    "name": "Step Back Overhead Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Step one foot back as you press a dumbbell overhead \u2014 core and shoulder stability",
+    "flagged": false
+  },
+  {
+    "id": "89",
+    "name": "Step Back Single Arm Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Step one leg back as you press one dumbbell \u2014 core stability and shoulder control",
+    "flagged": false
+  },
+  {
+    "id": "90",
+    "name": "Supinated Bent-Over Row",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Underhand grip row \u2014 hits lower lats and biceps more than standard row",
+    "flagged": false
+  },
+  {
+    "id": "91",
+    "name": "Supported Single Arm Reverse Fly",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Hand supported on thigh in a hinge, fly one arm out to side \u2014 rear delt isolation",
+    "flagged": false
+  },
+  {
+    "id": "92",
+    "name": "Tall Kneeling Overhead Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Both knees on floor, press dumbbells overhead \u2014 no leg assist, pure shoulder strength",
+    "flagged": false
+  },
+  {
+    "id": "93",
+    "name": "Thruster",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Front squat into overhead press in one fluid motion \u2014 full body compound move",
+    "flagged": false
+  },
+  {
+    "id": "94",
+    "name": "Tricep Dips",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "Use a sturdy chair, lower body by bending elbows to 90\u00b0",
+    "flagged": false
+  },
+  {
+    "id": "95",
+    "name": "Walkout to Plank",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Stand, hinge forward, walk hands out to a full plank, briefly hold, walk hands back and stand",
+    "flagged": false
+  },
+  {
+    "id": "96",
+    "name": "Angled Forward Lunge",
     "category": "lower",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 10 reps each",
-    "description": "Hold dumbbells, step up onto a sturdy chair or step, drive knee at top \u2014 quad and glute"
+    "description": "Step forward at a 45 degree angle \u2014 targets outer glute and hip differently",
+    "flagged": false
   },
   {
-    "id": "284",
-    "name": "DB Curtsy Lunge",
+    "id": "97",
+    "name": "Angled Reverse Lunge",
     "category": "lower",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 10 reps each",
-    "description": "Hold dumbbells, step one leg behind and across, lower into curtsy \u2014 outer glute focus"
+    "description": "Step back at a 45 degree angle instead of straight \u2014 shifts emphasis to outer glute",
+    "flagged": false
   },
   {
-    "id": "285",
+    "id": "98",
+    "name": "Bodyweight Lunges",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 12 reps each",
+    "description": "Step forward, lower back knee, push back to start",
+    "flagged": false
+  },
+  {
+    "id": "99",
+    "name": "Bodyweight Squats",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 20 reps",
+    "description": "Feet shoulder-width, sit back and down, thighs parallel to floor",
+    "flagged": false
+  },
+  {
+    "id": "100",
+    "name": "Calf Raises",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 20 reps",
+    "description": "Rise up onto toes, pause 1 second at top, lower slowly",
+    "flagged": false
+  },
+  {
+    "id": "101",
+    "name": "Curtsy Lunge to Knee Drive",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 10 reps each",
+    "description": "Step one foot behind and across, lower into a lunge, drive that knee forward as you stand",
+    "flagged": false
+  },
+  {
+    "id": "102",
+    "name": "Curtsy Lunge to Single Arm Press",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Step behind into curtsy lunge, press same side arm overhead as you stand up",
+    "flagged": false
+  },
+  {
+    "id": "103",
+    "name": "DB Bulgarian Split Squat",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Rear foot on a chair or sofa, dumbbell in each hand, lower front leg \u2014 quad and glute focus",
+    "flagged": false
+  },
+  {
+    "id": "104",
+    "name": "DB Deadlift",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Hinge with dumbbells, drive hips forward to stand \u2014 full posterior chain",
+    "flagged": false
+  },
+  {
+    "id": "105",
+    "name": "DB Goblet Squat",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 15 reps",
+    "description": "Hold one dumbbell at chest, squat deep, elbows inside knees",
+    "flagged": false
+  },
+  {
+    "id": "106",
+    "name": "DB Goblet Squat Press",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Goblet squat, stand up and press dumbbell overhead",
+    "flagged": false
+  },
+  {
+    "id": "107",
+    "name": "DB Jump Squats",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hold light dumbbells, squat and explode upward, land soft",
+    "flagged": false
+  },
+  {
+    "id": "108",
+    "name": "DB Lateral Squat",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Wide stance, sit to one side, keep other leg straight, alternate",
+    "flagged": false
+  },
+  {
+    "id": "109",
     "name": "DB Lateral Step Squat",
     "category": "lower",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 10 reps each",
-    "description": "Step wide to one side into a squat, step back together, alternate \u2014 lateral hip and quad"
+    "description": "Step wide to one side into a squat, step back together, alternate \u2014 lateral hip and quad",
+    "flagged": false
   },
   {
-    "id": "286",
-    "name": "DB Box Squat",
+    "id": "110",
+    "name": "DB Reverse Lunges",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Step back into lunge, dumbbells at sides",
+    "flagged": false
+  },
+  {
+    "id": "111",
+    "name": "DB Romanian Deadlift",
     "category": "lower",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 12 reps",
-    "description": "Sit back onto chair edge with dumbbells, stand explosively \u2014 teaches squat pattern and glute activation"
+    "description": "Hinge at hips, lower dumbbells along legs, feel hamstrings",
+    "flagged": false
   },
   {
-    "id": "287",
+    "id": "112",
+    "name": "DB Single Leg Deadlift",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Hinge on one leg holding dumbbells, extend other leg back",
+    "flagged": false
+  },
+  {
+    "id": "113",
     "name": "DB Single Leg Hip Thrust",
     "category": "lower",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 12 reps each",
-    "description": "Single leg hip thrust with dumbbell on hip \u2014 maximum glute isolation one side at a time"
+    "description": "Single leg hip thrust with dumbbell on hip \u2014 maximum glute isolation one side at a time",
+    "flagged": false
   },
   {
-    "id": "288",
-    "name": "Plank with Hip Extension",
-    "category": "core",
-    "equipment": [],
+    "id": "114",
+    "name": "DB Split Squat",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Stationary lunge holding dumbbells, lower back knee to floor",
+    "flagged": false
+  },
+  {
+    "id": "115",
+    "name": "DB Squat to Reverse Lunge",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
     "reps": "3 sets x 10 reps each",
-    "description": "High plank, lift one leg straight behind \u2014 glute and lower back activation in plank position"
+    "description": "Squat, stand, step back into reverse lunge \u2014 alternating legs",
+    "flagged": false
   },
   {
-    "id": "289",
-    "name": "Stir the Pot",
-    "category": "core",
-    "equipment": [],
-    "reps": "3 sets x 10 each way",
-    "description": "Forearm plank, make small circles with elbows \u2014 challenges core stability in all directions"
-  },
-  {
-    "id": "290",
-    "name": "Suitcase Crunch",
-    "category": "core",
+    "id": "116",
+    "name": "DB Sumo Squat",
+    "category": "lower",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 15 reps",
-    "description": "Lie on back, bring one knee and same elbow together simultaneously \u2014 oblique and hip flexor"
+    "description": "Wide stance, toes pointed out, hold dumbbell at chest, squat deep",
+    "flagged": false
   },
   {
-    "id": "291",
+    "id": "117",
+    "name": "DB Sumo Squat Hold",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 30 seconds",
+    "description": "Wide stance hold at parallel \u2014 isometric quad and inner thigh endurance",
+    "flagged": false
+  },
+  {
+    "id": "118",
+    "name": "DB Walking Lunge + Curl",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 20 reps",
+    "description": "Walking lunge, curl dumbbells as you step forward",
+    "flagged": false
+  },
+  {
+    "id": "119",
+    "name": "DB Walking Lunges",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 20 reps",
+    "description": "Walking lunge holding dumbbells at sides, long stride",
+    "flagged": false
+  },
+  {
+    "id": "120",
+    "name": "Deadlift to Curl",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Hinge into a deadlift, curl both dumbbells at the top as you stand \u2014 full body to bicep finish",
+    "flagged": false
+  },
+  {
+    "id": "121",
+    "name": "Deadlift to High Pull to Press",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 6 reps",
+    "description": "Hinge into deadlift, pull to chin, press overhead in one chained movement \u2014 total body",
+    "flagged": false
+  },
+  {
+    "id": "122",
+    "name": "Deadlift to Shrug",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hinge into a deadlift, shrug both shoulders hard at the top \u2014 posterior chain and traps",
+    "flagged": false
+  },
+  {
+    "id": "123",
+    "name": "Farmers Carry",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 45 seconds",
+    "description": "Hold heavy dumbbells at sides, walk tall with tight core \u2014 grip, traps and full body stability",
+    "flagged": false
+  },
+  {
+    "id": "124",
+    "name": "Forward Lunge to Bicep Curl",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Step forward into a lunge, curl both dumbbells at the bottom, step back and reset",
+    "flagged": false
+  },
+  {
+    "id": "125",
+    "name": "Forward Lunge to Tricep Extension",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Step forward into lunge, extend both dumbbells overhead at the bottom of the lunge",
+    "flagged": false
+  },
+  {
+    "id": "126",
+    "name": "Front Hold Forward Lunge",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Hold dumbbells at shoulders, step forward and lower \u2014 keep torso tall",
+    "flagged": false
+  },
+  {
+    "id": "127",
+    "name": "Front Hold Reverse Lunge",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Hold dumbbells at shoulders, step back into a lunge \u2014 upright torso hits quads hard",
+    "flagged": false
+  },
+  {
+    "id": "128",
+    "name": "Front Hold Squat",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Rest dumbbells on shoulders at chest height, squat deep \u2014 quad focus",
+    "flagged": false
+  },
+  {
+    "id": "129",
+    "name": "Front Hold Sumo Squat",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hold dumbbells at shoulders, feet wide and toes out \u2014 squat deep into sumo position",
+    "flagged": false
+  },
+  {
+    "id": "130",
+    "name": "Glute Bridges",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 20 reps",
+    "description": "Lie on back, push hips up, squeeze glutes hard at top",
+    "flagged": false
+  },
+  {
+    "id": "131",
+    "name": "Glute Kickbacks",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 15 reps each",
+    "description": "On all fours, kick one leg straight back and up \u2014 squeeze glute at top",
+    "flagged": false
+  },
+  {
+    "id": "132",
+    "name": "Goblet Lateral Lunge",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Hold dumbbell at chest, step wide into a lateral lunge \u2014 upright torso, quad and inner thigh",
+    "flagged": false
+  },
+  {
+    "id": "133",
+    "name": "Goblet Squat to Press",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Hold dumbbell at chest, squat deep, press it overhead as you stand \u2014 full body",
+    "flagged": false
+  },
+  {
+    "id": "134",
+    "name": "Jump Split Squats",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "Split squat position, jump and switch legs in mid-air",
+    "flagged": false
+  },
+  {
+    "id": "135",
+    "name": "Jump Squats",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 15 reps",
+    "description": "Squat down, explode upward, land softly with bent knees",
+    "flagged": false
+  },
+  {
+    "id": "136",
+    "name": "Kickstand Deadlift",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Back foot on toes for balance, hinge forward on front leg keeping back flat \u2014 single leg focus",
+    "flagged": false
+  },
+  {
+    "id": "137",
+    "name": "Lateral Lunge to Hammer Curl",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Step into a lateral lunge, curl both dumbbells as you push back to centre \u2014 legs and biceps",
+    "flagged": false
+  },
+  {
+    "id": "138",
+    "name": "Lateral Lunge to Lateral Raise",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Step wide into lateral lunge, raise arms to shoulder height as you return to centre",
+    "flagged": false
+  },
+  {
+    "id": "139",
+    "name": "Lateral Lunges",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 12 reps each",
+    "description": "Step wide to the side, bend that knee, keep other leg straight",
+    "flagged": false
+  },
+  {
+    "id": "140",
+    "name": "Lunge to Curl to Press",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 8 reps each",
+    "description": "Step into a lunge, curl on the way up, press overhead at the top \u2014 three moves one flow",
+    "flagged": false
+  },
+  {
+    "id": "141",
+    "name": "Narrow Goblet Squat",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Feet together holding dumbbell at chest, squat as deep as you can \u2014 inner quads",
+    "flagged": false
+  },
+  {
+    "id": "142",
+    "name": "RDL to Bent Over Row",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Hinge into Romanian deadlift, row both dumbbells at the bottom, stand \u2014 hamstrings and back",
+    "flagged": false
+  },
+  {
+    "id": "143",
+    "name": "Reverse Lunge to Bicep Curl",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Step back into lunge, curl both dumbbells as you drive back to standing \u2014 legs and biceps",
+    "flagged": false
+  },
+  {
+    "id": "144",
+    "name": "Reverse Lunge to Front Raise",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Step back into lunge, raise both arms forward to shoulder height as you stand",
+    "flagged": false
+  },
+  {
+    "id": "145",
+    "name": "Reverse Lunge to Shoulder Press",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "Step back into a lunge, press both dumbbells overhead as you drive back to standing",
+    "flagged": false
+  },
+  {
+    "id": "146",
+    "name": "Reverse Lunges",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 12 reps each",
+    "description": "Step backward into lunge \u2014 easier on knees than forward",
+    "flagged": false
+  },
+  {
+    "id": "147",
+    "name": "Single Leg Glute Bridge",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 15 reps each",
+    "description": "One leg extended, push hips up on the other \u2014 hold at top",
+    "flagged": false
+  },
+  {
+    "id": "148",
+    "name": "Split Squats",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 12 reps each",
+    "description": "Stationary lunge position, lower back knee toward floor",
+    "flagged": false
+  },
+  {
+    "id": "149",
+    "name": "Squat Hold",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Sit in squat position, thighs parallel, hold still",
+    "flagged": false
+  },
+  {
+    "id": "150",
+    "name": "Squat to Bent Over Row",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Squat down, hinge and row both dumbbells at the bottom, stand \u2014 legs and back together",
+    "flagged": false
+  },
+  {
+    "id": "151",
+    "name": "Squat to Curl to Press",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 8 reps",
+    "description": "Squat down, curl both dumbbells as you stand, press overhead at the top \u2014 full body chain",
+    "flagged": false
+  },
+  {
+    "id": "152",
+    "name": "Squat to Hammer Curl",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Squat down, hammer curl both dumbbells with neutral grip as you stand \u2014 legs and biceps",
+    "flagged": false
+  },
+  {
+    "id": "153",
+    "name": "Squat to Lateral Raise",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Squat down with dumbbells at sides, raise arms to shoulder height as you stand \u2014 legs and shoulders",
+    "flagged": false
+  },
+  {
+    "id": "154",
+    "name": "Squat to Upright Row",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Squat down, pull dumbbells to chin with elbows flaring as you stand \u2014 legs and traps",
+    "flagged": false
+  },
+  {
+    "id": "155",
+    "name": "Staggered Stance Deadlift",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "One foot slightly behind the other, hinge forward on the front leg \u2014 easier than single leg but still targets each side",
+    "flagged": false
+  },
+  {
+    "id": "156",
+    "name": "Suitcase Carry Walk",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 30 seconds",
+    "description": "Hold one heavy dumbbell at side, walk a straight line \u2014 anti-lateral core and grip",
+    "flagged": false
+  },
+  {
+    "id": "157",
+    "name": "Suitcase Squat",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 15 reps",
+    "description": "Hold dumbbells at sides like suitcases, squat down keeping chest up",
+    "flagged": false
+  },
+  {
+    "id": "158",
+    "name": "Sumo Deadlift",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Wide stance, toes out, hinge forward with flat back \u2014 inner thigh and glutes",
+    "flagged": false
+  },
+  {
+    "id": "159",
+    "name": "Sumo Squat",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 15 reps",
+    "description": "Feet wider than hip-width, toes out, dumbbell between legs \u2014 inner thigh and glutes",
+    "flagged": false
+  },
+  {
+    "id": "160",
+    "name": "Sumo Squat to Upright Row",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Wide stance squat, pull dumbbells to chin as you stand \u2014 inner thighs, traps and shoulders",
+    "flagged": false
+  },
+  {
+    "id": "161",
+    "name": "Wall Sit",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Back flat against wall, thighs parallel to floor \u2014 hold",
+    "flagged": false
+  },
+  {
+    "id": "162",
+    "name": "Weighted Glute Bridge",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 15 reps",
+    "description": "Dumbbell across hips, drive hips up and squeeze glutes hard at top",
+    "flagged": false
+  },
+  {
+    "id": "163",
+    "name": "Weighted Wall Sit",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 45 seconds",
+    "description": "Wall sit position with a dumbbell on each thigh \u2014 adds load for serious quad burn",
+    "flagged": false
+  },
+  {
+    "id": "164",
+    "name": "Alternating Lateral Lunge Hop",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 10 reps each",
+    "description": "Step into a lateral lunge, hop and switch to the other side \u2014 lateral power and coordination",
+    "flagged": false
+  },
+  {
+    "id": "165",
+    "name": "Broad Jump",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 8 reps",
+    "description": "Jump forward as far as possible, land softly, walk back and reset \u2014 explosive legs",
+    "flagged": false
+  },
+  {
+    "id": "166",
+    "name": "Burpee + Lateral Jump",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Full burpee, then jump laterally over a line or marker",
+    "flagged": false
+  },
+  {
+    "id": "167",
+    "name": "Burpee to Tuck Jump",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 8 reps",
+    "description": "Full burpee, then at the top drive both knees to chest in a tuck jump \u2014 maximum full body intensity",
+    "flagged": false
+  },
+  {
+    "id": "168",
+    "name": "Burpees",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Squat, jump back to plank, push-up, jump feet in, jump up",
+    "flagged": false
+  },
+  {
+    "id": "169",
+    "name": "Clap Push-Up",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 8 reps",
+    "description": "Explosive push-up with enough force to clap hands at the top \u2014 chest power",
+    "flagged": false
+  },
+  {
+    "id": "170",
+    "name": "Commando Plank",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Alternate between forearm plank and high plank as fast as you can \u2014 triceps and shoulder burner",
+    "flagged": false
+  },
+  {
+    "id": "171",
+    "name": "Cossack Squat",
+    "category": "lower",
+    "equipment": [],
+    "reps": "3 sets x 10 reps each",
+    "description": "Wide stance, shift weight into one leg sinking deep, other leg straight to the side \u2014 mobility and leg strength",
+    "flagged": false
+  },
+  {
+    "id": "172",
+    "name": "Cross Body Mountain Climber",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Drive each knee toward the opposite elbow instead of straight \u2014 oblique and core focus",
+    "flagged": false
+  },
+  {
+    "id": "173",
+    "name": "Cross Jacks",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Jumping jack but arms cross in front at the bottom instead of staying at sides \u2014 chest activation",
+    "flagged": false
+  },
+  {
+    "id": "174",
+    "name": "DB Squat Jump",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Hold light dumbbells, squat and explode upward \u2014 adds load to a classic jump squat",
+    "flagged": false
+  },
+  {
+    "id": "175",
+    "name": "DB Thrusters",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Squat with dumbbells at shoulders, explode up and press overhead",
+    "flagged": false
+  },
+  {
+    "id": "176",
+    "name": "DB Walking Lunge Burpee",
+    "category": "lower",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 8 reps",
+    "description": "Walking lunge into a burpee at the end of each lunge",
+    "flagged": false
+  },
+  {
+    "id": "177",
+    "name": "High Knees",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 30 seconds",
+    "description": "Run in place, drive knees as high as possible each step",
+    "flagged": false
+  },
+  {
+    "id": "178",
+    "name": "Hindu Push-Up",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "From a pike position, swoop chest forward and up in a smooth arc \u2014 chest, shoulders and back in one fluid move",
+    "flagged": false
+  },
+  {
+    "id": "179",
+    "name": "Ice Skaters",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Bound side to side landing on one foot, mimic speed skater",
+    "flagged": false
+  },
+  {
+    "id": "180",
+    "name": "Inch Worm Push-Up",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Hinge forward, walk hands out to plank, push-up, walk back",
+    "flagged": false
+  },
+  {
+    "id": "181",
+    "name": "Jump Squats Wide to Narrow",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 60 seconds",
+    "description": "Jump squat, alternate between wide and narrow foot positions",
+    "flagged": false
+  },
+  {
+    "id": "182",
+    "name": "Jumping Jacks",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Classic \u2014 arms and legs out simultaneously, jump back together",
+    "flagged": false
+  },
+  {
+    "id": "183",
+    "name": "Lateral Bound",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Jump laterally from one foot to the other, land softly on one leg \u2014 power and agility",
+    "flagged": false
+  },
+  {
+    "id": "184",
+    "name": "Lateral Lunge Burpee",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Lateral lunge, bring feet together, drop into burpee, repeat",
+    "flagged": false
+  },
+  {
+    "id": "185",
+    "name": "Lateral Shuffle",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Athletic stance, shuffle side to side as fast as possible",
+    "flagged": false
+  },
+  {
+    "id": "186",
+    "name": "Lateral Skater Squat",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 10 reps each",
+    "description": "Balance on one leg, sink into a single leg squat to the side, touch the floor \u2014 control meets power",
+    "flagged": false
+  },
+  {
+    "id": "187",
+    "name": "Lunge Jump",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 10 reps each",
+    "description": "Start in a lunge, jump and switch legs in the air \u2014 explosive lower body conditioning",
+    "flagged": false
+  },
+  {
+    "id": "188",
+    "name": "Mountain Climber to Push-Up",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 30 seconds",
+    "description": "4 fast mountain climbers then 1 push-up, repeat continuously \u2014 core and chest combo",
+    "flagged": false
+  },
+  {
+    "id": "189",
+    "name": "Mountain Climbers",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 30 seconds",
+    "description": "Plank position, drive knees to chest alternately \u2014 fast as possible",
+    "flagged": false
+  },
+  {
+    "id": "190",
+    "name": "Plank Jack",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "High plank, jump feet wide and back in repeatedly \u2014 shoulders and core under constant tension",
+    "flagged": false
+  },
+  {
+    "id": "191",
+    "name": "Power Jacks",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 30 seconds",
+    "description": "Explosive jumping jack \u2014 jump as high as possible each time, full arm extension overhead",
+    "flagged": false
+  },
+  {
+    "id": "192",
+    "name": "Push-Up to Side Plank",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 10 reps each",
+    "description": "Do a push-up, rotate into a side plank at the top, alternate sides \u2014 chest, shoulder and core",
+    "flagged": false
+  },
+  {
+    "id": "193",
+    "name": "Seal Jacks",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Jumping jack but arms swing forward and back like a seal clap instead of up and out \u2014 shoulder focus",
+    "flagged": false
+  },
+  {
+    "id": "194",
+    "name": "Shoulder Tap Burpee",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 8 reps",
+    "description": "Full burpee, but at the top plank position do 4 shoulder taps before jumping up \u2014 upper body focused burpee",
+    "flagged": false
+  },
+  {
+    "id": "195",
+    "name": "Skater Striders",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Bound laterally landing on one foot, reach opposite hand down \u2014 speed skater pattern",
+    "flagged": false
+  },
+  {
+    "id": "196",
+    "name": "Speed Bag",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Fast circular punching motion in the air \u2014 shoulders and arms under continuous burn",
+    "flagged": false
+  },
+  {
+    "id": "197",
+    "name": "Spiderman Crawl",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 60 seconds",
+    "description": "Crawl forward bringing each knee to the same-side elbow",
+    "flagged": false
+  },
+  {
+    "id": "198",
+    "name": "Sprint in Place",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 30 seconds",
+    "description": "Drive knees up and pump arms as fast as possible while staying in place \u2014 pure cardio output",
+    "flagged": false
+  },
+  {
+    "id": "199",
+    "name": "Squat Hold Pulse",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Sink into a squat and hold, then pulse up and down a few inches \u2014 quad and glute endurance burn",
+    "flagged": false
+  },
+  {
+    "id": "200",
+    "name": "Squat Jacks",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Jump feet wide and sink into a squat, jump back together \u2014 jumping jack meets squat",
+    "flagged": false
+  },
+  {
+    "id": "201",
+    "name": "Squat Thrust",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "Hinge, place hands on floor, kick feet back to plank, return and stand \u2014 burpee without the jump",
+    "flagged": false
+  },
+  {
+    "id": "202",
+    "name": "Star Jump",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Jump and simultaneously spread arms and legs wide like a star, land softly and reset",
+    "flagged": false
+  },
+  {
+    "id": "203",
+    "name": "Tuck Jump",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Jump and drive both knees to chest at the peak \u2014 maximum explosive power",
+    "flagged": false
+  },
+  {
+    "id": "204",
+    "name": "Vertical Jump",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Jump straight up as high as possible, land softly and reset fully between jumps",
+    "flagged": false
+  },
+  {
+    "id": "205",
+    "name": "Wide Mountain Climber",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Drive feet wide to outside of hands instead of straight \u2014 inner thigh and hip focus",
+    "flagged": false
+  },
+  {
+    "id": "206",
+    "name": "Air Bikes",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "On back, crunch and rotate elbow to opposite knee, cycle fast",
+    "flagged": false
+  },
+  {
+    "id": "207",
+    "name": "Alternating V-Up",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 12 reps each",
+    "description": "Lie flat, lift opposite arm and leg to meet in the middle \u2014 full body core tension",
+    "flagged": false
+  },
+  {
+    "id": "208",
+    "name": "Bear Hold",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 30 seconds",
+    "description": "On all fours, lift knees 1 inch off floor and hold still \u2014 full body tension",
+    "flagged": false
+  },
+  {
+    "id": "209",
+    "name": "Bicycle Crunches",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 20 reps",
+    "description": "Alternate elbow to opposite knee in a cycling motion",
+    "flagged": false
+  },
+  {
+    "id": "210",
+    "name": "Crunch",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 20 reps",
+    "description": "Lie on back, knees bent, hands behind head, curl shoulders up \u2014 squeeze abs at top",
+    "flagged": false
+  },
+  {
+    "id": "211",
     "name": "DB Overhead Crunch",
     "category": "core",
     "equipment": [
       "dumbbells"
     ],
     "reps": "3 sets x 12 reps",
-    "description": "Hold dumbbell overhead with both hands, crunch up \u2014 adds load and reaches upper abs"
+    "description": "Hold dumbbell overhead with both hands, crunch up \u2014 adds load and reaches upper abs",
+    "flagged": false
+  },
+  {
+    "id": "212",
+    "name": "DB Plank Row",
+    "category": "core",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps each",
+    "description": "High plank on dumbbells, row one arm to hip \u2014 core stability and back activation",
+    "flagged": false
+  },
+  {
+    "id": "213",
+    "name": "DB Russian Twists",
+    "category": "core",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 20 reps",
+    "description": "Seated, hold one dumbbell, rotate side to side \u2014 lean back slightly",
+    "flagged": false
+  },
+  {
+    "id": "214",
+    "name": "DB Russian Twists Feet Up",
+    "category": "core",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 20 reps",
+    "description": "Russian twists with feet elevated off the floor \u2014 harder on the hip flexors and obliques",
+    "flagged": false
+  },
+  {
+    "id": "215",
+    "name": "DB Side Plank Raise",
+    "category": "core",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Side plank, hold dumbbell on top hip, raise and lower",
+    "flagged": false
+  },
+  {
+    "id": "216",
+    "name": "DB Toe Touch",
+    "category": "core",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 15 reps",
+    "description": "Lie on back legs straight up, reach dumbbell to toes \u2014 upper abs with added weight",
+    "flagged": false
+  },
+  {
+    "id": "217",
+    "name": "DB Weighted Sit-Up",
+    "category": "core",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hold one dumbbell at chest or overhead, perform a full sit-up \u2014 adds load to abs",
+    "flagged": false
+  },
+  {
+    "id": "218",
+    "name": "Dead Bug",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 10 reps each",
+    "description": "On back, extend opposite arm and leg, lower back stays flat",
+    "flagged": false
+  },
+  {
+    "id": "219",
+    "name": "Double Crunch",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 20 reps",
+    "description": "Bring knees to chest while crunching upper body \u2014 meet in middle",
+    "flagged": false
+  },
+  {
+    "id": "220",
+    "name": "Elbow Plank Hip Dips",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 20 reps",
+    "description": "Forearm plank, rotate hips to each side tapping the floor \u2014 oblique focus",
+    "flagged": false
+  },
+  {
+    "id": "221",
+    "name": "Explosive Sit-Up",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 15 reps",
+    "description": "Sit-up with enough momentum to reach arms overhead at the top \u2014 dynamic core power",
+    "flagged": false
+  },
+  {
+    "id": "222",
+    "name": "Flutter Kicks",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 30 seconds",
+    "description": "Lie on back, alternate small kicks \u2014 keep lower back down",
+    "flagged": false
+  },
+  {
+    "id": "223",
+    "name": "High-to-Low Plank",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 10 reps each",
+    "description": "Alternate between forearm plank and high plank \u2014 shoulder and core stability",
+    "flagged": false
+  },
+  {
+    "id": "224",
+    "name": "Leg Lifts",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 15 reps",
+    "description": "Lie on back, raise straight legs to 90\u00b0, lower slowly",
+    "flagged": false
+  },
+  {
+    "id": "225",
+    "name": "Mountain Climber with Pause",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 10 reps each",
+    "description": "Drive knee to chest and pause 2 seconds before switching \u2014 slow and controlled climbers",
+    "flagged": false
+  },
+  {
+    "id": "226",
+    "name": "Plank",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 45 seconds",
+    "description": "Forearms on floor, body straight, squeeze everything tight",
+    "flagged": false
+  },
+  {
+    "id": "227",
+    "name": "Plank Hip Drops",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 20 reps",
+    "description": "Forearm plank, rotate hips to tap each side to floor",
+    "flagged": false
+  },
+  {
+    "id": "228",
+    "name": "Plank to Knee Tuck",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 12 reps each",
+    "description": "High plank, drive one knee to same side elbow and back \u2014 oblique and hip flexor",
+    "flagged": false
+  },
+  {
+    "id": "229",
+    "name": "Plank Up-Downs",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Alternate between forearm plank and high plank \u2014 controlled",
+    "flagged": false
+  },
+  {
+    "id": "230",
+    "name": "Russian Twists",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 20 reps",
+    "description": "Seated, lean back, rotate side to side \u2014 feet can be elevated",
+    "flagged": false
+  },
+  {
+    "id": "231",
+    "name": "Side Plank",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 30 seconds each",
+    "description": "Forearm on floor, body in straight line, hips up",
+    "flagged": false
+  },
+  {
+    "id": "232",
+    "name": "Single Leg Bridge Hold",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 30 seconds each",
+    "description": "Hold a glute bridge on one leg \u2014 glutes and core working hard to keep hips level",
+    "flagged": false
+  },
+  {
+    "id": "233",
+    "name": "Sit-Up",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 15 reps",
+    "description": "Lie on back, knees bent, sit all the way up and lower slowly \u2014 full range abs",
+    "flagged": false
+  },
+  {
+    "id": "234",
+    "name": "Slow Mountain Climbers",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 10 reps each",
+    "description": "Mountain climbers at a controlled slow tempo \u2014 pause each knee at the chest for 2 seconds",
+    "flagged": false
+  },
+  {
+    "id": "235",
+    "name": "Snow Angels",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 15 reps",
+    "description": "Lie on back, make snow angel arm + leg motion \u2014 lower back down",
+    "flagged": false
+  },
+  {
+    "id": "236",
+    "name": "Suitcase Crunch",
+    "category": "core",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 15 reps",
+    "description": "Lie on back, bring one knee and same elbow together simultaneously \u2014 oblique and hip flexor",
+    "flagged": false
+  },
+  {
+    "id": "237",
+    "name": "Superman Back Extension",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "Face down, sweep arms out to sides, lift chest and arms off floor and hold \u2014 lower and mid back",
+    "flagged": false
+  },
+  {
+    "id": "238",
+    "name": "Superman Hold",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "Face down, lift arms and legs off floor simultaneously, hold 2s",
+    "flagged": false
+  },
+  {
+    "id": "239",
+    "name": "Toe Touch Crunch",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 15 reps",
+    "description": "Lie on back, legs straight up, reach hands up to touch toes \u2014 upper abs",
+    "flagged": false
+  },
+  {
+    "id": "240",
+    "name": "Tuck Crunch",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 15 reps",
+    "description": "Lie on back, pull knees to chest while crunching upper body up to meet them \u2014 full abs",
+    "flagged": false
+  },
+  {
+    "id": "241",
+    "name": "V-Sit Leg Extension",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 12 reps each",
+    "description": "Sit in a V position with hands supported, alternate extending each leg out straight",
+    "flagged": false
+  },
+  {
+    "id": "242",
+    "name": "V-Up Jack",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "V-up but open legs wide as you lower \u2014 combines V-up with a jack motion",
+    "flagged": false
+  },
+  {
+    "id": "243",
+    "name": "V-Up to Crunch",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 15 reps",
+    "description": "Full v-up followed by a slow crunch \u2014 alternate each rep",
+    "flagged": false
+  },
+  {
+    "id": "244",
+    "name": "V-Ups",
+    "category": "core",
+    "equipment": [],
+    "reps": "3 sets x 15 reps",
+    "description": "Lift legs and upper body simultaneously to touch toes at top",
+    "flagged": false
+  },
+  {
+    "id": "245",
+    "name": "Push-Up Burnout",
+    "category": "upper",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Max reps push-ups until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "246",
+    "name": "DB Lateral Raise Hold",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Raise arms to shoulder height and hold to failure \u2014 shoulder endurance burn",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "247",
+    "name": "Tricep Dip Burnout",
+    "category": "upper",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Max reps off a chair \u2014 tricep endurance finisher",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "248",
+    "name": "DB Curl to Failure",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Slow curls until you cannot complete a rep \u2014 bicep burnout",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "249",
+    "name": "DB Front Raise Hold",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Hold dumbbells forward at shoulder height for 30-45s to failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "250",
+    "name": "DB Hammer Curl Burnout",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Alternating hammer curls, no stopping until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "251",
+    "name": "Wide Push-Up Burnout",
+    "category": "upper",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Wide grip push-ups, max reps until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "252",
+    "name": "Diamond Push-Up Burnout",
+    "category": "upper",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Hands together in diamond shape, max reps until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "253",
+    "name": "DB Overhead Press Burnout",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Max reps continuous overhead press until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "254",
+    "name": "DB Upright Row Burnout",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Max reps continuous upright rows until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "255",
+    "name": "Face Pull Burnout",
+    "category": "upper",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Band face pulls, max reps until failure \u2014 rear delt burn",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "256",
+    "name": "DB Reverse Fly Burnout",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Bent over, rear delt flies to failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "257",
+    "name": "Bicep Curl Hold",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Curl to 90 degrees and hold to failure \u2014 sustained bicep tension",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "258",
+    "name": "DB Arnold Press Burnout",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Max reps continuous arnold press until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "259",
+    "name": "Wall Sit Burnout",
+    "category": "lower",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Hold wall sit until failure \u2014 no time limit",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "260",
+    "name": "Squat Pulse Burnout",
+    "category": "lower",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Stay at bottom of squat and pulse until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "261",
+    "name": "Sumo Squat Hold",
+    "category": "lower",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Wide stance at bottom of sumo squat, hold to failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "262",
+    "name": "Lateral Lunge Pulse",
+    "category": "lower",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Side lunge position, pulse for 30 seconds each side",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "263",
+    "name": "Lunge Pulse Burnout",
+    "category": "lower",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Split stance, pulse at bottom until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "264",
+    "name": "Burpee Burnout",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Max burpees in 30 seconds",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "265",
+    "name": "Jump Squat Burnout",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Max jump squats in 30 seconds",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "266",
+    "name": "Mountain Climber Sprint",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "All out mountain climbers for 30-45 seconds",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "267",
+    "name": "High Knee Sprint",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Maximum effort high knees for 30 seconds",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "268",
+    "name": "Skater Jump Burnout",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Max skaters in 30 seconds",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "269",
+    "name": "Tuck Jump Burnout",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Max tuck jumps in 20 seconds",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "270",
+    "name": "Jumping Jack Burnout",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Max jumping jacks in 30 seconds",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "271",
+    "name": "Butt Kick Sprint",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Max speed butt kicks for 30 seconds",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "272",
+    "name": "Lunge Jump Burnout",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Alternating jump lunges to failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "273",
+    "name": "Frog Jump Burnout",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Deep squat jump forward and back for 30 seconds",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "274",
+    "name": "Speed Skater Burnout",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Wide fast skaters, max reps in 30 seconds",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "275",
+    "name": "In and Out Jump Squat",
+    "category": "hiit",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Feet together, jump out to squat, max reps in 30 seconds",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "276",
+    "name": "Plank Hold Burnout",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Hold plank position until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "277",
+    "name": "Side Plank Hold Burnout",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Hold side plank each side until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "278",
+    "name": "V-Sit Hold",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Legs and torso in V shape, hold until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "279",
+    "name": "Flutter Kick Burnout",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Legs 6 inches off floor, flutter until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "280",
+    "name": "Leg Raise Hold",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Legs at 45 degrees off floor, hold until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "281",
+    "name": "Ab Crunch Burnout",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Max slow crunches until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "282",
+    "name": "Bicycle Crunch Burnout",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Max slow bicycle crunches until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "283",
+    "name": "Russian Twist Burnout",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Max reps each side until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "284",
+    "name": "Toe Touch Burnout",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Lying flat, reach toes with straight legs, max reps",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "285",
+    "name": "Scissor Kick Burnout",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Alternating leg cross, continue until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "286",
+    "name": "Mountain Climber Core Burnout",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Slow controlled mountain climbers, max reps",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "287",
+    "name": "Seated Knee Tuck Burnout",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Seated, tuck knees to chest, max reps until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
+  },
+  {
+    "id": "288",
+    "name": "Bear Hold Burnout",
+    "category": "core",
+    "equipment": [],
+    "reps": "To failure / use timer below",
+    "description": "Knees 2 inches off floor, hold until failure",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed"
   }
 ]
