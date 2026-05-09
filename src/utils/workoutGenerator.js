@@ -40,6 +40,14 @@ function isBurner(ex) {
     (Array.isArray(t) && t.includes('burnout'))
 }
 
+function isTimedEx(ex) {
+  const t = ex.tags || ''
+  const isBurn = t === 'burnout' || (typeof t==='string' && t.includes('burnout')) || (Array.isArray(t) && t.includes('burnout'))
+  return ex.format === 'timed' || isBurn ||
+    (ex.reps||'').toLowerCase().includes('second') ||
+    (ex.name||'').toLowerCase().includes('hold')
+}
+
 function isPushUp(ex) {
   return (ex.name || '').toLowerCase().includes('push-up') ||
          (ex.name || '').toLowerCase().includes('pushup')
@@ -91,6 +99,7 @@ function pool(exercises, category, {
   compound     = null,
   order        = null,
   pushup       = null,
+  excludeTimed = false,
 } = {}) {
   return shuffle(exercises.filter(ex => {
     if (ex.flagged)           return false
@@ -104,8 +113,22 @@ function pool(exercises, category, {
     if (order   && ex.ex_order !== order) return false
     if (pushup === true  && !isPushUp(ex)) return false
     if (pushup === false && isPushUp(ex))  return false
+    if (excludeTimed && isTimedEx(ex))     return false
     return true
   }))
+}
+
+// ── Timed limit enforcement ──────────────────────────────
+// After picking a circuit, ensure max timed exercises
+function enforcedTimedLimit(circuit, max) {
+  let timedCount = 0
+  return circuit.filter(ex => {
+    if (isTimedEx(ex)) {
+      timedCount++
+      return timedCount <= max
+    }
+    return true
+  })
 }
 
 // ── UPPER STRENGTH ────────────────────────────────────────
@@ -283,7 +306,7 @@ function pickHiitC1(exercises, usedIds, hasDumbbells) {
   return picked
 }
 
-function pickHiitC2(exercises, usedIds, hasDumbbells) {
+function pickHiitC2(exercises, usedIds, hasDumbbells) { // max 2 timed
   const hiit    = pool(exercises, 'hiit', { hasDumbbells:false, burner:false, usedIds })
   const hBurner = pool(exercises, 'hiit', { hasDumbbells:false, burner:true,  usedIds })
   const cores   = pool(exercises, 'core', { hasDumbbells,       burner:false, usedIds })
@@ -426,6 +449,11 @@ export function generateWorkout(exercises, answers) {
   circuit2.forEach(e => usedIds.add(e.id))
   circuit1 = ensure(circuit1, 3, exercises, usedIds, hasDumbbells)
   circuit2 = ensure(circuit2, 3, exercises, usedIds, hasDumbbells)
+
+  // Enforce timed limits
+  const timedMax = style === 'hiit' ? 2 : 1
+  circuit1 = enforcedTimedLimit(circuit1, timedMax)
+  circuit2 = enforcedTimedLimit(circuit2, timedMax)
 
   return { circuit1, circuit2, usedIds }
 }

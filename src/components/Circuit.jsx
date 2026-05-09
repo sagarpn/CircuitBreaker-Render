@@ -166,16 +166,14 @@ function ExerciseCard({ exercise, index, focus, style, hasDumbbells, hasPullupBa
           }</div>
         }
 
-        {/* Timed badge for burner/timed exercises */}
+        {/* Inline timer for timed/burner exercises — same CoreTimer as core */}
         {!isCore && (() => {
           const tags     = exercise.tags || exercise.ex_tags || ''
           const isBurner = tags === 'burnout' || (typeof tags === 'string' && tags.includes('burnout')) || (Array.isArray(tags) && tags.includes('burnout'))
           const isTimed  = exercise.format === 'timed' || isBurner ||
             (exercise.reps||'').toLowerCase().includes('second') ||
             (exercise.name||'').toLowerCase().includes('hold')
-          return isTimed
-            ? <div className={styles.timedBadge} onClick={onTimerOpen}>⏱ Timed — tap to start timer</div>
-            : null
+          return isTimed ? <CoreTimer exerciseId={`timed-${exercise.id}`} /> : null
         })()}
 
         {exercise.description && (
@@ -184,12 +182,14 @@ function ExerciseCard({ exercise, index, focus, style, hasDumbbells, hasPullupBa
       </div>
 
       <div className={styles.cardRight}>
-        <span
-          className={styles.categoryBadge}
-          style={{ color, borderColor: color, background: `${color}14` }}
-        >
-          {CAT_LABEL[exercise.category] || exercise.category}
-        </span>
+        {(style === 'combo' || focus === 'whole') && (
+          <span
+            className={styles.categoryBadge}
+            style={{ color, borderColor: color, background: `${color}14` }}
+          >
+            {CAT_LABEL[exercise.category] || exercise.category}
+          </span>
+        )}
         <button
           className={`${styles.flagUserBtn} ${flagged ? styles.flagUserActive : ''}`}
           onClick={handleFlag}
