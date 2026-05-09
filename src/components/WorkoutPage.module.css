@@ -958,3 +958,153 @@
   transition: border-color 0.15s, color 0.15s;
 }
 .copyBtn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── Flash message ── */
+.flashMsg {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface2);
+  border: 1px solid var(--accent);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 20px;
+  z-index: 200;
+  white-space: nowrap;
+  animation: flashIn 0.25s ease, flashOut 0.4s ease 2.4s forwards;
+  pointer-events: none;
+}
+
+@keyframes flashIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes flashOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ── Workout header redesign ── */
+.workoutHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.workoutHeaderTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.workoutTitle {
+  font-family: var(--display);
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text);
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.workoutActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.actionBtn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 15px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.actionBtn:hover { border-color: var(--accent); color: var(--accent); }
+.actionBtnSave {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 16px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.actionBtnSaved {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(232,247,42,0.08);
+}
+.workoutTags {
+  display: flex;
+  gap: 6px;
+}
+
+/* ── Summary redesign ── */
+.workoutSummary {
+  padding: 10px 16px 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.summaryMuscles {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 14px;
+}
+.summaryDot {
+  color: var(--accent);
+  font-weight: 700;
+}
+.summaryCount {
+  font-weight: 600;
+  color: var(--text);
+}
+.summaryExtra {
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+/* ── Dumbbell note — more obvious ── */
+.dumbbellNote {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(232,247,42,0.07);
+  border: 1px solid rgba(232,247,42,0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 4px;
+  letter-spacing: 0.2px;
+}

@@ -6,7 +6,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Lie on back, open one arm wide and return, alternate \u2014 chest with core stability",
     "flagged": false,
     "muscle_group": "chest",
@@ -184,7 +184,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Sit with elbow braced on inner thigh, curl one dumbbell slowly \u2014 maximum bicep squeeze",
     "flagged": false,
     "muscle_group": "biceps",
@@ -214,7 +214,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Alternate arms, keep elbows pinned to sides",
     "flagged": false,
     "muscle_group": "biceps",
@@ -445,7 +445,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Lateral lunge while raising dumbbells to shoulder height",
     "flagged": false,
     "display_muscle": "Upper Body"
@@ -586,7 +586,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Brace one hand on your thigh, row dumbbell to hip \u2014 squeeze back at top",
     "flagged": false,
     "muscle_group": "back",
@@ -616,7 +616,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Lean forward at 45 degrees, curl one arm at a time hanging straight down \u2014 peak bicep contraction",
     "flagged": false,
     "muscle_group": "biceps",
@@ -916,7 +916,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "One knee down, row dumbbell to hip \u2014 removes lower body so back does all the work",
     "flagged": false,
     "muscle_group": "back",
@@ -961,7 +961,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Wide stance, pull one dumbbell up and back like starting a lawnmower \u2014 lat focus",
     "flagged": false,
     "muscle_group": "back",
@@ -1214,7 +1214,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Press one dumbbell straight overhead, keep core tight \u2014 shoulder stability with anti-rotation",
     "flagged": false,
     "muscle_group": "shoulders",
@@ -1257,7 +1257,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Step one leg back as you press one dumbbell \u2014 core stability and shoulder control",
     "flagged": false,
     "muscle_group": "shoulders",
@@ -1287,7 +1287,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Hand supported on thigh in a hinge, fly one arm out to side \u2014 rear delt isolation",
     "flagged": false,
     "muscle_group": "back",
@@ -1367,7 +1367,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Step back at a 45 degree angle instead of straight \u2014 shifts emphasis to outer glute",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1407,7 +1407,7 @@
     "name": "Curtsy Lunge to Knee Drive",
     "category": "lower",
     "equipment": [],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Step one foot behind and across, lower into a lunge, drive that knee forward as you stand",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1419,7 +1419,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Step behind into curtsy lunge, press same side arm overhead as you stand up",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1431,7 +1431,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Rear foot on a chair or sofa, dumbbell in each hand, lower front leg \u2014 quad and glute focus",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1515,7 +1515,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Step back into lunge, dumbbells at sides",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1539,7 +1539,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Hinge on one leg holding dumbbells, extend other leg back",
     "flagged": false,
     "display_muscle": "Hamstrings"
@@ -1551,7 +1551,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Single leg hip thrust with dumbbell on hip \u2014 maximum glute isolation one side at a time",
     "flagged": false,
     "display_muscle": "Hamstrings"
@@ -1563,7 +1563,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Stationary lunge holding dumbbells, lower back knee to floor",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1575,7 +1575,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Squat, stand, step back into reverse lunge \u2014 alternating legs",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1719,7 +1719,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Hold dumbbells at shoulders, step back into a lunge \u2014 upright torso hits quads hard",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1775,7 +1775,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Hold dumbbell at chest, step wide into a lateral lunge \u2014 upright torso, quad and inner thigh",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1819,7 +1819,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Back foot on toes for balance, hinge forward on front leg keeping back flat \u2014 single leg focus",
     "flagged": false,
     "display_muscle": "Hamstrings"
@@ -1831,7 +1831,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Step into a lateral lunge, curl both dumbbells as you push back to centre \u2014 legs and biceps",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1843,7 +1843,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Step wide into lateral lunge, raise arms to shoulder height as you return to centre",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1853,7 +1853,7 @@
     "name": "Lateral Lunges",
     "category": "lower",
     "equipment": [],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Step wide to the side, bend that knee, keep other leg straight",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1901,7 +1901,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Step back into lunge, curl both dumbbells as you drive back to standing \u2014 legs and biceps",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1913,7 +1913,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Step back into lunge, raise both arms forward to shoulder height as you stand",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1925,7 +1925,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Step back into a lunge, press both dumbbells overhead as you drive back to standing",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1935,7 +1935,7 @@
     "name": "Reverse Lunges",
     "category": "lower",
     "equipment": [],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Step backward into lunge \u2014 easier on knees than forward",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -1945,7 +1945,7 @@
     "name": "Single Leg Glute Bridge",
     "category": "lower",
     "equipment": [],
-    "reps": "3 sets x 15 reps each",
+    "reps": "3 sets x 15 reps each side",
     "description": "One leg extended, push hips up on the other \u2014 hold at top",
     "flagged": false,
     "display_muscle": "Hamstrings"
@@ -1955,7 +1955,7 @@
     "name": "Split Squats",
     "category": "lower",
     "equipment": [],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Stationary lunge position, lower back knee toward floor",
     "flagged": false,
     "display_muscle": "Glutes"
@@ -2037,7 +2037,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "One foot slightly behind the other, hinge forward on the front leg \u2014 easier than single leg but still targets each side",
     "flagged": false,
     "display_muscle": "Hamstrings"
@@ -2141,7 +2141,7 @@
     "name": "Alternating Lateral Lunge Hop",
     "category": "hiit",
     "equipment": [],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Step into a lateral lunge, hop and switch to the other side \u2014 lateral power and coordination",
     "flagged": false,
     "display_muscle": "Legs"
@@ -2433,7 +2433,7 @@
     "name": "Push-Up to Side Plank",
     "category": "hiit",
     "equipment": [],
-    "reps": "3 sets x 10 reps each",
+    "reps": "3 sets x 10 reps each side",
     "description": "Do a push-up, rotate into a side plank at the top, alternate sides \u2014 chest, shoulder and core",
     "flagged": false,
     "display_muscle": "Core"
@@ -2583,7 +2583,7 @@
     "name": "Alternating V-Up",
     "category": "core",
     "equipment": [],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Lie flat, lift opposite arm and leg to meet in the middle \u2014 full body core tension",
     "flagged": false,
     "display_muscle": "Abs"
@@ -2673,7 +2673,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Side plank, hold dumbbell on top hip, raise and lower",
     "flagged": false,
     "display_muscle": "Stability"
@@ -2837,7 +2837,7 @@
     "name": "Side Plank",
     "category": "core",
     "equipment": [],
-    "reps": "3 sets x 30 seconds each",
+    "reps": "3 sets x 30 seconds each side",
     "description": "Forearm on floor, body in straight line, hips up",
     "flagged": false,
     "display_muscle": "Stability"
@@ -2847,7 +2847,7 @@
     "name": "Single Leg Bridge Hold",
     "category": "core",
     "equipment": [],
-    "reps": "3 sets x 30 seconds each",
+    "reps": "3 sets x 30 seconds each side",
     "description": "Hold a glute bridge on one leg \u2014 glutes and core working hard to keep hips level",
     "flagged": false,
     "display_muscle": "Stability"
@@ -3562,7 +3562,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Lie on floor, one arm opens wide to floor while other stays stable \u2014 deeper chest stretch",
     "flagged": false,
     "tags": "",
@@ -3656,7 +3656,7 @@
     "equipment": [
       "dumbbells"
     ],
-    "reps": "3 sets x 12 reps each",
+    "reps": "3 sets x 12 reps each side",
     "description": "Curl one DB across body to opposite shoulder \u2014 targets brachialis for arm thickness",
     "flagged": false,
     "tags": "",

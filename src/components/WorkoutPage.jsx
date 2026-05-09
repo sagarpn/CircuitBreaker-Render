@@ -100,6 +100,7 @@ export default function WorkoutPage({ onGenerate }) {
   const [workoutName, setWorkoutName] = useState(null)
   const [circuit3,    setCircuit3]    = useState(null)
   const [swapCounts,  setSwapCounts]  = useState({})
+  const [flashMsg,    setFlashMsg]    = useState('')
   const [usedRounds,  setUsedRounds]  = useState(new Set())
   const [loadingC3,   setLoadingC3]   = useState(false)
   const [history,     setHistory]     = useState([])
@@ -204,6 +205,11 @@ export default function WorkoutPage({ onGenerate }) {
     finally { setLoadingC3(false) }
   }
 
+  function showFlash(msg) {
+    setFlashMsg(msg)
+    setTimeout(() => setFlashMsg(''), 2800)
+  }
+
   function handleSwap(circuitKey, id, replacement) {
     // Enforce 5 swap limit per exercise
     setSwapCounts(prev => {
@@ -302,6 +308,11 @@ export default function WorkoutPage({ onGenerate }) {
       {splashing && <QuoteSplash quote={quote} workoutName={workoutName} onDone={onSplashDone} />}
       {favMsg && <div className={styles.favMsg}>{favMsg}</div>}
 
+      {/* ── Flash message ── */}
+      {flashMsg && (
+        <div className={styles.flashMsg}>{flashMsg}</div>
+      )}
+
       {/* ── Landing ── */}
       {!generated && (
         <>
@@ -337,7 +348,7 @@ export default function WorkoutPage({ onGenerate }) {
             {/* Dumbbells note — strength only */}
             {style === 'strength' && (
               <div className={styles.equipmentSection}>
-                <div className={styles.equipmentLabel}>🏋️ Dumbbells in. No excuses out.</div>
+                <div className={styles.dumbbellNote}>🏋️ Dumbbells in. No excuses out.</div>
               </div>
             )}
 
@@ -446,33 +457,35 @@ export default function WorkoutPage({ onGenerate }) {
       {workout && generated && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
-            <div className={styles.workoutTitleRow}>
-              <h2 className={styles.workoutTitle}>{workoutName}</h2>
-              <button
-                className={`${styles.saveWorkoutBtn} ${workoutSaved ? styles.saveWorkoutSaved : ''}`}
-                onClick={saveWorkout}
-                disabled={workoutSaved}
-                title={workoutSaved ? 'Saved' : 'Save this workout'}
-              >
-                {workoutSaved ? '⭐ Saved' : '⭐ Save'}
-              </button>
+            {/* Workout header */}
+            <div className={styles.workoutHeader}>
+              <div className={styles.workoutHeaderTop}>
+                <h2 className={styles.workoutTitle}>{workoutName}</h2>
+                <div className={styles.workoutActions}>
+                  <button className={styles.actionBtn} onClick={handleReset} title="New workout">↺</button>
+                  <button className={styles.actionBtn} onClick={() => {
+                    const fmt = (exs) => (exs||[]).map(e =>
+                      `  • ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`
+                    ).join('\n')
+                    const lines = [`🏋️ ${workoutName}`,'','CIRCUIT 1',fmt(workout.circuit1),'','CIRCUIT 2',fmt(workout.circuit2)]
+                    if (circuit3) { lines.push('','CIRCUIT 3',fmt(circuit3)) }
+                    lines.push('','circuitbreaker.onrender.com')
+                    navigator.clipboard?.writeText(lines.join('\n'))
+                      .then(()=>alert('Copied!')).catch(()=>alert('Could not copy'))
+                  }} title="Copy workout">📋</button>
+                  <button
+                    className={`${styles.actionBtnSave} ${workoutSaved ? styles.actionBtnSaved : ''}`}
+                    onClick={saveWorkout} disabled={workoutSaved}
+                    title={workoutSaved ? 'Saved' : 'Save workout'}>
+                    {workoutSaved ? '⭐' : '☆'}
+                  </button>
+                </div>
+              </div>
+              <div className={styles.workoutTags}>
+                <span className={styles.tag}>{FOCUS_LABELS[focus]}</span>
+                <span className={styles.tag}>{STYLE_LABELS[style]}</span>
+              </div>
             </div>
-            <div className={styles.workoutMeta}>
-              <span className={styles.tag}>{FOCUS_LABELS[focus]}</span>
-              <span className={styles.tag}>{STYLE_LABELS[style]}</span>
-            </div>
-            <button className={styles.resetBtn} onClick={handleReset}>New ↺</button>
-            <button className={styles.resetBtn} onClick={() => {
-              const fmt = (exs) => (exs||[]).map(e =>
-                `  • ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`
-              ).join('\n')
-              const lines = [`🏋️ ${workoutName}`,'','CIRCUIT 1',fmt(workout.circuit1),'','CIRCUIT 2',fmt(workout.circuit2)]
-              if (circuit3) { lines.push('','CIRCUIT 3',fmt(circuit3)) }
-              lines.push('','circuitbreaker.onrender.com')
-              navigator.clipboard?.writeText(lines.join('\n'))
-                .then(()=>alert('Copied!'))
-                .catch(()=>alert('Could not copy'))
-            }}>📋 Copy</button>
           </div>
 
           {/* Workout summary — one line */}
@@ -486,7 +499,10 @@ export default function WorkoutPage({ onGenerate }) {
             )].slice(0,3).join(' · ') || (focus === 'upper' ? 'Upper Body' : focus === 'lower' ? 'Lower Body' : focus === 'whole' ? 'Full Body' : 'HIIT')
             return (
               <div className={styles.workoutSummary}>
-                {muscles} · {total} exercises · <span className={styles.summaryExtra}>add core or burner for extra results</span>
+                <span className={styles.summaryMuscles}>{muscles}</span>
+                <span className={styles.summaryDot}>·</span>
+                <span className={styles.summaryCount}>{total} exercises</span>
+                <span className={styles.summaryExtra}> — add a Core or Burner round for extra results</span>
               </div>
             )
           })()}
@@ -501,37 +517,48 @@ export default function WorkoutPage({ onGenerate }) {
             usedIds={usedIds} onSwap={(id,r) => handleSwap('circuit2',id,r)}
             onFavourite={() => saveToFavourites(`${workoutName} — C2`, workout.circuit2, 2)}
           />
+          {/* Circuit 3 — shown when added */}
           {circuit3 && (
-            <>
-              <Circuit label="Circuit 3" number={3} exercises={circuit3}
-                focus={focus} style={style} hasDumbbells={style!=='hiit'} hasPullupBar={false}
-                usedIds={usedIds} onSwap={(id,r) => handleSwap('circuit3',id,r)}
-                onFavourite={() => saveToFavourites(`${workoutName} — C3`, circuit3, 3)}
-              />
-            </>
+            <Circuit label="Circuit 3" number={3} exercises={circuit3}
+              focus={focus} style={style} hasDumbbells={style!=='hiit'} hasPullupBar={false}
+              usedIds={usedIds} onSwap={(id,r) => handleSwap('circuit3',id,r)}
+              onFavourite={() => saveToFavourites(`${workoutName} — C3`, circuit3, 3)}
+              swapCounts={swapCounts}
+              onTimerOpen={() => document.getElementById('breather-bar')?.click()}
+            />
           )}
-          {!circuit3 && (
+
+          {/* Extra rounds — each disappears once selected */}
+          {usedRounds.size < 3 && (
             <div className={styles.extraRoundBtns}>
-              <button className={styles.addCircuitBtn}
-                onClick={() => handleAddCircuit('circuit3')}
-                disabled={!!loadingC3 || usedRounds.has('circuit3')}>
-                {loadingC3==='circuit3' ? 'Building...' : usedRounds.has('circuit3') ? '✓ Circuit 3 Added' : '+ Add Circuit 3'}
-              </button>
-              <button className={styles.burnerRoundBtn}
-                onClick={() => handleAddCircuit('burner')}
-                disabled={!!loadingC3 || usedRounds.has('burner')}>
-                {loadingC3==='burner' ? 'Building...' : usedRounds.has('burner') ? '✓ Burner Added' : '🔥 Add Burner Round'}
-              </button>
-              <button className={styles.coreRoundBtn}
-                onClick={() => handleAddCircuit('core')}
-                disabled={!!loadingC3 || usedRounds.has('core')}>
-                {loadingC3==='core' ? 'Building...' : usedRounds.has('core') ? '✓ Core Added' : '💪 Add Core Round'}
-              </button>
+              {!usedRounds.has('circuit3') && (
+                <button className={styles.addCircuitBtn}
+                  onClick={() => handleAddCircuit('circuit3')}
+                  disabled={!!loadingC3}>
+                  {loadingC3==='circuit3' ? 'Building...' : '+ Add Circuit 3'}
+                </button>
+              )}
+              {!usedRounds.has('burner') && (
+                <button className={styles.burnerRoundBtn}
+                  onClick={() => handleAddCircuit('burner')}
+                  disabled={!!loadingC3}>
+                  {loadingC3==='burner' ? 'Building...' : '🔥 Add Burner Round'}
+                </button>
+              )}
+              {!usedRounds.has('core') && (
+                <button className={styles.coreRoundBtn}
+                  onClick={() => handleAddCircuit('core')}
+                  disabled={!!loadingC3}>
+                  {loadingC3==='core' ? 'Building...' : '💪 Add Core Round'}
+                </button>
+              )}
             </div>
           )}
           <div className={styles.footer}>
-            Repeat each circuit <strong>2–3 times</strong> · Rest 60–90 sec between rounds
-            <button className={styles.newWorkoutBtn} onClick={handleReset}>↺ Generate Another Workout</button>
+            <button className={styles.newWorkoutBtn} onClick={() => {
+              showFlash("This workout is in Recents. Save it if you'd like to keep it.")
+              handleReset()
+            }}>↺ Generate Another Workout</button>
           </div>
         </div>
       )}

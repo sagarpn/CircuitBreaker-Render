@@ -296,12 +296,19 @@ function pickHiitC1(exercises, usedIds, hasDumbbells) {
   const hiit    = pool(exercises, 'hiit',  { hasDumbbells:false, burner:false, usedIds })
   const hBurner = pool(exercises, 'hiit',  { hasDumbbells:false, burner:true,  usedIds })
   const lBurner = pool(exercises, 'lower', { hasDumbbells,       burner:true,  usedIds })
+  const anyBurner = pool(exercises, 'hiit', { hasDumbbells:false, burner:true, usedIds })
   const picked  = []
 
-  if (hiit[0])    picked.push(hiit[0])
+  // Slot 1: HIIT exercise
+  const h1 = hiit[0]; if (h1) picked.push(h1)
+  // Slot 2: HIIT burner
   const hb = hBurner.find(e => !picked.find(p=>p.id===e.id))
-  if (hb)         picked.push(hb)
-  if (lBurner[0]) picked.push(lBurner[0])
+  if (hb) picked.push(hb)
+  // Slot 3: lower burner preferred, fall back to any burner or HIIT exercise
+  const lb = lBurner[0]
+    || anyBurner.find(e => !picked.find(p=>p.id===e.id))
+    || hiit.find(e => !picked.find(p=>p.id===e.id))
+  if (lb) picked.push(lb)
   return picked
 }
 
@@ -335,6 +342,7 @@ function pickComboC1(exercises, usedIds, hasDumbbells) {
   if (burn) picked.push(burn)
 
   const h = hiit.find(e => !picked.find(p=>p.id===e.id))
+    || allStr.find(e => !picked.find(p=>p.id===e.id) && !isBurner(e))
   if (h) picked.push(h)
   return picked
 }
@@ -391,15 +399,35 @@ export function generateExtraRound(exercises, type, existingCircuits, hasDumbbel
   return []
 }
 
-// ── ENSURE MINIMUM ────────────────────────────────────────
+// ── ENSURE MINIMUM 3 ─────────────────────────────────────
+// Only exclude exercises already in THIS circuit, not global usedIds
+// This prevents empty circuits when the pool is exhausted
 function ensure(circuit, min, exercises, usedIds, hasDumbbells) {
   if (circuit.length >= min) return circuit
-  const all = shuffle(exercises.filter(e =>
-    !e.flagged && !usedIds.has(e.id) &&
-    !circuit.find(c => c.id === e.id) &&
-    equipOk(e, hasDumbbells)
+  const circuitIds = new Set(circuit.map(e => e.id))
+  const cats = [...new Set(circuit.map(e => e.category).filter(Boolean))]
+
+  // Try same category non-burners first
+  const preferred = shuffle(exercises.filter(e =>
+    !e.flagged && !circuitIds.has(e.id) &&
+    equipOk(e, hasDumbbells) && !isBurner(e) &&
+    (cats.length === 0 || cats.includes(e.category))
   ))
-  while (circuit.length < min && all.length > 0) circuit.push(all.shift())
+  // Fallback: any non-burner exercise not already in this circuit
+  const fallback = shuffle(exercises.filter(e =>
+    !e.flagged && !circuitIds.has(e.id) &&
+    equipOk(e, hasDumbbells) && !isBurner(e)
+  ))
+  const toAdd = [...preferred, ...fallback.filter(e => !preferred.find(p=>p.id===e.id))]
+
+  while (circuit.length < min && toAdd.length > 0) {
+    const next = toAdd.shift()
+    if (!circuitIds.has(next.id)) {
+      circuit.push(next)
+      circuitIds.add(next.id)
+      usedIds.add(next.id)
+    }
+  }
   return circuit
 }
 
@@ -446,13 +474,18 @@ export function generateWorkout(exercises, answers) {
   }
 
   circuit2.forEach(e => usedIds.add(e.id))
+
+  // Step 1: ensure minimum 3 exercises
   circuit1 = ensure(circuit1, 3, exercises, usedIds, hasDumbbells)
   circuit2 = ensure(circuit2, 3, exercises, usedIds, hasDumbbells)
 
-  // Enforce timed limits
+  // Step 2: enforce timed limits — but never go below 3
   const timedMax = style === 'hiit' ? 2 : 1
-  circuit1 = enforcedTimedLimit(circuit1, timedMax)
-  circuit2 = enforcedTimedLimit(circuit2, timedMax)
+  const limitedC1 = enforcedTimedLimit(circuit1, timedMax)
+  const limitedC2 = enforcedTimedLimit(circuit2, timedMax)
+  // Only apply timed limit if circuit still has 3+ exercises after
+  if (limitedC1.length >= 3) circuit1 = limitedC1
+  if (limitedC2.length >= 3) circuit2 = limitedC2
 
   return { circuit1, circuit2, usedIds }
 }
