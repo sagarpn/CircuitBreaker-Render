@@ -8,7 +8,10 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Lie on back, open one arm wide and return, alternate \u2014 chest with core stability",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "2",
@@ -19,7 +22,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Press overhead with rotation (arnold press), lower, then raise arms to the sides \u2014 complete shoulder workout",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "3",
@@ -30,7 +36,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Hold light dumbbells at hips, arc both arms up and overhead in a wide circle then reverse",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "4",
@@ -39,7 +48,10 @@
     "equipment": [],
     "reps": "3 sets x 15 reps",
     "description": "Hands on a chair behind you, lower body by bending elbows \u2014 triceps",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "triceps",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "5",
@@ -50,7 +62,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Row dumbbells to hips, hold the hinge, open arms out wide in a reverse fly, reset \u2014 back and rear delts",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "6",
@@ -61,7 +76,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Row dumbbells to hips, hold at top, extend both arms back in a kickback, lower and reset \u2014 back and triceps",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "7",
@@ -72,7 +90,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Fly in a hinge then stand and raise to sides \u2014 rear delt and lateral delt combo",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "8",
@@ -83,7 +104,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hold a glute bridge position, open arms wide in a fly motion \u2014 chest stretch and strength",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "9",
@@ -94,7 +118,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hold a glute bridge, press dumbbells up from chest \u2014 chest and glutes simultaneously",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "10",
@@ -105,7 +132,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Press both dumbbells up, then open arms wide in a fly on the way down \u2014 chest combo",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "11",
@@ -116,7 +146,10 @@
     ],
     "reps": "3 sets x 8 reps",
     "description": "Pull dumbbells from hips to shoulders in a clean, immediately press overhead \u2014 full body power",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "12",
@@ -127,7 +160,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Lie on back, elbows tight to ribs, press dumbbells straight up \u2014 tricep-focused press",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "13",
@@ -138,7 +174,10 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Sit with elbow braced on inner thigh, curl one dumbbell slowly \u2014 maximum bicep squeeze",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "14",
@@ -149,7 +188,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Press dumbbells together throughout the press \u2014 inner chest activation",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "15",
@@ -160,7 +202,10 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Alternate arms, keep elbows pinned to sides",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "16",
@@ -171,7 +216,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Start with palms facing you, rotate and press overhead in one motion",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "17",
@@ -182,7 +230,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Wide grip row, pull to lower chest \u2014 hits upper back and rear delts",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "18",
@@ -193,7 +244,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hinge forward 45\u00b0, row both dumbbells to hips",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "19",
@@ -204,7 +258,10 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Hinge forward, upper arm parallel to floor, extend forearm straight back \u2014 triceps",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "triceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "20",
@@ -215,7 +272,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Curl dumbbells from hip to shoulder, squeeze at top",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "21",
@@ -237,7 +297,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Lie on back, dumbbells at chest, press both arms straight up and lower slowly \u2014 flat chest",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "23",
@@ -248,7 +311,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Curl dumbbells up then press overhead in one fluid motion",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "24",
@@ -259,7 +325,10 @@
     ],
     "reps": "3 sets x 15 reps",
     "description": "Bent over, pull dumbbells toward face with elbows high \u2014 rear delts",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "25",
@@ -292,7 +361,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Arms forward, raise to shoulder height, controlled descent",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "28",
@@ -303,7 +375,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Thumbs pointing up at 30-45 degrees, raise to shoulder height \u2014 rotator cuff safe",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "29",
@@ -314,7 +389,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Pull dumbbells from thigh height up to chin, elbows flare out",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "30",
@@ -325,7 +403,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Sit on floor leaning back at 45 degrees, curl both dumbbells \u2014 arms hang back for full bicep stretch",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "31",
@@ -347,7 +428,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Arms at sides, raise to shoulder height, lower slowly",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "33",
@@ -369,7 +453,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hold one dumbbell overhead with both hands, lower behind head",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "triceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "35",
@@ -380,7 +467,10 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Plank on dumbbells, row one arm at a time \u2014 core tight",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "36",
@@ -391,7 +481,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Curl with palms facing down throughout \u2014 forearms and brachialis focus",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "37",
@@ -413,7 +506,10 @@
     ],
     "reps": "3 sets x 15 reps",
     "description": "Forearms on thighs palms down, lift dumbbells with wrists only \u2014 forearm extensor strength",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "39",
@@ -424,7 +520,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Press dumbbells overhead from shoulder height, full lockout",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "40",
@@ -435,7 +534,10 @@
     ],
     "reps": "3 sets x 15 reps",
     "description": "Hold dumbbells at sides, shrug shoulders straight up \u2014 upper traps",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "41",
@@ -446,7 +548,10 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Brace one hand on your thigh, row dumbbell to hip \u2014 squeeze back at top",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "42",
@@ -457,7 +562,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Lie on back, arms straight up, bend elbows to lower dumbbells toward forehead, press back up",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "triceps",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "43",
@@ -468,7 +576,10 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Lean forward at 45 degrees, curl one arm at a time hanging straight down \u2014 peak bicep contraction",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "44",
@@ -479,7 +590,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Squat with dumbbells at shoulders, stand and press overhead",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 2
   },
   {
     "id": "45",
@@ -490,7 +604,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Pull dumbbells straight up, elbows flare out to ear height",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "46",
@@ -510,7 +627,10 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Hands close together forming a diamond, targets triceps",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "48",
@@ -519,7 +639,10 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Tricep dip on chair, drive one knee up at the top of each rep \u2014 triceps and core",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "49",
@@ -530,7 +653,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Curl dumbbells while dragging them up your body with elbows pulled back \u2014 unique bicep angle",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "50",
@@ -541,7 +667,10 @@
     ],
     "reps": "3 sets x 10 each way",
     "description": "Hold one dumbbell by the ends, slowly circle it around your head \u2014 shoulder control and stability",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "51",
@@ -552,7 +681,10 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Hold one dumbbell, rotate and chop diagonally from shoulder down to opposite hip \u2014 core rotation",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "52",
@@ -561,7 +693,10 @@
     "equipment": [],
     "reps": "3 sets x 12 reps",
     "description": "Lie on bench, open arms wide in an arc and bring back together \u2014 or do this on the floor",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "53",
@@ -570,7 +705,10 @@
     "equipment": [],
     "reps": "3 sets x 12 reps",
     "description": "Lie on bench, press dumbbells up from chest \u2014 or do this on the floor for the same chest work",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "54",
@@ -579,7 +717,10 @@
     "equipment": [],
     "reps": "3 sets x 12 reps",
     "description": "Lie on bench, hold one dumbbell overhead, arc it back behind head and return \u2014 or do on the floor",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "55",
@@ -588,7 +729,10 @@
     "equipment": [],
     "reps": "3 sets x 12 reps",
     "description": "Lie on bench, arms straight up, lower dumbbells to forehead and press back \u2014 or do on the floor",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "triceps",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "56",
@@ -599,7 +743,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hold dumbbells with palms facing each other, curl straight up keeping elbows tucked \u2014 hits brachialis",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "57",
@@ -608,7 +755,10 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Lower all the way to the floor, lift hands briefly, then push back up \u2014 full range chest",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "58",
@@ -619,7 +769,10 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Sit on incline bench, let arms hang back, curl up \u2014 full bicep stretch at the bottom",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "59",
@@ -641,7 +794,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Upper back on incline bench, press dumbbells up \u2014 or prop upper back on a sofa edge",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "61",
@@ -652,7 +808,10 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Chest on incline bench, row dumbbell to hip \u2014 pure back work with no lower body assist",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "62",
@@ -681,7 +840,10 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "One knee on floor, press dumbbell overhead \u2014 removes leg drive for pure shoulder work",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "65",
@@ -692,7 +854,10 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "One knee down, row dumbbell to hip \u2014 removes lower body so back does all the work",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "66",
@@ -703,7 +868,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Kneel on floor, hold dumbbell overhead with both hands, lower behind head and press",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "triceps",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "67",
@@ -714,7 +882,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Raise dumbbells out to the sides, lower, then raise straight in front \u2014 full shoulder burnout",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "68",
@@ -725,7 +896,10 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Wide stance, pull one dumbbell up and back like starting a lawnmower \u2014 lat focus",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "69",
@@ -736,7 +910,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hold a glute bridge, press dumbbells with elbows close to body \u2014 triceps-focused press",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "70",
@@ -747,7 +924,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hinge forward, row with palms facing each other \u2014 mid-back focus",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "71",
@@ -787,7 +967,10 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Do a push-up, tap each shoulder at the top plank position \u2014 chest and core stability",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "75",
@@ -796,7 +979,10 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Do a push-up, at the top lift one leg behind you \u2014 glute activation added",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "76",
@@ -805,7 +991,10 @@
     "equipment": [],
     "reps": "3 sets x 12 reps",
     "description": "Hands shoulder-width, lower chest to floor, push back up",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "77",
@@ -816,7 +1005,10 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "On all fours with knees hovering, row one dumbbell to hip \u2014 back activation",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "78",
@@ -827,7 +1019,10 @@
     ],
     "reps": "3 sets x 8 reps",
     "description": "Row each arm in a plank, then do one push-up \u2014 back, chest and core together",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "79",
@@ -838,7 +1033,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Curl up with palms facing up, rotate to palms facing down and lower slowly \u2014 full bicep and forearm",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "80",
@@ -849,7 +1047,10 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Hinge forward, extend one leg back, row dumbbell with the opposite arm \u2014 balance and back",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "81",
@@ -860,7 +1061,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Sit on floor or chair edge, curl both dumbbells strict with no body swing \u2014 pure bicep isolation",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "82",
@@ -871,7 +1075,10 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Alternate arms rowing in a see-saw motion \u2014 unilateral back strength",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "83",
@@ -882,7 +1089,10 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Alternate arms pressing overhead in a see-saw motion \u2014 shoulder stability",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "84",
@@ -893,7 +1103,10 @@
     ],
     "reps": "3 sets x 30 seconds",
     "description": "Arms out to sides at shoulder height, hold still \u2014 isometric shoulder burn",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": false,
+    "ex_order": 3
   },
   {
     "id": "85",
@@ -904,7 +1117,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Press dumbbells overhead, lower to shoulders, then raise arms out to sides \u2014 full shoulder",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "86",
@@ -915,7 +1131,10 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Press one dumbbell straight overhead, keep core tight \u2014 shoulder stability with anti-rotation",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "87",
@@ -924,7 +1143,10 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "As you lower, bring one knee to the same-side elbow",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "88",
@@ -935,7 +1157,10 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step one foot back as you press a dumbbell overhead \u2014 core and shoulder stability",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "89",
@@ -946,7 +1171,10 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step one leg back as you press one dumbbell \u2014 core stability and shoulder control",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "90",
@@ -957,7 +1185,10 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Underhand grip row \u2014 hits lower lats and biceps more than standard row",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "91",
@@ -968,7 +1199,10 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Hand supported on thigh in a hinge, fly one arm out to side \u2014 rear delt isolation",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "back",
+    "is_compound": false,
+    "ex_order": 2
   },
   {
     "id": "92",
@@ -979,7 +1213,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Both knees on floor, press dumbbells overhead \u2014 no leg assist, pure shoulder strength",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "93",
@@ -990,7 +1227,10 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Front squat into overhead press in one fluid motion \u2014 full body compound move",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "shoulders",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "94",
@@ -999,7 +1239,10 @@
     "equipment": [],
     "reps": "3 sets x 12 reps",
     "description": "Use a sturdy chair, lower body by bending elbows to 90\u00b0",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "triceps",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "95",
@@ -1782,7 +2025,10 @@
     "equipment": [],
     "reps": "3 sets x 8 reps",
     "description": "Explosive push-up with enough force to clap hands at the top \u2014 chest power",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "170",
@@ -1869,7 +2115,10 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "From a pike position, swoop chest forward and up in a smooth arc \u2014 chest, shoulders and back in one fluid move",
-    "flagged": false
+    "flagged": false,
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
   },
   {
     "id": "179",
@@ -2982,5 +3231,341 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed"
+  },
+  {
+    "id": "289",
+    "name": "Cable Crossover Floor",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Lie on floor with DBs, arc arms across chest and cross over \u2014 peak chest contraction",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "chest",
+    "is_compound": false,
+    "ex_order": 3
+  },
+  {
+    "id": "290",
+    "name": "Svend Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hold two DBs pressed together at chest, squeeze and press forward keeping constant tension",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "chest",
+    "is_compound": false,
+    "ex_order": 3
+  },
+  {
+    "id": "291",
+    "name": "Single Arm DB Fly",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Lie on floor, one arm opens wide to floor while other stays stable \u2014 deeper chest stretch",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "chest",
+    "is_compound": false,
+    "ex_order": 3
+  },
+  {
+    "id": "292",
+    "name": "Wide Push-Up",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Wide grip push-up \u2014 shifts load to outer chest and biceps",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
+  },
+  {
+    "id": "293",
+    "name": "Archer Push-Up",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "One arm extended sideways while other bends \u2014 loads each side independently",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
+  },
+  {
+    "id": "294",
+    "name": "Typewriter Push-Up",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Lower chest, slide side to side at bottom then press up \u2014 chest and bicep tension",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
+  },
+  {
+    "id": "295",
+    "name": "Diamond Push-Up to Wide",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Alternate diamond and wide grip each rep \u2014 tricep and chest combo",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "chest",
+    "is_compound": true,
+    "ex_order": 1
+  },
+  {
+    "id": "296",
+    "name": "Zottman Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Curl up with palms facing up, rotate to palms facing down at top, lower slowly \u2014 works both bicep heads",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
+  },
+  {
+    "id": "297",
+    "name": "Cross Body Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps each",
+    "description": "Curl one DB across body to opposite shoulder \u2014 targets brachialis for arm thickness",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
+  },
+  {
+    "id": "298",
+    "name": "Wide Grip Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hands wider than shoulder width on curl \u2014 emphasises short head of bicep",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
+  },
+  {
+    "id": "299",
+    "name": "Close Grip Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hands close together on curl \u2014 emphasises long head and peak of bicep",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
+  },
+  {
+    "id": "300",
+    "name": "Waiter Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Hold one DB horizontally with both hands under the top plate, curl up \u2014 peak contraction",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
+  },
+  {
+    "id": "301",
+    "name": "Slow Negative Curl",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 8 reps",
+    "description": "3 seconds up, 5 seconds down \u2014 maximum time under tension for bicep growth",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 2
+  },
+  {
+    "id": "302",
+    "name": "DB 21s",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "7 reps bottom half, 7 reps top half, 7 full curls \u2014 classic bicep burnout finisher",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed",
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 3
+  },
+  {
+    "id": "303",
+    "name": "DB Tate Press",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Lie on floor, elbows flared wide, lower DBs to chest then press up \u2014 outer tricep head",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "triceps",
+    "is_compound": false,
+    "ex_order": 2
+  },
+  {
+    "id": "304",
+    "name": "DB Floor Press Close Grip",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Floor press with hands close together \u2014 tricep dominant pressing movement",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "triceps",
+    "is_compound": true,
+    "ex_order": 1
+  },
+  {
+    "id": "305",
+    "name": "DB Rolling Tricep Extension",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 10 reps",
+    "description": "Skull crusher into a pullover \u2014 full stretch and contraction of tricep in one movement",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "triceps",
+    "is_compound": false,
+    "ex_order": 3
+  },
+  {
+    "id": "306",
+    "name": "Cobra Push-Up",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Start lying flat, push chest up and back with arms straight \u2014 tricep and shoulder compound",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "triceps",
+    "is_compound": true,
+    "ex_order": 1
+  },
+  {
+    "id": "307",
+    "name": "Close Grip Push-Up",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "Hands close under chest, elbows track back \u2014 maximum tricep activation on push-up",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "triceps",
+    "is_compound": true,
+    "ex_order": 1
+  },
+  {
+    "id": "308",
+    "name": "Lying Tricep Extension",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "3 sets x 12 reps",
+    "description": "Lie on floor, lower DBs to temples with elbows pointing up, extend \u2014 classic tricep isolation",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "triceps",
+    "is_compound": false,
+    "ex_order": 3
+  },
+  {
+    "id": "309",
+    "name": "Diamond Push-Up",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 12 reps",
+    "description": "Hands in diamond shape under chest \u2014 heaviest tricep load of any push-up variation",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "triceps",
+    "is_compound": true,
+    "ex_order": 1
+  },
+  {
+    "id": "310",
+    "name": "Decline Diamond Push-Up",
+    "category": "upper",
+    "equipment": [],
+    "reps": "3 sets x 10 reps",
+    "description": "Feet elevated, hands in diamond \u2014 hardest tricep push-up variation",
+    "flagged": false,
+    "tags": "",
+    "format": "reps",
+    "muscle_group": "triceps",
+    "is_compound": true,
+    "ex_order": 1
   }
 ]

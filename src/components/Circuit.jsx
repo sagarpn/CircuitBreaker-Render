@@ -115,7 +115,7 @@ function CoreTimer({ exerciseId }) {
   )
 }
 
-function ExerciseCard({ exercise, index, focus, style, hasDumbbells, hasPullupBar, usedIds, onSwap }) {
+function ExerciseCard({ exercise, index, focus, style, hasDumbbells, hasPullupBar, usedIds, onSwap, swapCount = 0, onTimerOpen }) {
   const [swapping, setSwapping] = useState(false)
   const [flagged,  setFlagged]  = useState(false)
   const isCore = exercise.category === 'core'
@@ -161,17 +161,21 @@ function ExerciseCard({ exercise, index, focus, style, hasDumbbells, hasPullupBa
         {/* Core gets timer, everything else gets reps text */}
         {isCore
           ? <CoreTimer exerciseId={exercise.id} />
-          : <div className={styles.reps}>{exercise.reps}</div>
+          : <div className={styles.reps}>{
+            (exercise.reps || '').replace(/^\d+\s+sets?\s*[x×]\s*/i, '').trim()
+          }</div>
         }
 
-        {/* Timer hint for burner/timed exercises */}
+        {/* Timed badge for burner/timed exercises */}
         {!isCore && (() => {
-          const tags = exercise.tags || exercise.ex_tags || ''
+          const tags     = exercise.tags || exercise.ex_tags || ''
           const isBurner = tags === 'burnout' || (typeof tags === 'string' && tags.includes('burnout')) || (Array.isArray(tags) && tags.includes('burnout'))
           const isTimed  = exercise.format === 'timed' || isBurner ||
             (exercise.reps||'').toLowerCase().includes('second') ||
             (exercise.name||'').toLowerCase().includes('hold')
-          return isTimed ? <div className={styles.timerHint}>⏱ use timer below</div> : null
+          return isTimed
+            ? <div className={styles.timedBadge} onClick={onTimerOpen}>⏱ Timed — tap to start timer</div>
+            : null
         })()}
 
         {exercise.description && (
@@ -196,16 +200,17 @@ function ExerciseCard({ exercise, index, focus, style, hasDumbbells, hasPullupBa
         <button
           className={styles.swapBtn}
           onClick={handleSwap}
-          disabled={swapping}
+          disabled={swapping || swapCount >= 5}
+          title={swapCount >= 5 ? 'Max 5 swaps reached' : `Swap exercise (${swapCount}/5)`}
         >
-          {swapping ? '...' : '↻'}
+          {swapping ? '...' : swapCount >= 5 ? '✕' : '↻'}
         </button>
       </div>
     </div>
   )
 }
 
-export default function Circuit({ label, number, exercises, focus, style, hasDumbbells, hasPullupBar, usedIds, onSwap, onFavourite }) {
+export default function Circuit({ label, number, exercises, focus, style, hasDumbbells, hasPullupBar, usedIds, onSwap, onFavourite, swapCounts, onTimerOpen }) {
   const [saved, setSaved] = React.useState(false)
   return (
     <div className={styles.circuit}>
@@ -213,18 +218,7 @@ export default function Circuit({ label, number, exercises, focus, style, hasDum
         <span className={styles.circuitLabel}>{label}</span>
         <div className={styles.circuitMeta}>
           <span className={styles.circuitCount}>{exercises.length} exercises</span>
-          <span className={styles.circuitRounds}>×2–3 rounds</span>
-          {onFavourite && (
-            <button
-              className={`${styles.favBtn} ${saved ? styles.favBtnSaved : ''}`}
-              onClick={() => { onFavourite(); setSaved(true) }}
-              disabled={saved}
-              title={saved ? 'Circuit saved!' : 'Save circuit to favourites'}
-            >
-              {saved ? '✓ Saved' : '⭐ Save Circuit'}
-            </button>
-          )}
-        </div>
+          <span className={styles.circuitRounds}></span>        </div>
       </div>
 
       {exercises.map((ex, i) => (
@@ -238,6 +232,8 @@ export default function Circuit({ label, number, exercises, focus, style, hasDum
           hasPullupBar={hasPullupBar}
           usedIds={usedIds}
           onSwap={onSwap}
+          onTimerOpen={onTimerOpen}
+          swapCount={swapCounts?.[ex.id] || 0}
         />
       ))}
 

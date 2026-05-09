@@ -99,6 +99,7 @@ export default function WorkoutPage({ onGenerate }) {
   const [quote,       setQuote]       = useState(null)
   const [workoutName, setWorkoutName] = useState(null)
   const [circuit3,    setCircuit3]    = useState(null)
+  const [swapCounts,  setSwapCounts]  = useState({})
   const [loadingC3,   setLoadingC3]   = useState(false)
   const [history,     setHistory]     = useState([])
   const [favourites,  setFavourites]  = useState([])
@@ -202,6 +203,12 @@ export default function WorkoutPage({ onGenerate }) {
   }
 
   function handleSwap(circuitKey, id, replacement) {
+    // Enforce 5 swap limit per exercise
+    setSwapCounts(prev => {
+      const current = prev[id] || 0
+      if (current >= 5) return prev
+      return { ...prev, [id]: current + 1 }
+    })
     if (circuitKey === 'circuit3') {
       setCircuit3(prev => prev.map(ex => ex.id === id ? replacement : ex))
     } else {

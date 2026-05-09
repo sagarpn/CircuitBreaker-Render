@@ -90,9 +90,19 @@ async function initDB() {
         reps        TEXT NOT NULL,
         description TEXT NOT NULL DEFAULT '',
         flagged     BOOLEAN NOT NULL DEFAULT false,
+        tags        TEXT,
+        format      TEXT,
         created_at  TIMESTAMPTZ DEFAULT NOW()
       )
     `)
+    // Add new columns to existing DB safely
+    for (const col of [
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS tags         TEXT',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS format       TEXT',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS muscle_group TEXT',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS is_compound  BOOLEAN',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS ex_order     INTEGER',
+    ]) { await client.query(col).catch(() => {}) }
     await client.query(`
       CREATE TABLE IF NOT EXISTS favourites (
         id          TEXT PRIMARY KEY,
@@ -120,44 +130,53 @@ async function initDB() {
       )
     `)
 
-    // ── Seed sync — APPEND new, UPDATE existing (category/equipment/reps/desc only)
+    // ── Seed sync — full upsert with tags/format, auto-flag removed exercises
     // Rules:
-    //   1. INSERT exercises whose name does not exist in DB
-    //   2. UPDATE category, equipment, reps, description for existing exercises
-    //      — name changes are NOT applied (name is the key)
-    //   3. NEVER update flagged status — admin decides
-    //   4. NEVER delete exercises — admin panel only
+    //   1. INSERT new exercises (in seed but not in DB)
+    //   2. UPDATE all fields for existing exercises (tags, format, reps, desc, equipment)
+    //   3. NEVER update flagged=true → false (admin flags are sticky)
+    //   4. Auto-flag exercises in DB but NOT in seed (removed from list)
+    //      — they won't appear in workouts but are not deleted (safe)
+    //   5. Never delete anything
     const seedPath = path.join(__dirname, 'exercises.seed.json')
     if (fs.existsSync(seedPath)) {
       const seed = JSON.parse(fs.readFileSync(seedPath, 'utf8'))
-      const { rows: existing } = await client.query('SELECT name, id FROM exercises')
-      const existingMap = new Map(existing.map(r => [r.name.toLowerCase().trim(), r.id]))
+      const { rows: existing } = await client.query('SELECT name, id, flagged FROM exercises')
+      const existingMap = new Map(existing.map(r => [r.name.toLowerCase().trim(), r]))
 
-      let added = 0, updated = 0
+      // Build set of names in seed file
+      const seedNames = new Set(seed.map(e => (e.name||'').toLowerCase().trim()))
+
+      let added = 0, updated = 0, autoFlagged = 0
       for (const ex of seed) {
         if (!ex.name || !ex.name.trim()) continue
         const key = ex.name.toLowerCase().trim()
+        const tags = ex.tags || ''
+        const format = ex.format || ''
 
         if (existingMap.has(key)) {
-          // UPDATE existing — category, equipment, reps, description only
+          const dbRow = existingMap.get(key)
           try {
             await client.query(
-              `UPDATE exercises SET category=$1, equipment=$2, reps=$3, description=$4 WHERE id=$5`,
-              [ex.category, JSON.stringify(ex.equipment || []), ex.reps, ex.description || '', existingMap.get(key)]
+              `UPDATE exercises SET category=$1, equipment=$2, reps=$3, description=$4, tags=$5, format=$6,
+               muscle_group=$7, is_compound=$8, ex_order=$9 WHERE id=$10`,
+              [ex.category, JSON.stringify(ex.equipment || []), ex.reps || '',
+               ex.description || '', tags, format,
+               ex.muscle_group||null, ex.is_compound||false, ex.ex_order||null, dbRow.id]
             )
             updated++
           } catch (e) {
             console.warn(`   Seed sync: could not update "${ex.name}": ${e.message}`)
           }
         } else {
-          // INSERT new exercise
           try {
             const id = (Date.now() + added + updated).toString()
             await client.query(
-              `INSERT INTO exercises (id, name, category, equipment, reps, description, flagged)
-               VALUES ($1,$2,$3,$4,$5,$6,$7)`,
+              `INSERT INTO exercises (id, name, category, equipment, reps, description, flagged, tags, format, muscle_group, is_compound, ex_order)
+               VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
               [id, ex.name.trim(), ex.category, JSON.stringify(ex.equipment || []),
-               ex.reps, ex.description || '', false]
+               ex.reps || '', ex.description || '', false, tags, format,
+               ex.muscle_group||null, ex.is_compound||false, ex.ex_order||null]
             )
             added++
           } catch (e) {
@@ -166,11 +185,20 @@ async function initDB() {
         }
       }
 
-      if (added > 0 || updated > 0) {
-        console.log(`   Seed sync: ${added} added, ${updated} updated`)
-      } else {
-        console.log(`   Seed sync: database is up to date (${existing.length} exercises)`)
+      // Auto-flag exercises that are in DB but NOT in seed (removed from list)
+      // Only flag if not already flagged — never unflag
+      for (const [key, dbRow] of existingMap.entries()) {
+        if (!seedNames.has(key) && !dbRow.flagged) {
+          try {
+            await client.query('UPDATE exercises SET flagged=true WHERE id=$1', [dbRow.id])
+            autoFlagged++
+          } catch (e) {
+            console.warn(`   Seed sync: could not auto-flag "${key}": ${e.message}`)
+          }
+        }
       }
+
+      console.log(`   Seed sync: ${added} added, ${updated} updated, ${autoFlagged} auto-flagged (removed from list)`)
     }
         console.log('   Database ready')
   } catch (e) {
@@ -187,6 +215,8 @@ async function getExercises() {
     id: r.id, name: r.name, category: r.category,
     equipment: r.equipment, reps: r.reps,
     description: r.description, flagged: r.flagged,
+    tags: r.tags || '', format: r.format || '',
+    muscle_group: r.muscle_group || '', is_compound: r.is_compound || false, ex_order: r.ex_order || 2,
   }))
 }
 
@@ -285,30 +315,30 @@ app.post('/api/generate-circuit', generateLimiter, async (req, res) => {
 })
 
 app.post('/api/swap', async (req, res) => {
-  const { exerciseId, focus, style, hasDumbbells, hasPullupBar, usedIds } = req.body
+  const { exerciseId, focus, style, hasDumbbells, usedIds } = req.body
   try {
     const exercises = await getExercises()
-    const used      = new Set([...(usedIds || []), exerciseId])
-    const isHiit    = style === 'hiit'
-    const eligible  = exercises.filter(ex => {
-      if (used.has(ex.id) || ex.flagged)                                    return false
-      const eq = Array.isArray(ex.equipment) ? ex.equipment : []
-      if (isHiit  && eq.length > 0)                                          return false
-      if (!isHiit && eq.includes('dumbbells')  && !hasDumbbells)             return false
-      if (!isHiit && eq.includes('pullup_bar') && !hasPullupBar)             return false
-      if (!isHiit && eq.includes('bench')      && !req.body.hasBench)        return false
-      if (!isHiit && eq.includes('kettlebell') && !req.body.hasKettlebell)   return false
-      if (style === 'hiit'     && !['hiit','core'].includes(ex.category))   return false
-      if (style === 'strength' && ex.category === 'hiit')                   return false
-      if (focus === 'upper') return ['upper','core','hiit'].includes(ex.category)
-      if (focus === 'lower') return ['lower','core','hiit'].includes(ex.category)
+    const original  = exercises.find(e => e.id === exerciseId)
+    if (!original) return res.status(400).json({ error: 'Exercise not found' })
+
+    const used = new Set([...(usedIds || []), exerciseId])
+
+    // Swap must come from same category — strict rule
+    const eligible = exercises.filter(ex => {
+      if (used.has(ex.id) || ex.flagged) return false
+      if (ex.category !== original.category) return false  // same category only
+      if (isBurner(ex) !== isBurner(original)) return false // burner stays burner
+      const eq = Array.isArray(ex.equipment) ? ex.equipment
+        : (() => { try { return JSON.parse(ex.equipment||'[]') } catch { return [] }})()
+      if (eq.includes('dumbbells')   && !hasDumbbells) return false
+      if (eq.includes('bench'))      return false
+      if (eq.includes('kettlebells'))return false
+      if (style === 'hiit' && eq.length > 0) return false
       return true
     })
-    if (!eligible.length) return res.status(400).json({ error: 'No suitable replacement found!' })
-    const original     = exercises.find(e => e.id === exerciseId)
-    const sameCategory = eligible.filter(e => e.category === original?.category)
-    const pool2        = sameCategory.length ? sameCategory : eligible
-    res.json({ replacement: pool2[Math.floor(Math.random() * pool2.length)] })
+
+    if (!eligible.length) return res.status(400).json({ error: 'No suitable replacement found' })
+    res.json({ replacement: eligible[Math.floor(Math.random() * eligible.length)] })
   } catch (e) { res.status(500).json({ error: e.message }) }
 })
 
