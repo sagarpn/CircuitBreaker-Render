@@ -332,3 +332,28 @@
   -webkit-tap-highlight-color: transparent;
 }
 .timedBadge:hover { background: rgba(232,247,42,0.14); }
+
+/* ── Muscle badge ── */
+.muscleBadge {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 2px 7px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ── Burner timer — red theme ── */
+.timerBurner {
+  stroke: #e84242 !important;
+}
+.timerBurnerBtn {
+  background: rgba(232,66,66,0.12) !important;
+  border-color: #e84242 !important;
+  color: #e84242 !important;
+}

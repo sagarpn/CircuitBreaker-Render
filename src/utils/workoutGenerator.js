@@ -187,38 +187,37 @@ function pickUpperC1(exercises, usedIds, hasDumbbells) {
 }
 
 function pickUpperC2(exercises, usedIds, hasDumbbells, c1Muscle, c1PushUps) {
-  // Determine paired muscle group
-  const pairFn  = MUSCLE_PAIRS[c1Muscle]
-  const paired  = typeof pairFn === 'function' ? pairFn() : pairFn
+  const pairFn = MUSCLE_PAIRS[c1Muscle]
+  const paired = typeof pairFn === 'function' ? pairFn() : pairFn
 
-  const all     = pool(exercises, 'upper', { hasDumbbells, burner:false, usedIds, muscle:paired })
-  const burners = pool(exercises, 'upper', { hasDumbbells, burner:true,  usedIds, muscle:paired })
+  // Slots 1+2: non-push-up exercises from paired muscle group
+  const nonPU  = pool(exercises, 'upper', { hasDumbbells, burner:false, usedIds, muscle:paired, pushup:false })
+  const allPU  = pool(exercises, 'upper', { hasDumbbells, burner:false, usedIds, muscle:paired })
 
-  // Push-up pool — different from what was used in C1
-  const pushUps = pool(exercises, 'upper', {
-    hasDumbbells, burner:false, usedIds, pushup:true,
-  }).filter(e => !c1PushUps.includes(e.name))
+  // Burner strictly from paired muscle — no cross-muscle fallback
+  const burners = pool(exercises, 'upper', { hasDumbbells, burner:true, usedIds, muscle:paired })
+
+  // Slot 3: exactly 1 push-up, different from anything used in C1
+  const pushUps = pool(exercises, 'upper', { hasDumbbells:false, burner:false, usedIds, pushup:true })
+    .filter(e => !c1PushUps.includes(e.name))
 
   const picked = []
 
-  // Slot 1: order 1 or 2 from paired group
-  const s1 = all.find(e => e.ex_order <= 2)
-    || all[0]
+  // Slot 1: non-push-up, order 1 or 2
+  const s1 = nonPU.find(e => e.ex_order <= 2) || nonPU[0] || allPU[0]
   if (s1) picked.push(s1)
 
-  // Slot 2: order 2 or 3 from paired group
-  const s2 = all.find(e =>
-    !picked.find(p=>p.id===e.id) && (e.ex_order === 2 || e.ex_order === 3)
-  ) || all.find(e => !picked.find(p=>p.id===e.id))
+  // Slot 2: non-push-up, order 2 or 3, not already picked
+  const s2 = nonPU.find(e => !picked.find(p=>p.id===e.id))
+    || allPU.find(e => !picked.find(p=>p.id===e.id) && !isPushUp(e))
   if (s2) picked.push(s2)
 
-  // Slot 3: push-up variation (different from C1)
+  // Slot 3: exactly 1 push-up variation
   const pu = pushUps[0]
   if (pu) picked.push(pu)
 
-  // Slot 4: burner from paired group
+  // Slot 4: burner from paired muscle only
   const burn = burners[0]
-    || pool(exercises, 'upper', { hasDumbbells, burner:true, usedIds })[0]
   if (burn) picked.push(burn)
 
   return picked

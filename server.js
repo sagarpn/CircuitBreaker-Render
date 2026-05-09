@@ -97,11 +97,12 @@ async function initDB() {
     `)
     // Add new columns to existing DB safely
     for (const col of [
-      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS tags         TEXT',
-      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS format       TEXT',
-      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS muscle_group TEXT',
-      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS is_compound  BOOLEAN',
-      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS ex_order     INTEGER',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS tags            TEXT',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS format          TEXT',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS muscle_group    TEXT',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS is_compound     BOOLEAN',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS ex_order        INTEGER',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS display_muscle  TEXT',
     ]) { await client.query(col).catch(() => {}) }
     await client.query(`
       CREATE TABLE IF NOT EXISTS favourites (
@@ -159,10 +160,11 @@ async function initDB() {
           try {
             await client.query(
               `UPDATE exercises SET category=$1, equipment=$2, reps=$3, description=$4, tags=$5, format=$6,
-               muscle_group=$7, is_compound=$8, ex_order=$9 WHERE id=$10`,
+               muscle_group=$7, is_compound=$8, ex_order=$9, display_muscle=$10 WHERE id=$11`,
               [ex.category, JSON.stringify(ex.equipment || []), ex.reps || '',
                ex.description || '', tags, format,
-               ex.muscle_group||null, ex.is_compound||false, ex.ex_order||null, dbRow.id]
+               ex.muscle_group||null, ex.is_compound||false, ex.ex_order||null,
+               ex.display_muscle||null, dbRow.id]
             )
             updated++
           } catch (e) {
@@ -172,11 +174,12 @@ async function initDB() {
           try {
             const id = (Date.now() + added + updated).toString()
             await client.query(
-              `INSERT INTO exercises (id, name, category, equipment, reps, description, flagged, tags, format, muscle_group, is_compound, ex_order)
-               VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
+              `INSERT INTO exercises (id, name, category, equipment, reps, description, flagged, tags, format, muscle_group, is_compound, ex_order, display_muscle)
+               VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)`,
               [id, ex.name.trim(), ex.category, JSON.stringify(ex.equipment || []),
                ex.reps || '', ex.description || '', false, tags, format,
-               ex.muscle_group||null, ex.is_compound||false, ex.ex_order||null]
+               ex.muscle_group||null, ex.is_compound||false, ex.ex_order||null,
+               ex.display_muscle||null]
             )
             added++
           } catch (e) {
@@ -217,6 +220,7 @@ async function getExercises() {
     description: r.description, flagged: r.flagged,
     tags: r.tags || '', format: r.format || '',
     muscle_group: r.muscle_group || '', is_compound: r.is_compound || false, ex_order: r.ex_order || 2,
+    display_muscle: r.display_muscle || '',
   }))
 }
 

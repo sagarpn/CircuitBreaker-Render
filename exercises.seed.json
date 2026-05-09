@@ -11,7 +11,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Chest"
   },
   {
     "id": "2",
@@ -25,7 +26,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "3",
@@ -39,7 +41,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "4",
@@ -51,7 +54,8 @@
     "flagged": false,
     "muscle_group": "triceps",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Triceps"
   },
   {
     "id": "5",
@@ -65,7 +69,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Back"
   },
   {
     "id": "6",
@@ -79,7 +84,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Back"
   },
   {
     "id": "7",
@@ -93,7 +99,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Back"
   },
   {
     "id": "8",
@@ -107,7 +114,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Chest"
   },
   {
     "id": "9",
@@ -121,7 +129,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "10",
@@ -135,7 +144,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Chest"
   },
   {
     "id": "11",
@@ -149,7 +159,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "12",
@@ -163,7 +174,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "13",
@@ -177,7 +189,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "14",
@@ -191,7 +204,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Chest"
   },
   {
     "id": "15",
@@ -205,7 +219,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "16",
@@ -219,7 +234,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "17",
@@ -233,7 +249,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Back"
   },
   {
     "id": "18",
@@ -247,7 +264,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Back"
   },
   {
     "id": "19",
@@ -261,7 +279,8 @@
     "flagged": false,
     "muscle_group": "triceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Triceps"
   },
   {
     "id": "20",
@@ -275,7 +294,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "21",
@@ -286,7 +306,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Lie on back, arms wide, bring dumbbells together above chest in an arc \u2014 chest stretch",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Upper Body"
   },
   {
     "id": "22",
@@ -300,7 +321,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "23",
@@ -314,7 +336,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "24",
@@ -328,7 +351,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Back"
   },
   {
     "id": "25",
@@ -339,7 +363,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Lie on the floor, press dumbbells up from chest \u2014 chest and triceps without a bench",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Upper Body"
   },
   {
     "id": "26",
@@ -350,7 +375,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Lie on floor, hold one dumbbell overhead with both hands, arc it behind head and return \u2014 chest and lats",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Upper Body"
   },
   {
     "id": "27",
@@ -364,7 +390,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "28",
@@ -378,7 +405,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "29",
@@ -392,7 +420,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Back"
   },
   {
     "id": "30",
@@ -406,7 +435,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "31",
@@ -417,7 +447,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Lateral lunge while raising dumbbells to shoulder height",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Upper Body"
   },
   {
     "id": "32",
@@ -431,7 +462,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Back"
   },
   {
     "id": "33",
@@ -442,7 +474,8 @@
     ],
     "reps": "3 sets x 45 seconds",
     "description": "Shuffle laterally, stop and press dumbbells overhead each side",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Upper Body"
   },
   {
     "id": "34",
@@ -456,7 +489,8 @@
     "flagged": false,
     "muscle_group": "triceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Triceps"
   },
   {
     "id": "35",
@@ -470,7 +504,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Back"
   },
   {
     "id": "36",
@@ -484,7 +519,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "37",
@@ -495,7 +531,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hinged forward, raise arms out to sides \u2014 rear delts",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Upper Body"
   },
   {
     "id": "38",
@@ -509,7 +546,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Biceps"
   },
   {
     "id": "39",
@@ -523,7 +561,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "40",
@@ -537,7 +576,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "41",
@@ -551,7 +591,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Back"
   },
   {
     "id": "42",
@@ -565,7 +606,8 @@
     "flagged": false,
     "muscle_group": "triceps",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Triceps"
   },
   {
     "id": "43",
@@ -579,7 +621,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "44",
@@ -593,7 +636,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "45",
@@ -607,7 +651,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "46",
@@ -618,7 +663,8 @@
     ],
     "reps": "3 sets x 15 reps",
     "description": "Forearms on thighs, curl dumbbells with wrists only \u2014 forearm and grip strength",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Upper Body"
   },
   {
     "id": "47",
@@ -630,7 +676,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "48",
@@ -642,7 +689,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Chest"
   },
   {
     "id": "49",
@@ -656,7 +704,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "50",
@@ -670,7 +719,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "51",
@@ -684,7 +734,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Back"
   },
   {
     "id": "52",
@@ -696,7 +747,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Chest"
   },
   {
     "id": "53",
@@ -708,7 +760,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "54",
@@ -720,7 +773,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Chest"
   },
   {
     "id": "55",
@@ -732,7 +786,8 @@
     "flagged": false,
     "muscle_group": "triceps",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Triceps"
   },
   {
     "id": "56",
@@ -746,7 +801,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "57",
@@ -758,7 +814,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "58",
@@ -772,7 +829,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "59",
@@ -783,7 +841,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Upper back on incline, open arms wide and bring together \u2014 or prop upper back on sofa edge",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Upper Body"
   },
   {
     "id": "60",
@@ -797,7 +856,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "61",
@@ -811,7 +871,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Back"
   },
   {
     "id": "62",
@@ -820,7 +881,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps",
     "description": "Hands on a chair or step, body straight, lower chest down \u2014 upper chest focus",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Upper Body"
   },
   {
     "id": "63",
@@ -829,7 +891,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps",
     "description": "Knees on floor, hands wide, lower chest to floor \u2014 beginner-friendly push-up",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Upper Body"
   },
   {
     "id": "64",
@@ -843,7 +906,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "65",
@@ -857,7 +921,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Back"
   },
   {
     "id": "66",
@@ -871,7 +936,8 @@
     "flagged": false,
     "muscle_group": "triceps",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Triceps"
   },
   {
     "id": "67",
@@ -885,7 +951,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Back"
   },
   {
     "id": "68",
@@ -899,7 +966,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Back"
   },
   {
     "id": "69",
@@ -913,7 +981,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "70",
@@ -927,7 +996,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Back"
   },
   {
     "id": "71",
@@ -938,7 +1008,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "High plank, drag a dumbbell under your body from one side to the other \u2014 core stability",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "72",
@@ -947,7 +1018,8 @@
     "equipment": [],
     "reps": "3 sets x 20 reps",
     "description": "High plank, alternate tapping opposite shoulder \u2014 keep hips still",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "73",
@@ -958,7 +1030,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Dip knees slightly and drive dumbbells overhead explosively \u2014 power shoulder press",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Upper Body"
   },
   {
     "id": "74",
@@ -970,7 +1043,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "75",
@@ -982,7 +1056,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "76",
@@ -994,7 +1069,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "77",
@@ -1008,7 +1084,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Back"
   },
   {
     "id": "78",
@@ -1022,7 +1099,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "79",
@@ -1036,7 +1114,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "80",
@@ -1050,7 +1129,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Back"
   },
   {
     "id": "81",
@@ -1064,7 +1144,8 @@
     "flagged": false,
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "82",
@@ -1078,7 +1159,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Back"
   },
   {
     "id": "83",
@@ -1092,7 +1174,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "84",
@@ -1106,7 +1189,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "85",
@@ -1120,7 +1204,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "86",
@@ -1134,7 +1219,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "87",
@@ -1146,7 +1232,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "88",
@@ -1160,7 +1247,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "89",
@@ -1174,7 +1262,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "90",
@@ -1188,7 +1277,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Back"
   },
   {
     "id": "91",
@@ -1202,7 +1292,8 @@
     "flagged": false,
     "muscle_group": "back",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Back"
   },
   {
     "id": "92",
@@ -1216,7 +1307,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "93",
@@ -1230,7 +1322,8 @@
     "flagged": false,
     "muscle_group": "shoulders",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Shoulders"
   },
   {
     "id": "94",
@@ -1242,7 +1335,8 @@
     "flagged": false,
     "muscle_group": "triceps",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Triceps"
   },
   {
     "id": "95",
@@ -1251,7 +1345,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Stand, hinge forward, walk hands out to a full plank, briefly hold, walk hands back and stand",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Upper Body"
   },
   {
     "id": "96",
@@ -1262,7 +1357,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step forward at a 45 degree angle \u2014 targets outer glute and hip differently",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "97",
@@ -1273,7 +1369,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step back at a 45 degree angle instead of straight \u2014 shifts emphasis to outer glute",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "98",
@@ -1282,7 +1379,8 @@
     "equipment": [],
     "reps": "3 sets x 12 reps each",
     "description": "Step forward, lower back knee, push back to start",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "99",
@@ -1291,7 +1389,8 @@
     "equipment": [],
     "reps": "3 sets x 20 reps",
     "description": "Feet shoulder-width, sit back and down, thighs parallel to floor",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "100",
@@ -1300,7 +1399,8 @@
     "equipment": [],
     "reps": "3 sets x 20 reps",
     "description": "Rise up onto toes, pause 1 second at top, lower slowly",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Calves"
   },
   {
     "id": "101",
@@ -1309,7 +1409,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps each",
     "description": "Step one foot behind and across, lower into a lunge, drive that knee forward as you stand",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "102",
@@ -1320,7 +1421,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step behind into curtsy lunge, press same side arm overhead as you stand up",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "103",
@@ -1331,7 +1433,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Rear foot on a chair or sofa, dumbbell in each hand, lower front leg \u2014 quad and glute focus",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "104",
@@ -1342,7 +1445,8 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Hinge with dumbbells, drive hips forward to stand \u2014 full posterior chain",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "105",
@@ -1353,7 +1457,8 @@
     ],
     "reps": "3 sets x 15 reps",
     "description": "Hold one dumbbell at chest, squat deep, elbows inside knees",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "106",
@@ -1364,7 +1469,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Goblet squat, stand up and press dumbbell overhead",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "107",
@@ -1375,7 +1481,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hold light dumbbells, squat and explode upward, land soft",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Power"
   },
   {
     "id": "108",
@@ -1386,7 +1493,8 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Wide stance, sit to one side, keep other leg straight, alternate",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "109",
@@ -1397,7 +1505,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step wide to one side into a squat, step back together, alternate \u2014 lateral hip and quad",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "110",
@@ -1408,7 +1517,8 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Step back into lunge, dumbbells at sides",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "111",
@@ -1419,7 +1529,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hinge at hips, lower dumbbells along legs, feel hamstrings",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "112",
@@ -1430,7 +1541,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Hinge on one leg holding dumbbells, extend other leg back",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "113",
@@ -1441,7 +1553,8 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Single leg hip thrust with dumbbell on hip \u2014 maximum glute isolation one side at a time",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "114",
@@ -1452,7 +1565,8 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Stationary lunge holding dumbbells, lower back knee to floor",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "115",
@@ -1463,7 +1577,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Squat, stand, step back into reverse lunge \u2014 alternating legs",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "116",
@@ -1474,7 +1589,8 @@
     ],
     "reps": "3 sets x 15 reps",
     "description": "Wide stance, toes pointed out, hold dumbbell at chest, squat deep",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "117",
@@ -1485,7 +1601,8 @@
     ],
     "reps": "3 sets x 30 seconds",
     "description": "Wide stance hold at parallel \u2014 isometric quad and inner thigh endurance",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "118",
@@ -1496,7 +1613,8 @@
     ],
     "reps": "3 sets x 20 reps",
     "description": "Walking lunge, curl dumbbells as you step forward",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "119",
@@ -1507,7 +1625,8 @@
     ],
     "reps": "3 sets x 20 reps",
     "description": "Walking lunge holding dumbbells at sides, long stride",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "120",
@@ -1518,7 +1637,8 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Hinge into a deadlift, curl both dumbbells at the top as you stand \u2014 full body to bicep finish",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "121",
@@ -1529,7 +1649,8 @@
     ],
     "reps": "3 sets x 6 reps",
     "description": "Hinge into deadlift, pull to chin, press overhead in one chained movement \u2014 total body",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "122",
@@ -1540,7 +1661,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hinge into a deadlift, shrug both shoulders hard at the top \u2014 posterior chain and traps",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "123",
@@ -1551,7 +1673,8 @@
     ],
     "reps": "3 sets x 45 seconds",
     "description": "Hold heavy dumbbells at sides, walk tall with tight core \u2014 grip, traps and full body stability",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Calves"
   },
   {
     "id": "124",
@@ -1562,7 +1685,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step forward into a lunge, curl both dumbbells at the bottom, step back and reset",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "125",
@@ -1573,7 +1697,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step forward into lunge, extend both dumbbells overhead at the bottom of the lunge",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "126",
@@ -1584,7 +1709,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Hold dumbbells at shoulders, step forward and lower \u2014 keep torso tall",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "127",
@@ -1595,7 +1721,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Hold dumbbells at shoulders, step back into a lunge \u2014 upright torso hits quads hard",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "128",
@@ -1606,7 +1733,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Rest dumbbells on shoulders at chest height, squat deep \u2014 quad focus",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "129",
@@ -1617,7 +1745,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hold dumbbells at shoulders, feet wide and toes out \u2014 squat deep into sumo position",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "130",
@@ -1626,7 +1755,8 @@
     "equipment": [],
     "reps": "3 sets x 20 reps",
     "description": "Lie on back, push hips up, squeeze glutes hard at top",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "131",
@@ -1635,7 +1765,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps each",
     "description": "On all fours, kick one leg straight back and up \u2014 squeeze glute at top",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "132",
@@ -1646,7 +1777,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Hold dumbbell at chest, step wide into a lateral lunge \u2014 upright torso, quad and inner thigh",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "133",
@@ -1657,7 +1789,8 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Hold dumbbell at chest, squat deep, press it overhead as you stand \u2014 full body",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "134",
@@ -1666,7 +1799,8 @@
     "equipment": [],
     "reps": "3 sets x 12 reps",
     "description": "Split squat position, jump and switch legs in mid-air",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "135",
@@ -1675,7 +1809,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps",
     "description": "Squat down, explode upward, land softly with bent knees",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Power"
   },
   {
     "id": "136",
@@ -1686,7 +1821,8 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Back foot on toes for balance, hinge forward on front leg keeping back flat \u2014 single leg focus",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "137",
@@ -1697,7 +1833,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step into a lateral lunge, curl both dumbbells as you push back to centre \u2014 legs and biceps",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "138",
@@ -1708,7 +1845,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step wide into lateral lunge, raise arms to shoulder height as you return to centre",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "139",
@@ -1717,7 +1855,8 @@
     "equipment": [],
     "reps": "3 sets x 12 reps each",
     "description": "Step wide to the side, bend that knee, keep other leg straight",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "140",
@@ -1728,7 +1867,8 @@
     ],
     "reps": "3 sets x 8 reps each",
     "description": "Step into a lunge, curl on the way up, press overhead at the top \u2014 three moves one flow",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "141",
@@ -1739,7 +1879,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Feet together holding dumbbell at chest, squat as deep as you can \u2014 inner quads",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "142",
@@ -1750,7 +1891,8 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Hinge into Romanian deadlift, row both dumbbells at the bottom, stand \u2014 hamstrings and back",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "143",
@@ -1761,7 +1903,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step back into lunge, curl both dumbbells as you drive back to standing \u2014 legs and biceps",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "144",
@@ -1772,7 +1915,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step back into lunge, raise both arms forward to shoulder height as you stand",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "145",
@@ -1783,7 +1927,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "Step back into a lunge, press both dumbbells overhead as you drive back to standing",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "146",
@@ -1792,7 +1937,8 @@
     "equipment": [],
     "reps": "3 sets x 12 reps each",
     "description": "Step backward into lunge \u2014 easier on knees than forward",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "147",
@@ -1801,7 +1947,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps each",
     "description": "One leg extended, push hips up on the other \u2014 hold at top",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "148",
@@ -1810,7 +1957,8 @@
     "equipment": [],
     "reps": "3 sets x 12 reps each",
     "description": "Stationary lunge position, lower back knee toward floor",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "149",
@@ -1819,7 +1967,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Sit in squat position, thighs parallel, hold still",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "150",
@@ -1830,7 +1979,8 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Squat down, hinge and row both dumbbells at the bottom, stand \u2014 legs and back together",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "151",
@@ -1841,7 +1991,8 @@
     ],
     "reps": "3 sets x 8 reps",
     "description": "Squat down, curl both dumbbells as you stand, press overhead at the top \u2014 full body chain",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "152",
@@ -1852,7 +2003,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Squat down, hammer curl both dumbbells with neutral grip as you stand \u2014 legs and biceps",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "153",
@@ -1863,7 +2015,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Squat down with dumbbells at sides, raise arms to shoulder height as you stand \u2014 legs and shoulders",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "154",
@@ -1874,7 +2027,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Squat down, pull dumbbells to chin with elbows flaring as you stand \u2014 legs and traps",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "155",
@@ -1885,7 +2039,8 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "One foot slightly behind the other, hinge forward on the front leg \u2014 easier than single leg but still targets each side",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "156",
@@ -1896,7 +2051,8 @@
     ],
     "reps": "3 sets x 30 seconds",
     "description": "Hold one heavy dumbbell at side, walk a straight line \u2014 anti-lateral core and grip",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Calves"
   },
   {
     "id": "157",
@@ -1907,7 +2063,8 @@
     ],
     "reps": "3 sets x 15 reps",
     "description": "Hold dumbbells at sides like suitcases, squat down keeping chest up",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "158",
@@ -1918,7 +2075,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Wide stance, toes out, hinge forward with flat back \u2014 inner thigh and glutes",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "159",
@@ -1929,7 +2087,8 @@
     ],
     "reps": "3 sets x 15 reps",
     "description": "Feet wider than hip-width, toes out, dumbbell between legs \u2014 inner thigh and glutes",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "160",
@@ -1940,7 +2099,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Wide stance squat, pull dumbbells to chin as you stand \u2014 inner thighs, traps and shoulders",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "161",
@@ -1949,7 +2109,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Back flat against wall, thighs parallel to floor \u2014 hold",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "162",
@@ -1960,7 +2121,8 @@
     ],
     "reps": "3 sets x 15 reps",
     "description": "Dumbbell across hips, drive hips up and squeeze glutes hard at top",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Hamstrings"
   },
   {
     "id": "163",
@@ -1971,7 +2133,8 @@
     ],
     "reps": "3 sets x 45 seconds",
     "description": "Wall sit position with a dumbbell on each thigh \u2014 adds load for serious quad burn",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "164",
@@ -1980,7 +2143,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps each",
     "description": "Step into a lateral lunge, hop and switch to the other side \u2014 lateral power and coordination",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Legs"
   },
   {
     "id": "165",
@@ -1989,7 +2153,8 @@
     "equipment": [],
     "reps": "3 sets x 8 reps",
     "description": "Jump forward as far as possible, land softly, walk back and reset \u2014 explosive legs",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Full Body"
   },
   {
     "id": "166",
@@ -1998,7 +2163,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Full burpee, then jump laterally over a line or marker",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Full Body"
   },
   {
     "id": "167",
@@ -2007,7 +2173,8 @@
     "equipment": [],
     "reps": "3 sets x 8 reps",
     "description": "Full burpee, then at the top drive both knees to chest in a tuck jump \u2014 maximum full body intensity",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Full Body"
   },
   {
     "id": "168",
@@ -2016,7 +2183,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Squat, jump back to plank, push-up, jump feet in, jump up",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Full Body"
   },
   {
     "id": "169",
@@ -2028,7 +2196,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "170",
@@ -2037,7 +2206,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Alternate between forearm plank and high plank as fast as you can \u2014 triceps and shoulder burner",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "171",
@@ -2046,7 +2216,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps each",
     "description": "Wide stance, shift weight into one leg sinking deep, other leg straight to the side \u2014 mobility and leg strength",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "172",
@@ -2055,7 +2226,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Drive each knee toward the opposite elbow instead of straight \u2014 oblique and core focus",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "173",
@@ -2064,7 +2236,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Jumping jack but arms cross in front at the bottom instead of staying at sides \u2014 chest activation",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Cardio"
   },
   {
     "id": "174",
@@ -2075,7 +2248,8 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Hold light dumbbells, squat and explode upward \u2014 adds load to a classic jump squat",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Quads"
   },
   {
     "id": "175",
@@ -2086,7 +2260,8 @@
     ],
     "reps": "3 sets x 10 reps",
     "description": "Squat with dumbbells at shoulders, explode up and press overhead",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Power"
   },
   {
     "id": "176",
@@ -2097,7 +2272,8 @@
     ],
     "reps": "3 sets x 8 reps",
     "description": "Walking lunge into a burpee at the end of each lunge",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Glutes"
   },
   {
     "id": "177",
@@ -2106,7 +2282,8 @@
     "equipment": [],
     "reps": "3 sets x 30 seconds",
     "description": "Run in place, drive knees as high as possible each step",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Agility"
   },
   {
     "id": "178",
@@ -2118,7 +2295,8 @@
     "flagged": false,
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "179",
@@ -2127,7 +2305,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Bound side to side landing on one foot, mimic speed skater",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Legs"
   },
   {
     "id": "180",
@@ -2136,7 +2315,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Hinge forward, walk hands out to plank, push-up, walk back",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "181",
@@ -2145,7 +2325,8 @@
     "equipment": [],
     "reps": "3 sets x 60 seconds",
     "description": "Jump squat, alternate between wide and narrow foot positions",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Legs"
   },
   {
     "id": "182",
@@ -2154,7 +2335,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Classic \u2014 arms and legs out simultaneously, jump back together",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Cardio"
   },
   {
     "id": "183",
@@ -2163,7 +2345,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Jump laterally from one foot to the other, land softly on one leg \u2014 power and agility",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Legs"
   },
   {
     "id": "184",
@@ -2172,7 +2355,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Lateral lunge, bring feet together, drop into burpee, repeat",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Full Body"
   },
   {
     "id": "185",
@@ -2181,7 +2365,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Athletic stance, shuffle side to side as fast as possible",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Cardio"
   },
   {
     "id": "186",
@@ -2190,7 +2375,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps each",
     "description": "Balance on one leg, sink into a single leg squat to the side, touch the floor \u2014 control meets power",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Legs"
   },
   {
     "id": "187",
@@ -2199,7 +2385,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps each",
     "description": "Start in a lunge, jump and switch legs in the air \u2014 explosive lower body conditioning",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Full Body"
   },
   {
     "id": "188",
@@ -2208,7 +2395,8 @@
     "equipment": [],
     "reps": "3 sets x 30 seconds",
     "description": "4 fast mountain climbers then 1 push-up, repeat continuously \u2014 core and chest combo",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "189",
@@ -2217,7 +2405,8 @@
     "equipment": [],
     "reps": "3 sets x 30 seconds",
     "description": "Plank position, drive knees to chest alternately \u2014 fast as possible",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "190",
@@ -2226,7 +2415,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "High plank, jump feet wide and back in repeatedly \u2014 shoulders and core under constant tension",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Cardio"
   },
   {
     "id": "191",
@@ -2235,7 +2425,8 @@
     "equipment": [],
     "reps": "3 sets x 30 seconds",
     "description": "Explosive jumping jack \u2014 jump as high as possible each time, full arm extension overhead",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Cardio"
   },
   {
     "id": "192",
@@ -2244,7 +2435,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps each",
     "description": "Do a push-up, rotate into a side plank at the top, alternate sides \u2014 chest, shoulder and core",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "193",
@@ -2253,7 +2445,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Jumping jack but arms swing forward and back like a seal clap instead of up and out \u2014 shoulder focus",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Cardio"
   },
   {
     "id": "194",
@@ -2262,7 +2455,8 @@
     "equipment": [],
     "reps": "3 sets x 8 reps",
     "description": "Full burpee, but at the top plank position do 4 shoulder taps before jumping up \u2014 upper body focused burpee",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Full Body"
   },
   {
     "id": "195",
@@ -2271,7 +2465,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Bound laterally landing on one foot, reach opposite hand down \u2014 speed skater pattern",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Legs"
   },
   {
     "id": "196",
@@ -2280,7 +2475,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Fast circular punching motion in the air \u2014 shoulders and arms under continuous burn",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Agility"
   },
   {
     "id": "197",
@@ -2289,7 +2485,8 @@
     "equipment": [],
     "reps": "3 sets x 60 seconds",
     "description": "Crawl forward bringing each knee to the same-side elbow",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "198",
@@ -2298,7 +2495,8 @@
     "equipment": [],
     "reps": "3 sets x 30 seconds",
     "description": "Drive knees up and pump arms as fast as possible while staying in place \u2014 pure cardio output",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Agility"
   },
   {
     "id": "199",
@@ -2307,7 +2505,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Sink into a squat and hold, then pulse up and down a few inches \u2014 quad and glute endurance burn",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Legs"
   },
   {
     "id": "200",
@@ -2316,7 +2515,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Jump feet wide and sink into a squat, jump back together \u2014 jumping jack meets squat",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Legs"
   },
   {
     "id": "201",
@@ -2325,7 +2525,8 @@
     "equipment": [],
     "reps": "3 sets x 12 reps",
     "description": "Hinge, place hands on floor, kick feet back to plank, return and stand \u2014 burpee without the jump",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Legs"
   },
   {
     "id": "202",
@@ -2334,7 +2535,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Jump and simultaneously spread arms and legs wide like a star, land softly and reset",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Full Body"
   },
   {
     "id": "203",
@@ -2343,7 +2545,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Jump and drive both knees to chest at the peak \u2014 maximum explosive power",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Full Body"
   },
   {
     "id": "204",
@@ -2352,7 +2555,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Jump straight up as high as possible, land softly and reset fully between jumps",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Full Body"
   },
   {
     "id": "205",
@@ -2361,7 +2565,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Drive feet wide to outside of hands instead of straight \u2014 inner thigh and hip focus",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "206",
@@ -2370,7 +2575,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "On back, crunch and rotate elbow to opposite knee, cycle fast",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "207",
@@ -2379,7 +2585,8 @@
     "equipment": [],
     "reps": "3 sets x 12 reps each",
     "description": "Lie flat, lift opposite arm and leg to meet in the middle \u2014 full body core tension",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "208",
@@ -2388,7 +2595,8 @@
     "equipment": [],
     "reps": "3 sets x 30 seconds",
     "description": "On all fours, lift knees 1 inch off floor and hold still \u2014 full body tension",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "209",
@@ -2397,7 +2605,8 @@
     "equipment": [],
     "reps": "3 sets x 20 reps",
     "description": "Alternate elbow to opposite knee in a cycling motion",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "210",
@@ -2406,7 +2615,8 @@
     "equipment": [],
     "reps": "3 sets x 20 reps",
     "description": "Lie on back, knees bent, hands behind head, curl shoulders up \u2014 squeeze abs at top",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "211",
@@ -2417,7 +2627,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hold dumbbell overhead with both hands, crunch up \u2014 adds load and reaches upper abs",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "212",
@@ -2428,7 +2639,8 @@
     ],
     "reps": "3 sets x 10 reps each",
     "description": "High plank on dumbbells, row one arm to hip \u2014 core stability and back activation",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "213",
@@ -2439,7 +2651,8 @@
     ],
     "reps": "3 sets x 20 reps",
     "description": "Seated, hold one dumbbell, rotate side to side \u2014 lean back slightly",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Obliques"
   },
   {
     "id": "214",
@@ -2450,7 +2663,8 @@
     ],
     "reps": "3 sets x 20 reps",
     "description": "Russian twists with feet elevated off the floor \u2014 harder on the hip flexors and obliques",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Obliques"
   },
   {
     "id": "215",
@@ -2461,7 +2675,8 @@
     ],
     "reps": "3 sets x 12 reps each",
     "description": "Side plank, hold dumbbell on top hip, raise and lower",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "216",
@@ -2472,7 +2687,8 @@
     ],
     "reps": "3 sets x 15 reps",
     "description": "Lie on back legs straight up, reach dumbbell to toes \u2014 upper abs with added weight",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "217",
@@ -2483,7 +2699,8 @@
     ],
     "reps": "3 sets x 12 reps",
     "description": "Hold one dumbbell at chest or overhead, perform a full sit-up \u2014 adds load to abs",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "218",
@@ -2492,7 +2709,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps each",
     "description": "On back, extend opposite arm and leg, lower back stays flat",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "219",
@@ -2501,7 +2719,8 @@
     "equipment": [],
     "reps": "3 sets x 20 reps",
     "description": "Bring knees to chest while crunching upper body \u2014 meet in middle",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "220",
@@ -2510,7 +2729,8 @@
     "equipment": [],
     "reps": "3 sets x 20 reps",
     "description": "Forearm plank, rotate hips to each side tapping the floor \u2014 oblique focus",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "221",
@@ -2519,7 +2739,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps",
     "description": "Sit-up with enough momentum to reach arms overhead at the top \u2014 dynamic core power",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "222",
@@ -2528,7 +2749,8 @@
     "equipment": [],
     "reps": "3 sets x 30 seconds",
     "description": "Lie on back, alternate small kicks \u2014 keep lower back down",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Lower Abs"
   },
   {
     "id": "223",
@@ -2537,7 +2759,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps each",
     "description": "Alternate between forearm plank and high plank \u2014 shoulder and core stability",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "224",
@@ -2546,7 +2769,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps",
     "description": "Lie on back, raise straight legs to 90\u00b0, lower slowly",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Lower Abs"
   },
   {
     "id": "225",
@@ -2555,7 +2779,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps each",
     "description": "Drive knee to chest and pause 2 seconds before switching \u2014 slow and controlled climbers",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "226",
@@ -2564,7 +2789,8 @@
     "equipment": [],
     "reps": "3 sets x 45 seconds",
     "description": "Forearms on floor, body straight, squeeze everything tight",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "227",
@@ -2573,7 +2799,8 @@
     "equipment": [],
     "reps": "3 sets x 20 reps",
     "description": "Forearm plank, rotate hips to tap each side to floor",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "228",
@@ -2582,7 +2809,8 @@
     "equipment": [],
     "reps": "3 sets x 12 reps each",
     "description": "High plank, drive one knee to same side elbow and back \u2014 oblique and hip flexor",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "229",
@@ -2591,7 +2819,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps",
     "description": "Alternate between forearm plank and high plank \u2014 controlled",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "230",
@@ -2600,7 +2829,8 @@
     "equipment": [],
     "reps": "3 sets x 20 reps",
     "description": "Seated, lean back, rotate side to side \u2014 feet can be elevated",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Obliques"
   },
   {
     "id": "231",
@@ -2609,7 +2839,8 @@
     "equipment": [],
     "reps": "3 sets x 30 seconds each",
     "description": "Forearm on floor, body in straight line, hips up",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "232",
@@ -2618,7 +2849,8 @@
     "equipment": [],
     "reps": "3 sets x 30 seconds each",
     "description": "Hold a glute bridge on one leg \u2014 glutes and core working hard to keep hips level",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "233",
@@ -2627,7 +2859,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps",
     "description": "Lie on back, knees bent, sit all the way up and lower slowly \u2014 full range abs",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "234",
@@ -2636,7 +2869,8 @@
     "equipment": [],
     "reps": "3 sets x 10 reps each",
     "description": "Mountain climbers at a controlled slow tempo \u2014 pause each knee at the chest for 2 seconds",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "235",
@@ -2645,7 +2879,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps",
     "description": "Lie on back, make snow angel arm + leg motion \u2014 lower back down",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "236",
@@ -2656,7 +2891,8 @@
     ],
     "reps": "3 sets x 15 reps",
     "description": "Lie on back, bring one knee and same elbow together simultaneously \u2014 oblique and hip flexor",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "237",
@@ -2665,7 +2901,8 @@
     "equipment": [],
     "reps": "3 sets x 12 reps",
     "description": "Face down, sweep arms out to sides, lift chest and arms off floor and hold \u2014 lower and mid back",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "238",
@@ -2674,7 +2911,8 @@
     "equipment": [],
     "reps": "3 sets x 12 reps",
     "description": "Face down, lift arms and legs off floor simultaneously, hold 2s",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Stability"
   },
   {
     "id": "239",
@@ -2683,7 +2921,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps",
     "description": "Lie on back, legs straight up, reach hands up to touch toes \u2014 upper abs",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "240",
@@ -2692,7 +2931,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps",
     "description": "Lie on back, pull knees to chest while crunching upper body up to meet them \u2014 full abs",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "241",
@@ -2701,7 +2941,8 @@
     "equipment": [],
     "reps": "3 sets x 12 reps each",
     "description": "Sit in a V position with hands supported, alternate extending each leg out straight",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Core"
   },
   {
     "id": "242",
@@ -2710,7 +2951,8 @@
     "equipment": [],
     "reps": "3 sets x 12 reps",
     "description": "V-up but open legs wide as you lower \u2014 combines V-up with a jack motion",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "243",
@@ -2719,7 +2961,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps",
     "description": "Full v-up followed by a slow crunch \u2014 alternate each rep",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "244",
@@ -2728,7 +2971,8 @@
     "equipment": [],
     "reps": "3 sets x 15 reps",
     "description": "Lift legs and upper body simultaneously to touch toes at top",
-    "flagged": false
+    "flagged": false,
+    "display_muscle": "Abs"
   },
   {
     "id": "245",
@@ -2739,7 +2983,8 @@
     "description": "Max reps push-ups until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "246",
@@ -2752,7 +2997,8 @@
     "description": "Raise arms to shoulder height and hold to failure \u2014 shoulder endurance burn",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "247",
@@ -2763,7 +3009,8 @@
     "description": "Max reps off a chair \u2014 tricep endurance finisher",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "248",
@@ -2776,7 +3023,8 @@
     "description": "Slow curls until you cannot complete a rep \u2014 bicep burnout",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "249",
@@ -2789,7 +3037,9 @@
     "description": "Hold dumbbells forward at shoulder height for 30-45s to failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Shoulders",
+    "muscle_group": "shoulders"
   },
   {
     "id": "250",
@@ -2802,7 +3052,8 @@
     "description": "Alternating hammer curls, no stopping until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "251",
@@ -2813,7 +3064,8 @@
     "description": "Wide grip push-ups, max reps until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "252",
@@ -2824,7 +3076,8 @@
     "description": "Hands together in diamond shape, max reps until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "253",
@@ -2837,7 +3090,8 @@
     "description": "Max reps continuous overhead press until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "254",
@@ -2850,7 +3104,8 @@
     "description": "Max reps continuous upright rows until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "255",
@@ -2861,7 +3116,8 @@
     "description": "Band face pulls, max reps until failure \u2014 rear delt burn",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "256",
@@ -2874,7 +3130,8 @@
     "description": "Bent over, rear delt flies to failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "257",
@@ -2887,7 +3144,8 @@
     "description": "Curl to 90 degrees and hold to failure \u2014 sustained bicep tension",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "258",
@@ -2900,7 +3158,8 @@
     "description": "Max reps continuous arnold press until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Upper Body"
   },
   {
     "id": "259",
@@ -2911,7 +3170,8 @@
     "description": "Hold wall sit until failure \u2014 no time limit",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Quads"
   },
   {
     "id": "260",
@@ -2922,7 +3182,8 @@
     "description": "Stay at bottom of squat and pulse until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Quads"
   },
   {
     "id": "261",
@@ -2933,7 +3194,8 @@
     "description": "Wide stance at bottom of sumo squat, hold to failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Quads"
   },
   {
     "id": "262",
@@ -2944,7 +3206,8 @@
     "description": "Side lunge position, pulse for 30 seconds each side",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Glutes"
   },
   {
     "id": "263",
@@ -2955,7 +3218,8 @@
     "description": "Split stance, pulse at bottom until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Glutes"
   },
   {
     "id": "264",
@@ -2966,7 +3230,8 @@
     "description": "Max burpees in 30 seconds",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Full Body"
   },
   {
     "id": "265",
@@ -2977,7 +3242,8 @@
     "description": "Max jump squats in 30 seconds",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Legs"
   },
   {
     "id": "266",
@@ -2988,7 +3254,8 @@
     "description": "All out mountain climbers for 30-45 seconds",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Core"
   },
   {
     "id": "267",
@@ -2999,7 +3266,8 @@
     "description": "Maximum effort high knees for 30 seconds",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Agility"
   },
   {
     "id": "268",
@@ -3010,7 +3278,8 @@
     "description": "Max skaters in 30 seconds",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Legs"
   },
   {
     "id": "269",
@@ -3021,7 +3290,8 @@
     "description": "Max tuck jumps in 20 seconds",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Full Body"
   },
   {
     "id": "270",
@@ -3032,7 +3302,8 @@
     "description": "Max jumping jacks in 30 seconds",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Cardio"
   },
   {
     "id": "271",
@@ -3043,7 +3314,8 @@
     "description": "Max speed butt kicks for 30 seconds",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Agility"
   },
   {
     "id": "272",
@@ -3054,7 +3326,8 @@
     "description": "Alternating jump lunges to failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Full Body"
   },
   {
     "id": "273",
@@ -3065,7 +3338,8 @@
     "description": "Deep squat jump forward and back for 30 seconds",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Cardio"
   },
   {
     "id": "274",
@@ -3076,7 +3350,8 @@
     "description": "Wide fast skaters, max reps in 30 seconds",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Legs"
   },
   {
     "id": "275",
@@ -3087,7 +3362,8 @@
     "description": "Feet together, jump out to squat, max reps in 30 seconds",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Legs"
   },
   {
     "id": "276",
@@ -3098,7 +3374,8 @@
     "description": "Hold plank position until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Stability"
   },
   {
     "id": "277",
@@ -3109,7 +3386,8 @@
     "description": "Hold side plank each side until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Stability"
   },
   {
     "id": "278",
@@ -3120,7 +3398,8 @@
     "description": "Legs and torso in V shape, hold until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Stability"
   },
   {
     "id": "279",
@@ -3131,7 +3410,8 @@
     "description": "Legs 6 inches off floor, flutter until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Lower Abs"
   },
   {
     "id": "280",
@@ -3142,7 +3422,8 @@
     "description": "Legs at 45 degrees off floor, hold until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Stability"
   },
   {
     "id": "281",
@@ -3153,7 +3434,8 @@
     "description": "Max slow crunches until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Abs"
   },
   {
     "id": "282",
@@ -3164,7 +3446,8 @@
     "description": "Max slow bicycle crunches until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Abs"
   },
   {
     "id": "283",
@@ -3175,7 +3458,8 @@
     "description": "Max reps each side until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Obliques"
   },
   {
     "id": "284",
@@ -3186,7 +3470,8 @@
     "description": "Lying flat, reach toes with straight legs, max reps",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Core"
   },
   {
     "id": "285",
@@ -3197,7 +3482,8 @@
     "description": "Alternating leg cross, continue until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Lower Abs"
   },
   {
     "id": "286",
@@ -3208,7 +3494,8 @@
     "description": "Slow controlled mountain climbers, max reps",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Core"
   },
   {
     "id": "287",
@@ -3219,7 +3506,8 @@
     "description": "Seated, tuck knees to chest, max reps until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Core"
   },
   {
     "id": "288",
@@ -3230,7 +3518,8 @@
     "description": "Knees 2 inches off floor, hold until failure",
     "flagged": false,
     "tags": "burnout",
-    "format": "timed"
+    "format": "timed",
+    "display_muscle": "Stability"
   },
   {
     "id": "289",
@@ -3246,7 +3535,8 @@
     "format": "reps",
     "muscle_group": "chest",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Chest"
   },
   {
     "id": "290",
@@ -3262,7 +3552,8 @@
     "format": "reps",
     "muscle_group": "chest",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Chest"
   },
   {
     "id": "291",
@@ -3278,7 +3569,8 @@
     "format": "reps",
     "muscle_group": "chest",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Chest"
   },
   {
     "id": "292",
@@ -3292,7 +3584,8 @@
     "format": "reps",
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "293",
@@ -3306,7 +3599,8 @@
     "format": "reps",
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "294",
@@ -3320,7 +3614,8 @@
     "format": "reps",
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "295",
@@ -3334,7 +3629,8 @@
     "format": "reps",
     "muscle_group": "chest",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Chest"
   },
   {
     "id": "296",
@@ -3350,7 +3646,8 @@
     "format": "reps",
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "297",
@@ -3366,7 +3663,8 @@
     "format": "reps",
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "298",
@@ -3382,7 +3680,8 @@
     "format": "reps",
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "299",
@@ -3398,7 +3697,8 @@
     "format": "reps",
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "300",
@@ -3414,7 +3714,8 @@
     "format": "reps",
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "301",
@@ -3430,7 +3731,8 @@
     "format": "reps",
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Biceps"
   },
   {
     "id": "302",
@@ -3446,7 +3748,8 @@
     "format": "timed",
     "muscle_group": "biceps",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Biceps"
   },
   {
     "id": "303",
@@ -3462,7 +3765,8 @@
     "format": "reps",
     "muscle_group": "triceps",
     "is_compound": false,
-    "ex_order": 2
+    "ex_order": 2,
+    "display_muscle": "Triceps"
   },
   {
     "id": "304",
@@ -3478,7 +3782,8 @@
     "format": "reps",
     "muscle_group": "triceps",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Triceps"
   },
   {
     "id": "305",
@@ -3494,7 +3799,8 @@
     "format": "reps",
     "muscle_group": "triceps",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Triceps"
   },
   {
     "id": "306",
@@ -3508,7 +3814,8 @@
     "format": "reps",
     "muscle_group": "triceps",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Triceps"
   },
   {
     "id": "307",
@@ -3522,7 +3829,8 @@
     "format": "reps",
     "muscle_group": "triceps",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Triceps"
   },
   {
     "id": "308",
@@ -3538,7 +3846,8 @@
     "format": "reps",
     "muscle_group": "triceps",
     "is_compound": false,
-    "ex_order": 3
+    "ex_order": 3,
+    "display_muscle": "Triceps"
   },
   {
     "id": "309",
@@ -3552,7 +3861,8 @@
     "format": "reps",
     "muscle_group": "triceps",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Triceps"
   },
   {
     "id": "310",
@@ -3566,6 +3876,126 @@
     "format": "reps",
     "muscle_group": "triceps",
     "is_compound": true,
-    "ex_order": 1
+    "ex_order": 1,
+    "display_muscle": "Triceps"
+  },
+  {
+    "id": "311",
+    "name": "Slow Negative Curl Burnout",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "3 seconds up, 5 seconds down \u2014 max reps until failure. Constant bicep tension.",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed",
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 3,
+    "display_muscle": "Biceps"
+  },
+  {
+    "id": "312",
+    "name": "Hammer Curl Burnout",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Alternating hammer curls, neutral grip, no stopping until failure.",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed",
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 3,
+    "display_muscle": "Biceps"
+  },
+  {
+    "id": "313",
+    "name": "Concentration Curl Burnout",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Seated, elbow on inner thigh, curl to failure \u2014 peak bicep isolation.",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed",
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 3,
+    "display_muscle": "Biceps"
+  },
+  {
+    "id": "314",
+    "name": "Wide Grip Curl Burnout",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Hands wider than shoulder width, curl to failure \u2014 short head bias.",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed",
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 3,
+    "display_muscle": "Biceps"
+  },
+  {
+    "id": "315",
+    "name": "Waiter Curl Burnout",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Hold one DB horizontally with both hands under plate, curl to failure.",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed",
+    "muscle_group": "biceps",
+    "is_compound": false,
+    "ex_order": 3,
+    "display_muscle": "Biceps"
+  },
+  {
+    "id": "316",
+    "name": "DB Skull Crusher Burnout",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Lie on floor, lower DBs to temples, extend to failure \u2014 tricep isolation burnout.",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed",
+    "muscle_group": "triceps",
+    "is_compound": false,
+    "ex_order": 3,
+    "display_muscle": "Triceps"
+  },
+  {
+    "id": "317",
+    "name": "DB Overhead Extension Burnout",
+    "category": "upper",
+    "equipment": [
+      "dumbbells"
+    ],
+    "reps": "To failure / use timer below",
+    "description": "Both hands on one DB overhead, lower behind head and press to failure.",
+    "flagged": false,
+    "tags": "burnout",
+    "format": "timed",
+    "muscle_group": "triceps",
+    "is_compound": false,
+    "ex_order": 3,
+    "display_muscle": "Triceps"
   }
 ]

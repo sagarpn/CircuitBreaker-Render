@@ -17,7 +17,7 @@ const timerDurations = {}
 function playCoreStart() { initAudio().then(() => sounds.restStart()) }
 function playCoreEnd()   { initAudio().then(() => sounds.breathDone()) }
 
-function CoreTimer({ exerciseId }) {
+function CoreTimer({ exerciseId, isBurner = false }) {
   const DEFAULT = 45
   const [duration, setDuration] = useState(() => timerDurations[exerciseId] ?? DEFAULT)
   const [timeLeft,  setTimeLeft]  = useState(() => timerDurations[exerciseId] ?? DEFAULT)
@@ -89,7 +89,7 @@ function CoreTimer({ exerciseId }) {
           <circle cx="22" cy="22" r="18" className={styles.timerTrack} />
           <circle
             cx="22" cy="22" r="18"
-            className={`${styles.timerProgress} ${done ? styles.timerDone : ''}`}
+            className={`${styles.timerProgress} ${done ? styles.timerDone : ''} ${isBurner ? styles.timerBurner : ''}`}
             strokeDasharray={`${2 * Math.PI * 18}`}
             strokeDashoffset={`${2 * Math.PI * 18 * (1 - pct / 100)}`}
           />
@@ -102,7 +102,7 @@ function CoreTimer({ exerciseId }) {
       {/* Controls */}
       <div className={styles.timerControls}>
         <button
-          className={`${styles.timerBtn} ${running ? styles.timerStop : styles.timerStart}`}
+          className={`${styles.timerBtn} ${running ? styles.timerStop : styles.timerStart} ${isBurner ? styles.timerBurnerBtn : ''}`}
           onClick={handleStartStop}
         >
           {done ? 'Reset' : running ? '⏸' : '▶'}
@@ -162,18 +162,25 @@ function ExerciseCard({ exercise, index, focus, style, hasDumbbells, hasPullupBa
         {isCore
           ? <CoreTimer exerciseId={exercise.id} />
           : <div className={styles.reps}>{
-            (exercise.reps || '').replace(/^\d+\s+sets?\s*[x×]\s*/i, '').trim()
+            (() => {
+              const r = (exercise.reps || '').replace(/^\d+\s+sets?\s*[x×]\s*/i, '').trim()
+              const tags = exercise.tags || ''
+              const isBurn = tags === 'burnout' || (typeof tags==='string' && tags.includes('burnout'))
+              if (isBurn || exercise.format === 'timed') return r
+              // Add "or more" to plain reps
+              return r.replace(/(\d+)\s*(reps?)/gi, '$1+ $2')
+            })()
           }</div>
         }
 
-        {/* Inline timer for timed/burner exercises — same CoreTimer as core */}
+        {/* Inline timer for timed/burner exercises */}
         {!isCore && (() => {
           const tags     = exercise.tags || exercise.ex_tags || ''
-          const isBurner = tags === 'burnout' || (typeof tags === 'string' && tags.includes('burnout')) || (Array.isArray(tags) && tags.includes('burnout'))
-          const isTimed  = exercise.format === 'timed' || isBurner ||
+          const isBurn   = tags === 'burnout' || (typeof tags === 'string' && tags.includes('burnout')) || (Array.isArray(tags) && tags.includes('burnout'))
+          const isTimed  = exercise.format === 'timed' || isBurn ||
             (exercise.reps||'').toLowerCase().includes('second') ||
             (exercise.name||'').toLowerCase().includes('hold')
-          return isTimed ? <CoreTimer exerciseId={`timed-${exercise.id}`} /> : null
+          return isTimed ? <CoreTimer exerciseId={`timed-${exercise.id}`} isBurner={isBurn} /> : null
         })()}
 
         {exercise.description && (
@@ -182,12 +189,9 @@ function ExerciseCard({ exercise, index, focus, style, hasDumbbells, hasPullupBa
       </div>
 
       <div className={styles.cardRight}>
-        {(style === 'combo' || focus === 'whole') && (
-          <span
-            className={styles.categoryBadge}
-            style={{ color, borderColor: color, background: `${color}14` }}
-          >
-            {CAT_LABEL[exercise.category] || exercise.category}
+        {exercise.display_muscle && (
+          <span className={styles.muscleBadge}>
+            {exercise.display_muscle}
           </span>
         )}
         <button
