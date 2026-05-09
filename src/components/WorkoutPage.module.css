@@ -1005,10 +1005,10 @@
 }
 .workoutTitle {
   font-family: var(--display);
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   color: var(--text);
   margin: 0;
   flex: 1;
@@ -1016,6 +1016,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  line-height: 1.2;
 }
 .workoutActions {
   display: flex;

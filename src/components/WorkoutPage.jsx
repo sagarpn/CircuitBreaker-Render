@@ -180,7 +180,6 @@ export default function WorkoutPage({ onGenerate }) {
 
   async function handleAddCircuit(type = 'circuit3') {
     setLoadingC3(type)
-    setUsedRounds(prev => new Set([...prev, type]))
     try {
       const allUsedIds = [...workout.circuit1, ...workout.circuit2, ...(circuit3||[])].map(e => e.id)
       const res  = await fetch('/api/generate-circuit', {
@@ -192,6 +191,7 @@ export default function WorkoutPage({ onGenerate }) {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error)
+      setUsedRounds(prev => new Set([...prev, type]))
       setCircuit3(data.circuit)
       try {
         await fetch('/api/history', {
@@ -345,10 +345,16 @@ export default function WorkoutPage({ onGenerate }) {
                 </div>
               </div>
             )}
-            {/* Dumbbells note — strength only */}
-            {style === 'strength' && (
+            {/* Dumbbells note */}
+            {style && (
               <div className={styles.equipmentSection}>
-                <div className={styles.dumbbellNote}>🏋️ Dumbbells in. No excuses out.</div>
+                <div className={styles.dumbbellNote}>
+                  {style === 'hiit'
+                    ? '⚡ Bodyweight only. Pure effort required.'
+                    : style === 'combo'
+                    ? '🔥 Dumbbells in. No excuses left.'
+                    : '🏋️ Dumbbells in. No excuses left.'}
+                </div>
               </div>
             )}
 
