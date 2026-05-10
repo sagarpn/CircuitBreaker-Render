@@ -23,37 +23,37 @@ const QUOTES = [
 ]
 
 const WORKOUT_NAMES = {
-  upper_strength: ["The Press Conference","Arm Day Intervention","Deltoid Drama","Shoulder Season","The Chest Manifesto","Pushing My Luck","Arm Yourself Well","The Bicep Agenda","Chest To Impress","The Shoulder Situation","Upper Management","The Iron Session","Push Day Warrior","Upper Cut","Steel Arms","Chest Day Legend","The Builder","Arms Race"],
-  upper_hiit:     ["Flap Your Arms","The Sweaty Shoulder","Push Til It's Awkward","Arms Going Nowhere","The Arm Emergency","Chest Panic","Shoulder Chaos","Push And Pray","Burning From The Waist Up","The Flail Method","Sweat From The Neck Up","Arms On Fire","The Shoulder Shuffle","Push Hard Cry Later","Arm Yourself","No Shirt No Problem"],
-  upper_combo:    ["Push Pull Think","The Arm Situation","Chest Day Plot Twist","Shoulders Everywhere","Mixed Up Arms","The Confused Upper","Push Hard Think Later","Upper Body Chaos","Arms At War","Part One Of Many","The Upper Hand","Chest & Friends","All Arms Everything","Shaken Not Stirred"],
-  lower_strength: ["The Leg Situation","Glutes On Trial","Thigh Court","Quad Goals","The Great Squat Off","No Skipping Legs","Hamstring Theory","Lunge Or Die","The Glute Report","Squat Don't Stop","Leg Day Therapy","Squats & Thoughts","Thighs Like Thunder","Leg Season","Don't Skip This","The Squat Agenda","Below Average Day"],
-  lower_hiit:     ["Jump For Your Life","The Burning Legs","Thigh Emergency","Legs Why","Cardio From The Waist Down","Jump It Out","Leg Day Speed Run","Can't Feel My Legs","The Leg Sprint","Bounce Or Bust","Jump Around Jump Around","The Thigh Fry","Run Don't Walk","Legs Akimbo","Can't Sit Down","Jumping To Conclusions"],
-  lower_combo:    ["The Leg Experience","Thighs Wide Shut","Squat Plot Twist","Legs With Attitude","The Full Leg Situation","Lower Body Chaos","Squat Hard Think Never","Jump Squat Repeat","The Glute Agenda","Leg Day Remix","Legs But Make It Spicy","Thighs & Vibes","Squat Goals","Leg Day Unplugged","Lower Your Standards For Rest"],
-  whole_strength: ["Top To Bottom","The Grand Tour","Muscle Conference","All Systems Lift","The Full Sweep","Nothing Left Out","The Complete Situation","Every Single Muscle","Muscles Everywhere","The Body Agenda","No Muscle Left Behind","Built Different","All Of It","The Complete Package","Every Muscle Meeting","Whole Lotta Gains"],
-  whole_hiit:     ["Full Panic Mode","Everything Is On Fire","The Complete Meltdown","Cardio Everything","The Total Chaos","No Part Left Unsweat","Burn The Whole Thing","Running From Nothing","Full Body Question Mark","The Everything Sprint","Everything Everywhere","Maximum Chaos","Body By Suffering","Sweat All Over","All Systems Go","Cardio Is Life Now"],
-  whole_combo:    ["The Full Chaos","Maximum Suffering In Style","The Grand Mess","All Of The Above","Nothing Makes Sense","Full Send No Return","The Complete Disaster","Every Muscle For Itself","The Whole Situation","Total Commitment","The Kitchen Sink","Chaos & Order","Full Body Panic","The Works","Maximum Effort","Full Send","The Big One"],
-  legs_shoulders_strength: ["Legs & Delts Day","The Boulder Shoulder Squat","Thighs And Tries","Below And Above","Quad Meets Shoulder","The Custom Job","Legs Up Shoulders Back","Delts And Squats United"],
+  upper_strength: ["The Press Conference","Arm Day Intervention","Deltoid Drama","Shoulder Season","The Chest Manifesto","Pushing My Luck","Arm Yourself Well","The Bicep Agenda","Chest To Impress","The Shoulder Situation","Upper Management","The Iron Session","Push Day Warrior","Upper Cut","Steel Arms","Chest Day Legend","The Builder","Arms Race","Chest Code","The Lat Awakening","Push Season","Iron Will Upper","Heavy Hitter","The Press Gang","Torso Boss","Chest Day Certified","Arm & Dangerous","Upper Limits","The Push Doctrine","Built From The Top","Pressing Matters","No Days Off Upper","The Chest Chronicles"],
+  upper_hiit:     ["Flap Your Arms","The Sweaty Shoulder","Push Til It's Awkward","Arms Going Nowhere","The Arm Emergency","Chest Panic","Shoulder Chaos","Push And Pray","Burning From The Waist Up","The Flail Method","Sweat From The Neck Up","Arms On Fire","The Shoulder Shuffle","Push Hard Cry Later","Arm Yourself","No Shirt No Problem","Hot Arms Summer","Cardio With Attitude","Chest On The Run","The Flapping Falcon","Sweat Lodge Upper","Breathless Upper","Arms In A Hurry","Upper Chaos Theory","Chest Burner","Speed Arms","The Shoulder Sprint","Upper Body Alarm","Arms Like Whoa","Chest Scramble","Breathe Later"],
+  upper_combo:    ["Push Pull Think","The Arm Situation","Chest Day Plot Twist","Shoulders Everywhere","Mixed Up Arms","The Confused Upper","Push Hard Think Later","Upper Body Chaos","Arms At War","Part One Of Many","The Upper Hand","Chest & Friends","All Arms Everything","Shaken Not Stirred","Push Pull Chaos","The Upper Remix","Strength Meets Speed Upper","Chest By Force","The Arm Experiment","Upper Hybrid","Push The Limit","Chest And Sweat","The Arm Mashup","Iron Cardio Upper","The Upper Fusion","Push Pull Ignite"],
+  lower_strength: ["The Leg Situation","Glutes On Trial","Thigh Court","Quad Goals","The Great Squat Off","No Skipping Legs","Hamstring Theory","Lunge Or Die","The Glute Report","Squat Don't Stop","Leg Day Therapy","Squats & Thoughts","Thighs Like Thunder","Leg Season","Don't Skip This","The Squat Agenda","Below Average Day","Quadzilla","The Glute Gospel","Hamstring Highway","Thighmaster","Knee Bender","The Squat Chronicles","Leg Day Lore","The Lower Order","Hinge Nation","Quad Certified","The Glute Manifesto","Built From The Ground Up","No Skipping","Heavy Legs","The Leg Files"],
+  lower_hiit:     ["Jump For Your Life","The Burning Legs","Thigh Emergency","Legs Why","Cardio From The Waist Down","Jump It Out","Leg Day Speed Run","Can't Feel My Legs","The Leg Sprint","Bounce Or Bust","Jump Around Jump Around","The Thigh Fry","Run Don't Walk","Legs Akimbo","Can't Sit Down","Jumping To Conclusions","Hot Legs Summer","Thighs On Fire","Bounce House","Squat Sprint","The Leg Alarm","Jump Or Regret","Cardio Legs","Speed Squats","The Burning Descent","Legs No Chill","Jump Season","Quad Scramble","The Lower Blitz","Legs In Flames","Sprint And Squat"],
+  lower_combo:    ["The Leg Experience","Thighs Wide Shut","Squat Plot Twist","Legs With Attitude","The Full Leg Situation","Lower Body Chaos","Squat Hard Think Never","Jump Squat Repeat","The Glute Agenda","Leg Day Remix","Legs But Make It Spicy","Thighs & Vibes","Squat Goals","Leg Day Unplugged","Lower Your Standards For Rest","Legs Plus","The Glute Remix","Strength Meets Jump","The Lower Hybrid","Squat And Burn","Lunge And Launch","The Leg Fusion","Lower Body Ignite","Thigh High Effort","Jump Lift Repeat","The Leg Experiment","Squats By Force"],
+  whole_strength: ["Top To Bottom","The Grand Tour","Muscle Conference","All Systems Lift","The Full Sweep","Nothing Left Out","The Complete Situation","Every Single Muscle","Muscles Everywhere","The Body Agenda","No Muscle Left Behind","Built Different","All Of It","The Complete Package","Every Muscle Meeting","Whole Lotta Gains","Top To Toe","The Full Package","Head To Heels","All Muscles Present","No Muscle Left Behind","The Grand Design","Full Body Certified","The Complete Grind","Built Everywhere","From Neck To Knee","Total Architecture","The Everything Session","Whole Lotta Work","All Systems Lift","The Body Project"],
+  whole_hiit:     ["Full Panic Mode","Everything Is On Fire","The Complete Meltdown","Cardio Everything","The Total Chaos","No Part Left Unsweat","Burn The Whole Thing","Running From Nothing","Full Body Question Mark","The Everything Sprint","Everything Everywhere","Maximum Chaos","Body By Suffering","Sweat All Over","All Systems Go","Cardio Is Life Now","Full Meltdown","No Survivors","Everything Burns","Total Chaos","All Over Fire","The Full Alarm","Body By Sweat","Complete Destruction","Head To Toe Inferno","Full Panic","All Systems Burning","The Everything Sprint","Total Body Blitz","No Part Left Behind","Cardio All Day"],
+  whole_combo:    ["The Full Chaos","Maximum Suffering In Style","The Grand Mess","All Of The Above","Nothing Makes Sense","Full Send No Return","The Complete Disaster","Every Muscle For Itself","The Whole Situation","Total Commitment","The Kitchen Sink","Chaos & Order","Full Body Panic","The Works","Maximum Effort","Full Send","The Big One","The Ultimate Mix","Full Body Remix","Strength Plus Speed","The Complete Experiment","Built And Burned","All Of It And More","The Full Fusion","Total Body Ignite","Every Muscle Every Gear","The Grand Hybrid","Complete The Mission","Full Send Full Build"],
+  legs_shoulders_strength: ["Legs & Delts Day","The Boulder Shoulder Squat","Thighs And Tries","Below And Above","Quad Meets Shoulder","The Custom Job","Legs Up Shoulders Back","Delts And Squats United","Boulder Season","The Delt Gospel","Shoulders Certified","The Press Project","Shoulders By Design","Iron Delts","The Delt Agenda","Caps And Delts","Shoulder Day Lore","Raise The Bar"],
   legs_shoulders_hiit:     ["Legs And Shoulders On Fire","The Custom Burn","Thighs And Delts Inferno","Squat And Shoulder Chaos","The Personal Destroyer","Custom Cardio Chaos"],
   legs_shoulders_combo:    ["The Custom Session","Legs Shoulders Everything","The Personal Mix","Quad And Delt Combo","Your Workout Your Rules","The Tailored Chaos"],
-  chest_strength:          ["Chest Day Therapy","The Pec Report","Push It Real Good","The Chest Agenda","All Chest Everything","The Press Manifesto"],
+  chest_strength:          ["Chest Day Therapy","The Pec Report","Push It Real Good","The Chest Agenda","All Chest Everything","The Press Manifesto","The Push Gospel","Chest Certified","Press Day","Pushing Boundaries","The Pec Project","Chest By Design","Iron Chest","The Push Agenda","Flat Is Not An Option","The Press Room"],
   chest_hiit:              ["Chest On Fire","The Push Panic","Pecs In Peril","Push Day Speed Run","Chest Chaos","The Pec Emergency"],
   chest_combo:             ["Chest Day Plot Twist","Push Hard Think Later","The Pec Situation","All Push Everything","Chest Meets Cardio"],
-  back_strength:           ["Back Day Boss","The Pull Report","Row Till You Know","The Back Agenda","All Pull Everything","Lats Day Legend"],
+  back_strength:           ["Back Day Boss","The Pull Report","Row Till You Know","The Back Agenda","All Pull Everything","Lats Day Legend","The Pull Gospel","Back Certified","Row Day","Pulling It Together","The Lat Project","Back By Design","Iron Back","The Pull Agenda","The Row Room","Lats On Deck"],
   back_hiit:               ["Back On Fire","The Row Panic","Pulling For Your Life","Pull Day Speed Run","Back Chaos"],
   back_combo:              ["Back Day Plot Twist","Pull Hard Think Later","The Back Situation","All Pull Everything","Back Meets Cardio"],
-  arms_strength:           ["Arm Day Intervention","The Bicep Report","Curl And Press","The Arm Agenda","All Arms Everything","Guns Out"],
+  arms_strength:           ["Arm Day Intervention","The Bicep Report","Curl And Press","The Arm Agenda","All Arms Everything","Guns Out","Guns Out","Curl Season","The Arm Gospel","Arms Certified","The Bicep Project","Arms By Design","Iron Arms","The Curl Agenda","Both Barrels","The Gun Show"],
   arms_hiit:               ["Arms On Fire","The Curl Panic","Biceps In Peril","Arm Day Speed Run","Arms Chaos"],
   arms_combo:              ["Arm Day Plot Twist","Curl Hard Think Later","The Arm Situation","All Arms Everything","Arms Meet Cardio"],
-  shoulders_strength:      ["Shoulder Day Therapy","The Delt Report","Press Till You Impress","The Shoulder Agenda","All Delts Everything","Boulder Shoulders"],
+  shoulders_strength:      ["Shoulder Day Therapy","The Delt Report","Press Till You Impress","The Shoulder Agenda","All Delts Everything","Boulder Shoulders","Boulder Season","The Delt Gospel","Shoulders Certified","The Press Project","Shoulders By Design","Iron Delts","The Delt Agenda","Caps And Delts","Shoulder Day Lore","Raise The Bar"],
   shoulders_hiit:          ["Shoulders On Fire","The Delt Panic","Delts In Peril","Shoulder Day Speed Run","Delt Chaos"],
   shoulders_combo:         ["Shoulder Day Plot Twist","Press Hard Think Later","The Delt Situation","All Delts Everything","Shoulders Meet Cardio"],
-  legs_strength:           ["Leg Day Therapy","The Quad Report","Squat Till You Drop","The Leg Agenda","All Legs Everything","Leg Day Legend"],
+  legs_strength:           ["Leg Day Therapy","The Quad Report","Squat Till You Drop","The Leg Agenda","All Legs Everything","Leg Day Legend","Squat Season","The Quad Gospel","Legs Certified","The Glute Project","Legs By Design","Iron Legs","The Squat Agenda","Leg Day Lore","Heavy Quads","The Leg Room"],
   legs_hiit:               ["Legs On Fire","The Quad Panic","Quads In Peril","Leg Day Speed Run","Leg Chaos"],
   legs_combo:              ["Leg Day Plot Twist","Squat Hard Think Later","The Leg Situation","All Legs Everything","Legs Meet Cardio"],
-  chest_back_strength:     ["Push Pull Balance","Chest Meets Back","The Push Pull Report","Agonist Antagonist Day","Chest Back Harmony"],
+  chest_back_strength:     ["Push Pull Balance","Chest Meets Back","The Push Pull Report","Agonist Antagonist Day","Chest Back Harmony","The Pull Gospel","Back Certified","Row Day","Pulling It Together","The Lat Project","Back By Design","Iron Back","The Pull Agenda","The Row Room","Lats On Deck"],
   chest_back_hiit:         ["Push Pull Fire","Chest Back Chaos","The Push Pull Panic","Push Pull Speed Run"],
   chest_back_combo:        ["Push Pull Everything","The Balanced Chaos","Chest Back Combo","Push Pull Plot Twist"],
-  chest_shoulders_strength:["Push Day Deluxe","Chest And Delts","The Pressing Agenda","All Push Muscles","The Press Collective"],
+  chest_shoulders_strength:["Push Day Deluxe","Chest And Delts","The Pressing Agenda","All Push Muscles","The Press Collective","Boulder Season","The Delt Gospel","Shoulders Certified","The Press Project","Shoulders By Design","Iron Delts","The Delt Agenda","Caps And Delts","Shoulder Day Lore","Raise The Bar"],
   chest_shoulders_hiit:    ["Push Day Fire","Chest Delt Chaos","The Pressing Panic","Push Muscles Speed Run"],
   chest_shoulders_combo:   ["Push Day Everything","Chest Shoulder Combo","The Press Situation","All Push Meets Cardio"],
   back_biceps_strength:    ["Pull Day Deluxe","Back And Biceps","The Pulling Agenda","All Pull Muscles","The Pull Collective"],
@@ -62,7 +62,7 @@ const WORKOUT_NAMES = {
   chest_triceps_strength:  ["Push Isolation Day","Chest And Tris","The Press And Extend","Chest Tricep Day","The Push Isolation"],
   chest_triceps_hiit:      ["Chest Tri Fire","Push Isolation Chaos","Chest Tricep Panic","Push Isolation Speed Run"],
   chest_triceps_combo:     ["Chest Tri Everything","Push Isolation Combo","Chest Tricep Plot Twist","Push Isolation Meets Cardio"],
-  legs_arms_strength:      ["Legs And Guns","Lower Body Upper Arms","The Squat And Curl","Quads And Biceps Day","Legs Meets Arms"],
+  legs_arms_strength:      ["Legs And Guns","Lower Body Upper Arms","The Squat And Curl","Quads And Biceps Day","Legs Meets Arms","Guns Out","Curl Season","The Arm Gospel","Arms Certified","The Bicep Project","Arms By Design","Iron Arms","The Curl Agenda","Both Barrels","The Gun Show"],
   legs_arms_hiit:          ["Legs Arms Fire","Quads And Guns Chaos","Legs Arms Speed Run","The Squat Curl Panic"],
   legs_arms_combo:         ["Legs Arms Everything","The Squat Curl Combo","Legs Arms Plot Twist","Quads Guns Meets Cardio"],
 }
@@ -99,6 +99,8 @@ export default function WorkoutPage({ onGenerate }) {
   const [quote,       setQuote]       = useState(null)
   const [workoutName, setWorkoutName] = useState(null)
   const [circuit3,    setCircuit3]    = useState(null)
+  const [burnerRound, setBurnerRound] = useState(null)
+  const [coreRound,   setCoreRound]   = useState(null)
   const [swapCounts,  setSwapCounts]  = useState({})
   const [flashMsg,    setFlashMsg]    = useState('')
   const [usedRounds,  setUsedRounds]  = useState(new Set())
@@ -143,6 +145,8 @@ export default function WorkoutPage({ onGenerate }) {
     document.addEventListener('visibilitychange', onVisible)
     return () => document.removeEventListener('visibilitychange', onVisible)
   }, [generated])
+
+  const delay = ms => new Promise(r => setTimeout(r, ms))
 
   async function handleGenerate() {
     const activeFocus = focus || (style !== 'strength' ? 'whole' : null)
@@ -192,7 +196,9 @@ export default function WorkoutPage({ onGenerate }) {
       const data = await res.json()
       if (!res.ok) throw new Error(data.error)
       setUsedRounds(prev => new Set([...prev, type]))
-      setCircuit3(data.circuit)
+      if (type === 'circuit3') setCircuit3(data.circuit)
+      else if (type === 'burner') setBurnerRound(data.circuit)
+      else if (type === 'core') setCoreRound(data.circuit)
       try {
         await fetch('/api/history', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -210,7 +216,7 @@ export default function WorkoutPage({ onGenerate }) {
     setTimeout(() => setFlashMsg(''), 2800)
   }
 
-  function handleSwap(circuitKey, id, replacement) {
+  async function handleSwap(circuitKey, id, replacement) {
     // Enforce 5 swap limit per exercise
     setSwapCounts(prev => {
       const current = prev[id] || 0
@@ -219,6 +225,10 @@ export default function WorkoutPage({ onGenerate }) {
     })
     if (circuitKey === 'circuit3') {
       setCircuit3(prev => prev.map(ex => ex.id === id ? replacement : ex))
+    } else if (circuitKey === 'burner') {
+      setBurnerRound(prev => prev.map(ex => ex.id === id ? replacement : ex))
+    } else if (circuitKey === 'core') {
+      setCoreRound(prev => prev.map(ex => ex.id === id ? replacement : ex))
     } else {
       setWorkout(prev => ({ ...prev, [circuitKey]: prev[circuitKey].map(ex => ex.id === id ? replacement : ex) }))
     }
@@ -463,12 +473,13 @@ export default function WorkoutPage({ onGenerate }) {
       {workout && generated && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
-            {/* Workout header */}
-            <div className={styles.workoutHeader}>
-              <div className={styles.workoutHeaderTop}>
+            <div className={styles.workoutHeaderTop}>
                 <h2 className={styles.workoutTitle}>{workoutName}</h2>
                 <div className={styles.workoutActions}>
-                  <button className={styles.actionBtn} onClick={handleReset} title="New workout">↺</button>
+                  <button className={styles.actionBtn} onClick={() => {
+                    showFlash("This workout is in Recents. Save it if you'd like to keep it.")
+                    handleReset()
+                  }} title="New workout">↺</button>
                   <button className={styles.actionBtn} onClick={() => {
                     const fmt = (exs) => (exs||[]).map(e =>
                       `  • ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`
@@ -491,7 +502,6 @@ export default function WorkoutPage({ onGenerate }) {
                 <span className={styles.tag}>{FOCUS_LABELS[focus]}</span>
                 <span className={styles.tag}>{STYLE_LABELS[style]}</span>
               </div>
-            </div>
           </div>
 
           {/* Workout summary — one line */}
@@ -525,13 +535,37 @@ export default function WorkoutPage({ onGenerate }) {
           />
           {/* Circuit 3 — shown when added */}
           {circuit3 && (
-            <Circuit label="Circuit 3" number={3} exercises={circuit3}
+            <div className="fade-up"><Circuit label="Circuit 3" number={3} exercises={circuit3}
               focus={focus} style={style} hasDumbbells={style!=='hiit'} hasPullupBar={false}
               usedIds={usedIds} onSwap={(id,r) => handleSwap('circuit3',id,r)}
               onFavourite={() => saveToFavourites(`${workoutName} — C3`, circuit3, 3)}
               swapCounts={swapCounts}
               onTimerOpen={() => document.getElementById('breather-bar')?.click()}
+            /></div>
+          )}
+
+          {/* Burner round */}
+          {burnerRound && burnerRound.length > 0 && (
+            <div className="fade-up">
+            <Circuit label="🔥 Burner Round" number={4} exercises={burnerRound}
+              focus={focus} style={style} hasDumbbells={style!=='hiit'} hasPullupBar={false}
+              usedIds={usedIds} onSwap={(id,r) => handleSwap('burner',id,r)}
+              swapCounts={swapCounts}
+              onTimerOpen={() => document.getElementById('breather-bar')?.click()}
             />
+            </div>
+          )}
+
+          {/* Core round */}
+          {coreRound && coreRound.length > 0 && (
+            <div className="fade-up">
+            <Circuit label="💪 Core Round" number={5} exercises={coreRound}
+              focus={focus} style={style} hasDumbbells={style!=='hiit'} hasPullupBar={false}
+              usedIds={usedIds} onSwap={(id,r) => handleSwap('core',id,r)}
+              swapCounts={swapCounts}
+              onTimerOpen={() => document.getElementById('breather-bar')?.click()}
+            />
+            </div>
           )}
 
           {/* Extra rounds — each disappears once selected */}

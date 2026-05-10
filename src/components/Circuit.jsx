@@ -241,9 +241,7 @@ export default function Circuit({ label, number, exercises, focus, style, hasDum
         />
       ))}
 
-      <div className={styles.circuitFooter}>
-        ↻ to swap any exercise you don't like
-      </div>
+      <div className={styles.circuitFooter}>      </div>
     </div>
   )
 }
