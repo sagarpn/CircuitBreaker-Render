@@ -104,6 +104,8 @@ export default function WorkoutPage({ onGenerate }) {
   const [swapCounts,  setSwapCounts]  = useState({})
   const [flashMsg,    setFlashMsg]    = useState('')
   const [usedRounds,  setUsedRounds]  = useState(new Set())
+  const [hiitFormat,  setHiitFormat]  = useState(null)  // 'circuit'|'amrap'|'lucky7'
+  const [hiitData,    setHiitData]    = useState(null)
   const [loadingC3,   setLoadingC3]   = useState(false)
   const [history,     setHistory]     = useState([])
   const [favourites,  setFavourites]  = useState([])
@@ -168,7 +170,27 @@ export default function WorkoutPage({ onGenerate }) {
   }
 
   async function onSplashDone() {
-    const { data, name } = pendingWorkout.current
+    const { data, name, hiitFormat: hf } = pendingWorkout.current
+
+    if (hf === 'amrap') {
+      const res = await fetch('/api/exercises')
+      const allEx = await res.json()
+      const amrapData = generateAMRAP(allEx, false)
+      setHiitData({ type:'amrap', ...amrapData })
+      setGenerated(true); setLoading(false); setSplashing(false)
+      requestWakeLock()
+      return
+    }
+    if (hf === 'lucky7') {
+      const res = await fetch('/api/exercises')
+      const allEx = await res.json()
+      const l7Data = generateLucky7s(allEx, false)
+      setHiitData({ type:'lucky7', ...l7Data })
+      setGenerated(true); setLoading(false); setSplashing(false)
+      requestWakeLock()
+      return
+    }
+
     setWorkout(data); setGenerated(true); setLoading(false); setSplashing(false)
     requestWakeLock()
     // Save to server history
@@ -344,6 +366,27 @@ export default function WorkoutPage({ onGenerate }) {
                 ))}
               </div>
             </div>
+            {/* HIIT format question */}
+            {style === 'hiit' && (
+              <div className={styles.question}>
+                <div className={styles.questionLabel}>Pick your format</div>
+                <div className={styles.options}>
+                  {[
+                    { value:'circuit', label:'🔁 Circuit',   sub:'Two circuits, rep based' },
+                    { value:'amrap',   label:'⏱ AMRAP',      sub:'12 min blocks, keep going' },
+                    { value:'lucky7',  label:'🎯 Lucky 7s',  sub:'7 exercises, drop one each round' },
+                  ].map(o => (
+                    <button key={o.value}
+                      className={`${styles.option} ${hiitFormat===o.value?styles.selected:''}`}
+                      onClick={() => setHiitFormat(o.value)}>
+                      <span>{o.label}</span>
+                      <span className={styles.optionSub}>{o.sub}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Focus question — strength only */}
             {style === 'strength' && (
               <div className={styles.question}>
@@ -369,7 +412,7 @@ export default function WorkoutPage({ onGenerate }) {
             )}
 
             {error && <div className={styles.error}>⚠️ {error}</div>}
-            <button className={styles.generateBtn} onClick={handleGenerate} disabled={(!focus && style === 'strength') || !style || loading}>
+            <button className={styles.generateBtn} onClick={handleGenerate} disabled={(!focus && style === 'strength') || (!hiitFormat && style === 'hiit') || !style || loading}>
               {loading ? 'Building...' : 'Generate Workout →'}
             </button>
             <p className={styles.termsNote}>
@@ -470,6 +513,66 @@ export default function WorkoutPage({ onGenerate }) {
       <FloatingTimer />
 
       {/* Workout output */}
+      {/* AMRAP and Lucky 7s renders */}
+      {hiitData && generated && hiitData.type === 'lucky7' && (
+        <div className={`${styles.workout} fade-up`}>
+          <div className={styles.workoutHeader}>
+            <div className={styles.workoutHeaderTop}>
+              <h2 className={styles.workoutTitle}>{workoutName}</h2>
+              <div className={styles.workoutActions}>
+                <button className={styles.actionBtn} onClick={() => {
+                  showFlash("This workout is in Recents. Save it if you'd like to keep it.")
+                  handleReset()
+                }} title="New workout">↺</button>
+              </div>
+            </div>
+            <div className={styles.workoutTags}>
+              <span className={styles.tag}>HIIT</span>
+              <span className={styles.tag}>Lucky 7s</span>
+            </div>
+          </div>
+          <Lucky7s
+            data={hiitData}
+            onAddCore={() => handleAddCircuit('core')}
+          />
+        </div>
+      )}
+
+      {hiitData && generated && hiitData.type === 'amrap' && (
+        <div className={`${styles.workout} fade-up`}>
+          <div className={styles.workoutHeader}>
+            <div className={styles.workoutHeaderTop}>
+              <h2 className={styles.workoutTitle}>{workoutName}</h2>
+              <div className={styles.workoutActions}>
+                <button className={styles.actionBtn} onClick={() => {
+                  showFlash("This workout is in Recents. Save it if you'd like to keep it.")
+                  handleReset()
+                }} title="New workout">↺</button>
+              </div>
+            </div>
+            <div className={styles.workoutTags}>
+              <span className={styles.tag}>HIIT</span>
+              <span className={styles.tag}>AMRAP</span>
+            </div>
+          </div>
+          <AMRAPTimer
+            data={hiitData}
+            onAddCore={() => handleAddCircuit('core')}
+            onAddCircuit3={() => handleAddCircuit('circuit3')}
+          />
+          {coreRound && coreRound.length > 0 && (
+            <div className="fade-up">
+              <Circuit label="💪 Core Round" number={1} exercises={coreRound}
+                focus="core" style="strength" hasDumbbells={false} hasPullupBar={false}
+                usedIds={new Set()} onSwap={(id,r)=>handleSwap('core',id,r)}
+                swapCounts={swapCounts}
+                onTimerOpen={() => document.getElementById('breather-bar')?.click()}
+              />
+            </div>
+          )}
+        </div>
+      )}
+
       {workout && generated && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>

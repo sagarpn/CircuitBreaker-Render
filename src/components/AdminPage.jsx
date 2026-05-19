@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styles from './AdminPage.module.css'
 
 const CATEGORIES = ['upper', 'lower', 'core', 'hiit']
@@ -30,6 +30,83 @@ export default function AdminPage() {
     } else {
       setAuthError(true)
     }
+  }
+
+  // ── Download exercises as Excel ──────────────────────────
+  async function downloadExercises() {
+    try {
+      const res  = await fetch('/api/admin/download-exercises', {
+        headers: { 'x-admin-password': password }
+      })
+      const data = await res.json()
+      if (!data.exercises) return alert('Download failed')
+
+      // Build CSV-style content for Excel compatibility
+      const cols = ['id','name','category','equipment','reps','description',
+        'flagged','system_flagged','tags','format','muscle_group','is_compound',
+        'ex_order','display_muscle','intensity']
+      const rows = [cols.join('	')]
+      for (const ex of data.exercises) {
+        rows.push(cols.map(c => String(ex[c] ?? '').replace(/	/g, ' ')).join('	'))
+      }
+      const blob = new Blob([rows.join('
+')], { type: 'text/tab-separated-values' })
+      const url  = URL.createObjectURL(blob)
+      const a    = document.createElement('a')
+      a.href = url; a.download = `circuitbreaker-exercises-${new Date().toISOString().slice(0,10)}.xls`
+      a.click(); URL.revokeObjectURL(url)
+    } catch(e) { alert('Download error: ' + e.message) }
+  }
+
+  // ── Upload exercises from Excel/TSV ───────────────────────
+  async function handleFileUpload(e) {
+    const file = e.target.files[0]
+    if (!file) return
+    setImporting(true); setImportResult(null)
+    try {
+      const text = await file.text()
+      const lines = text.split('
+').filter(Boolean)
+      const headers = lines[0].split('	').map(h => h.trim())
+      const exercises = lines.slice(1).map(line => {
+        const vals = line.split('	')
+        const obj = {}
+        headers.forEach((h, i) => { obj[h] = (vals[i] || '').trim() })
+        return obj
+      }).filter(e => e.name)
+
+      const res = await fetch('/api/admin/upload-exercises', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': password },
+        body: JSON.stringify({ exercises })
+      })
+      const data = await res.json()
+      setImportResult(data)
+    } catch(err) { setImportResult({ error: err.message }) }
+    setImporting(false)
+    if (fileInputRef.current) fileInputRef.current.value = ''
+    loadExercises()
+  }
+
+  // ── Backup / Restore ──────────────────────────────────────
+  async function doBackup() {
+    const res  = await fetch('/api/admin/backup', {
+      method: 'POST', headers: { 'x-admin-password': password }
+    })
+    const data = await res.json()
+    setBackupMsg(data.ok ? `✅ Backed up ${data.count} exercises` : `❌ ${data.error}`)
+    setTimeout(() => setBackupMsg(''), 4000)
+  }
+
+  async function doRestore() {
+    if (!confirm('Restore from backup? This will replace ALL current exercises.')) return
+    const res  = await fetch('/api/admin/restore', {
+      method: 'POST', headers: { 'x-admin-password': password }
+    })
+    const data = await res.json()
+    setBackupMsg(data.ok ? `✅ Restored ${data.restored} exercises` : `❌ ${data.error}`)
+    setTimeout(() => setBackupMsg(''), 4000)
+    loadExercises()
   }
 
   async function loadExercises() {

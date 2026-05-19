@@ -1,0 +1,42 @@
+.container { display: flex; flex-direction: column; gap: 0; }
+.header { padding: 14px 16px 10px; border-bottom: 1px solid var(--border); }
+.title { font-family: var(--display); font-size: 20px; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; display: block; }
+.sub { font-size: 11px; color: var(--muted); }
+.timerBlock {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 24px 16px; border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.timerRest { background: rgba(46,125,50,0.06); }
+.timerDone { background: rgba(232,247,42,0.05); }
+.phaseLabel { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.clock { font-family: var(--mono); font-size: 56px; font-weight: 700; color: var(--text); letter-spacing: 2px; line-height: 1; }
+.timerControls { display: flex; gap: 10px; }
+.startBtn, .pauseBtn, .resetBtn {
+  padding: 10px 24px; border-radius: 10px; font-family: var(--sans);
+  font-size: 14px; font-weight: 700; cursor: pointer; border: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.startBtn { background: var(--accent); color: #000; }
+.pauseBtn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+.resetBtn { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+.beepNote { font-size: 11px; color: var(--muted); opacity: 0.6; }
+.exercises { padding: 12px 16px; display: flex; flex-direction: column; gap: 0; }
+.blockLabel { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 0; }
+.exercise { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--border); gap: 8px; }
+.exercise:last-of-type { border-bottom: none; }
+.burnerEx { background: rgba(232,66,66,0.03); border-radius: 6px; padding: 7px 8px; margin: 0 -8px; }
+.exLeft { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+.exNum { font-family: var(--mono); font-size: 10px; color: var(--muted); width: 16px; text-align: center; flex-shrink: 0; }
+.exInfo { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.exName { font-size: 13px; font-weight: 600; color: var(--text); }
+.exReps { font-size: 11px; color: var(--muted); font-family: var(--mono); }
+.burnerReps { color: #e84242; font-weight: 700; }
+.exRight { display: flex; align-items: center; flex-shrink: 0; }
+.muscleBadge { font-size: 9px; font-weight: 600; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 2px 5px; text-transform: uppercase; }
+.burnerBadge { font-size: 9px; font-weight: 700; color: #e84242; background: rgba(232,66,66,0.1); border: 1px solid rgba(232,66,66,0.3); border-radius: 4px; padding: 2px 6px; }
+.loopNote { font-size: 11px; color: var(--accent); opacity: 0.7; text-align: center; padding: 8px 0 4px; font-style: italic; }
+.doneSection { padding: 20px 16px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.doneText { font-size: 14px; font-weight: 600; color: var(--text); text-align: center; }
+.addOns { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.addBtn { padding: 12px; background: transparent; border: 1.5px dashed var(--accent); border-radius: 10px; color: var(--accent); font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: 0.5px; cursor: pointer; text-transform: uppercase; -webkit-tap-highlight-color: transparent; }

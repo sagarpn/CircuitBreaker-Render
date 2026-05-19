@@ -1009,7 +1009,8 @@
     "reps": "3 sets x 12 reps",
     "description": "High plank, drag a dumbbell under your body from one side to the other \u2014 core stability",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 3
   },
   {
     "id": "72",
@@ -1019,7 +1020,8 @@
     "reps": "3 sets x 20 reps",
     "description": "High plank, alternate tapping opposite shoulder \u2014 keep hips still",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 2
   },
   {
     "id": "73",
@@ -2144,7 +2146,8 @@
     "reps": "3 sets x 10 reps each side",
     "description": "Step into a lateral lunge, hop and switch to the other side \u2014 lateral power and coordination",
     "flagged": false,
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 4
   },
   {
     "id": "165",
@@ -2154,7 +2157,8 @@
     "reps": "3 sets x 8 reps",
     "description": "Jump forward as far as possible, land softly, walk back and reset \u2014 explosive legs",
     "flagged": false,
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 3
   },
   {
     "id": "166",
@@ -2164,7 +2168,8 @@
     "reps": "3 sets x 10 reps",
     "description": "Full burpee, then jump laterally over a line or marker",
     "flagged": false,
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 5
   },
   {
     "id": "167",
@@ -2174,7 +2179,8 @@
     "reps": "3 sets x 8 reps",
     "description": "Full burpee, then at the top drive both knees to chest in a tuck jump \u2014 maximum full body intensity",
     "flagged": false,
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 5
   },
   {
     "id": "168",
@@ -2184,7 +2190,8 @@
     "reps": "3 sets x 10 reps",
     "description": "Squat, jump back to plank, push-up, jump feet in, jump up",
     "flagged": false,
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 4
   },
   {
     "id": "169",
@@ -2207,7 +2214,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Alternate between forearm plank and high plank as fast as you can \u2014 triceps and shoulder burner",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 3
   },
   {
     "id": "171",
@@ -2227,7 +2235,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Drive each knee toward the opposite elbow instead of straight \u2014 oblique and core focus",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 3
   },
   {
     "id": "173",
@@ -2237,7 +2246,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Jumping jack but arms cross in front at the bottom instead of staying at sides \u2014 chest activation",
     "flagged": false,
-    "display_muscle": "Cardio"
+    "display_muscle": "Cardio",
+    "intensity": 3
   },
   {
     "id": "174",
@@ -2283,7 +2293,8 @@
     "reps": "3 sets x 30 seconds",
     "description": "Run in place, drive knees as high as possible each step",
     "flagged": false,
-    "display_muscle": "Agility"
+    "display_muscle": "Agility",
+    "intensity": 3
   },
   {
     "id": "178",
@@ -2306,7 +2317,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Bound side to side landing on one foot, mimic speed skater",
     "flagged": false,
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 2
   },
   {
     "id": "180",
@@ -2316,7 +2328,8 @@
     "reps": "3 sets x 10 reps",
     "description": "Hinge forward, walk hands out to plank, push-up, walk back",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 2
   },
   {
     "id": "181",
@@ -2326,7 +2339,8 @@
     "reps": "3 sets x 60 seconds",
     "description": "Jump squat, alternate between wide and narrow foot positions",
     "flagged": false,
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 3
   },
   {
     "id": "182",
@@ -2336,7 +2350,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Classic \u2014 arms and legs out simultaneously, jump back together",
     "flagged": false,
-    "display_muscle": "Cardio"
+    "display_muscle": "Cardio",
+    "intensity": 3
   },
   {
     "id": "183",
@@ -2346,7 +2361,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Jump laterally from one foot to the other, land softly on one leg \u2014 power and agility",
     "flagged": false,
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 2
   },
   {
     "id": "184",
@@ -2356,7 +2372,8 @@
     "reps": "3 sets x 10 reps",
     "description": "Lateral lunge, bring feet together, drop into burpee, repeat",
     "flagged": false,
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 5
   },
   {
     "id": "185",
@@ -2366,7 +2383,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Athletic stance, shuffle side to side as fast as possible",
     "flagged": false,
-    "display_muscle": "Cardio"
+    "display_muscle": "Cardio",
+    "intensity": 1
   },
   {
     "id": "186",
@@ -2376,7 +2394,8 @@
     "reps": "3 sets x 10 reps each",
     "description": "Balance on one leg, sink into a single leg squat to the side, touch the floor \u2014 control meets power",
     "flagged": false,
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 2
   },
   {
     "id": "187",
@@ -2386,7 +2405,8 @@
     "reps": "3 sets x 10 reps each",
     "description": "Start in a lunge, jump and switch legs in the air \u2014 explosive lower body conditioning",
     "flagged": false,
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 4
   },
   {
     "id": "188",
@@ -2396,7 +2416,8 @@
     "reps": "3 sets x 30 seconds",
     "description": "4 fast mountain climbers then 1 push-up, repeat continuously \u2014 core and chest combo",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 1
   },
   {
     "id": "189",
@@ -2406,7 +2427,8 @@
     "reps": "3 sets x 30 seconds",
     "description": "Plank position, drive knees to chest alternately \u2014 fast as possible",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 1
   },
   {
     "id": "190",
@@ -2416,7 +2438,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "High plank, jump feet wide and back in repeatedly \u2014 shoulders and core under constant tension",
     "flagged": false,
-    "display_muscle": "Cardio"
+    "display_muscle": "Cardio",
+    "intensity": 2
   },
   {
     "id": "191",
@@ -2426,7 +2449,8 @@
     "reps": "3 sets x 30 seconds",
     "description": "Explosive jumping jack \u2014 jump as high as possible each time, full arm extension overhead",
     "flagged": false,
-    "display_muscle": "Cardio"
+    "display_muscle": "Cardio",
+    "intensity": 2
   },
   {
     "id": "192",
@@ -2436,7 +2460,8 @@
     "reps": "3 sets x 10 reps each side",
     "description": "Do a push-up, rotate into a side plank at the top, alternate sides \u2014 chest, shoulder and core",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 1
   },
   {
     "id": "193",
@@ -2446,7 +2471,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Jumping jack but arms swing forward and back like a seal clap instead of up and out \u2014 shoulder focus",
     "flagged": false,
-    "display_muscle": "Cardio"
+    "display_muscle": "Cardio",
+    "intensity": 2
   },
   {
     "id": "194",
@@ -2456,7 +2482,8 @@
     "reps": "3 sets x 8 reps",
     "description": "Full burpee, but at the top plank position do 4 shoulder taps before jumping up \u2014 upper body focused burpee",
     "flagged": false,
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 3
   },
   {
     "id": "195",
@@ -2466,7 +2493,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Bound laterally landing on one foot, reach opposite hand down \u2014 speed skater pattern",
     "flagged": false,
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 1
   },
   {
     "id": "196",
@@ -2476,7 +2504,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Fast circular punching motion in the air \u2014 shoulders and arms under continuous burn",
     "flagged": false,
-    "display_muscle": "Agility"
+    "display_muscle": "Agility",
+    "intensity": 1
   },
   {
     "id": "197",
@@ -2486,7 +2515,8 @@
     "reps": "3 sets x 60 seconds",
     "description": "Crawl forward bringing each knee to the same-side elbow",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 3
   },
   {
     "id": "198",
@@ -2496,7 +2526,8 @@
     "reps": "3 sets x 30 seconds",
     "description": "Drive knees up and pump arms as fast as possible while staying in place \u2014 pure cardio output",
     "flagged": false,
-    "display_muscle": "Agility"
+    "display_muscle": "Agility",
+    "intensity": 2
   },
   {
     "id": "199",
@@ -2506,7 +2537,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Sink into a squat and hold, then pulse up and down a few inches \u2014 quad and glute endurance burn",
     "flagged": false,
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 3
   },
   {
     "id": "200",
@@ -2516,7 +2548,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Jump feet wide and sink into a squat, jump back together \u2014 jumping jack meets squat",
     "flagged": false,
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 4
   },
   {
     "id": "201",
@@ -2526,7 +2559,8 @@
     "reps": "3 sets x 12 reps",
     "description": "Hinge, place hands on floor, kick feet back to plank, return and stand \u2014 burpee without the jump",
     "flagged": false,
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 2
   },
   {
     "id": "202",
@@ -2536,7 +2570,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Jump and simultaneously spread arms and legs wide like a star, land softly and reset",
     "flagged": false,
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 3
   },
   {
     "id": "203",
@@ -2546,7 +2581,8 @@
     "reps": "3 sets x 10 reps",
     "description": "Jump and drive both knees to chest at the peak \u2014 maximum explosive power",
     "flagged": false,
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 3
   },
   {
     "id": "204",
@@ -2556,7 +2592,8 @@
     "reps": "3 sets x 10 reps",
     "description": "Jump straight up as high as possible, land softly and reset fully between jumps",
     "flagged": false,
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 4
   },
   {
     "id": "205",
@@ -2566,7 +2603,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Drive feet wide to outside of hands instead of straight \u2014 inner thigh and hip focus",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 2
   },
   {
     "id": "206",
@@ -2576,7 +2614,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "On back, crunch and rotate elbow to opposite knee, cycle fast",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 3
   },
   {
     "id": "207",
@@ -2586,7 +2625,8 @@
     "reps": "3 sets x 12 reps each side",
     "description": "Lie flat, lift opposite arm and leg to meet in the middle \u2014 full body core tension",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 3
   },
   {
     "id": "208",
@@ -2596,7 +2636,8 @@
     "reps": "3 sets x 30 seconds",
     "description": "On all fours, lift knees 1 inch off floor and hold still \u2014 full body tension",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 2
   },
   {
     "id": "209",
@@ -2606,7 +2647,8 @@
     "reps": "3 sets x 20 reps",
     "description": "Alternate elbow to opposite knee in a cycling motion",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 3
   },
   {
     "id": "210",
@@ -2616,7 +2658,8 @@
     "reps": "3 sets x 20 reps",
     "description": "Lie on back, knees bent, hands behind head, curl shoulders up \u2014 squeeze abs at top",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 3
   },
   {
     "id": "211",
@@ -2628,7 +2671,8 @@
     "reps": "3 sets x 12 reps",
     "description": "Hold dumbbell overhead with both hands, crunch up \u2014 adds load and reaches upper abs",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 4
   },
   {
     "id": "212",
@@ -2640,7 +2684,8 @@
     "reps": "3 sets x 10 reps each",
     "description": "High plank on dumbbells, row one arm to hip \u2014 core stability and back activation",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 2
   },
   {
     "id": "213",
@@ -2652,7 +2697,8 @@
     "reps": "3 sets x 20 reps",
     "description": "Seated, hold one dumbbell, rotate side to side \u2014 lean back slightly",
     "flagged": false,
-    "display_muscle": "Obliques"
+    "display_muscle": "Obliques",
+    "intensity": 3
   },
   {
     "id": "214",
@@ -2664,7 +2710,8 @@
     "reps": "3 sets x 20 reps",
     "description": "Russian twists with feet elevated off the floor \u2014 harder on the hip flexors and obliques",
     "flagged": false,
-    "display_muscle": "Obliques"
+    "display_muscle": "Obliques",
+    "intensity": 4
   },
   {
     "id": "215",
@@ -2676,7 +2723,8 @@
     "reps": "3 sets x 12 reps each side",
     "description": "Side plank, hold dumbbell on top hip, raise and lower",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 4
   },
   {
     "id": "216",
@@ -2688,7 +2736,8 @@
     "reps": "3 sets x 15 reps",
     "description": "Lie on back legs straight up, reach dumbbell to toes \u2014 upper abs with added weight",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 1
   },
   {
     "id": "217",
@@ -2700,7 +2749,8 @@
     "reps": "3 sets x 12 reps",
     "description": "Hold one dumbbell at chest or overhead, perform a full sit-up \u2014 adds load to abs",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 4
   },
   {
     "id": "218",
@@ -2710,7 +2760,8 @@
     "reps": "3 sets x 10 reps each",
     "description": "On back, extend opposite arm and leg, lower back stays flat",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 1
   },
   {
     "id": "219",
@@ -2720,7 +2771,8 @@
     "reps": "3 sets x 20 reps",
     "description": "Bring knees to chest while crunching upper body \u2014 meet in middle",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 3
   },
   {
     "id": "220",
@@ -2730,7 +2782,8 @@
     "reps": "3 sets x 20 reps",
     "description": "Forearm plank, rotate hips to each side tapping the floor \u2014 oblique focus",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 2
   },
   {
     "id": "221",
@@ -2740,7 +2793,8 @@
     "reps": "3 sets x 15 reps",
     "description": "Sit-up with enough momentum to reach arms overhead at the top \u2014 dynamic core power",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 4
   },
   {
     "id": "222",
@@ -2750,7 +2804,8 @@
     "reps": "3 sets x 30 seconds",
     "description": "Lie on back, alternate small kicks \u2014 keep lower back down",
     "flagged": false,
-    "display_muscle": "Lower Abs"
+    "display_muscle": "Lower Abs",
+    "intensity": 3
   },
   {
     "id": "223",
@@ -2760,7 +2815,8 @@
     "reps": "3 sets x 10 reps each",
     "description": "Alternate between forearm plank and high plank \u2014 shoulder and core stability",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 3
   },
   {
     "id": "224",
@@ -2770,7 +2826,8 @@
     "reps": "3 sets x 15 reps",
     "description": "Lie on back, raise straight legs to 90\u00b0, lower slowly",
     "flagged": false,
-    "display_muscle": "Lower Abs"
+    "display_muscle": "Lower Abs",
+    "intensity": 3
   },
   {
     "id": "225",
@@ -2780,7 +2837,8 @@
     "reps": "3 sets x 10 reps each",
     "description": "Drive knee to chest and pause 2 seconds before switching \u2014 slow and controlled climbers",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 2
   },
   {
     "id": "226",
@@ -2790,7 +2848,8 @@
     "reps": "3 sets x 45 seconds",
     "description": "Forearms on floor, body straight, squeeze everything tight",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 2
   },
   {
     "id": "227",
@@ -2800,7 +2859,8 @@
     "reps": "3 sets x 20 reps",
     "description": "Forearm plank, rotate hips to tap each side to floor",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 2
   },
   {
     "id": "228",
@@ -2810,7 +2870,8 @@
     "reps": "3 sets x 12 reps each",
     "description": "High plank, drive one knee to same side elbow and back \u2014 oblique and hip flexor",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 2
   },
   {
     "id": "229",
@@ -2820,7 +2881,8 @@
     "reps": "3 sets x 10 reps",
     "description": "Alternate between forearm plank and high plank \u2014 controlled",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 2
   },
   {
     "id": "230",
@@ -2830,7 +2892,8 @@
     "reps": "3 sets x 20 reps",
     "description": "Seated, lean back, rotate side to side \u2014 feet can be elevated",
     "flagged": false,
-    "display_muscle": "Obliques"
+    "display_muscle": "Obliques",
+    "intensity": 2
   },
   {
     "id": "231",
@@ -2840,7 +2903,8 @@
     "reps": "3 sets x 30 seconds each side",
     "description": "Forearm on floor, body in straight line, hips up",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 2
   },
   {
     "id": "232",
@@ -2850,7 +2914,8 @@
     "reps": "3 sets x 30 seconds each side",
     "description": "Hold a glute bridge on one leg \u2014 glutes and core working hard to keep hips level",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 3
   },
   {
     "id": "233",
@@ -2860,7 +2925,8 @@
     "reps": "3 sets x 15 reps",
     "description": "Lie on back, knees bent, sit all the way up and lower slowly \u2014 full range abs",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 2
   },
   {
     "id": "234",
@@ -2870,7 +2936,8 @@
     "reps": "3 sets x 10 reps each",
     "description": "Mountain climbers at a controlled slow tempo \u2014 pause each knee at the chest for 2 seconds",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 2
   },
   {
     "id": "235",
@@ -2880,7 +2947,8 @@
     "reps": "3 sets x 15 reps",
     "description": "Lie on back, make snow angel arm + leg motion \u2014 lower back down",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 1
   },
   {
     "id": "236",
@@ -2892,7 +2960,8 @@
     "reps": "3 sets x 15 reps",
     "description": "Lie on back, bring one knee and same elbow together simultaneously \u2014 oblique and hip flexor",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 2
   },
   {
     "id": "237",
@@ -2902,7 +2971,8 @@
     "reps": "3 sets x 12 reps",
     "description": "Face down, sweep arms out to sides, lift chest and arms off floor and hold \u2014 lower and mid back",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 1
   },
   {
     "id": "238",
@@ -2912,7 +2982,8 @@
     "reps": "3 sets x 12 reps",
     "description": "Face down, lift arms and legs off floor simultaneously, hold 2s",
     "flagged": false,
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 1
   },
   {
     "id": "239",
@@ -2922,7 +2993,8 @@
     "reps": "3 sets x 15 reps",
     "description": "Lie on back, legs straight up, reach hands up to touch toes \u2014 upper abs",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 2
   },
   {
     "id": "240",
@@ -2932,7 +3004,8 @@
     "reps": "3 sets x 15 reps",
     "description": "Lie on back, pull knees to chest while crunching upper body up to meet them \u2014 full abs",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 1
   },
   {
     "id": "241",
@@ -2942,7 +3015,8 @@
     "reps": "3 sets x 12 reps each",
     "description": "Sit in a V position with hands supported, alternate extending each leg out straight",
     "flagged": false,
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 1
   },
   {
     "id": "242",
@@ -2952,7 +3026,8 @@
     "reps": "3 sets x 12 reps",
     "description": "V-up but open legs wide as you lower \u2014 combines V-up with a jack motion",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 3
   },
   {
     "id": "243",
@@ -2962,7 +3037,8 @@
     "reps": "3 sets x 15 reps",
     "description": "Full v-up followed by a slow crunch \u2014 alternate each rep",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 3
   },
   {
     "id": "244",
@@ -2972,7 +3048,8 @@
     "reps": "3 sets x 15 reps",
     "description": "Lift legs and upper body simultaneously to touch toes at top",
     "flagged": false,
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 3
   },
   {
     "id": "245",
@@ -3231,7 +3308,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 4
   },
   {
     "id": "265",
@@ -3243,7 +3321,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 5
   },
   {
     "id": "266",
@@ -3255,7 +3334,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 3
   },
   {
     "id": "267",
@@ -3267,7 +3347,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Agility"
+    "display_muscle": "Agility",
+    "intensity": 3
   },
   {
     "id": "268",
@@ -3279,7 +3360,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 4
   },
   {
     "id": "269",
@@ -3291,7 +3373,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 3
   },
   {
     "id": "270",
@@ -3303,7 +3386,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Cardio"
+    "display_muscle": "Cardio",
+    "intensity": 3
   },
   {
     "id": "271",
@@ -3315,7 +3399,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Agility"
+    "display_muscle": "Agility",
+    "intensity": 2
   },
   {
     "id": "272",
@@ -3327,7 +3412,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Full Body"
+    "display_muscle": "Full Body",
+    "intensity": 3
   },
   {
     "id": "273",
@@ -3339,7 +3425,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Cardio"
+    "display_muscle": "Cardio",
+    "intensity": 3
   },
   {
     "id": "274",
@@ -3351,7 +3438,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 3
   },
   {
     "id": "275",
@@ -3363,7 +3451,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Legs"
+    "display_muscle": "Legs",
+    "intensity": 3
   },
   {
     "id": "276",
@@ -3375,7 +3464,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 4
   },
   {
     "id": "277",
@@ -3387,7 +3477,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 2
   },
   {
     "id": "278",
@@ -3399,7 +3490,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 4
   },
   {
     "id": "279",
@@ -3411,7 +3503,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Lower Abs"
+    "display_muscle": "Lower Abs",
+    "intensity": 4
   },
   {
     "id": "280",
@@ -3423,7 +3516,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 4
   },
   {
     "id": "281",
@@ -3435,7 +3529,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 4
   },
   {
     "id": "282",
@@ -3447,7 +3542,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Abs"
+    "display_muscle": "Abs",
+    "intensity": 4
   },
   {
     "id": "283",
@@ -3459,7 +3555,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Obliques"
+    "display_muscle": "Obliques",
+    "intensity": 4
   },
   {
     "id": "284",
@@ -3471,7 +3568,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 2
   },
   {
     "id": "285",
@@ -3483,7 +3581,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Lower Abs"
+    "display_muscle": "Lower Abs",
+    "intensity": 4
   },
   {
     "id": "286",
@@ -3495,7 +3594,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 3
   },
   {
     "id": "287",
@@ -3507,7 +3607,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Core"
+    "display_muscle": "Core",
+    "intensity": 4
   },
   {
     "id": "288",
@@ -3519,7 +3620,8 @@
     "flagged": false,
     "tags": "burnout",
     "format": "timed",
-    "display_muscle": "Stability"
+    "display_muscle": "Stability",
+    "intensity": 3
   },
   {
     "id": "289",
