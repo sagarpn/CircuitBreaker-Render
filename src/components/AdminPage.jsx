@@ -47,10 +47,9 @@ export default function AdminPage() {
         'ex_order','display_muscle','intensity']
       const rows = [cols.join('	')]
       for (const ex of data.exercises) {
-        rows.push(cols.map(c => String(ex[c] ?? '').replace(/	/g, ' ')).join('	'))
+        rows.push(cols.map(c => String(ex[c] ?? '').replace(/\t/g, ' ')).join('\t'))
       }
-      const blob = new Blob([rows.join('
-')], { type: 'text/tab-separated-values' })
+      const blob = new Blob([rows.join('\n')], { type: 'text/tab-separated-values' })
       const url  = URL.createObjectURL(blob)
       const a    = document.createElement('a')
       a.href = url; a.download = `circuitbreaker-exercises-${new Date().toISOString().slice(0,10)}.xls`
