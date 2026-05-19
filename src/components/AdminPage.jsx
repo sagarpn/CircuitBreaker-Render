@@ -45,7 +45,7 @@ export default function AdminPage() {
       const cols = ['id','name','category','equipment','reps','description',
         'flagged','system_flagged','tags','format','muscle_group','is_compound',
         'ex_order','display_muscle','intensity']
-      const rows = [cols.join('	')]
+      const rows = [cols.join('\t')]
       for (const ex of data.exercises) {
         rows.push(cols.map(c => String(ex[c] ?? '').replace(/\t/g, ' ')).join('\t'))
       }
@@ -66,9 +66,9 @@ export default function AdminPage() {
       const text = await file.text()
       const lines = text.split('
 ').filter(Boolean)
-      const headers = lines[0].split('	').map(h => h.trim())
+      const headers = lines[0].split('\t').map(h => h.trim())
       const exercises = lines.slice(1).map(line => {
-        const vals = line.split('	')
+        const vals = line.split('\t')
         const obj = {}
         headers.forEach((h, i) => { obj[h] = (vals[i] || '').trim() })
         return obj
