@@ -40,20 +40,22 @@ export default function AdminPage() {
       })
       const data = await res.json()
       if (!data.exercises) return alert('Download failed')
-
-      // Build CSV-style content for Excel compatibility
+      const SEP = '\t'
+      const EOL = '\n'
       const cols = ['id','name','category','equipment','reps','description',
         'flagged','system_flagged','tags','format','muscle_group','is_compound',
         'ex_order','display_muscle','intensity']
-      const rows = [cols.join('\t')]
+      const rows = [cols.join(SEP)]
       for (const ex of data.exercises) {
-        rows.push(cols.map(c => String(ex[c] ?? '').replace(/\t/g, ' ')).join('\t'))
+        rows.push(cols.map(c => String(ex[c] ?? '').replace(/\t/g, ' ')).join(SEP))
       }
-      const blob = new Blob([rows.join('\n')], { type: 'text/tab-separated-values' })
+      const blob = new Blob([rows.join(EOL)], { type: 'text/tab-separated-values' })
       const url  = URL.createObjectURL(blob)
       const a    = document.createElement('a')
-      a.href = url; a.download = `circuitbreaker-exercises-${new Date().toISOString().slice(0,10)}.xls`
-      a.click(); URL.revokeObjectURL(url)
+      a.href = url
+      a.download = 'circuitbreaker-exercises-' + new Date().toISOString().slice(0,10) + '.xls'
+      a.click()
+      URL.revokeObjectURL(url)
     } catch(e) { alert('Download error: ' + e.message) }
   }
 
