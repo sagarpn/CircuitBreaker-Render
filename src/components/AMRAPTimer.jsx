@@ -1,146 +1,146 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { initAudio, sounds } from '../utils/audioEngine'
 import styles from './AMRAPTimer.module.css'
 
-const BLOCK_SECS   = 12 * 60  // 12 minutes
-const REST_SECS    = 90
-const BEEP_TIMES   = [8 * 60, 4 * 60, 0] // countdown remaining: 8min, 4min, done
+const TOTAL_SECS = 12 * 60
+const BEEP_AT    = [8 * 60, 4 * 60]  // seconds remaining
 
-export default function AMRAPTimer({ data, onAddCore, onAddCircuit3 }) {
-  const { block1, block2 } = data
-  const [phase, setPhase]   = useState('idle')  // idle|block1|rest|block2|done
-  const [secs, setSecs]     = useState(BLOCK_SECS)
+function playBeep(freq, dur, vol = 0.3) {
+  try {
+    const ctx  = new (window.AudioContext || window.webkitAudioContext)()
+    const osc  = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc.connect(gain); gain.connect(ctx.destination)
+    osc.frequency.value = freq
+    osc.type = 'sine'
+    gain.gain.setValueAtTime(vol, ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur)
+    osc.start(); osc.stop(ctx.currentTime + dur)
+  } catch(e) {}
+}
+
+function playTripleBeep() {
+  playBeep(523, 0.15); setTimeout(() => playBeep(659, 0.15), 200); setTimeout(() => playBeep(784, 0.4), 400)
+}
+
+function playMidBeep() {
+  playBeep(440, 0.3); setTimeout(() => playBeep(440, 0.3), 400)
+}
+
+export default function AMRAPTimer({ data, onAddCore }) {
+  const { exercises } = data
+  const [phase,  setPhase]  = useState('idle')  // idle | running | done
+  const [secs,   setSecs]   = useState(TOTAL_SECS)
   const [active, setActive] = useState(false)
-  const intervalRef         = useRef(null)
-  const beepedRef           = useRef(new Set())
+  const intervalRef = useRef(null)
+  const beeped      = useRef(new Set())
 
   function getReps(ex) {
-    const r = (ex.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()
-    if (isBurner(ex)) return 'MAX REPS'
-    return r + (r && !r.toLowerCase().includes('timed') ? '+' : '')
+    if (!ex) return ''
+    const isBurn = (ex.tags||'').includes('burnout')
+    if (isBurn) return 'MAX REPS'
+    return (ex.reps || '').replace(/^\d+\s+sets?\s*[x×]\s*/i, '').trim()
   }
-  function isBurner(ex) { const t=ex.tags||''; return t==='burnout'||(typeof t==='string'&&t.includes('burnout')) }
+
+  function isBurnerEx(ex) { return (ex.tags||'').includes('burnout') }
+
+  function fmt(s) {
+    const m = Math.floor(s / 60)
+    const sec = s % 60
+    return m + ':' + String(sec).padStart(2, '0')
+  }
 
   useEffect(() => {
     if (!active) { clearInterval(intervalRef.current); return }
     intervalRef.current = setInterval(() => {
       setSecs(prev => {
         const next = prev - 1
-
-        // Beep at 8min remaining and 4min remaining
-        if ((prev === BLOCK_SECS - 4*60 || prev === BLOCK_SECS - 8*60) && !beepedRef.current.has(prev)) {
-          beepedRef.current.add(prev)
-          sounds.restStart()
+        // Mid beeps at 8 min and 4 min remaining
+        if (BEEP_AT.includes(next) && !beeped.current.has(next)) {
+          beeped.current.add(next)
+          playMidBeep()
         }
-
         if (next <= 0) {
           clearInterval(intervalRef.current)
-          setActive(false)
-          sounds.restEnd()
-          if (phase === 'block1') {
-            setPhase('rest'); setSecs(REST_SECS); beepedRef.current.clear()
-          } else if (phase === 'rest') {
-            setPhase('block2'); setSecs(BLOCK_SECS); beepedRef.current.clear()
-          } else if (phase === 'block2') {
-            setPhase('done')
-          }
+          setActive(false); setPhase('done')
+          playTripleBeep()
           return 0
         }
         return next
       })
     }, 1000)
     return () => clearInterval(intervalRef.current)
-  }, [active, phase])
+  }, [active])
 
   function start() {
-    initAudio()
-    if (phase === 'idle') { setPhase('block1'); setSecs(BLOCK_SECS) }
+    if (phase === 'idle') setPhase('running')
     setActive(true)
   }
   function pause() { setActive(false) }
-  function reset() { setActive(false); setPhase('idle'); setSecs(BLOCK_SECS); beepedRef.current.clear() }
+  function reset() { setActive(false); setPhase('idle'); setSecs(TOTAL_SECS); beeped.current.clear() }
 
-  function fmt(s) {
-    const m = Math.floor(s/60), sec = s%60
-    return `${m}:${String(sec).padStart(2,'0')}`
-  }
-
-  const currentBlock = phase === 'block2' ? block2 : block1
-  const isRest = phase === 'rest'
-  const isDone = phase === 'done'
+  const pct     = ((TOTAL_SECS - secs) / TOTAL_SECS) * 100
+  const isDone  = phase === 'done'
+  const isGoing = phase === 'running' || (phase === 'idle' && secs < TOTAL_SECS)
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <span className={styles.title}>⏱ AMRAP</span>
-        <span className={styles.sub}>As Many Rounds As Possible</span>
+        <span className={styles.title}>AMRAP</span>
+        <span className={styles.sub}>As many rounds as possible in 12 minutes</span>
       </div>
 
-      {/* Timer */}
-      <div className={`${styles.timerBlock} ${isRest ? styles.timerRest : ''} ${isDone ? styles.timerDone : ''}`}>
+      <div className={`${styles.timerBlock} ${isDone ? styles.timerDone : ''}`}>
         <div className={styles.phaseLabel}>
-          {phase==='idle' && 'Ready'}
-          {phase==='block1' && 'Block 1 — 12 Minutes'}
-          {phase==='rest' && '🧘 Rest — 90 Seconds'}
-          {phase==='block2' && 'Block 2 — 12 Minutes'}
-          {phase==='done' && '🏆 Session Complete!'}
+          {phase === 'idle'    && 'Ready — tap Go when you are'}
+          {phase === 'running' && '12 Minute AMRAP'}
+          {phase === 'done'    && 'Time is up — great work!'}
         </div>
         {!isDone && (
-          <div className={styles.clock}>{fmt(secs)}</div>
-        )}
-        {!isDone && (
-          <div className={styles.timerControls}>
-            {!active
-              ? <button className={styles.startBtn} onClick={start}>{phase==='idle'?'Start':'Resume'}</button>
-              : <button className={styles.pauseBtn} onClick={pause}>Pause</button>
-            }
-            <button className={styles.resetBtn} onClick={reset}>Reset</button>
-          </div>
-        )}
-        {phase === 'block1' && !active && secs < BLOCK_SECS && (
-          <div className={styles.beepNote}>Beeps at 4 min and 8 min remaining</div>
+          <>
+            <div className={styles.clock}>{fmt(secs)}</div>
+            <div className={styles.progressBar}>
+              <div className={styles.progressFill} style={{ width: pct + '%' }} />
+            </div>
+            <div className={styles.beepNote}>Beeps at 8 min and 4 min remaining</div>
+            <div className={styles.timerControls}>
+              {!active
+                ? <button className={styles.startBtn} onClick={start}>{phase === 'idle' ? 'Go' : 'Resume'}</button>
+                : <button className={styles.pauseBtn} onClick={pause}>Pause</button>
+              }
+              {isGoing && <button className={styles.resetBtn} onClick={reset}>Reset</button>}
+            </div>
+          </>
         )}
       </div>
 
-      {/* Exercises */}
-      {!isDone && (
-        <div className={styles.exercises}>
-          <div className={styles.blockLabel}>
-            {isRest ? 'Up next — Block 2:' : `${phase==='block2'?'Block 2':'Block 1'} — Keep looping:`}
-          </div>
-          {(isRest ? block2 : currentBlock).map((ex, i) => {
-            const burn = isBurner(ex)
-            return (
-              <div key={ex.id||i} className={`${styles.exercise} ${burn?styles.burnerEx:''}`}>
-                <div className={styles.exLeft}>
-                  <span className={styles.exNum}>{i+1}</span>
-                  <div className={styles.exInfo}>
-                    <span className={styles.exName}>{ex.name}</span>
-                    <span className={`${styles.exReps} ${burn?styles.burnerReps:''}`}>{getReps(ex)}</span>
-                  </div>
-                </div>
-                <div className={styles.exRight}>
-                  {ex.display_muscle && !burn && <span className={styles.muscleBadge}>{ex.display_muscle}</span>}
-                  {burn && <span className={styles.burnerBadge}>BURNER</span>}
+      <div className={styles.exercises}>
+        <div className={styles.loopNote}>Complete this list top to bottom — repeat until time ends</div>
+        {(exercises || []).map((ex, i) => {
+          const burn = isBurnerEx(ex)
+          return (
+            <div key={ex.id || i} className={styles.exercise + ' ' + (burn ? styles.burnerEx : '')}>
+              <div className={styles.exLeft}>
+                <span className={styles.exNum}>{i + 1}</span>
+                <div className={styles.exInfo}>
+                  <span className={styles.exName}>{ex.name}</span>
+                  <span className={styles.exReps + ' ' + (burn ? styles.burnerReps : '')}>
+                    {getReps(ex)}
+                  </span>
                 </div>
               </div>
-            )
-          })}
-          <div className={styles.loopNote}>↑ Repeat until timer ends</div>
-        </div>
-      )}
+              <div className={styles.exRight}>
+                {ex.display_muscle && !burn && <span className={styles.muscleBadge}>{ex.display_muscle}</span>}
+                {burn && <span className={styles.burnerBadge}>FINISHER</span>}
+              </div>
+            </div>
+          )
+        })}
+        <div className={styles.arrowNote}>↑ Back to top — go again</div>
+      </div>
 
-      {isDone && (
-        <div className={styles.doneSection}>
-          <div className={styles.doneText}>You crushed it. Both blocks done.</div>
-          <div className={styles.addOns}>
-            {onAddCore && (
-              <button className={styles.addBtn} onClick={onAddCore}>💪 Add Core Round</button>
-            )}
-            {onAddCircuit3 && (
-              <button className={styles.addBtn} onClick={onAddCircuit3}>+ Add Circuit</button>
-            )}
-          </div>
+      {isDone && onAddCore && (
+        <div className={styles.addOns}>
+          <button className={styles.addBtn} onClick={onAddCore}>💪 Add Core Round</button>
         </div>
       )}
     </div>

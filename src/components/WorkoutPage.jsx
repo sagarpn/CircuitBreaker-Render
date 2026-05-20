@@ -176,7 +176,7 @@ export default function WorkoutPage({ onGenerate }) {
       const res = await fetch('/api/exercises')
       const allEx = await res.json()
       const amrapData = generateAMRAP(allEx, false)
-      setHiitData({ type:'amrap', ...amrapData })
+      setHiitData({ type:'amrap', exercises: amrapData.exercises })
       setGenerated(true); setLoading(false); setSplashing(false)
       requestWakeLock()
       return
@@ -185,7 +185,7 @@ export default function WorkoutPage({ onGenerate }) {
       const res = await fetch('/api/exercises')
       const allEx = await res.json()
       const l7Data = generateLucky7s(allEx, false)
-      setHiitData({ type:'lucky7', ...l7Data })
+      setHiitData({ type:'lucky7', rounds: l7Data.rounds, six: l7Data.six, burner: l7Data.burner })
       setGenerated(true); setLoading(false); setSplashing(false)
       requestWakeLock()
       return
@@ -573,7 +573,7 @@ export default function WorkoutPage({ onGenerate }) {
         </div>
       )}
 
-      {workout && generated && (
+      {workout && generated && !hiitData && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
             <div className={styles.workoutHeaderTop}>

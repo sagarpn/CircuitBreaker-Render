@@ -105,6 +105,9 @@ async function initDB() {
       'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS display_muscle  TEXT',
       'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS intensity       INTEGER',
       'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS system_flagged  BOOLEAN DEFAULT false',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS slot_order     INTEGER',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS amrap          TEXT',
+      'ALTER TABLE exercises ADD COLUMN IF NOT EXISTS lucky7         TEXT',
     ]) { await client.query(col).catch(() => {}) }
 
     // ── Backup table — mirrors exercises exactly ──────────
@@ -248,6 +251,8 @@ async function getExercises() {
     display_muscle: r.display_muscle || '',
     intensity: r.intensity || null,
     system_flagged: r.system_flagged || false,
+    slot_order: r.slot_order || r.ex_order || null,
+    amrap: r.amrap || '', lucky7: r.lucky7 || '',
   }))
 }
 
@@ -538,17 +543,47 @@ initDB().then(() => {
 app.get('/api/admin/download-exercises', requireAdmin, async (req, res) => {
   try {
     const { rows } = await pool.query('SELECT * FROM exercises ORDER BY category, name ASC')
-    const data = rows.map(r => ({
-      id: r.id, name: r.name, category: r.category,
-      equipment: Array.isArray(r.equipment) ? r.equipment.join(', ') : (r.equipment || ''),
-      reps: r.reps || '', description: r.description || '',
-      flagged: r.flagged ? 'yes' : 'no',
-      system_flagged: r.system_flagged ? 'yes' : 'no',
-      tags: r.tags || '', format: r.format || '',
-      muscle_group: r.muscle_group || '', is_compound: r.is_compound ? 'yes' : 'no',
-      ex_order: r.ex_order || '', display_muscle: r.display_muscle || '',
-      intensity: r.intensity || '',
-    }))
+    const data = rows.map(r => {
+      const eq = Array.isArray(r.equipment) ? r.equipment : []
+      const tags = r.tags || ''
+      const isBurner = tags === 'burnout' || tags.includes('burnout')
+      const repsStr = r.reps || ''
+      // Extract reps/sets from "3 sets x 12 reps"
+      const m = repsStr.match(/(\d+)\s+sets?\s*[x×]\s*(\d+)/i)
+      const setsVal = m ? m[1] : ''
+      const repsVal = m ? m[2] : ''
+      const toFail  = /to failure|max reps|max effort/i.test(repsStr) ? 'yes' : ''
+      // max_reps_timed from description
+      const tm = (r.description||'').match(/(\d+)\s*(?:sec|second)/i)
+      const maxTimed = tm ? tm[1] : ''
+      const nm = (r.name||'').toLowerCase()
+      return {
+        id:             r.id || '',
+        name:           r.name || '',
+        description:    r.description || '',
+        hiit:           r.category === 'hiit' ? 'yes' : '',
+        strength:       (r.category === 'upper' || r.category === 'lower') ? 'yes' : '',
+        core:           r.category === 'core' ? 'yes' : '',
+        amrap:          r.amrap || '',
+        lucky7:         r.lucky7 || '',
+        compound:       r.is_compound ? 'yes' : '',
+        burner:         isBurner ? 'yes' : '',
+        unilateral:     /each side|each leg|each arm/i.test(repsStr) ? 'yes' : '',
+        plyometric:     ['jump','bound','hop','tuck jump','star jump','broad jump'].some(k=>nm.includes(k)) ? 'yes' : '',
+        bodyweight:     (!eq.length || eq.every(e=>e==='none')) ? 'yes' : '',
+        dumbbells:      eq.includes('dumbbells') ? 'yes' : '',
+        bench:          eq.includes('bench') ? 'yes' : '',
+        reps:           repsVal,
+        sets:           setsVal,
+        to_failure:     toFail,
+        max_reps_timed: maxTimed,
+        muscle_group:   r.muscle_group || '',
+        display_muscle: r.display_muscle || '',
+        intensity:      r.intensity || '',
+        slot_order:     r.slot_order || r.ex_order || '',
+        flagged:        r.flagged ? 'yes' : '',
+      }
+    })
     res.json({ exercises: data, count: data.length })
   } catch(e) { res.status(500).json({ error: e.message }) }
 })
