@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import Circuit      from './Circuit'
 import FloatingTimer from './FloatingTimer'
 import QuoteSplash  from './QuoteSplash'
+import Lucky7s      from './Lucky7s'
+import AMRAPTimer   from './AMRAPTimer'
+import { generateWorkout, generateLucky7s, generateAMRAP } from '../utils/workoutGenerator'
 import styles       from './WorkoutPage.module.css'
 
 const QUOTES = [
