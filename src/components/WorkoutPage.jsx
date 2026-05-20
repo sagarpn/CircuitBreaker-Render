@@ -751,30 +751,30 @@ export default function WorkoutPage({ onGenerate }) {
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
             <div className={styles.workoutHeaderTop}>
-                <h2 className={styles.workoutTitle}>{workoutName}</h2>
-                <div className={styles.workoutActions}>
-                  <button className={styles.actionBtn} onClick={() => {
-                    const fmt = (exs) => (exs||[]).map(e =>
-                      `  • ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`
-                    ).join('\n')
-                    const lines = [`🏋️ ${workoutName}`,'','CIRCUIT 1',fmt(workout.circuit1),'','CIRCUIT 2',fmt(workout.circuit2)]
-                    if (circuit3) { lines.push('','CIRCUIT 3',fmt(circuit3)) }
-                    lines.push('','circuitbreaker.onrender.com')
-                    navigator.clipboard?.writeText(lines.join('\n'))
-                      .then(()=>alert('Copied!')).catch(()=>alert('Could not copy'))
-                  }} title="Copy workout">📋</button>
-                  <button
-                    className={`${styles.actionBtnSave} ${workoutSaved ? styles.actionBtnSaved : ''}`}
-                    onClick={saveWorkout} disabled={workoutSaved}
-                    title={workoutSaved ? 'Saved' : 'Save workout'}>
-                    {workoutSaved ? '⭐' : '☆'}
-                  </button>
-                </div>
+              <h2 className={styles.workoutTitle}>{workoutName}</h2>
+              <div className={styles.workoutActions}>
+                <button className={styles.actionBtn} onClick={() => {
+                  const fmt = (exs) => (exs||[]).map(e =>
+                    `  • ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`
+                  ).join('\n')
+                  const lines = [`🏋️ ${workoutName}`,'','CIRCUIT 1',fmt(workout.circuit1),'','CIRCUIT 2',fmt(workout.circuit2)]
+                  if (circuit3) { lines.push('','CIRCUIT 3',fmt(circuit3)) }
+                  lines.push('','circuitbreaker.onrender.com')
+                  navigator.clipboard?.writeText(lines.join('\n'))
+                    .then(()=>alert('Copied!')).catch(()=>alert('Could not copy'))
+                }} title="Copy workout">📋</button>
+                <button
+                  className={`${styles.actionBtnSave} ${workoutSaved ? styles.actionBtnSaved : ''}`}
+                  onClick={saveWorkout} disabled={workoutSaved}
+                  title={workoutSaved ? 'Saved' : 'Save workout'}>
+                  {workoutSaved ? '⭐' : '☆'}
+                </button>
               </div>
-              <div className={styles.workoutTags}>
-                <span className={styles.tag}>{FOCUS_LABELS[focus]}</span>
-                <span className={styles.tag}>{STYLE_LABELS[style]}</span>
-              </div>
+            </div>
+            <div className={styles.workoutTags}>
+              <span className={styles.tag}>{FOCUS_LABELS[focus]}</span>
+              <span className={styles.tag}>{STYLE_LABELS[style]}</span>
+            </div>
           </div>
 
           {/* Workout summary — one line */}
