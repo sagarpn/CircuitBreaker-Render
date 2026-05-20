@@ -772,7 +772,9 @@ export default function WorkoutPage({ onGenerate }) {
               </div>
             </div>
             <div className={styles.workoutTags}>
-              <span className={styles.tag}>{FOCUS_LABELS[focus]}</span>
+              {focus && FOCUS_LABELS[focus] && (
+                <span className={styles.tag}>{FOCUS_LABELS[focus]}</span>
+              )}
               <span className={styles.tag}>{STYLE_LABELS[style]}</span>
             </div>
           </div>
