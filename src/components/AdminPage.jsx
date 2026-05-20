@@ -36,18 +36,75 @@ export default function AdminPage() {
       const res  = await fetch('/api/admin/download-exercises', { headers: { 'x-admin-password': password } })
       const data = await res.json()
       if (!data.exercises) return alert('Download failed')
-      const SEP  = '\t'
-      const EOL  = '\n'
-      const cols = ['id','name','category','equipment','reps','description','flagged','system_flagged','tags','format','muscle_group','is_compound','ex_order','display_muscle','intensity']
-      const out  = [cols.join(SEP)]
+
+      const SEP = '\t'
+      const EOL = '\n'
+
+      // ── Main sheet columns
+      const cols = [
+        'id','name','description','category',
+        'hiit','strength','core',
+        'amrap','lucky7',
+        'compound','burner','core_burner','hiit_burner','unilateral','plyometric',
+        'bodyweight','dumbbells','bench',
+        'reps','sets','to_failure','timed','max_reps_timed',
+        'muscle_group','display_muscle','intensity','slot_order',
+        'flagged','system_flagged'
+      ]
+      const mainLines = [cols.join(SEP)]
       for (const ex of data.exercises) {
-        out.push(cols.map(c => String(ex[c] == null ? '' : ex[c]).replace(/\t/g, ' ')).join(SEP))
+        mainLines.push(cols.map(c => String(ex[c] == null ? '' : ex[c]).replace(/\t/g,' ')).join(SEP))
       }
-      const blob = new Blob([out.join(EOL)], { type: 'text/tab-separated-values' })
+
+      // ── Legend sheet
+      const legend = [
+        ['COLUMN','ACCEPTED VALUES','NOTES'],
+        ['id','1-317 (number)','Do not change'],
+        ['name','Text','Exercise name'],
+        ['description','Text','How to perform it'],
+        ['category','upper / lower / core / hiit','Primary category'],
+        ['hiit','yes / blank','Is a HIIT exercise'],
+        ['strength','yes / blank','Is a strength exercise (upper or lower)'],
+        ['core','yes / blank','Is a core exercise'],
+        ['amrap','yes / blank','Eligible for AMRAP format'],
+        ['lucky7','yes / blank','Eligible for Lucky 7s format'],
+        ['compound','yes / blank','Multi-joint movement (bench press, squat, row)'],
+        ['burner','yes / blank','Burnout/finisher exercise — goes last in circuit'],
+        ['core_burner','yes / blank','Core burnout exercise'],
+        ['hiit_burner','yes / blank','HIIT burnout exercise'],
+        ['unilateral','yes / blank','Single side — exercise done each side'],
+        ['plyometric','yes / blank','Jumping or explosive movement'],
+        ['bodyweight','yes / blank','No equipment needed'],
+        ['dumbbells','yes / blank','Requires dumbbells'],
+        ['bench','yes / blank','Requires bench'],
+        ['reps','Number only e.g. 12','Rep count only — no sets prefix'],
+        ['sets','Number only e.g. 3','Number of sets'],
+        ['to_failure','yes / blank','Do until failure (no fixed rep count)'],
+        ['timed','yes / blank','Time-based exercise (hold, seconds)'],
+        ['max_reps_timed','Seconds e.g. 30','Max reps in X seconds'],
+        ['muscle_group','chest / back / shoulders / biceps / triceps / quads / glutes / hamstrings / core','Primary muscle'],
+        ['display_muscle','Chest / Back / Shoulders / Biceps / Triceps / Quads / Glutes / Hamstrings / Stability / Abs / Obliques / Lower Abs / Full Body / Cardio / Agility / Power / Legs / Calves','Label shown on card'],
+        ['intensity','1 / 2 / 3 / 4 / 5','1=easy 2=low 3=moderate 4=hard 5=max effort'],
+        ['slot_order','1 / 2 / 3','Upper body only: 1=lead compound 2=secondary 3=isolation'],
+        ['flagged','yes / blank','Admin flagged — hidden from workouts'],
+        ['system_flagged','yes / blank','Auto-flagged — removed from seed file'],
+      ]
+      const legendLines = legend.map(row => row.join(SEP))
+
+      // Write two sheets as separate sections in the TSV with a blank row between
+      const fullContent = [
+        '=== EXERCISES ===',
+        ...mainLines,
+        '',
+        '=== LEGEND ===',
+        ...legendLines
+      ].join(EOL)
+
+      const blob = new Blob([fullContent], { type: 'text/tab-separated-values' })
       const url  = URL.createObjectURL(blob)
       const a    = document.createElement('a')
       a.href = url
-      a.download = 'circuitbreaker-exercises-' + new Date().toISOString().slice(0,10) + '.xls'
+      a.download = 'circuitbreaker-exercises-' + new Date().toISOString().slice(0,10) + '.tsv'
       a.click()
       URL.revokeObjectURL(url)
     } catch (e) { alert('Download error: ' + e.message) }

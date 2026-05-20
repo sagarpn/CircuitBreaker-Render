@@ -167,7 +167,9 @@ export default function WorkoutPage({ onGenerate }) {
       return
     }
 
-    // Standard circuit — call API
+    // Standard circuit — fetch data AND show splash in parallel
+    // Store a promise so onSplashDone can wait for data if needed
+    setQuote(q); setWorkoutName(name); setSplashing(true)
     try {
       const res  = await fetch('/api/generate', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -176,11 +178,13 @@ export default function WorkoutPage({ onGenerate }) {
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Failed to generate')
       pendingWorkout.current = { data, name, q, hf: 'circuit' }
-      setQuote(q); setWorkoutName(name); setSplashing(true)
-    } catch (e) { setError(e.message); setLoading(false) }
+    } catch (e) {
+      setError(e.message); setLoading(false); setSplashing(false)
+    }
   }
 
   async function onSplashDone() {
+    if (!pendingWorkout.current) { setLoading(false); setSplashing(false); return }
     const { data, name, hf } = pendingWorkout.current
 
     if (hf === 'amrap') {

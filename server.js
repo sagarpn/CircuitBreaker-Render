@@ -544,49 +544,64 @@ app.get('/api/admin/download-exercises', requireAdmin, async (req, res) => {
   try {
     const { rows } = await pool.query('SELECT * FROM exercises ORDER BY category, name ASC')
     const data = rows.map(r => {
-      const eq = Array.isArray(r.equipment) ? r.equipment : []
+      const eq  = Array.isArray(r.equipment) ? r.equipment : []
       const tags = r.tags || ''
-      const isBurner = tags === 'burnout' || tags.includes('burnout')
+      const isBurn = tags === 'burnout' || tags.includes('burnout')
       const repsStr = r.reps || ''
-      // Extract reps/sets from "3 sets x 12 reps"
-      const m = repsStr.match(/(\d+)\s+sets?\s*[x×]\s*(\d+)/i)
-      const setsVal = m ? m[1] : ''
-      const repsVal = m ? m[2] : ''
-      const toFail  = /to failure|max reps|max effort/i.test(repsStr) ? 'yes' : ''
-      // max_reps_timed from description
-      const tm = (r.description||'').match(/(\d+)\s*(?:sec|second)/i)
+      // Extract reps only (strip "3 sets x")
+      const m = repsStr.match(/\d+\s+sets?\s*[x×]\s*(\d+)/i)
+      const repsOnly = m ? m[1] : (repsStr.replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim())
+      const setsOnly = repsStr.match(/^(\d+)\s+sets?/i) ? repsStr.match(/^(\d+)\s+sets?/i)[1] : ''
+      const toFail   = /to failure|max reps|max effort/i.test(repsStr) ? 'yes' : ''
+      const timed    = r.format === 'timed' ? 'yes' : ''
+      const tm       = (r.description||'').match(/(\d+)\s*(?:sec|second)/i)
       const maxTimed = tm ? tm[1] : ''
-      const nm = (r.name||'').toLowerCase()
+      const nm       = (r.name||'').toLowerCase()
+      const bw       = (!eq.length || eq.every(e=>!e||e==='none')) ? 'yes' : ''
       return {
-        id:             r.id || '',
+        id:             "'" + (r.id||''),   // prefix ' to prevent scientific notation in Excel
         name:           r.name || '',
         description:    r.description || '',
-        hiit:           r.category === 'hiit' ? 'yes' : '',
-        strength:       (r.category === 'upper' || r.category === 'lower') ? 'yes' : '',
-        core:           r.category === 'core' ? 'yes' : '',
+        // Category
+        category:       r.category || '',
+        hiit:           r.category==='hiit' ? 'yes' : '',
+        strength:       (r.category==='upper'||r.category==='lower') ? 'yes' : '',
+        core:           r.category==='core' ? 'yes' : '',
+        // Format eligibility
         amrap:          r.amrap || '',
         lucky7:         r.lucky7 || '',
+        // Exercise type
         compound:       r.is_compound ? 'yes' : '',
-        burner:         isBurner ? 'yes' : '',
+        burner:         isBurn ? 'yes' : '',
+        core_burner:    (r.category==='core' && isBurn) ? 'yes' : '',
+        hiit_burner:    (r.category==='hiit' && isBurn) ? 'yes' : '',
         unilateral:     /each side|each leg|each arm/i.test(repsStr) ? 'yes' : '',
-        plyometric:     ['jump','bound','hop','tuck jump','star jump','broad jump'].some(k=>nm.includes(k)) ? 'yes' : '',
-        bodyweight:     (!eq.length || eq.every(e=>e==='none')) ? 'yes' : '',
+        plyometric:     ['jump','bound','hop','tuck jump','star jump'].some(k=>nm.includes(k)) ? 'yes' : '',
+        // Equipment
+        bodyweight:     bw,
         dumbbells:      eq.includes('dumbbells') ? 'yes' : '',
         bench:          eq.includes('bench') ? 'yes' : '',
-        reps:           repsVal,
-        sets:           setsVal,
+        // Reps
+        reps:           repsOnly,
+        sets:           setsOnly,
         to_failure:     toFail,
+        timed:          timed,
         max_reps_timed: maxTimed,
+        // Muscle
         muscle_group:   r.muscle_group || '',
         display_muscle: r.display_muscle || '',
         intensity:      r.intensity || '',
+        // Circuit ordering
         slot_order:     r.slot_order || r.ex_order || '',
+        // Status
         flagged:        r.flagged ? 'yes' : '',
+        system_flagged: r.system_flagged ? 'yes' : '',
       }
     })
     res.json({ exercises: data, count: data.length })
   } catch(e) { res.status(500).json({ error: e.message }) }
 })
+
 
 // ── Admin: Upload/replace exercises from JSON ─────────────
 app.post('/api/admin/upload-exercises', requireAdmin, async (req, res) => {
