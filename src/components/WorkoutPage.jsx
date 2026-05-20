@@ -159,6 +159,7 @@ export default function WorkoutPage({ onGenerate }) {
   const [hiitData,    setHiitData]    = useState(null)
   const [amrapCount,  setAmrapCount]  = useState(0)
   const [resetSplash, setResetSplash] = useState(false)
+  const [resetLabel,  setResetLabel]  = useState('')
   const [amrapLoading,setAmrapLoading]= useState(false)
   const [loadingC3,   setLoadingC3]   = useState(false)
   const [history,     setHistory]     = useState([])
@@ -206,12 +207,12 @@ export default function WorkoutPage({ onGenerate }) {
 
   function getWorkoutTypeLabel() {
     if (hiitData) {
-      if (hiitData.type === 'amrap')   return 'HIIT · AMRAP'
-      if (hiitData.type === 'lucky7')  return 'HIIT · Lucky 7s'
-      return 'HIIT · Circuit'
+      if (hiitData.type === 'amrap')   return 'HIIT AMRAP'
+      if (hiitData.type === 'lucky7')  return 'HIIT Lucky 7s'
+      return 'HIIT Circuit'
     }
     if (style === 'combo') return 'HIIT + Strength'
-    if (style === 'hiit')  return 'HIIT · Circuit'
+    if (style === 'hiit')  return 'HIIT Circuit'
     if (style === 'strength') {
       if (focus === 'upper') return 'Upper Strength'
       if (focus === 'lower') return 'Lower Strength'
@@ -616,8 +617,11 @@ export default function WorkoutPage({ onGenerate }) {
       {/* Reset splash */}
       {resetSplash && (
         <ResetSplash
-          workoutType={getWorkoutTypeLabel()}
-          onDone={() => setResetSplash(false)}
+          workoutType={resetLabel}
+          onDone={() => {
+            setResetSplash(false)
+            handleReset()
+          }}
         />
       )}
 
@@ -672,8 +676,8 @@ export default function WorkoutPage({ onGenerate }) {
           )}
           <div className={styles.footer}>
             <button className={styles.newWorkoutBtn} onClick={() => {
+              setResetLabel(getWorkoutTypeLabel())
               setResetSplash(true)
-              handleReset()
             }}>↺ Generate Another Workout</button>
           </div>
         </div>
@@ -736,8 +740,8 @@ export default function WorkoutPage({ onGenerate }) {
           )}
           <div className={styles.footer}>
             <button className={styles.newWorkoutBtn} onClick={() => {
+              setResetLabel(getWorkoutTypeLabel())
               setResetSplash(true)
-              handleReset()
             }}>↺ Generate Another Workout</button>
           </div>
         </div>
@@ -865,8 +869,8 @@ export default function WorkoutPage({ onGenerate }) {
           )}
           <div className={styles.footer}>
             <button className={styles.newWorkoutBtn} onClick={() => {
+              setResetLabel(getWorkoutTypeLabel())
               setResetSplash(true)
-              handleReset()
             }}>↺ Generate Another Workout</button>
           </div>
         </div>
