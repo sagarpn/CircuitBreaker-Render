@@ -152,3 +152,11 @@
   text-align: center; padding: 8px;
   opacity: 0.7; font-style: italic;
 }
+.exDesc {
+  font-size: 10px;
+  color: var(--muted);
+  opacity: 0.55;
+  line-height: 1.3;
+  display: block;
+  margin-top: 1px;
+}

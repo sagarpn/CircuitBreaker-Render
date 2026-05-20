@@ -89,9 +89,6 @@ export default function Lucky7s({ data, onAddCore }) {
                         <span className={styles.exNum}>{ei + 1}</span>
                         <div className={styles.exDetails}>
                           <span className={styles.exName}>{ex.name}</span>
-                          {ex.description && !burn && (
-                            <span className={styles.exDesc}>{ex.description}</span>
-                          )}
                         </div>
                         <span className={`${styles.exReps} ${burn ? styles.burnerReps : ''}`}>
                           {burn ? 'MAX REPS' : getReps(ex) + '+'}

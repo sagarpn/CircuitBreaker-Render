@@ -105,6 +105,9 @@ export default function AMRAPTimer({ data, onAddCore, onAnotherAMRAP, amrapCount
               <div className={styles.exInfo}>
                 <span className={styles.exName}>{ex.name}</span>
                 <span className={`${styles.exReps} ${burn?styles.burnerReps:''}`}>{getReps(ex)}</span>
+                {ex.description && !burn && (
+                  <span className={styles.exDesc}>{ex.description}</span>
+                )}
               </div>
               {ex.display_muscle && !burn && <span className={styles.badge}>{ex.display_muscle}</span>}
               {burn && <span className={styles.burnerBadge}>FINISHER</span>}
