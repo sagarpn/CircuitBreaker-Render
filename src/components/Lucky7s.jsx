@@ -14,6 +14,7 @@ export default function Lucky7s({ data, onAddCore }) {
     <div className={styles.container}>
       {/* Header */}
       <div className={styles.intro}>
+        <div className={styles.lucky777}>7️⃣7️⃣7️⃣</div>
         <div className={styles.tagline}>7 exercises · drop one each round · burner always last</div>
         <div className={styles.bodyNote}>Rest when you need it — check in with your body every round</div>
       </div>

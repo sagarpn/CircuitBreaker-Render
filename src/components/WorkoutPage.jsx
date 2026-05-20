@@ -7,6 +7,42 @@ import AMRAPTimer   from './AMRAPTimer'
 import { generateWorkout, generateLucky7s, generateAMRAP } from '../utils/workoutGenerator'
 import styles       from './WorkoutPage.module.css'
 
+const HIIT_QUOTES = [
+  "no equipment. no excuses.",
+  "your lungs called. they said keep going.",
+  "breathless is the goal.",
+  "zero equipment. zero excuses.",
+  "light work. heavy sweat.",
+  "move fast. breathe hard. feel alive.",
+  "bodyweight only. ego optional.",
+  "if you can talk you can go harder.",
+  "no bar. no bench. no mercy.",
+  "the floor is your gym. the clock is your enemy.",
+  "no weights. no problem. just suffering.",
+  "rest is for after.",
+  "explosions in the gym. that's just cardio.",
+  "sweat is just fat crying.",
+  "fast reps. deep breaths. bad ideas.",
+]
+
+const COMBO_QUOTES = [
+  "no limits. no excuses.",
+  "lift heavy. move fast. repeat.",
+  "strength meets speed. chaos begins.",
+  "gains and gasps. in that order.",
+  "push. pull. sprint. repeat.",
+  "no rest for the well-rounded.",
+  "half strength. half cardio. full send.",
+  "iron and cardio. the ultimate duo.",
+  "you came for gains. you stayed for the burn.",
+  "strong enough to lift. fit enough to run.",
+  "the combo meal of pain.",
+  "no slow days. no soft work.",
+  "no easy sets. no wasted reps.",
+  "when one workout isn't enough.",
+  "dumbbell in one hand. dignity in the other.",
+]
+
 const QUOTES = [
   "sweat now, shine later","your only competition is yesterday's you",
   "one more rep — always one more rep","earn it","stronger every single day",
@@ -82,7 +118,11 @@ function pickName(focus, style, hiitFormat) {
   const list = WORKOUT_NAMES[key] || WORKOUT_NAMES['whole_hiit'] || ["The Grind Session"]
   return list[Math.floor(Math.random() * list.length)]
 }
-function pickQuote() { return QUOTES[Math.floor(Math.random() * QUOTES.length)] }
+function pickQuote(style) {
+  const pool = style === 'hiit'  ? HIIT_QUOTES  :
+               style === 'combo' ? COMBO_QUOTES : QUOTES
+  return pool[Math.floor(Math.random() * pool.length)]
+}
 function todayStr()  { return new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) }
 
 const FOCUS_OPTIONS = [
@@ -168,7 +208,7 @@ export default function WorkoutPage({ onGenerate }) {
 
     setLoading(true); setError(null)
     const name = pickName(focus, style, hiitFormat)
-    const q    = pickQuote()
+    const q    = pickQuote(style)
     setQuote(q); setWorkoutName(name)
 
     try {
@@ -430,10 +470,10 @@ export default function WorkoutPage({ onGenerate }) {
               <div className={styles.equipmentSection}>
                 <div className={styles.dumbbellNote}>
                   {style === 'hiit'
-                    ? '⚡ Bodyweight only. Pure effort required.'
+                    ? '⚡ No equipment. No excuses.'
                     : style === 'combo'
-                    ? '🔥 Dumbbells in. No excuses left.'
-                    : '🏋️ Dumbbells in. No excuses left.'}
+                    ? '🔥 No limits. No excuses.'
+                    : '🏋️ Dumbbells in. Excuses Out.'}
                 </div>
               </div>
             )}

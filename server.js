@@ -340,9 +340,23 @@ app.post('/api/generate-circuit', generateLimiter, async (req, res) => {
 
     // Core round — 2 core + 1 core burner
     if (roundType === 'core') {
-      const cores   = shuffle(cleanEx.filter(e => e.category==='core' && !isBurner(e) && !usedSet.has(e.id)))
-      const cBurner = shuffle(cleanEx.filter(e => e.category==='core' && isBurner(e) && !usedSet.has(e.id)))
-      const circuit = [...cores.slice(0,2), ...(cBurner.slice(0,1))]
+      // Mix: 1 rep-based + 1 timed/hold + 1 core burner
+      function isTimed(e) {
+        return e.format==='timed' || isBurner(e) ||
+          (e.reps||'').toLowerCase().includes('second') ||
+          (e.name||'').toLowerCase().includes('hold')
+      }
+      const coresReps  = shuffle(cleanEx.filter(e => e.category==='core' && !isBurner(e) && !isTimed(e) && !usedSet.has(e.id)))
+      const coresTimed = shuffle(cleanEx.filter(e => e.category==='core' && !isBurner(e) && isTimed(e)  && !usedSet.has(e.id)))
+      const cBurner    = shuffle(cleanEx.filter(e => e.category==='core' && isBurner(e) && !usedSet.has(e.id)))
+      const coresAll   = shuffle(cleanEx.filter(e => e.category==='core' && !isBurner(e) && !usedSet.has(e.id)))
+      // Slot 1: rep-based core
+      const s1 = coresReps[0] || coresAll[0]
+      // Slot 2: timed core (different from slot 1)
+      const s2 = coresTimed.find(e => e.id !== s1?.id) || coresAll.find(e => e.id !== s1?.id)
+      // Slot 3: core burner
+      const s3 = cBurner[0]
+      const circuit = [s1, s2, s3].filter(Boolean)
       return res.json({ circuit })
     }
 

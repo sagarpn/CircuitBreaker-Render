@@ -114,8 +114,8 @@ export default function AMRAPTimer({ data, onAddCore, onAnotherAMRAP }) {
         <div className={styles.loopArrow}>↑ Back to top — go again</div>
       </div>
 
-      {/* Add-ons — shown when done */}
-      {done && (
+      {/* Add-ons — shown always below exercises */}
+      {(onAnotherAMRAP || onAddCore) && (
         <div className={styles.addOns}>
           {onAnotherAMRAP && (
             <button className={styles.addBtn} onClick={onAnotherAMRAP}>🔁 One More AMRAP</button>
