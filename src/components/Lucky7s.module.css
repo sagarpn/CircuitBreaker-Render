@@ -54,6 +54,16 @@
   font-size: 10px; color: var(--muted); opacity: 0.55;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
+.roundRight { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+.collapseIcon { font-size:10px; color:var(--muted); opacity:0.5; }
+.doneHint { font-size:10px; color:var(--accent); opacity:0.6; font-style:italic; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.round1Note {
+  font-size:11px; color:var(--muted); font-style:italic;
+  padding:4px 0 8px; border-bottom:1px solid var(--border); margin-bottom:6px;
+  opacity:0.7;
+}
+.exDetails { display:flex; flex-direction:column; gap:1px; flex:1; min-width:0; }
+.exDesc { font-size:10px; color:var(--muted); opacity:0.6; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .doneBtn {
   background: var(--surface2);
   border: 1px solid var(--border);

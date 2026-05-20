@@ -201,7 +201,8 @@ async function initDB() {
           }
         } else {
           try {
-            const id = (Date.now() + added + updated).toString()
+            const { rows: maxRow } = await client.query('SELECT COALESCE(MAX(CAST(id AS BIGINT)), 0) + 1 as next_id FROM exercises WHERE id ~ \'^\\\\d+$\'')
+          const id = maxRow[0].next_id.toString()
             await client.query(
               `INSERT INTO exercises (id, name, category, equipment, reps, description, flagged, tags, format, muscle_group, is_compound, ex_order, display_muscle)
                VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)`,
@@ -496,7 +497,8 @@ app.post('/api/admin/exercises', requireAdmin, async (req, res) => {
   const { name, category, equipment, reps, description,
           muscle_group, intensity, amrap, lucky7, compound, burner } = req.body
   if (!name || !category || !reps) return res.status(400).json({ error: 'name, category, reps required' })
-  const id   = Date.now().toString()
+  const { rows: maxId } = await pool.query('SELECT COALESCE(MAX(CAST(id AS BIGINT)), 0) + 1 as next_id FROM exercises WHERE id ~ \'^\\\\d+$\'')
+  const id   = maxId[0].next_id.toString()
   const tags = burner === 'yes' ? 'burnout' : ''
   const fmt  = burner === 'yes' ? 'timed' : 'reps'
   const disp = muscle_group ? muscle_group.charAt(0).toUpperCase()+muscle_group.slice(1) : null
@@ -766,7 +768,8 @@ app.post('/api/admin/upload-exercises', requireAdmin, async (req, res) => {
           )
           updated++; updatedNames.push(name)
         } else {
-          const id = (Date.now() + added).toString()
+          const { rows: maxRow2 } = await client.query('SELECT COALESCE(MAX(CAST(id AS BIGINT)), 0) + 1 as next_id FROM exercises WHERE id ~ \'^\\\\d+$\'')
+          const id = (parseInt(maxRow2[0].next_id) + added).toString()
           await client.query(
             `INSERT INTO exercises (id,name,category,equipment,reps,description,flagged,
              tags,format,muscle_group,is_compound,slot_order,display_muscle,intensity,

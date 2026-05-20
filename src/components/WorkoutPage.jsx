@@ -611,6 +611,11 @@ export default function WorkoutPage({ onGenerate }) {
               <span className={styles.tag}>Lucky 7s</span>
             </div>
           </div>
+          <div className={styles.workoutSummary}>
+            <span className={styles.summaryMuscles}>7 rounds · {(hiitData.six||[]).length + 1} exercises</span>
+            <span className={styles.summaryDot}>·</span>
+            <span className={styles.summaryExtra}>one exercise drops each round</span>
+          </div>
           <Lucky7s
             data={hiitData}
             onAddCore={() => handleAddCircuit('core')}
@@ -654,6 +659,11 @@ export default function WorkoutPage({ onGenerate }) {
               <span className={styles.tag}>HIIT</span>
               <span className={styles.tag}>AMRAP</span>
             </div>
+          </div>
+          <div className={styles.workoutSummary}>
+            <span className={styles.summaryMuscles}>12 min · {(hiitData.exercises||[]).length} exercises</span>
+            <span className={styles.summaryDot}>·</span>
+            <span className={styles.summaryExtra}>loop as many rounds as you can</span>
           </div>
           <AMRAPTimer
             data={hiitData}
