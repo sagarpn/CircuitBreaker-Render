@@ -156,6 +156,8 @@ export default function WorkoutPage({ onGenerate }) {
   const [usedRounds,  setUsedRounds]  = useState(new Set())
   const [hiitFormat,  setHiitFormat]  = useState(null)  // 'circuit'|'amrap'|'lucky7'
   const [hiitData,    setHiitData]    = useState(null)
+  const [amrapCount,  setAmrapCount]  = useState(0)
+  const [amrapLoading,setAmrapLoading]= useState(false)
   const [loadingC3,   setLoadingC3]   = useState(false)
   const [history,     setHistory]     = useState([])
   const [favourites,  setFavourites]  = useState([])
@@ -440,8 +442,8 @@ export default function WorkoutPage({ onGenerate }) {
                 <div className={styles.options}>
                   {[
                     { value:'circuit', label:'🔁 Circuit',   sub:'Two circuits, rep based' },
-                    { value:'amrap',   label:'⏱ AMRAP',      sub:'12 min blocks, keep going' },
-                    { value:'lucky7',  label:'🎯 Lucky 7s',  sub:'7 exercises, drop one each round' },
+                    { value:'amrap',   label:'⏰ AMRAP',      sub:'12 min, as many rounds as possible' },
+                    { value:'lucky7',  label:'🎰 Lucky 7s',  sub:'7 exercises, drop one each round' },
                   ].map(o => (
                     <button key={o.value}
                       className={`${styles.option} ${hiitFormat===o.value?styles.selected:''}`}
@@ -657,12 +659,17 @@ export default function WorkoutPage({ onGenerate }) {
             data={hiitData}
             onAddCore={() => handleAddCircuit('core')}
             onAddCircuit3={() => handleAddCircuit('circuit3')}
-            onAnotherAMRAP={() => {
-              const res = fetch('/api/exercises').then(r=>r.json()).then(allEx => {
-                const result = generateAMRAP(allEx)
-                setHiitData({ type:'amrap', exercises: result.exercises })
-              })
-            }}
+            onAnotherAMRAP={amrapCount < 3 && !amrapLoading ? async () => {
+              setAmrapLoading(true)
+              await delay(1500)
+              const allEx = await fetch('/api/exercises').then(r=>r.json())
+              const result = generateAMRAP(allEx)
+              setHiitData({ type:'amrap', exercises: result.exercises })
+              setAmrapCount(prev => prev + 1)
+              setAmrapLoading(false)
+            } : null}
+            amrapCount={amrapCount}
+            amrapLoading={amrapLoading}
           />
           {coreRound && coreRound.length > 0 && (
             <div className="fade-up">

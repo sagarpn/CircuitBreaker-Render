@@ -20,7 +20,7 @@ function playTone(freq, dur, vol = 0.25) {
 function playMid()   { playTone(440,0.25); setTimeout(()=>playTone(440,0.25),300) }
 function playDone()  { playTone(523,0.15); setTimeout(()=>playTone(659,0.15),200); setTimeout(()=>playTone(784,0.5),400) }
 
-export default function AMRAPTimer({ data, onAddCore, onAnotherAMRAP }) {
+export default function AMRAPTimer({ data, onAddCore, onAnotherAMRAP, amrapCount = 0, amrapLoading = false }) {
   const { exercises = [] } = data
   const [phase,  setPhase]  = useState('idle')
   const [secs,   setSecs]   = useState(TOTAL_SECS)
@@ -117,8 +117,17 @@ export default function AMRAPTimer({ data, onAddCore, onAnotherAMRAP }) {
       {/* Add-ons — shown always below exercises */}
       {(onAnotherAMRAP || onAddCore) && (
         <div className={styles.addOns}>
-          {onAnotherAMRAP && (
-            <button className={styles.addBtn} onClick={onAnotherAMRAP}>🔁 One More AMRAP</button>
+          {amrapCount < 3 && (
+            <button
+              className={styles.addBtn}
+              onClick={onAnotherAMRAP}
+              disabled={!onAnotherAMRAP || amrapLoading}
+              style={{ opacity: amrapLoading ? 0.6 : 1 }}>
+              {amrapLoading ? 'Generating...' : amrapCount === 0 ? '🔁 One More AMRAP' : amrapCount === 1 ? '🔁 One More AMRAP (' + (3 - amrapCount) + ' left)' : '🔁 Last AMRAP'}
+            </button>
+          )}
+          {amrapCount >= 3 && (
+            <div className={styles.amrapDone}>You've done 3 AMRAPs. That's enough. Rest now.</div>
           )}
           {onAddCore && (
             <button className={styles.addBtn} onClick={onAddCore}>💪 Add Core Round</button>

@@ -10,6 +10,7 @@
 import express  from 'express'
 import cors     from 'cors'
 import path     from 'path'
+import * as XLSX from 'xlsx'
 import fs       from 'fs'
 import pg       from 'pg'
 import { fileURLToPath } from 'url'
@@ -557,21 +558,133 @@ app.get('/api/admin/favourites', requireAdmin, async (req, res) => {
 app.get('/api/admin/download-exercises', requireAdmin, async (req, res) => {
   try {
     const { rows } = await pool.query('SELECT * FROM exercises ORDER BY category, name ASC')
-    // Write data to temp JSON, run Python to build xlsx, stream back
-    const tmp  = path.join('/tmp', 'cb_exercises_' + Date.now() + '.json')
-    const xlsx = tmp.replace('.json', '.xlsx')
-    fs.writeFileSync(tmp, JSON.stringify(rows))
 
-    const { execSync } = await import('child_process')
-    execSync(`python3 ${path.join(__dirname, 'scripts/build_xlsx.py')} ${tmp} ${xlsx}`, { timeout: 15000 })
+    // ── Build Excel using SheetJS ─────────────────────────
+    const COLS = [
+      'id','name','description','category',
+      'hiit','strength','core','amrap','lucky7',
+      'compound','burner','core_burner','hiit_burner','unilateral','plyometric',
+      'bodyweight','dumbbells','bench',
+      'reps','sets','to_failure','timed','max_reps_timed',
+      'muscle_group','display_muscle','intensity','slot_order',
+      'flagged','system_flagged'
+    ]
 
-    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    res.setHeader('Content-Disposition', 'attachment; filename="circuitbreaker-exercises.xlsx"')
-    const buf = fs.readFileSync(xlsx)
-    res.send(buf)
+    // Helper functions
+    function isBurnerRow(r) { const t=r.tags||''; return t==='burnout'||t.includes('burnout') }
+    function isTimedRow(r)  { return r.format==='timed'||isBurnerRow(r)||(r.reps||'').toLowerCase().includes('second')||(r.name||'').toLowerCase().includes('hold') }
+    function getEq(r)       { return Array.isArray(r.equipment)?r.equipment:[] }
+    function getRepsOnly(s) {
+      if (!s) return ''
+      const m = s.match(/\d+\s+sets?\s*[x×]\s*(\d+)/i)
+      if (m) return m[1]
+      return s.replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()
+    }
+    function getSets(s) { const m=(s||'').match(/^(\d+)\s+sets?/i); return m?m[1]:'' }
 
-    // Cleanup
-    try { fs.unlinkSync(tmp); fs.unlinkSync(xlsx) } catch {}
+    // Build data rows
+    const exData = rows.map(r => {
+      const eq    = getEq(r)
+      const burn  = isBurnerRow(r)
+      const reps  = r.reps||''
+      const nm    = (r.name||'').toLowerCase()
+      const toFail= /to failure|max reps|max effort/i.test(reps) ? 'yes' : ''
+      const tm    = (r.description||'').match(/(\d+)\s*(?:sec|second)/i)
+      const bw    = (!eq.length||eq.every(e=>!e||e==='none')) ? 'yes' : ''
+      return {
+        id:             String(r.id||''),
+        name:           r.name||'',
+        description:    r.description||'',
+        category:       r.category||'',
+        hiit:           r.category==='hiit' ? 'yes' : '',
+        strength:       (r.category==='upper'||r.category==='lower') ? 'yes' : '',
+        core:           r.category==='core' ? 'yes' : '',
+        amrap:          r.amrap||'',
+        lucky7:         r.lucky7||'',
+        compound:       r.is_compound ? 'yes' : '',
+        burner:         burn ? 'yes' : '',
+        core_burner:    (r.category==='core'&&burn) ? 'yes' : '',
+        hiit_burner:    (r.category==='hiit'&&burn) ? 'yes' : '',
+        unilateral:     /each side|each leg|each arm/i.test(reps) ? 'yes' : '',
+        plyometric:     ['jump','bound','hop','tuck jump','star jump'].some(k=>nm.includes(k)) ? 'yes' : '',
+        bodyweight:     bw,
+        dumbbells:      eq.includes('dumbbells') ? 'yes' : '',
+        bench:          eq.includes('bench') ? 'yes' : '',
+        reps:           getRepsOnly(reps),
+        sets:           getSets(reps),
+        to_failure:     toFail,
+        timed:          isTimedRow(r) ? 'yes' : '',
+        max_reps_timed: tm ? tm[1] : '',
+        muscle_group:   r.muscle_group||'',
+        display_muscle: r.display_muscle||'',
+        intensity:      r.intensity!=null ? String(r.intensity) : '',
+        slot_order:     r.slot_order!=null ? String(r.slot_order) : '',
+        flagged:        r.flagged ? 'yes' : '',
+        system_flagged: r.system_flagged ? 'yes' : '',
+      }
+    })
+
+    // Legend data
+    const legendData = [
+      { COLUMN:'id',             VALUES:'Number 1-317',                              NOTES:'Do not change — used for matching' },
+      { COLUMN:'name',           VALUES:'Text',                                      NOTES:'Exercise name — used for matching on upload' },
+      { COLUMN:'description',    VALUES:'Text',                                      NOTES:'How to perform the exercise' },
+      { COLUMN:'category',       VALUES:'upper / lower / core / hiit',               NOTES:'Primary category' },
+      { COLUMN:'hiit',           VALUES:'yes / leave blank',                         NOTES:'Exercise is HIIT cardio' },
+      { COLUMN:'strength',       VALUES:'yes / leave blank',                         NOTES:'Exercise is upper or lower strength' },
+      { COLUMN:'core',           VALUES:'yes / leave blank',                         NOTES:'Exercise is a core exercise' },
+      { COLUMN:'amrap',          VALUES:'yes / leave blank',                         NOTES:'Eligible for AMRAP format workouts' },
+      { COLUMN:'lucky7',         VALUES:'yes / leave blank',                         NOTES:'Eligible for Lucky 7s format workouts' },
+      { COLUMN:'compound',       VALUES:'yes / leave blank',                         NOTES:'Multi-joint movement (press, squat, row)' },
+      { COLUMN:'burner',         VALUES:'yes / leave blank',                         NOTES:'Burnout finisher — always last in circuit' },
+      { COLUMN:'core_burner',    VALUES:'yes / leave blank',                         NOTES:'Core burnout finisher' },
+      { COLUMN:'hiit_burner',    VALUES:'yes / leave blank',                         NOTES:'HIIT burnout finisher' },
+      { COLUMN:'unilateral',     VALUES:'yes / leave blank',                         NOTES:'Single side — each arm or each leg' },
+      { COLUMN:'plyometric',     VALUES:'yes / leave blank',                         NOTES:'Jumping or explosive movement' },
+      { COLUMN:'bodyweight',     VALUES:'yes / leave blank',                         NOTES:'No equipment needed' },
+      { COLUMN:'dumbbells',      VALUES:'yes / leave blank',                         NOTES:'Requires dumbbells' },
+      { COLUMN:'bench',          VALUES:'yes / leave blank',                         NOTES:'Requires bench' },
+      { COLUMN:'reps',           VALUES:'Number only e.g. 12',                       NOTES:'Rep count only — no sets prefix' },
+      { COLUMN:'sets',           VALUES:'Number only e.g. 3',                        NOTES:'Number of sets' },
+      { COLUMN:'to_failure',     VALUES:'yes / leave blank',                         NOTES:'Do until failure — no fixed rep count' },
+      { COLUMN:'timed',          VALUES:'yes / leave blank',                         NOTES:'Time-based exercise (hold or seconds)' },
+      { COLUMN:'max_reps_timed', VALUES:'Seconds e.g. 30',                           NOTES:'Max reps in X seconds' },
+      { COLUMN:'muscle_group',   VALUES:'chest/back/shoulders/biceps/triceps/quads/glutes/hamstrings/core', NOTES:'Primary muscle group' },
+      { COLUMN:'display_muscle', VALUES:'Chest/Back/Shoulders/Biceps/Triceps/Quads/Glutes/Hamstrings/Stability/Abs/Obliques/Lower Abs/Full Body/Cardio/Agility/Power/Legs/Calves', NOTES:'Label shown on exercise card' },
+      { COLUMN:'intensity',      VALUES:'1/2/3/4/5',                                 NOTES:'1=very easy  3=moderate  5=max effort' },
+      { COLUMN:'slot_order',     VALUES:'1/2/3',                                     NOTES:'Upper only: 1=lead compound 2=secondary 3=isolation' },
+      { COLUMN:'flagged',        VALUES:'yes / leave blank',                         NOTES:'Admin flagged — hidden from all workouts' },
+      { COLUMN:'system_flagged', VALUES:'yes / leave blank',                         NOTES:'Auto-flagged by system — removed from seed' },
+    ]
+
+    // Create workbook
+    const wb = XLSX.utils.book_new()
+
+    // Sheet 1: Exercises
+    const wsEx = XLSX.utils.json_to_sheet(exData, { header: COLS })
+    // Set column widths
+    wsEx['!cols'] = [
+      {wch:6},{wch:35},{wch:50},{wch:10},
+      {wch:6},{wch:9},{wch:6},{wch:7},{wch:8},
+      {wch:10},{wch:8},{wch:12},{wch:12},{wch:11},{wch:11},
+      {wch:11},{wch:11},{wch:7},
+      {wch:8},{wch:6},{wch:10},{wch:7},{wch:14},
+      {wch:14},{wch:15},{wch:10},{wch:11},
+      {wch:8},{wch:13}
+    ]
+    XLSX.utils.book_append_sheet(wb, wsEx, 'Exercises')
+
+    // Sheet 2: Legend
+    const wsLeg = XLSX.utils.json_to_sheet(legendData, { header:['COLUMN','VALUES','NOTES'] })
+    wsLeg['!cols'] = [{wch:18},{wch:60},{wch:45}]
+    XLSX.utils.book_append_sheet(wb, wsLeg, 'How to Fill')
+
+    // Write to buffer and send
+    const buf = XLSX.write(wb, { type:'buffer', bookType:'xlsx' })
+    res.setHeader('Content-Type','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    res.setHeader('Content-Disposition','attachment; filename="circuitbreaker-exercises.xlsx"')
+    res.send(Buffer.from(buf))
+
   } catch(e) { console.error('Download error:', e.message); res.status(500).json({ error: e.message }) }
 })
 

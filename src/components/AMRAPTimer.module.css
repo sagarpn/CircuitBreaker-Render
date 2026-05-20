@@ -147,3 +147,8 @@
   transition: background 0.15s;
 }
 .addBtn:hover { background: rgba(232,247,42,0.05); }
+.amrapDone {
+  font-size: 12px; font-weight: 600; color: var(--accent);
+  text-align: center; padding: 8px;
+  opacity: 0.7; font-style: italic;
+}
