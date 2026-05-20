@@ -2,67 +2,50 @@ import React, { useState, useEffect, useRef } from 'react'
 import styles from './AMRAPTimer.module.css'
 
 const TOTAL_SECS = 12 * 60
-const BEEP_AT    = [8 * 60, 4 * 60]  // seconds remaining
+const BEEP_AT    = [8 * 60, 4 * 60]
 
-function playBeep(freq, dur, vol = 0.3) {
+function playTone(freq, dur, vol = 0.25) {
   try {
     const ctx  = new (window.AudioContext || window.webkitAudioContext)()
     const osc  = ctx.createOscillator()
     const gain = ctx.createGain()
     osc.connect(gain); gain.connect(ctx.destination)
-    osc.frequency.value = freq
-    osc.type = 'sine'
+    osc.frequency.value = freq; osc.type = 'sine'
     gain.gain.setValueAtTime(vol, ctx.currentTime)
     gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur)
     osc.start(); osc.stop(ctx.currentTime + dur)
   } catch(e) {}
 }
 
-function playTripleBeep() {
-  playBeep(523, 0.15); setTimeout(() => playBeep(659, 0.15), 200); setTimeout(() => playBeep(784, 0.4), 400)
-}
+function playMid()   { playTone(440,0.25); setTimeout(()=>playTone(440,0.25),300) }
+function playDone()  { playTone(523,0.15); setTimeout(()=>playTone(659,0.15),200); setTimeout(()=>playTone(784,0.5),400) }
 
-function playMidBeep() {
-  playBeep(440, 0.3); setTimeout(() => playBeep(440, 0.3), 400)
-}
-
-export default function AMRAPTimer({ data, onAddCore }) {
-  const { exercises } = data
-  const [phase,  setPhase]  = useState('idle')  // idle | running | done
+export default function AMRAPTimer({ data, onAddCore, onAnotherAMRAP }) {
+  const { exercises = [] } = data
+  const [phase,  setPhase]  = useState('idle')
   const [secs,   setSecs]   = useState(TOTAL_SECS)
   const [active, setActive] = useState(false)
   const intervalRef = useRef(null)
   const beeped      = useRef(new Set())
 
   function getReps(ex) {
-    if (!ex) return ''
-    const isBurn = (ex.tags||'').includes('burnout')
-    if (isBurn) return 'MAX REPS'
-    return (ex.reps || '').replace(/^\d+\s+sets?\s*[x×]\s*/i, '').trim()
+    if ((ex.tags||'').includes('burnout')) return 'MAX REPS'
+    return (ex.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()
   }
-
   function isBurnerEx(ex) { return (ex.tags||'').includes('burnout') }
-
-  function fmt(s) {
-    const m = Math.floor(s / 60)
-    const sec = s % 60
-    return m + ':' + String(sec).padStart(2, '0')
-  }
+  function fmt(s) { return Math.floor(s/60) + ':' + String(s%60).padStart(2,'0') }
 
   useEffect(() => {
     if (!active) { clearInterval(intervalRef.current); return }
     intervalRef.current = setInterval(() => {
       setSecs(prev => {
         const next = prev - 1
-        // Mid beeps at 8 min and 4 min remaining
         if (BEEP_AT.includes(next) && !beeped.current.has(next)) {
-          beeped.current.add(next)
-          playMidBeep()
+          beeped.current.add(next); playMid()
         }
         if (next <= 0) {
           clearInterval(intervalRef.current)
-          setActive(false); setPhase('done')
-          playTripleBeep()
+          setActive(false); setPhase('done'); playDone()
           return 0
         }
         return next
@@ -71,76 +54,75 @@ export default function AMRAPTimer({ data, onAddCore }) {
     return () => clearInterval(intervalRef.current)
   }, [active])
 
-  function start() {
-    if (phase === 'idle') setPhase('running')
-    setActive(true)
-  }
+  function start() { if (phase==='idle') setPhase('running'); setActive(true) }
   function pause() { setActive(false) }
   function reset() { setActive(false); setPhase('idle'); setSecs(TOTAL_SECS); beeped.current.clear() }
 
-  const pct     = ((TOTAL_SECS - secs) / TOTAL_SECS) * 100
-  const isDone  = phase === 'done'
-  const isGoing = phase === 'running' || (phase === 'idle' && secs < TOTAL_SECS)
+  const pct  = ((TOTAL_SECS - secs) / TOTAL_SECS) * 100
+  const done = phase === 'done'
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <span className={styles.title}>AMRAP</span>
-        <span className={styles.sub}>As many rounds as possible in 12 minutes</span>
-      </div>
 
-      <div className={`${styles.timerBlock} ${isDone ? styles.timerDone : ''}`}>
-        <div className={styles.phaseLabel}>
-          {phase === 'idle'    && 'Ready — tap Go when you are'}
-          {phase === 'running' && '12 Minute AMRAP'}
-          {phase === 'done'    && 'Time is up — great work!'}
+      {/* Timer block — compact */}
+      <div className={`${styles.timerBlock} ${done ? styles.timerDone : phase==='running' ? styles.timerRunning : ''}`}>
+        <div className={styles.timerRow}>
+          <div className={styles.phaseLabel}>
+            {phase==='idle' && 'Ready'}
+            {phase==='running' && 'GO'}
+            {phase==='done' && '✓ Done'}
+          </div>
+          <div className={styles.clock}>{fmt(secs)}</div>
+          <div className={styles.timerBtns}>
+            {!done && !active && (
+              <button className={styles.goBtn} onClick={start}>
+                {phase==='idle' ? 'Go' : 'Resume'}
+              </button>
+            )}
+            {!done && active && (
+              <button className={styles.pauseBtn} onClick={pause}>Pause</button>
+            )}
+            {!done && phase !== 'idle' && (
+              <button className={styles.resetBtn} onClick={reset}>↺</button>
+            )}
+          </div>
         </div>
-        {!isDone && (
-          <>
-            <div className={styles.clock}>{fmt(secs)}</div>
-            <div className={styles.progressBar}>
-              <div className={styles.progressFill} style={{ width: pct + '%' }} />
-            </div>
-            <div className={styles.beepNote}>Beeps at 8 min and 4 min remaining</div>
-            <div className={styles.timerControls}>
-              {!active
-                ? <button className={styles.startBtn} onClick={start}>{phase === 'idle' ? 'Go' : 'Resume'}</button>
-                : <button className={styles.pauseBtn} onClick={pause}>Pause</button>
-              }
-              {isGoing && <button className={styles.resetBtn} onClick={reset}>Reset</button>}
-            </div>
-          </>
-        )}
+        {/* Progress bar */}
+        <div className={styles.bar}>
+          <div className={styles.barFill} style={{width: pct + '%'}} />
+        </div>
+        <div className={styles.beepHint}>Beeps at 4 min and 8 min remaining</div>
       </div>
 
+      {/* Exercise list — shown always */}
       <div className={styles.exercises}>
-        <div className={styles.loopNote}>Complete this list top to bottom — repeat until time ends</div>
-        {(exercises || []).map((ex, i) => {
+        <div className={styles.loopNote}>Complete top to bottom — loop until time ends</div>
+        {exercises.map((ex, i) => {
           const burn = isBurnerEx(ex)
           return (
-            <div key={ex.id || i} className={styles.exercise + ' ' + (burn ? styles.burnerEx : '')}>
-              <div className={styles.exLeft}>
-                <span className={styles.exNum}>{i + 1}</span>
-                <div className={styles.exInfo}>
-                  <span className={styles.exName}>{ex.name}</span>
-                  <span className={styles.exReps + ' ' + (burn ? styles.burnerReps : '')}>
-                    {getReps(ex)}
-                  </span>
-                </div>
+            <div key={ex.id||i} className={`${styles.exRow} ${burn?styles.burnerRow:''}`}>
+              <span className={styles.exNum}>{i+1}</span>
+              <div className={styles.exInfo}>
+                <span className={styles.exName}>{ex.name}</span>
+                <span className={`${styles.exReps} ${burn?styles.burnerReps:''}`}>{getReps(ex)}</span>
               </div>
-              <div className={styles.exRight}>
-                {ex.display_muscle && !burn && <span className={styles.muscleBadge}>{ex.display_muscle}</span>}
-                {burn && <span className={styles.burnerBadge}>FINISHER</span>}
-              </div>
+              {ex.display_muscle && !burn && <span className={styles.badge}>{ex.display_muscle}</span>}
+              {burn && <span className={styles.burnerBadge}>FINISHER</span>}
             </div>
           )
         })}
-        <div className={styles.arrowNote}>↑ Back to top — go again</div>
+        <div className={styles.loopArrow}>↑ Back to top — go again</div>
       </div>
 
-      {isDone && onAddCore && (
+      {/* Add-ons — shown when done */}
+      {done && (
         <div className={styles.addOns}>
-          <button className={styles.addBtn} onClick={onAddCore}>💪 Add Core Round</button>
+          {onAnotherAMRAP && (
+            <button className={styles.addBtn} onClick={onAnotherAMRAP}>🔁 One More AMRAP</button>
+          )}
+          {onAddCore && (
+            <button className={styles.addBtn} onClick={onAddCore}>💪 Add Core Round</button>
+          )}
         </div>
       )}
     </div>

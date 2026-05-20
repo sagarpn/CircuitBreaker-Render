@@ -551,6 +551,17 @@ export default function WorkoutPage({ onGenerate }) {
                   showFlash("This workout is in Recents. Save it if you'd like to keep it.")
                   handleReset()
                 }} title="New workout">↺</button>
+                <button className={styles.actionBtn} onClick={() => {
+                  const lines = [`🏋️ ${workoutName}`, '', 'LUCKY 7s']
+                  hiitData.six.forEach((e,i) => lines.push(`  ${i+1}. ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`))
+                  if (hiitData.burner) lines.push(`  7. ${hiitData.burner.name} — BURNER`)
+                  lines.push('', 'circuitbreaker.onrender.com')
+                  navigator.clipboard?.writeText(lines.join('\n')).then(()=>alert('Copied!'))
+                }} title="Copy">📋</button>
+                <button className={`${styles.actionBtnSave} ${workoutSaved?styles.actionBtnSaved:''}`}
+                  onClick={saveWorkout} disabled={workoutSaved} title="Save">
+                  {workoutSaved ? '⭐' : '☆'}
+                </button>
               </div>
             </div>
             <div className={styles.workoutTags}>
@@ -562,6 +573,16 @@ export default function WorkoutPage({ onGenerate }) {
             data={hiitData}
             onAddCore={() => handleAddCircuit('core')}
           />
+          {coreRound && coreRound.length > 0 && (
+            <div className="fade-up">
+              <Circuit label="💪 Core Round" number={1} exercises={coreRound}
+                focus="core" style="strength" hasDumbbells={false} hasPullupBar={false}
+                usedIds={new Set()} onSwap={(id,r)=>handleSwap('core',id,r)}
+                swapCounts={swapCounts}
+                onTimerOpen={() => document.getElementById('breather-bar')?.click()}
+              />
+            </div>
+          )}
         </div>
       )}
 
@@ -575,6 +596,16 @@ export default function WorkoutPage({ onGenerate }) {
                   showFlash("This workout is in Recents. Save it if you'd like to keep it.")
                   handleReset()
                 }} title="New workout">↺</button>
+                <button className={styles.actionBtn} onClick={() => {
+                  const lines = [`🏋️ ${workoutName}`, '', 'AMRAP — 12 min, as many rounds as possible']
+                  ;(hiitData.exercises||[]).forEach((e,i) => lines.push(`  ${i+1}. ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`))
+                  lines.push('', 'circuitbreaker.onrender.com')
+                  navigator.clipboard?.writeText(lines.join('\n')).then(()=>alert('Copied!'))
+                }} title="Copy">📋</button>
+                <button className={`${styles.actionBtnSave} ${workoutSaved?styles.actionBtnSaved:''}`}
+                  onClick={saveWorkout} disabled={workoutSaved} title="Save">
+                  {workoutSaved ? '⭐' : '☆'}
+                </button>
               </div>
             </div>
             <div className={styles.workoutTags}>
@@ -586,6 +617,12 @@ export default function WorkoutPage({ onGenerate }) {
             data={hiitData}
             onAddCore={() => handleAddCircuit('core')}
             onAddCircuit3={() => handleAddCircuit('circuit3')}
+            onAnotherAMRAP={() => {
+              const res = fetch('/api/exercises').then(r=>r.json()).then(allEx => {
+                const result = generateAMRAP(allEx)
+                setHiitData({ type:'amrap', exercises: result.exercises })
+              })
+            }}
           />
           {coreRound && coreRound.length > 0 && (
             <div className="fade-up">

@@ -2,82 +2,59 @@ import React, { useState } from 'react'
 import styles from './Lucky7s.module.css'
 
 export default function Lucky7s({ data, onAddCore }) {
-  const { rounds, six, burner } = data
+  const { rounds = [], six = [], burner = null } = data
   const [doneRounds, setDoneRounds] = useState(new Set())
 
-  function markDone(i) {
-    setDoneRounds(prev => new Set([...prev, i]))
+  function getReps(ex) {
+    return (ex.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()
   }
-
-  function getRepsDisplay(ex) {
-    return (ex.reps || '').replace(/^\d+\s+sets?\s*[x×]\s*/i, '').trim()
-  }
-
-  function isBurnerEx(ex) {
-    const t = ex.tags || ''
-    return t === 'burnout' || (typeof t==='string' && t.includes('burnout'))
-  }
-
-  function isTimedEx(ex) {
-    return ex.format === 'timed' || isBurnerEx(ex) ||
-      (ex.reps||'').toLowerCase().includes('second') ||
-      (ex.name||'').toLowerCase().includes('hold')
-  }
+  function isBurnerEx(ex) { return (ex.tags||'').includes('burnout') }
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <span className={styles.title}>🎯 Lucky 7s</span>
-        <span className={styles.sub}>Drop one exercise each round · Burner always last</span>
+      {/* Header */}
+      <div className={styles.intro}>
+        <div className={styles.tagline}>7 exercises · drop one each round · burner always last</div>
+        <div className={styles.bodyNote}>Rest when you need it — check in with your body every round</div>
       </div>
 
-      <div className={styles.bodyNote}>
-        Rest when you need it. Check in with your body every round.
-      </div>
-
+      {/* Rounds */}
       <div className={styles.rounds}>
         {rounds.map((round, ri) => {
-          const dropped = six.slice(0, ri).map(e => e.name)
-          const isDone = doneRounds.has(ri)
-          const dropNext = ri < 6 ? six[ri].name : null
+          const isDone    = doneRounds.has(ri)
+          const dropNext  = ri < 6 ? six[ri] : null
+          const isFinal   = ri === 6
 
           return (
-            <div key={ri} className={`${styles.round} ${isDone ? styles.roundDone : ''}`}>
+            <div key={ri} className={`${styles.round} ${isDone ? styles.roundDone : ''} ${isFinal ? styles.roundFinal : ''}`}>
+              {/* Round header */}
               <div className={styles.roundHeader}>
-                <span className={styles.roundNum}>Round {ri + 1}</span>
-                {dropNext && ri < 6 && (
-                  <span className={styles.dropHint}>
-                    {ri === 0 ? `Drops after this round: ${six[0].name}` : `Drop next: ${dropNext}`}
-                  </span>
-                )}
-                {ri === 6 && <span className={styles.finalBadge}>Final Round 🔥</span>}
+                <div className={styles.roundLeft}>
+                  <span className={styles.roundNum}>Round {ri + 1}</span>
+                  {isFinal && <span className={styles.finalTag}>FINAL 🔥</span>}
+                  {dropNext && !isFinal && (
+                    <span className={styles.dropHint}>drops after: {dropNext.name}</span>
+                  )}
+                </div>
                 <button
-                  className={`${styles.doneBtn} ${isDone ? styles.doneBtnActive : ''}`}
-                  onClick={() => markDone(ri)}>
-                  {isDone ? '✓ Done' : 'Mark Done'}
+                  className={`${styles.doneBtn} ${isDone ? styles.doneBtnDone : ''}`}
+                  onClick={() => setDoneRounds(prev => new Set([...prev, ri]))}>
+                  {isDone ? '✓' : 'Done'}
                 </button>
               </div>
 
-              <div className={styles.exercises}>
+              {/* Exercise list */}
+              <div className={styles.exList}>
                 {round.map((ex, ei) => {
-                  const isBurn = isBurnerEx(ex)
-                  const isTimed = isTimedEx(ex)
+                  const burn = isBurnerEx(ex)
                   return (
-                    <div key={ex.id || ei} className={`${styles.exercise} ${isBurn ? styles.burnerEx : ''}`}>
-                      <div className={styles.exLeft}>
-                        <span className={styles.exNum}>{ei + 1}</span>
-                        <div className={styles.exInfo}>
-                          <span className={styles.exName}>{ex.name}</span>
-                          {isBurn
-                            ? <span className={styles.burnerReps}>🔥 MAX EFFORT</span>
-                            : <span className={styles.exReps}>{getRepsDisplay(ex)}{ !isTimed && '+'}</span>
-                          }
-                        </div>
-                      </div>
-                      {ex.display_muscle && !isBurn && (
-                        <span className={styles.muscleBadge}>{ex.display_muscle}</span>
-                      )}
-                      {isBurn && <span className={styles.burnerBadge}>BURNER</span>}
+                    <div key={ex.id||ei} className={`${styles.exRow} ${burn ? styles.burnerRow : ''}`}>
+                      <span className={styles.exNum}>{ei + 1}</span>
+                      <span className={styles.exName}>{ex.name}</span>
+                      <span className={`${styles.exReps} ${burn ? styles.burnerReps : ''}`}>
+                        {burn ? 'MAX REPS' : getReps(ex) + '+'}
+                      </span>
+                      {burn && <span className={styles.burnerBadge}>🔥</span>}
                     </div>
                   )
                 })}
@@ -87,16 +64,18 @@ export default function Lucky7s({ data, onAddCore }) {
         })}
       </div>
 
+      {/* Completion */}
       {doneRounds.size === 7 && (
-        <div className={styles.complete}>
-          🏆 Lucky 7s Complete! Outstanding work.
-        </div>
+        <div className={styles.complete}>🏆 All 7 rounds complete. Legendary.</div>
       )}
 
+      {/* Add core — always shown at bottom */}
       {onAddCore && (
-        <button className={styles.addCoreBtn} onClick={onAddCore}>
-          💪 Add Core Round
-        </button>
+        <div className={styles.addSection}>
+          <button className={styles.addCoreBtn} onClick={onAddCore}>
+            💪 Add Core Round
+          </button>
+        </div>
       )}
     </div>
   )

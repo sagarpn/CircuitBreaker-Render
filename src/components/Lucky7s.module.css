@@ -1,73 +1,147 @@
-.container { display: flex; flex-direction: column; gap: 0; }
-.header {
-  display: flex; flex-direction: column; gap: 4px;
-  padding: 14px 16px 10px;
+.container { display:flex; flex-direction:column; }
+
+.intro {
+  padding: 10px 16px 12px;
   border-bottom: 1px solid var(--border);
 }
-.title { font-family: var(--display); font-size: 20px; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; }
-.sub { font-size: 11px; color: var(--muted); }
-.bodyNote {
-  padding: 8px 16px; font-size: 11px; color: var(--muted);
-  font-style: italic; background: var(--surface); border-bottom: 1px solid var(--border);
+.tagline {
+  font-size: 11px; font-weight: 600; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.5px;
 }
-.rounds { display: flex; flex-direction: column; gap: 0; }
+.bodyNote {
+  font-size: 11px; color: var(--muted); opacity: 0.6;
+  font-style: italic; margin-top: 3px;
+}
+
+/* ── Rounds ── */
+.rounds { display:flex; flex-direction:column; }
+
 .round {
   border-bottom: 1px solid var(--border);
-  transition: opacity 0.2s;
+  transition: opacity 0.25s;
 }
-.roundDone { opacity: 0.45; }
+.roundDone { opacity: 0.4; }
+.roundFinal { background: rgba(232,66,66,0.03); }
+
 .roundHeader {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 12px; flex-wrap: wrap;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 10px 16px 6px;
+  gap: 8px;
 }
+.roundLeft { display:flex; align-items:center; gap:8px; flex:1; min-width:0; }
+
 .roundNum {
-  font-family: var(--display); font-size: 12px; font-weight: 800;
-  color: var(--accent); text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;
-}
-.dropHint { font-size: 10px; color: var(--muted); opacity: 0.7; flex: 1; }
-.finalBadge { font-size: 11px; font-weight: 700; color: #e84242; flex: 1; }
-.doneBtn {
-  background: var(--surface2); border: 1px solid var(--border);
-  border-radius: 6px; color: var(--muted); font-size: 10px; font-weight: 600;
-  padding: 3px 8px; cursor: pointer; flex-shrink: 0;
-  -webkit-tap-highlight-color: transparent;
-}
-.doneBtnActive { border-color: var(--accent); color: var(--accent); background: rgba(232,247,42,0.08); }
-.exercises { display: flex; flex-direction: column; gap: 0; padding: 0 0 6px; }
-.exercise {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 6px 12px; gap: 8px;
-}
-.burnerEx { background: rgba(232,66,66,0.04); }
-.exLeft { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
-.exNum {
-  font-family: var(--mono); font-size: 10px; color: var(--muted);
-  width: 16px; text-align: center; flex-shrink: 0;
-}
-.exInfo { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-.exName { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.exReps { font-size: 11px; color: var(--muted); font-family: var(--mono); }
-.burnerReps { font-size: 11px; color: #e84242; font-weight: 700; }
-.muscleBadge {
-  font-size: 9px; font-weight: 600; color: var(--muted);
-  background: var(--surface2); border: 1px solid var(--border);
-  border-radius: 4px; padding: 2px 5px; text-transform: uppercase; flex-shrink: 0;
-}
-.burnerBadge {
-  font-size: 9px; font-weight: 700; color: #e84242;
-  background: rgba(232,66,66,0.1); border: 1px solid rgba(232,66,66,0.3);
-  border-radius: 4px; padding: 2px 6px; flex-shrink: 0;
-}
-.complete {
-  padding: 16px; text-align: center; font-size: 15px; font-weight: 700;
-  color: var(--accent); font-family: var(--display); text-transform: uppercase;
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--accent);
+  text-transform: uppercase;
   letter-spacing: 1px;
+  flex-shrink: 0;
+}
+.finalTag {
+  font-size: 10px; font-weight: 800; color: #e84242;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.dropHint {
+  font-size: 10px; color: var(--muted); opacity: 0.55;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.doneBtn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 11px; font-weight: 600;
+  padding: 4px 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+}
+.doneBtnDone {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(232,247,42,0.08);
+}
+
+/* ── Exercise rows ── */
+.exList { padding: 0 16px 10px; display:flex; flex-direction:column; gap:0; }
+
+.exRow {
+  display:flex; align-items:center; gap:8px;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.exRow:last-child { border-bottom: none; }
+
+.burnerRow {
+  margin: 4px -4px 0;
+  padding: 6px 4px;
+  border-radius: 6px;
+  background: rgba(232,66,66,0.06);
+  border-bottom: none !important;
+}
+
+.exNum {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.exName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.exReps {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: var(--mono);
+  flex-shrink: 0;
+}
+.burnerReps { color: #e84242; font-weight: 700; }
+.burnerBadge { font-size: 13px; flex-shrink: 0; }
+
+/* ── Completion ── */
+.complete {
+  padding: 16px;
+  text-align: center;
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Add core ── */
+.addSection {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
 }
 .addCoreBtn {
-  margin: 12px 16px; padding: 12px;
-  background: transparent; border: 1.5px dashed var(--accent);
-  border-radius: 10px; color: var(--accent); font-family: var(--display);
-  font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
-  cursor: pointer; text-transform: uppercase;
+  width: 100%;
+  padding: 13px;
+  background: transparent;
+  border: 1.5px dashed var(--accent);
+  border-radius: 10px;
+  color: var(--accent);
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  text-transform: uppercase;
   -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s;
 }
+.addCoreBtn:hover { background: rgba(232,247,42,0.05); }
