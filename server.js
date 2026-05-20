@@ -543,63 +543,22 @@ app.get('/api/admin/favourites', requireAdmin, async (req, res) => {
 app.get('/api/admin/download-exercises', requireAdmin, async (req, res) => {
   try {
     const { rows } = await pool.query('SELECT * FROM exercises ORDER BY category, name ASC')
-    const data = rows.map(r => {
-      const eq  = Array.isArray(r.equipment) ? r.equipment : []
-      const tags = r.tags || ''
-      const isBurn = tags === 'burnout' || tags.includes('burnout')
-      const repsStr = r.reps || ''
-      // Extract reps only (strip "3 sets x")
-      const m = repsStr.match(/\d+\s+sets?\s*[x×]\s*(\d+)/i)
-      const repsOnly = m ? m[1] : (repsStr.replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim())
-      const setsOnly = repsStr.match(/^(\d+)\s+sets?/i) ? repsStr.match(/^(\d+)\s+sets?/i)[1] : ''
-      const toFail   = /to failure|max reps|max effort/i.test(repsStr) ? 'yes' : ''
-      const timed    = r.format === 'timed' ? 'yes' : ''
-      const tm       = (r.description||'').match(/(\d+)\s*(?:sec|second)/i)
-      const maxTimed = tm ? tm[1] : ''
-      const nm       = (r.name||'').toLowerCase()
-      const bw       = (!eq.length || eq.every(e=>!e||e==='none')) ? 'yes' : ''
-      return {
-        id:             "'" + (r.id||''),   // prefix ' to prevent scientific notation in Excel
-        name:           r.name || '',
-        description:    r.description || '',
-        // Category
-        category:       r.category || '',
-        hiit:           r.category==='hiit' ? 'yes' : '',
-        strength:       (r.category==='upper'||r.category==='lower') ? 'yes' : '',
-        core:           r.category==='core' ? 'yes' : '',
-        // Format eligibility
-        amrap:          r.amrap || '',
-        lucky7:         r.lucky7 || '',
-        // Exercise type
-        compound:       r.is_compound ? 'yes' : '',
-        burner:         isBurn ? 'yes' : '',
-        core_burner:    (r.category==='core' && isBurn) ? 'yes' : '',
-        hiit_burner:    (r.category==='hiit' && isBurn) ? 'yes' : '',
-        unilateral:     /each side|each leg|each arm/i.test(repsStr) ? 'yes' : '',
-        plyometric:     ['jump','bound','hop','tuck jump','star jump'].some(k=>nm.includes(k)) ? 'yes' : '',
-        // Equipment
-        bodyweight:     bw,
-        dumbbells:      eq.includes('dumbbells') ? 'yes' : '',
-        bench:          eq.includes('bench') ? 'yes' : '',
-        // Reps
-        reps:           repsOnly,
-        sets:           setsOnly,
-        to_failure:     toFail,
-        timed:          timed,
-        max_reps_timed: maxTimed,
-        // Muscle
-        muscle_group:   r.muscle_group || '',
-        display_muscle: r.display_muscle || '',
-        intensity:      r.intensity || '',
-        // Circuit ordering
-        slot_order:     r.slot_order || r.ex_order || '',
-        // Status
-        flagged:        r.flagged ? 'yes' : '',
-        system_flagged: r.system_flagged ? 'yes' : '',
-      }
-    })
-    res.json({ exercises: data, count: data.length })
-  } catch(e) { res.status(500).json({ error: e.message }) }
+    // Write data to temp JSON, run Python to build xlsx, stream back
+    const tmp  = path.join('/tmp', 'cb_exercises_' + Date.now() + '.json')
+    const xlsx = tmp.replace('.json', '.xlsx')
+    fs.writeFileSync(tmp, JSON.stringify(rows))
+
+    const { execSync } = await import('child_process')
+    execSync(`python3 ${path.join(__dirname, 'scripts/build_xlsx.py')} ${tmp} ${xlsx}`, { timeout: 15000 })
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    res.setHeader('Content-Disposition', 'attachment; filename="circuitbreaker-exercises.xlsx"')
+    const buf = fs.readFileSync(xlsx)
+    res.send(buf)
+
+    // Cleanup
+    try { fs.unlinkSync(tmp); fs.unlinkSync(xlsx) } catch {}
+  } catch(e) { console.error('Download error:', e.message); res.status(500).json({ error: e.message }) }
 })
 
 
@@ -614,75 +573,112 @@ app.post('/api/admin/upload-exercises', requireAdmin, async (req, res) => {
   try {
     await client.query('BEGIN')
 
-    // Backup first
+    // ── Auto-backup first ─────────────────────────────────
     const { rows: current } = await client.query('SELECT * FROM exercises')
-    if (current.length > 0) {
-      await client.query('DELETE FROM exercises_backup')
-      for (const ex of current) {
-        await client.query(
-          `INSERT INTO exercises_backup (id,name,category,equipment,reps,description,flagged,
-           tags,format,muscle_group,is_compound,ex_order,display_muscle,intensity,system_flagged)
-           VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
-          [ex.id,ex.name,ex.category,ex.equipment,ex.reps,ex.description,
-           ex.flagged,ex.tags,ex.format,ex.muscle_group,ex.is_compound,
-           ex.ex_order,ex.display_muscle,ex.intensity,ex.system_flagged]
-        )
-      }
+    await client.query('DELETE FROM exercises_backup')
+    for (const ex of current) {
+      await client.query(
+        `INSERT INTO exercises_backup (id,name,category,equipment,reps,description,flagged,
+         tags,format,muscle_group,is_compound,display_muscle,intensity,system_flagged)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`,
+        [ex.id,ex.name,ex.category,ex.equipment,ex.reps,ex.description,
+         ex.flagged,ex.tags,ex.format,ex.muscle_group,ex.is_compound,
+         ex.display_muscle,ex.intensity,ex.system_flagged]
+      )
     }
 
-    let added=0, updated=0, skipped=0, errors=[]
     const { rows: existing } = await client.query('SELECT name, id FROM exercises')
     const existingMap = new Map(existing.map(r => [r.name.toLowerCase().trim(), r.id]))
+
+    let added=0, updated=0, skipped=0, unchanged=0
+    const errors   = []
+    const addedNames   = []
+    const updatedNames = []
 
     for (const ex of exercises) {
       const name = (ex.name || '').trim()
       if (!name) { skipped++; continue }
       const key = name.toLowerCase()
 
+      // Parse equipment
       const equipArr = typeof ex.equipment === 'string' && ex.equipment
         ? ex.equipment.split(',').map(e=>e.trim()).filter(Boolean)
         : []
-      const tags = ex.tags || ''
-      const format = ex.format || 'reps'
-      const flagged = ex.flagged === 'yes' || ex.flagged === true
-      const isCompound = ex.is_compound === 'yes' || ex.is_compound === true
+
+      const tags      = ex.burner === 'yes' || ex.burner === true ? 'burnout' : (ex.tags || '')
+      const format    = ex.timed === 'yes' || tags === 'burnout' ? 'timed' : 'reps'
+      const flagged   = ex.flagged === 'yes' || ex.flagged === true
+      const isComp    = ex.compound === 'yes' || ex.compound === true || ex.is_compound === 'yes'
       const intensity = parseInt(ex.intensity) || null
+      const slotOrder = parseInt(ex.slot_order || ex.ex_order) || null
+
+      // Rebuild reps string from reps + sets columns if both present
+      let repsVal = ex.reps || ''
+      if (ex.sets && ex.reps && !repsVal.includes('sets')) {
+        repsVal = ex.sets + ' sets x ' + ex.reps + ' reps'
+      } else if (ex.to_failure === 'yes') {
+        repsVal = 'To failure / use timer below'
+      }
+
+      // Compute display_muscle if blank
+      const mgRaw = ex.muscle_group || ''
+      const dm    = ex.display_muscle || (mgRaw ? mgRaw.charAt(0).toUpperCase()+mgRaw.slice(1) : null)
 
       try {
         if (existingMap.has(key)) {
           await client.query(
             `UPDATE exercises SET category=$1,equipment=$2,reps=$3,description=$4,
-             tags=$5,format=$6,muscle_group=$7,is_compound=$8,ex_order=$9,
-             display_muscle=$10,intensity=$11,flagged=$12 WHERE id=$13`,
-            [ex.category, JSON.stringify(equipArr), ex.reps||'',
-             ex.description||'', tags, format, ex.muscle_group||null,
-             isCompound, parseInt(ex.ex_order)||null, ex.display_muscle||null,
-             intensity, flagged, existingMap.get(key)]
+             tags=$5,format=$6,muscle_group=$7,is_compound=$8,slot_order=$9,
+             display_muscle=$10,intensity=$11,flagged=$12,amrap=$13,lucky7=$14
+             WHERE id=$15`,
+            [ex.category||'upper', JSON.stringify(equipArr), repsVal,
+             ex.description||'', tags, format, mgRaw||null, isComp,
+             slotOrder, dm, intensity, flagged,
+             ex.amrap||null, ex.lucky7||null,
+             existingMap.get(key)]
           )
-          updated++
+          updated++; updatedNames.push(name)
         } else {
           const id = (Date.now() + added).toString()
           await client.query(
             `INSERT INTO exercises (id,name,category,equipment,reps,description,flagged,
-             tags,format,muscle_group,is_compound,ex_order,display_muscle,intensity,system_flagged)
-             VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
-            [id,name,ex.category,JSON.stringify(equipArr),ex.reps||'',
-             ex.description||'',flagged,tags,format,ex.muscle_group||null,
-             isCompound,parseInt(ex.ex_order)||null,ex.display_muscle||null,
-             intensity,false]
+             tags,format,muscle_group,is_compound,slot_order,display_muscle,intensity,
+             system_flagged,amrap,lucky7)
+             VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17)`,
+            [id, name, ex.category||'upper', JSON.stringify(equipArr), repsVal,
+             ex.description||'', flagged, tags, format, mgRaw||null, isComp,
+             slotOrder, dm, intensity, false, ex.amrap||null, ex.lucky7||null]
           )
-          added++
+          added++; addedNames.push(name)
         }
-      } catch(err) { errors.push(`${name}: ${err.message}`) }
+      } catch(err) { errors.push(name + ': ' + err.message) }
     }
 
+    // Check all rows look valid
+    const { rows: afterRows } = await client.query('SELECT COUNT(*) as cnt FROM exercises')
+    const totalInDb = parseInt(afterRows[0].cnt)
+
     await client.query('COMMIT')
-    res.json({ ok:true, added, updated, skipped, errors, total: exercises.length })
+
+    res.json({
+      ok: true,
+      total_submitted: exercises.length,
+      total_in_db:     totalInDb,
+      added,
+      updated,
+      skipped,
+      unchanged,
+      errors,
+      added_names:   addedNames.slice(0, 20),
+      updated_names: updatedNames.slice(0, 20),
+      summary: `${exercises.length} rows submitted → ${added} added, ${updated} updated, ${skipped} skipped${errors.length ? ', ' + errors.length + ' errors' : ''} — DB now has ${totalInDb} exercises`
+    })
   } catch(e) {
     await client.query('ROLLBACK')
     res.status(500).json({ error: e.message })
   } finally { client.release() }
 })
+
 
 // ── Admin: Manual backup ──────────────────────────────────
 app.post('/api/admin/backup', requireAdmin, async (req, res) => {

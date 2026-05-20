@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styles from './Lucky7s.module.css'
-import CoreTimer from './CoreTimerComp'
 
 export default function Lucky7s({ data, onAddCore }) {
   const { rounds, six, burner } = data
