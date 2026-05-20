@@ -37,74 +37,82 @@ export default function AdminPage() {
       const data = await res.json()
       if (!data.exercises) return alert('Download failed')
 
-      const SEP = '\t'
-      const EOL = '\n'
-
-      // ── Main sheet columns
+      // Build proper Excel XML format (SpreadsheetML) — opens natively in Excel
       const cols = [
         'id','name','description','category',
-        'hiit','strength','core',
-        'amrap','lucky7',
+        'hiit','strength','core','amrap','lucky7',
         'compound','burner','core_burner','hiit_burner','unilateral','plyometric',
         'bodyweight','dumbbells','bench',
         'reps','sets','to_failure','timed','max_reps_timed',
         'muscle_group','display_muscle','intensity','slot_order',
         'flagged','system_flagged'
       ]
-      const mainLines = [cols.join(SEP)]
+
+      const esc = s => String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+      const cell = (v,t='String') => '<Cell><Data ss:Type="' + t + '">' + esc(v) + '</Data></Cell>'
+      const hcell = v => '<Cell ss:StyleID="h"><Data ss:Type="String">' + esc(v) + '</Data></Cell>'
+      const row = cells => '<Row>' + cells + '</Row>'
+
+      let exRows = row(cols.map(hcell).join(''))
       for (const ex of data.exercises) {
-        mainLines.push(cols.map(c => String(ex[c] == null ? '' : ex[c]).replace(/\t/g,' ')).join(SEP))
+        exRows += row(cols.map(c => {
+          const v = ex[c] == null ? '' : String(ex[c]).replace(/^'/,'')
+          return cell(v)
+        }).join(''))
       }
 
-      // ── Legend sheet
       const legend = [
         ['COLUMN','ACCEPTED VALUES','NOTES'],
-        ['id','1-317 (number)','Do not change'],
+        ['id','1-317','Do not change'],
         ['name','Text','Exercise name'],
         ['description','Text','How to perform it'],
         ['category','upper / lower / core / hiit','Primary category'],
         ['hiit','yes / blank','Is a HIIT exercise'],
-        ['strength','yes / blank','Is a strength exercise (upper or lower)'],
+        ['strength','yes / blank','Is a strength exercise'],
         ['core','yes / blank','Is a core exercise'],
         ['amrap','yes / blank','Eligible for AMRAP format'],
         ['lucky7','yes / blank','Eligible for Lucky 7s format'],
-        ['compound','yes / blank','Multi-joint movement (bench press, squat, row)'],
-        ['burner','yes / blank','Burnout/finisher exercise — goes last in circuit'],
+        ['compound','yes / blank','Multi-joint movement'],
+        ['burner','yes / blank','Burnout finisher exercise'],
         ['core_burner','yes / blank','Core burnout exercise'],
         ['hiit_burner','yes / blank','HIIT burnout exercise'],
-        ['unilateral','yes / blank','Single side — exercise done each side'],
-        ['plyometric','yes / blank','Jumping or explosive movement'],
+        ['unilateral','yes / blank','Single side exercise'],
+        ['plyometric','yes / blank','Jumping or explosive'],
         ['bodyweight','yes / blank','No equipment needed'],
         ['dumbbells','yes / blank','Requires dumbbells'],
         ['bench','yes / blank','Requires bench'],
-        ['reps','Number only e.g. 12','Rep count only — no sets prefix'],
-        ['sets','Number only e.g. 3','Number of sets'],
-        ['to_failure','yes / blank','Do until failure (no fixed rep count)'],
-        ['timed','yes / blank','Time-based exercise (hold, seconds)'],
+        ['reps','Number e.g. 12','Rep count only'],
+        ['sets','Number e.g. 3','Number of sets'],
+        ['to_failure','yes / blank','Do until failure'],
+        ['timed','yes / blank','Time-based exercise'],
         ['max_reps_timed','Seconds e.g. 30','Max reps in X seconds'],
-        ['muscle_group','chest / back / shoulders / biceps / triceps / quads / glutes / hamstrings / core','Primary muscle'],
-        ['display_muscle','Chest / Back / Shoulders / Biceps / Triceps / Quads / Glutes / Hamstrings / Stability / Abs / Obliques / Lower Abs / Full Body / Cardio / Agility / Power / Legs / Calves','Label shown on card'],
-        ['intensity','1 / 2 / 3 / 4 / 5','1=easy 2=low 3=moderate 4=hard 5=max effort'],
-        ['slot_order','1 / 2 / 3','Upper body only: 1=lead compound 2=secondary 3=isolation'],
-        ['flagged','yes / blank','Admin flagged — hidden from workouts'],
-        ['system_flagged','yes / blank','Auto-flagged — removed from seed file'],
+        ['muscle_group','chest/back/shoulders/biceps/triceps/quads/glutes/hamstrings/core','Primary muscle'],
+        ['display_muscle','Chest/Back/Shoulders/Biceps/Triceps/Quads/Glutes/Hamstrings/Stability/Abs/Obliques/Lower Abs/Full Body/Cardio/Agility/Power/Legs/Calves','Label on card'],
+        ['intensity','1/2/3/4/5','1=easy 5=max effort'],
+        ['slot_order','1/2/3','Upper only: 1=compound 2=secondary 3=isolation'],
+        ['flagged','yes / blank','Admin flagged'],
+        ['system_flagged','yes / blank','Auto-flagged by system'],
       ]
-      const legendLines = legend.map(row => row.join(SEP))
+      let legRows = row(legend[0].map(hcell).join(''))
+      for (const r of legend.slice(1)) {
+        legRows += row(r.map(v=>cell(v)).join(''))
+      }
 
-      // Write two sheets as separate sections in the TSV with a blank row between
-      const fullContent = [
-        '=== EXERCISES ===',
-        ...mainLines,
-        '',
-        '=== LEGEND ===',
-        ...legendLines
-      ].join(EOL)
+      const xml = '<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?>' +
+        '<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" ' +
+        'xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">' +
+        '<Styles>' +
+        '<Style ss:ID="h"><Font ss:Bold="1"/><Interior ss:Color="#1A1A1A" ss:Pattern="Solid"/><Font ss:Color="#FFFFFF" ss:Bold="1"/></Style>' +
+        '</Styles>' +
+        '<Worksheet ss:Name="Exercises"><Table>' + exRows + '</Table></Worksheet>' +
+        '<Worksheet ss:Name="Legend"><Table>' + legRows + '</Table></Worksheet>' +
+        '</Workbook>'
 
-      const blob = new Blob([fullContent], { type: 'text/tab-separated-values' })
+      const blob = new Blob([xml], { type: 'application/vnd.ms-excel' })
       const url  = URL.createObjectURL(blob)
       const a    = document.createElement('a')
       a.href = url
-      a.download = 'circuitbreaker-exercises-' + new Date().toISOString().slice(0,10) + '.tsv'
+      a.download = 'circuitbreaker-exercises-' + new Date().toISOString().slice(0,10) + '.xls'
       a.click()
       URL.revokeObjectURL(url)
     } catch (e) { alert('Download error: ' + e.message) }

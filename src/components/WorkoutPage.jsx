@@ -31,6 +31,8 @@ const WORKOUT_NAMES = {
   lower_combo:    ["The Leg Experience","Thighs Wide Shut","Squat Plot Twist","Legs With Attitude","The Full Leg Situation","Lower Body Chaos","Squat Hard Think Never","Jump Squat Repeat","The Glute Agenda","Leg Day Remix","Legs But Make It Spicy","Thighs & Vibes","Squat Goals","Leg Day Unplugged","Lower Your Standards For Rest","Legs Plus","The Glute Remix","Strength Meets Jump","The Lower Hybrid","Squat And Burn","Lunge And Launch","The Leg Fusion","Lower Body Ignite","Thigh High Effort","Jump Lift Repeat","The Leg Experiment","Squats By Force"],
   whole_strength: ["Top To Bottom","The Grand Tour","Muscle Conference","All Systems Lift","The Full Sweep","Nothing Left Out","The Complete Situation","Every Single Muscle","Muscles Everywhere","The Body Agenda","No Muscle Left Behind","Built Different","All Of It","The Complete Package","Every Muscle Meeting","Whole Lotta Gains","Top To Toe","The Full Package","Head To Heels","All Muscles Present","No Muscle Left Behind","The Grand Design","Full Body Certified","The Complete Grind","Built Everywhere","From Neck To Knee","Total Architecture","The Everything Session","Whole Lotta Work","All Systems Lift","The Body Project"],
   whole_hiit:     ["Full Panic Mode","Everything Is On Fire","The Complete Meltdown","Cardio Everything","The Total Chaos","No Part Left Unsweat","Burn The Whole Thing","Running From Nothing","Full Body Question Mark","The Everything Sprint","Everything Everywhere","Maximum Chaos","Body By Suffering","Sweat All Over","All Systems Go","Cardio Is Life Now","Full Meltdown","No Survivors","Everything Burns","Total Chaos","All Over Fire","The Full Alarm","Body By Sweat","Complete Destruction","Head To Toe Inferno","Full Panic","All Systems Burning","The Everything Sprint","Total Body Blitz","No Part Left Behind","Cardio All Day"],
+  amrap_hiit:     ["The 12 Minute War","No Clock No Problem","AMRAP And Repeat","Round And Round","The Loop","12 Minutes Of Truth","Keep Moving","Non Stop","Go Until Done","The Endless Circuit","No Stopping Now","All Out AMRAP","The Repeater","Round Trip","Lap It Up","12 And Out","Grind The Clock","The Loop Hole","Keep The Pace","Rounds For Days"],
+  lucky7_hiit:    ["Lucky 7s","The Magnificent 7","Seven And Done","The Drop Game","Down To One","Seven Rounds Of Fun","The Elimination","Drop It Low","Lucky Strike","Seven Deep","The Final 7","One By One","The Countdown","Seven Strong","Lucky Number Seven","Drop Zone","The 7 Drop","Last One Standing","Survive The Seven","The Lucky Circuit"],
   whole_combo:    ["The Full Chaos","Maximum Suffering In Style","The Grand Mess","All Of The Above","Nothing Makes Sense","Full Send No Return","The Complete Disaster","Every Muscle For Itself","The Whole Situation","Total Commitment","The Kitchen Sink","Chaos & Order","Full Body Panic","The Works","Maximum Effort","Full Send","The Big One","The Ultimate Mix","Full Body Remix","Strength Plus Speed","The Complete Experiment","Built And Burned","All Of It And More","The Full Fusion","Total Body Ignite","Every Muscle Every Gear","The Grand Hybrid","Complete The Mission","Full Send Full Build"],
   legs_shoulders_strength: ["Legs & Delts Day","The Boulder Shoulder Squat","Thighs And Tries","Below And Above","Quad Meets Shoulder","The Custom Job","Legs Up Shoulders Back","Delts And Squats United","Boulder Season","The Delt Gospel","Shoulders Certified","The Press Project","Shoulders By Design","Iron Delts","The Delt Agenda","Caps And Delts","Shoulder Day Lore","Raise The Bar"],
   legs_shoulders_hiit:     ["Legs And Shoulders On Fire","The Custom Burn","Thighs And Delts Inferno","Squat And Shoulder Chaos","The Personal Destroyer","Custom Cardio Chaos"],
@@ -67,9 +69,14 @@ const WORKOUT_NAMES = {
   legs_arms_combo:         ["Legs Arms Everything","The Squat Curl Combo","Legs Arms Plot Twist","Quads Guns Meets Cardio"],
 }
 
-function pickName(focus, style) {
-  const key  = `${focus}_${style}`
-  const list = WORKOUT_NAMES[key] || ["The Grind Session"]
+function pickName(focus, style, hiitFormat) {
+  // HIIT has no focus — use format-specific names or whole_hiit
+  let key = style === 'hiit'
+    ? (hiitFormat === 'amrap'   ? 'amrap_hiit'   :
+       hiitFormat === 'lucky7'  ? 'lucky7_hiit'  :
+       'whole_hiit')
+    : (focus + '_' + style)
+  const list = WORKOUT_NAMES[key] || WORKOUT_NAMES['whole_hiit'] || ["The Grind Session"]
   return list[Math.floor(Math.random() * list.length)]
 }
 function pickQuote() { return QUOTES[Math.floor(Math.random() * QUOTES.length)] }
@@ -151,61 +158,63 @@ export default function WorkoutPage({ onGenerate }) {
   const delay = ms => new Promise(r => setTimeout(r, ms))
 
   async function handleGenerate() {
-    const activeFocus = focus || (style !== 'strength' ? 'whole' : null)
-    if (!activeFocus || !style) return
+    const activeFocus = focus || 'whole'
+    if (!style) return
     if (style === 'hiit' && !hiitFormat) return
+    if (style === 'strength' && !focus) return
 
     setLoading(true); setError(null)
-    const name = pickName(focus, style)
+    const name = pickName(focus, style, hiitFormat)
     const q    = pickQuote()
+    setQuote(q); setWorkoutName(name)
 
-    // AMRAP and Lucky7s — no API call needed, generate client-side
-    if (style === 'hiit' && (hiitFormat === 'amrap' || hiitFormat === 'lucky7')) {
-      pendingWorkout.current = { data: null, name, q, hf: hiitFormat }
-      setQuote(q); setWorkoutName(name); setSplashing(true)
-      setLoading(false)
-      return
-    }
-
-    // Standard circuit — fetch data AND show splash in parallel
-    // Store a promise so onSplashDone can wait for data if needed
-    setQuote(q); setWorkoutName(name); setSplashing(true)
     try {
+      // HIIT AMRAP — generate client-side from exercises API
+      if (style === 'hiit' && hiitFormat === 'amrap') {
+        const res    = await fetch('/api/exercises')
+        const allEx  = await res.json()
+        const result = generateAMRAP(allEx)
+        pendingWorkout.current = { hiitResult: { type:'amrap', exercises: result.exercises }, name, q }
+        setSplashing(true); setLoading(false)
+        return
+      }
+
+      // HIIT Lucky 7s — generate client-side from exercises API
+      if (style === 'hiit' && hiitFormat === 'lucky7') {
+        const res    = await fetch('/api/exercises')
+        const allEx  = await res.json()
+        const result = generateLucky7s(allEx)
+        pendingWorkout.current = { hiitResult: { type:'lucky7', rounds: result.rounds, six: result.six, burner: result.burner }, name, q }
+        setSplashing(true); setLoading(false)
+        return
+      }
+
+      // Standard circuit (HIIT circuit, strength, combo) — call /api/generate
       const res  = await fetch('/api/generate', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ focus: activeFocus, style, hasDumbbells: style !== 'hiit' }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Failed to generate')
-      pendingWorkout.current = { data, name, q, hf: 'circuit' }
-    } catch (e) {
-      setError(e.message); setLoading(false); setSplashing(false)
-    }
+      pendingWorkout.current = { data, name, q }
+      setSplashing(true)
+    } catch (e) { setError(e.message); setLoading(false) }
   }
 
   async function onSplashDone() {
     if (!pendingWorkout.current) { setLoading(false); setSplashing(false); return }
-    const { data, name, hf } = pendingWorkout.current
+    const { data, hiitResult, name } = pendingWorkout.current
 
-    if (hf === 'amrap') {
-      const res = await fetch('/api/exercises')
-      const allEx = await res.json()
-      const amrapData = generateAMRAP(allEx, false)
-      setHiitData({ type:'amrap', exercises: amrapData.exercises })
-      setGenerated(true); setLoading(false); setSplashing(false)
-      requestWakeLock()
-      return
-    }
-    if (hf === 'lucky7') {
-      const res = await fetch('/api/exercises')
-      const allEx = await res.json()
-      const l7Data = generateLucky7s(allEx, false)
-      setHiitData({ type:'lucky7', rounds: l7Data.rounds, six: l7Data.six, burner: l7Data.burner })
+    // AMRAP or Lucky 7s — already generated, just show it
+    if (hiitResult) {
+      setHiitData(hiitResult)
       setGenerated(true); setLoading(false); setSplashing(false)
       requestWakeLock()
       return
     }
 
+    // Standard circuit
+    if (!data) { setLoading(false); setSplashing(false); return }
     setWorkout(data); setGenerated(true); setLoading(false); setSplashing(false)
     requestWakeLock()
     // Save to server history
