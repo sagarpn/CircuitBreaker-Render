@@ -153,7 +153,21 @@ export default function WorkoutPage({ onGenerate }) {
   async function handleGenerate() {
     const activeFocus = focus || (style !== 'strength' ? 'whole' : null)
     if (!activeFocus || !style) return
+    if (style === 'hiit' && !hiitFormat) return
+
     setLoading(true); setError(null)
+    const name = pickName(focus, style)
+    const q    = pickQuote()
+
+    // AMRAP and Lucky7s — no API call needed, generate client-side
+    if (style === 'hiit' && (hiitFormat === 'amrap' || hiitFormat === 'lucky7')) {
+      pendingWorkout.current = { data: null, name, q, hf: hiitFormat }
+      setQuote(q); setWorkoutName(name); setSplashing(true)
+      setLoading(false)
+      return
+    }
+
+    // Standard circuit — call API
     try {
       const res  = await fetch('/api/generate', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -161,16 +175,13 @@ export default function WorkoutPage({ onGenerate }) {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Failed to generate')
-      const name = pickName(focus, style)
-      const q    = pickQuote()
-      pendingWorkout.current = { data, name, q }
+      pendingWorkout.current = { data, name, q, hf: 'circuit' }
       setQuote(q); setWorkoutName(name); setSplashing(true)
-      onGenerate?.()
     } catch (e) { setError(e.message); setLoading(false) }
   }
 
   async function onSplashDone() {
-    const { data, name, hiitFormat: hf } = pendingWorkout.current
+    const { data, name, hf } = pendingWorkout.current
 
     if (hf === 'amrap') {
       const res = await fetch('/api/exercises')

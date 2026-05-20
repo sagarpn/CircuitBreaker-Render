@@ -478,15 +478,24 @@ function sanitise(str) {
 }
 
 app.post('/api/admin/exercises', requireAdmin, async (req, res) => {
-  const { name, category, equipment, reps, description } = req.body
+  const { name, category, equipment, reps, description,
+          muscle_group, intensity, amrap, lucky7, compound, burner } = req.body
   if (!name || !category || !reps) return res.status(400).json({ error: 'name, category, reps required' })
-  const id = Date.now().toString()
+  const id   = Date.now().toString()
+  const tags = burner === 'yes' ? 'burnout' : ''
+  const fmt  = burner === 'yes' ? 'timed' : 'reps'
+  const disp = muscle_group ? muscle_group.charAt(0).toUpperCase()+muscle_group.slice(1) : null
   try {
     await pool.query(
-      `INSERT INTO exercises (id,name,category,equipment,reps,description) VALUES ($1,$2,$3,$4,$5,$6)`,
-      [id, sanitise(name), category.toLowerCase(), JSON.stringify(equipment||[]), sanitise(reps), sanitise(description||'')]
+      `INSERT INTO exercises (id,name,category,equipment,reps,description,tags,format,
+       muscle_group,intensity,display_muscle,amrap,lucky7,is_compound,system_flagged)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
+      [id, sanitise(name), category.toLowerCase(), JSON.stringify(equipment||[]),
+       sanitise(reps), sanitise(description||''), tags, fmt,
+       muscle_group||null, parseInt(intensity)||null, disp,
+       amrap||null, lucky7||null, compound==='yes', false]
     )
-    res.json({ ok: true, exercise: { id, name: name.trim(), category: category.toLowerCase(), equipment: equipment||[], reps: reps.trim(), description: description?.trim()||'', flagged: false } })
+    res.json({ ok: true })
   } catch (e) { res.status(500).json({ error: e.message }) }
 })
 
@@ -530,16 +539,7 @@ app.get('/api/admin/favourites', requireAdmin, async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }) }
 })
 
-// Catch-all: serve frontend
-app.get('*', (req, res) => {
-  const index = path.join(distPath, 'index.html')
-  if (fs.existsSync(index)) res.sendFile(index)
-  else res.json({ message: 'CircuitBreaker API running' })
-})
-
-// ── Start ────────────────────────────────────────────────
-initDB().then(() => {
-  // ── Admin: Download exercises as JSON (client converts to Excel) ──
+// ── Admin: Download exercises as JSON (client converts to Excel) ──
 app.get('/api/admin/download-exercises', requireAdmin, async (req, res) => {
   try {
     const { rows } = await pool.query('SELECT * FROM exercises ORDER BY category, name ASC')
@@ -678,11 +678,11 @@ app.post('/api/admin/backup', requireAdmin, async (req, res) => {
     for (const ex of rows) {
       await client.query(
         `INSERT INTO exercises_backup (id,name,category,equipment,reps,description,flagged,
-         tags,format,muscle_group,is_compound,ex_order,display_muscle,intensity,system_flagged)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
+         tags,format,muscle_group,is_compound,display_muscle,intensity,system_flagged)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`,
         [ex.id,ex.name,ex.category,ex.equipment,ex.reps,ex.description,
          ex.flagged,ex.tags,ex.format,ex.muscle_group,ex.is_compound,
-         ex.ex_order,ex.display_muscle,ex.intensity,ex.system_flagged]
+         ex.display_muscle,ex.intensity,ex.system_flagged]
       )
     }
     res.json({ ok:true, count: rows.length })
@@ -701,11 +701,11 @@ app.post('/api/admin/restore', requireAdmin, async (req, res) => {
     for (const ex of backup) {
       await client.query(
         `INSERT INTO exercises (id,name,category,equipment,reps,description,flagged,
-         tags,format,muscle_group,is_compound,ex_order,display_muscle,intensity,system_flagged)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
+         tags,format,muscle_group,is_compound,display_muscle,intensity,system_flagged)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`,
         [ex.id,ex.name,ex.category,ex.equipment,ex.reps,ex.description,
          ex.flagged,ex.tags,ex.format,ex.muscle_group,ex.is_compound,
-         ex.ex_order,ex.display_muscle,ex.intensity,ex.system_flagged]
+         ex.display_muscle,ex.intensity,ex.system_flagged]
       )
     }
     await client.query('COMMIT')
@@ -716,7 +716,16 @@ app.post('/api/admin/restore', requireAdmin, async (req, res) => {
   } finally { client.release() }
 })
 
-// ── Global error handler — no stack traces to client ─────
+// Catch-all: serve frontend
+app.get('*', (req, res) => {
+  const index = path.join(distPath, 'index.html')
+  if (fs.existsSync(index)) res.sendFile(index)
+  else res.json({ message: 'CircuitBreaker API running' })
+})
+
+// ── Start ────────────────────────────────────────────────
+initDB().then(() => {
+  // ── Global error handler — no stack traces to client ─────
 app.use((err, req, res, next) => {
   console.error('Server error:', err.message)
   res.status(500).json({ error: 'Something went wrong. Please try again.' })

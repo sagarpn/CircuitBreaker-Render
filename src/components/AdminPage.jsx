@@ -3,7 +3,7 @@ import styles from './AdminPage.module.css'
 
 const CATEGORIES = ['upper', 'lower', 'core', 'hiit']
 const EQUIPMENT  = ['dumbbells', 'bench', 'kettlebell']
-const EMPTY_FORM = { name: '', category: 'upper', equipment: [], reps: '', description: '' }
+const EMPTY_FORM = { name: '', category: 'upper', equipment: [], reps: '', description: '', muscle_group: '', intensity: '', hiit: '', strength: '', core: '', amrap: '', lucky7: '', compound: '', burner: '', unilateral: '', plyometric: '', bodyweight: '', slot_order: '' }
 
 export default function AdminPage() {
   const [password,    setPassword]    = useState(localStorage.getItem('admin_pw') || '')
@@ -250,6 +250,44 @@ export default function AdminPage() {
                   </label>
                 ))}
               </div>
+            </div>
+            <div className={styles.field} style={{ gridColumn: '1 / -1' }}>
+              <label>Category Tags</label>
+              <div className={styles.checkRow}>
+                {['hiit','strength','core'].map(t => (
+                  <label key={t} className={styles.checkLabel}>
+                    <input type="checkbox" checked={form[t]==='yes'} onChange={e => setForm(f=>({...f,[t]:e.target.checked?'yes':''}))} />
+                    {t.charAt(0).toUpperCase()+t.slice(1)}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div className={styles.field} style={{ gridColumn: '1 / -1' }}>
+              <label>Format Tags</label>
+              <div className={styles.checkRow}>
+                {['amrap','lucky7','compound','burner','unilateral','plyometric','bodyweight'].map(t => (
+                  <label key={t} className={styles.checkLabel}>
+                    <input type="checkbox" checked={form[t]==='yes'} onChange={e => setForm(f=>({...f,[t]:e.target.checked?'yes':''}))} />
+                    {t.charAt(0).toUpperCase()+t.slice(1)}
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div className={styles.field}>
+              <label>Muscle Group</label>
+              <select className={styles.input} value={form.muscle_group} onChange={e=>setForm(f=>({...f,muscle_group:e.target.value}))}>
+                <option value="">— none —</option>
+                {['chest','back','shoulders','biceps','triceps','quads','glutes','hamstrings','core'].map(m=>(
+                  <option key={m} value={m}>{m.charAt(0).toUpperCase()+m.slice(1)}</option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.field}>
+              <label>Intensity (1-5)</label>
+              <select className={styles.input} value={form.intensity} onChange={e=>setForm(f=>({...f,intensity:e.target.value}))}>
+                <option value="">— none —</option>
+                {[1,2,3,4,5].map(n=><option key={n} value={n}>{n}</option>)}
+              </select>
             </div>
           </div>
           <div className={styles.formActions}>
