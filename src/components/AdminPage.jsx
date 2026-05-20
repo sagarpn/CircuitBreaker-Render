@@ -154,7 +154,9 @@ export default function AdminPage() {
       }
       checks.push(f.status.some(s => stMap[s]))
     }
-    return checks.length === 0 || checks.every(Boolean)
+    const hasFilters = Object.values(f).some(v => Array.isArray(v) && v.length > 0)
+    if (!hasFilters) return true
+    return checks.length > 0 && checks.every(Boolean)
   }
 
   // Recount when filters change

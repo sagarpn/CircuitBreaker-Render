@@ -3,6 +3,7 @@ import Circuit      from './Circuit'
 import FloatingTimer from './FloatingTimer'
 import QuoteSplash  from './QuoteSplash'
 import Lucky7s      from './Lucky7s'
+import ResetSplash  from './ResetSplash'
 import AMRAPTimer   from './AMRAPTimer'
 import { generateWorkout, generateLucky7s, generateAMRAP } from '../utils/workoutGenerator'
 import styles       from './WorkoutPage.module.css'
@@ -157,6 +158,7 @@ export default function WorkoutPage({ onGenerate }) {
   const [hiitFormat,  setHiitFormat]  = useState(null)  // 'circuit'|'amrap'|'lucky7'
   const [hiitData,    setHiitData]    = useState(null)
   const [amrapCount,  setAmrapCount]  = useState(0)
+  const [resetSplash, setResetSplash] = useState(false)
   const [amrapLoading,setAmrapLoading]= useState(false)
   const [loadingC3,   setLoadingC3]   = useState(false)
   const [history,     setHistory]     = useState([])
@@ -201,6 +203,22 @@ export default function WorkoutPage({ onGenerate }) {
   }, [generated])
 
   const delay = ms => new Promise(r => setTimeout(r, ms))
+
+  function getWorkoutTypeLabel() {
+    if (hiitData) {
+      if (hiitData.type === 'amrap')   return 'HIIT · AMRAP'
+      if (hiitData.type === 'lucky7')  return 'HIIT · Lucky 7s'
+      return 'HIIT · Circuit'
+    }
+    if (style === 'combo') return 'HIIT + Strength'
+    if (style === 'hiit')  return 'HIIT · Circuit'
+    if (style === 'strength') {
+      if (focus === 'upper') return 'Upper Strength'
+      if (focus === 'lower') return 'Lower Strength'
+      return 'Whole Body Strength'
+    }
+    return 'Workout'
+  }
 
   async function handleGenerate() {
     const activeFocus = focus || 'whole'
@@ -595,6 +613,14 @@ export default function WorkoutPage({ onGenerate }) {
         </>
       )}
 
+      {/* Reset splash */}
+      {resetSplash && (
+        <ResetSplash
+          workoutType={getWorkoutTypeLabel()}
+          onDone={() => setResetSplash(false)}
+        />
+      )}
+
       {/* Floating rest timer — only during workout */}
       <FloatingTimer />
 
@@ -606,10 +632,7 @@ export default function WorkoutPage({ onGenerate }) {
             <div className={styles.workoutHeaderTop}>
               <h2 className={styles.workoutTitle}>{workoutName}</h2>
               <div className={styles.workoutActions}>
-                <button className={styles.actionBtn} onClick={() => {
-                  showFlash("This workout is in Recents. Save it if you'd like to keep it.")
-                  handleReset()
-                }} title="New workout">↺</button>
+
                 <button className={styles.actionBtn} onClick={() => {
                   const lines = [`🏋️ ${workoutName}`, '', 'LUCKY 7s']
                   hiitData.six.forEach((e,i) => lines.push(`  ${i+1}. ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`))
@@ -647,6 +670,12 @@ export default function WorkoutPage({ onGenerate }) {
               />
             </div>
           )}
+          <div className={styles.footer}>
+            <button className={styles.newWorkoutBtn} onClick={() => {
+              setResetSplash(true)
+              handleReset()
+            }}>↺ Generate Another Workout</button>
+          </div>
         </div>
       )}
 
@@ -656,10 +685,7 @@ export default function WorkoutPage({ onGenerate }) {
             <div className={styles.workoutHeaderTop}>
               <h2 className={styles.workoutTitle}>{workoutName}</h2>
               <div className={styles.workoutActions}>
-                <button className={styles.actionBtn} onClick={() => {
-                  showFlash("This workout is in Recents. Save it if you'd like to keep it.")
-                  handleReset()
-                }} title="New workout">↺</button>
+
                 <button className={styles.actionBtn} onClick={() => {
                   const lines = [`🏋️ ${workoutName}`, '', 'AMRAP — 12 min, as many rounds as possible']
                   ;(hiitData.exercises||[]).forEach((e,i) => lines.push(`  ${i+1}. ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`))
@@ -708,6 +734,12 @@ export default function WorkoutPage({ onGenerate }) {
               />
             </div>
           )}
+          <div className={styles.footer}>
+            <button className={styles.newWorkoutBtn} onClick={() => {
+              setResetSplash(true)
+              handleReset()
+            }}>↺ Generate Another Workout</button>
+          </div>
         </div>
       )}
 
@@ -717,10 +749,6 @@ export default function WorkoutPage({ onGenerate }) {
             <div className={styles.workoutHeaderTop}>
                 <h2 className={styles.workoutTitle}>{workoutName}</h2>
                 <div className={styles.workoutActions}>
-                  <button className={styles.actionBtn} onClick={() => {
-                    showFlash("This workout is in Recents. Save it if you'd like to keep it.")
-                    handleReset()
-                  }} title="New workout">↺</button>
                   <button className={styles.actionBtn} onClick={() => {
                     const fmt = (exs) => (exs||[]).map(e =>
                       `  • ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`
@@ -837,7 +865,7 @@ export default function WorkoutPage({ onGenerate }) {
           )}
           <div className={styles.footer}>
             <button className={styles.newWorkoutBtn} onClick={() => {
-              showFlash("This workout is in Recents. Save it if you'd like to keep it.")
+              setResetSplash(true)
               handleReset()
             }}>↺ Generate Another Workout</button>
           </div>

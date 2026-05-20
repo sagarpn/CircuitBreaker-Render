@@ -609,7 +609,10 @@ app.get('/api/admin/download-exercises', requireAdmin, async (req, res) => {
             }
             checks.push(f.status.some(s => stMap[s]))
           }
-          return checks.length === 0 || checks.every(Boolean)
+          // hasFilters = at least one filter group is active
+          const hasFilters = Object.values(f).some(v => Array.isArray(v) && v.length > 0)
+          if (!hasFilters) return true
+          return checks.length > 0 && checks.every(Boolean)
         })
       }
     } catch(fe) { /* ignore filter parse errors, use all rows */ }
@@ -933,9 +936,10 @@ app.post('/api/admin/restore', requireAdmin, async (req, res) => {
         `INSERT INTO exercises (id,name,category,equipment,reps,description,flagged,
          tags,format,muscle_group,is_compound,display_muscle,intensity,system_flagged)
          VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`,
-        [ex.id,ex.name,ex.category,ex.equipment,ex.reps,ex.description,
-         ex.flagged,ex.tags,ex.format,ex.muscle_group,ex.is_compound,
-         ex.display_muscle,ex.intensity,ex.system_flagged]
+        [ex.id,ex.name,ex.category,
+         typeof ex.equipment==='string' ? ex.equipment : JSON.stringify(ex.equipment||[]),
+         ex.reps,ex.description,ex.flagged,ex.tags,ex.format,ex.muscle_group,
+         ex.is_compound,ex.display_muscle,ex.intensity,ex.system_flagged]
       )
     }
     await client.query('COMMIT')
