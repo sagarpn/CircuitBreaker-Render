@@ -472,3 +472,224 @@
   font-size: 13px;
   font-family: var(--sans);
 }
+
+/* ── Top tabs (Library / Vault) ── */
+.topTabs {
+  display: flex;
+  border-bottom: 2px solid var(--border);
+  background: var(--surface);
+}
+.topTab {
+  flex: 1;
+  padding: 12px 8px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+}
+.topTabActive {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ── Vault layout ── */
+.vault { display: flex; flex-direction: column; gap: 0; }
+
+.vaultSection {
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+}
+.vaultSectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.vaultSectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px 8px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+.vaultIcon { font-size: 16px; }
+.vaultChevron { font-size: 11px; color: var(--muted); }
+.vaultBody { padding: 0 16px 14px; display: flex; flex-direction: column; gap: 10px; }
+.vaultBtn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 16px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.15s;
+  align-self: flex-start;
+}
+.vaultBtn:hover { border-color: var(--accent); color: var(--accent); }
+.vaultBtnDanger {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: #e84242;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 16px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  align-self: flex-start;
+}
+.backupStatus {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 2px 0;
+}
+.backupMsg {
+  font-size: 12px;
+  color: var(--accent);
+  font-family: var(--sans);
+}
+
+/* ── Download filter panel ── */
+.dlPanel { padding: 0 16px 16px; display: flex; flex-direction: column; gap: 12px; }
+.dlFiltersLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.clearFilters {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 11px;
+  cursor: pointer;
+  font-family: var(--sans);
+  padding: 0;
+}
+.filterGroup { display: flex; flex-direction: column; gap: 6px; }
+.filterGroupLabel { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.3px; }
+.filterOpts { display: flex; flex-wrap: wrap; gap: 6px; }
+.filterChip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+  text-transform: capitalize;
+}
+.filterChipOn {
+  background: rgba(232,247,42,0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+.dlBtn {
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  color: #000;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 800;
+  padding: 12px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  margin-top: 4px;
+}
+
+/* ── Upload zone ── */
+.uploadZone { margin: 0 16px 16px; }
+.uploadLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border: 1.5px dashed var(--border);
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color 0.15s;
+}
+.uploadLabel:hover { border-color: var(--accent); color: var(--accent); }
+
+.validateLoading { padding: 12px 16px; font-size: 13px; color: var(--muted); font-style: italic; }
+
+.validateCard, .uploadDone {
+  margin: 0 16px 16px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.validateError {
+  margin: 0 16px 16px;
+  background: rgba(232,66,66,0.08);
+  border: 1px solid rgba(232,66,66,0.3);
+  border-radius: 10px;
+  padding: 14px;
+  color: #e84242;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+}
+.validateTitle { font-size: 14px; font-weight: 700; color: var(--text); }
+.validateRows { display: flex; flex-direction: column; gap: 4px; }
+.validateRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--muted);
+  padding: 3px 0;
+  border-bottom: 1px solid var(--border);
+}
+.validateRow:last-child { border-bottom: none; }
+.validateAdd span:last-child { color: #2e7d32; font-weight: 700; }
+.validateWarn span:last-child { color: #b45309; font-weight: 700; }
+.validateErr span:last-child { color: #e84242; font-weight: 700; }
+.notFoundNote { font-size: 11px; color: var(--muted); line-height: 1.4; }
+.validateActions { display: flex; gap: 8px; margin-top: 4px; }
+.confirmBtn {
+  flex: 1;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 10px;
+  cursor: pointer;
+}
+.confirmBtn:disabled { opacity: 0.6; }

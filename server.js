@@ -559,7 +559,60 @@ app.get('/api/admin/favourites', requireAdmin, async (req, res) => {
 // ── Admin: Download exercises as JSON (client converts to Excel) ──
 app.get('/api/admin/download-exercises', requireAdmin, async (req, res) => {
   try {
-    const { rows } = await pool.query('SELECT * FROM exercises ORDER BY category, name ASC')
+    const { rows: allRows } = await pool.query('SELECT * FROM exercises ORDER BY category, name ASC')
+
+    // Apply client-sent filters
+    let rows = allRows
+    try {
+      const filtersParam = req.query.filters
+      if (filtersParam) {
+        const f = JSON.parse(decodeURIComponent(filtersParam))
+
+        rows = allRows.filter(r => {
+          const eq     = Array.isArray(r.equipment) ? r.equipment : []
+          const tags   = r.tags || ''
+          const isBurn = tags === 'burnout' || tags.includes('burnout')
+          const reps   = r.reps || ''
+          const nm     = (r.name||'').toLowerCase()
+          const bw     = (!eq.length || eq.every(e=>!e||e==='none'))
+          const checks = []
+
+          if (f.category?.length)  checks.push(f.category.includes(r.category))
+          if (f.type?.length) {
+            const typeMap = {
+              burner: isBurn, compound: r.is_compound,
+              unilateral: /each side|each leg|each arm/i.test(reps),
+              plyometric: ['jump','bound','hop'].some(k=>nm.includes(k))
+            }
+            checks.push(f.type.some(t => typeMap[t]))
+          }
+          if (f.eligible?.length)  checks.push(f.eligible.some(e => r[e]==='yes'||r[e]===true))
+          if (f.equipment?.length) {
+            const eqMap = { bodyweight:bw, dumbbells:eq.includes('dumbbells'), bench:eq.includes('bench') }
+            checks.push(f.equipment.some(e => eqMap[e]))
+          }
+          if (f.repfmt?.length) {
+            const rfMap = {
+              has_reps: /\d+\s*reps?/i.test(reps), has_sets: /\d+\s*sets?/i.test(reps),
+              to_failure: /to failure|max reps/i.test(reps), timed: r.format==='timed',
+              has_max_timed: /\d+\s*sec/i.test(r.description||'')
+            }
+            checks.push(f.repfmt.some(rf => rfMap[rf]))
+          }
+          if (f.muscle?.length)    checks.push(f.muscle.includes(r.muscle_group))
+          if (f.intensity?.length) checks.push(f.intensity.includes(String(r.intensity)))
+          if (f.slot?.length)      checks.push(f.slot.includes(String(r.slot_order||r.ex_order)))
+          if (f.status?.length) {
+            const stMap = {
+              flagged: r.flagged, system_flagged: r.system_flagged,
+              missing_intensity: !r.intensity, missing_muscle: !r.muscle_group
+            }
+            checks.push(f.status.some(s => stMap[s]))
+          }
+          return checks.length === 0 || checks.every(Boolean)
+        })
+      }
+    } catch(fe) { /* ignore filter parse errors, use all rows */ }
 
     // ── Build Excel using SheetJS ─────────────────────────
     const COLS = [
@@ -692,6 +745,35 @@ app.get('/api/admin/download-exercises', requireAdmin, async (req, res) => {
 
 
 // ── Admin: Upload/replace exercises from JSON ─────────────
+app.post('/api/admin/validate-upload', requireAdmin, async (req, res) => {
+  const { exercises } = req.body
+  if (!exercises || !Array.isArray(exercises)) {
+    return res.status(400).json({ error: 'Invalid data' })
+  }
+  try {
+    const { rows: existing } = await pool.query('SELECT name FROM exercises')
+    const existingNames = new Set(existing.map(r => r.name.toLowerCase().trim()))
+    const seedNames     = new Set(exercises.map(e => (e.name||'').toLowerCase().trim()).filter(Boolean))
+
+    let willAdd = 0, willUpdate = 0, notFound = [], skipped = 0
+    for (const ex of exercises) {
+      const name = (ex.name||'').trim()
+      if (!name) { skipped++; continue }
+      if (existingNames.has(name.toLowerCase())) willUpdate++
+      else { willAdd++; notFound.push(name) }
+    }
+    res.json({
+      ok: true,
+      total: exercises.length,
+      will_add: willAdd,
+      will_update: willUpdate,
+      skipped,
+      not_found: notFound.slice(0, 10),
+      not_found_count: notFound.length,
+    })
+  } catch(e) { res.status(500).json({ error: e.message }) }
+})
+
 app.post('/api/admin/upload-exercises', requireAdmin, async (req, res) => {
   const { exercises } = req.body
   if (!exercises || !Array.isArray(exercises)) {
@@ -811,6 +893,13 @@ app.post('/api/admin/upload-exercises', requireAdmin, async (req, res) => {
 
 
 // ── Admin: Manual backup ──────────────────────────────────
+app.get('/api/admin/backup-info', requireAdmin, async (req, res) => {
+  try {
+    const { rows } = await pool.query('SELECT COUNT(*) as cnt, MAX(backed_up_at) as last FROM exercises_backup')
+    res.json({ count: parseInt(rows[0].cnt)||0, last: rows[0].last||null })
+  } catch(e) { res.status(500).json({ error: e.message }) }
+})
+
 app.post('/api/admin/backup', requireAdmin, async (req, res) => {
   const client = await pool.connect()
   try {

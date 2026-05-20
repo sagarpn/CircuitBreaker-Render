@@ -328,9 +328,11 @@ export default function WorkoutPage({ onGenerate }) {
   function handleReset() {
     setWorkout(null); setGenerated(false); setQuote(null)
     setWorkoutName(null); setFocus(null); setStyle(null)
-    setError(null); setCircuit3(null); setSplashing(false)
+    setHiitFormat(null); setHiitData(null)
+    setError(null); setCircuit3(null); setBurnerRound(null); setCoreRound(null)
+    setSplashing(false); setSwapCounts({}); setUsedRounds(new Set())
     setWorkoutSaved(false); setSavedDate(null)
-    setHasBench(false); setHasKettlebell(false)
+    setAmrapCount(0); setAmrapLoading(false)
     releaseWakeLock()
   }
 
@@ -362,13 +364,28 @@ export default function WorkoutPage({ onGenerate }) {
   async function saveWorkout() {
     const d = todayStr()
     try {
+      // Build circuit data for AMRAP / Lucky7s
+      let c1 = null, c2 = null
+      if (hiitData && hiitData.type === 'amrap') {
+        c1 = hiitData.exercises || []
+        c2 = []
+      } else if (hiitData && hiitData.type === 'lucky7') {
+        c1 = hiitData.six || []
+        if (hiitData.burner) c1 = [...c1, hiitData.burner]
+        c2 = []
+      } else if (workout) {
+        c1 = workout.circuit1
+        c2 = workout.circuit2
+      }
+      if (!c1 || !c1.length) { alert('Nothing to save yet'); return }
+
       const res = await fetch('/api/favourites', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           label: `${workoutName} · ${d}`,
           focus, style, type: 'workout',
-          circuit1: workout.circuit1,
-          circuit2: workout.circuit2,
+          circuit1: c1,
+          circuit2: c2,
           circuit3: circuit3 || null,
           date: d,
         }),
