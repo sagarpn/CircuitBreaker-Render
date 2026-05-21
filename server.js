@@ -684,6 +684,7 @@ app.get('/api/admin/download-exercises', requireAdmin, async (req, res) => {
 
     // Legend data
     const legendData = [
+      { COLUMN:'action',         VALUES:'update / delete',                           NOTES:'update = add or update this row. delete = permanently remove from DB. Default is update.' },
       { COLUMN:'id',             VALUES:'Number 1-317',                              NOTES:'Do not change — used for matching' },
       { COLUMN:'name',           VALUES:'Text',                                      NOTES:'Exercise name — used for matching on upload' },
       { COLUMN:'description',    VALUES:'Text',                                      NOTES:'How to perform the exercise' },
@@ -722,7 +723,7 @@ app.get('/api/admin/download-exercises', requireAdmin, async (req, res) => {
     const wsEx = XLSX.utils.json_to_sheet(exData, { header: COLS })
     // Set column widths
     wsEx['!cols'] = [
-      {wch:6},{wch:35},{wch:50},{wch:10},
+      {wch:8},{wch:6},{wch:35},{wch:50},{wch:10},
       {wch:6},{wch:9},{wch:6},{wch:7},{wch:8},
       {wch:10},{wch:8},{wch:12},{wch:12},{wch:11},{wch:11},
       {wch:11},{wch:11},{wch:7},
@@ -756,12 +757,13 @@ app.post('/api/admin/validate-upload', requireAdmin, async (req, res) => {
   try {
     const { rows: existing } = await pool.query('SELECT name FROM exercises')
     const existingNames = new Set(existing.map(r => r.name.toLowerCase().trim()))
-    const seedNames     = new Set(exercises.map(e => (e.name||'').toLowerCase().trim()).filter(Boolean))
 
-    let willAdd = 0, willUpdate = 0, notFound = [], skipped = 0
+    let willAdd=0, willUpdate=0, willDelete=0, notFound=[], skipped=0
     for (const ex of exercises) {
-      const name = (ex.name||'').trim()
+      const name   = (ex.name||'').trim()
+      const action = (ex.action||'update').toLowerCase().trim()
       if (!name) { skipped++; continue }
+      if (action === 'delete') { willDelete++; continue }
       if (existingNames.has(name.toLowerCase())) willUpdate++
       else { willAdd++; notFound.push(name) }
     }
@@ -770,6 +772,7 @@ app.post('/api/admin/validate-upload', requireAdmin, async (req, res) => {
       total: exercises.length,
       will_add: willAdd,
       will_update: willUpdate,
+      will_delete: willDelete,
       skipped,
       not_found: notFound.slice(0, 10),
       not_found_count: notFound.length,
@@ -809,10 +812,23 @@ app.post('/api/admin/upload-exercises', requireAdmin, async (req, res) => {
     const addedNames   = []
     const updatedNames = []
 
+    let deleted=0, deletedNames=[]
     for (const ex of exercises) {
-      const name = (ex.name || '').trim()
+      const name   = (ex.name || '').trim()
+      const action = (ex.action || 'update').toLowerCase().trim()
       if (!name) { skipped++; continue }
       const key = name.toLowerCase()
+
+      // Handle delete — hard delete from DB
+      if (action === 'delete') {
+        try {
+          if (existingMap.has(key)) {
+            await client.query('DELETE FROM exercises WHERE id=$1', [existingMap.get(key)])
+            deleted++; deletedNames.push(name)
+          } else { skipped++ }
+        } catch(err) { errors.push('DELETE ' + name + ': ' + err.message) }
+        continue
+      }
 
       // Parse equipment
       const equipArr = typeof ex.equipment === 'string' && ex.equipment
@@ -875,18 +891,21 @@ app.post('/api/admin/upload-exercises', requireAdmin, async (req, res) => {
 
     await client.query('COMMIT')
 
+    const { rows: activeRows } = await client.query('SELECT COUNT(*) as cnt FROM exercises WHERE flagged=false AND system_flagged=false')
+    const activeInDb = parseInt(activeRows[0].cnt)
     res.json({
       ok: true,
       total_submitted: exercises.length,
       total_in_db:     totalInDb,
+      active_in_db:    activeInDb,
       added,
       updated,
+      deleted,
       skipped,
-      unchanged,
       errors,
       added_names:   addedNames.slice(0, 20),
       updated_names: updatedNames.slice(0, 20),
-      summary: `${exercises.length} rows submitted → ${added} added, ${updated} updated, ${skipped} skipped${errors.length ? ', ' + errors.length + ' errors' : ''} — DB now has ${totalInDb} exercises`
+      deleted_names: deletedNames.slice(0, 20),
     })
   } catch(e) {
     await client.query('ROLLBACK')

@@ -439,11 +439,16 @@ export default function AdminPage() {
                     <span>Rows detected</span><span>{validateRes.total}</span>
                   </div>
                   <div className={styles.validateRow + ' ' + styles.validateAdd}>
-                    <span>New exercises (will be added)</span><span>{validateRes.will_add}</span>
+                    <span>Will be added (new)</span><span>{validateRes.will_add}</span>
                   </div>
                   <div className={styles.validateRow}>
-                    <span>Existing (will be updated)</span><span>{validateRes.will_update}</span>
+                    <span>Will be updated</span><span>{validateRes.will_update}</span>
                   </div>
+                  {validateRes.will_delete > 0 && (
+                    <div className={styles.validateRow + ' ' + styles.validateErr}>
+                      <span>Will be deleted (action=delete)</span><span>{validateRes.will_delete}</span>
+                    </div>
+                  )}
                   {validateRes.skipped > 0 && (
                     <div className={styles.validateRow + ' ' + styles.validateWarn}>
                       <span>Skipped (blank name)</span><span>{validateRes.skipped}</span>
@@ -452,15 +457,19 @@ export default function AdminPage() {
                 </div>
                 {validateRes.will_add > 0 && (
                   <div className={styles.notFoundNote}>
-                    New names (first {Math.min(5, validateRes.not_found.length)}):
-                    {' ' + validateRes.not_found.slice(0,5).join(', ')}
+                    New names: {validateRes.not_found.slice(0,5).join(', ')}
                     {validateRes.not_found_count > 5 ? ' +' + (validateRes.not_found_count-5) + ' more' : ''}
+                  </div>
+                )}
+                {validateRes.will_delete > 0 && (
+                  <div className={styles.deleteWarning}>
+                    ⚠️ {validateRes.will_delete} exercise{validateRes.will_delete!==1?'s':''} will be permanently deleted from the database.
                   </div>
                 )}
                 <div className={styles.validateActions}>
                   <button className={styles.cancelBtn} onClick={cancelUpload}>Cancel</button>
                   <button className={styles.confirmBtn} onClick={confirmUpload} disabled={uploading}>
-                    {uploading ? 'Uploading...' : 'Confirm & Replace'}
+                    {uploading ? 'Uploading...' : 'Confirm & Apply'}
                   </button>
                 </div>
               </div>
@@ -483,6 +492,11 @@ export default function AdminPage() {
                   <div className={styles.validateRow}>
                     <span>Updated</span><span>{uploadDone.updated}</span>
                   </div>
+                  {uploadDone.deleted > 0 && (
+                    <div className={styles.validateRow + ' ' + styles.validateErr}>
+                      <span>Deleted</span><span>{uploadDone.deleted}</span>
+                    </div>
+                  )}
                   {uploadDone.skipped > 0 && (
                     <div className={styles.validateRow + ' ' + styles.validateWarn}>
                       <span>Skipped</span><span>{uploadDone.skipped}</span>
@@ -494,8 +508,13 @@ export default function AdminPage() {
                     </div>
                   )}
                   <div className={styles.validateRow}>
-                    <span>Total in DB now</span><span>{uploadDone.total_in_db}</span>
+                    <span>Total in DB</span><span>{uploadDone.total_in_db}</span>
                   </div>
+                  {uploadDone.active_in_db && (
+                    <div className={styles.validateRow + ' ' + styles.validateAdd}>
+                      <span>Active (not flagged)</span><span>{uploadDone.active_in_db}</span>
+                    </div>
+                  )}
                 </div>
                 <button className={styles.cancelBtn} onClick={() => setUploadDone(null)} style={{marginTop:12}}>
                   Upload another file
