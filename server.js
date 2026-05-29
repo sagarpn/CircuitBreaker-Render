@@ -133,10 +133,13 @@ async function initDB() {
       )
     `)
     await client.query(`
+      ALTER TABLE favourites ALTER COLUMN focus DROP NOT NULL
+    `).catch(()=>{})
+    await client.query(`
       CREATE TABLE IF NOT EXISTS favourites (
         id          TEXT PRIMARY KEY,
         label       TEXT NOT NULL,
-        focus       TEXT NOT NULL,
+        focus       TEXT,
         style       TEXT NOT NULL,
         exercises   JSONB NOT NULL,
         circuit_num INTEGER,
@@ -418,6 +421,7 @@ app.get('/api/favourites', async (req, res) => {
 app.post('/api/favourites', async (req, res) => {
   const { label, focus, style, exercises, circuitNum, date, circuit1, circuit2, circuit3, type } = req.body
   if (!label) return res.status(400).json({ error: 'label required' })
+  const focusVal = focus || null
   const id = Date.now().toString()
   const d  = date || new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
   // type = 'workout' (full) or 'circuit' (single). Store exercises for circuits, circuit1/2/3 for workouts
@@ -427,7 +431,7 @@ app.post('/api/favourites', async (req, res) => {
   try {
     await pool.query(
       `INSERT INTO favourites (id,label,focus,style,exercises,circuit_num,date) VALUES ($1,$2,$3,$4,$5,$6,$7)`,
-      [id, label, focus, style, exercisesData, circuitNum || null, d]
+      [id, label, focusVal, style, exercisesData, circuitNum || null, d]
     )
     res.json({ ok: true, favourite: { id, label, focus, style,
       exercises: type === 'workout' ? null : (exercises || []),

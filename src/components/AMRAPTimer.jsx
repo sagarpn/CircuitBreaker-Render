@@ -20,7 +20,7 @@ function playTone(freq, dur, vol = 0.25) {
 function playMid()   { playTone(440,0.25); setTimeout(()=>playTone(440,0.25),300) }
 function playDone()  { playTone(523,0.15); setTimeout(()=>playTone(659,0.15),200); setTimeout(()=>playTone(784,0.5),400) }
 
-export default function AMRAPTimer({ data, onAddCore, onAnotherAMRAP, amrapCount = 0, amrapLoading = false }) {
+export default function AMRAPTimer({ data, onSwap, onAddCore, onAnotherAMRAP, amrapCount = 0, amrapLoading = false }) {
   const { exercises = [] } = data
   const [phase,  setPhase]  = useState('idle')
   const [secs,   setSecs]   = useState(TOTAL_SECS)
@@ -111,6 +111,9 @@ export default function AMRAPTimer({ data, onAddCore, onAnotherAMRAP, amrapCount
               </div>
               {ex.display_muscle && !burn && <span className={styles.badge}>{ex.display_muscle}</span>}
               {burn && <span className={styles.burnerBadge}>FINISHER</span>}
+              {!burn && onSwap && (
+                <button className={styles.swapBtn} onClick={() => onSwap(ex.id)} title="Swap exercise">↻</button>
+              )}
             </div>
           )
         })}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Lucky7s.module.css'
 
-export default function Lucky7s({ data, onAddCore }) {
+export default function Lucky7s({ data, onSwap, onAddCore }) {
   const { rounds = [], six = [], burner = null } = data
   const [doneRounds,     setDoneRounds]     = useState(new Set())
   const [collapsedRounds,setCollapsedRounds]= useState(new Set())
@@ -94,6 +94,9 @@ export default function Lucky7s({ data, onAddCore }) {
                           {burn ? 'MAX REPS' : getReps(ex) + '+'}
                         </span>
                         {burn && <span className={styles.burnerBadge}>🔥</span>}
+                        {!burn && onSwap && ri === 0 && (
+                          <button className={styles.swapBtn} onClick={e=>{e.stopPropagation();onSwap(ex.id)}} title="Swap">↻</button>
+                        )}
                       </div>
                     )
                   })}

@@ -9,52 +9,113 @@ import { generateWorkout, generateLucky7s, generateAMRAP } from '../utils/workou
 import styles       from './WorkoutPage.module.css'
 
 const HIIT_QUOTES = [
+  // Clean and direct
   "no equipment. no excuses.",
-  "your lungs called. they said keep going.",
   "breathless is the goal.",
   "zero equipment. zero excuses.",
   "light work. heavy sweat.",
-  "move fast. breathe hard. feel alive.",
   "bodyweight only. ego optional.",
   "if you can talk you can go harder.",
   "no bar. no bench. no mercy.",
-  "the floor is your gym. the clock is your enemy.",
-  "no weights. no problem. just suffering.",
   "rest is for after.",
-  "explosions in the gym. that's just cardio.",
   "sweat is just fat crying.",
-  "fast reps. deep breaths. bad ideas.",
+  // Quirky
+  "your lungs filed a complaint. denied.",
+  "the floor is lava. keep moving.",
+  "cardio called. it wants its reputation back.",
+    "no weights needed. just chaos.",
+  "explosions in the gym. that's just cardio.",
+  "you looked comfortable. fixed that.",
+    "your couch is very disappointed right now.",
+  "plot twist: you can go faster.",
+  // Strict
+  "stop. you're not tired. you're comfortable.",
+  "mediocre is a choice. so is this.",
+  "your excuses don't do reps.",
+    "effort isn't optional.",
+  "soft starts don't build hard finishes.",
+  // Cringy
+  "sweat glitter is real and you're making it.",
+  "your muscles are crying beautiful tears.",
+  "pain is just weakness leaving in a hurry.",
+  "you're not sweating you're sparkling.",
+  "feel the burn. become the burn.",
 ]
 
 const COMBO_QUOTES = [
+  // Clean
   "no limits. no excuses.",
   "lift heavy. move fast. repeat.",
   "strength meets speed. chaos begins.",
-  "gains and gasps. in that order.",
-  "push. pull. sprint. repeat.",
   "no rest for the well-rounded.",
   "half strength. half cardio. full send.",
   "iron and cardio. the ultimate duo.",
-  "you came for gains. you stayed for the burn.",
-  "strong enough to lift. fit enough to run.",
-  "the combo meal of pain.",
   "no slow days. no soft work.",
-  "no easy sets. no wasted reps.",
-  "when one workout isn't enough.",
-  "dumbbell in one hand. dignity in the other.",
-]
+  // Quirky
+  "gains and gasps. in that order.",
+      "pick up heavy things. put them down fast. repeat.",
+  "two workouts walked into a bar. you're doing both.",
+  "strength day? cardio day? yes. both. now.",
+  "the worst of both worlds. in the best way.",
+  "your heart and your biceps are equally confused.",
+  // Strict
+  "strong enough to lift. fit enough to run. no excuses.",
+  "you wanted results. this is what results feel like.",
+    "the best athletes do both. no negotiating.",
+  "no half reps. no half measures. no half efforts.",
+  // Cringy
+  "you're not doing two workouts. you're doing one epic one.",
+  "your muscles called. they want cardio. your lungs disagree.",
+    "the combo meal of gains and pain.",
+  ]
 
 const QUOTES = [
-  "sweat now, shine later","your only competition is yesterday's you",
-  "one more rep — always one more rep","earn it","stronger every single day",
-  "show up. do the work. repeat","the body achieves what the mind believes",
-  "no shortcuts. no excuses","pain is temporary. results are permanent",
-  "be the hardest worker in the room","discipline beats motivation every time",
-  "the burn means it's working","push past the voice that says stop",
-  "move your body. change your life","you've done hard things before",
-  "get comfortable being uncomfortable","your future self is watching",
-  "fall seven times, get up eight","the only bad workout is the one that didn't happen",
-  "consistency is the secret weapon","breathe. grind. repeat",
+  // Classic motivational
+  "sweat now, shine later",
+  "your only competition is yesterday's you",
+  "one more rep — always one more rep",
+  "earn it",
+  "stronger every single day",
+  "show up. do the work. repeat",
+  "the body achieves what the mind believes",
+  "no shortcuts. no excuses",
+  "pain is temporary. results are permanent",
+  "be the hardest worker in the room",
+  "discipline beats motivation every time",
+  "the burn means it's working",
+  "push past the voice that says stop",
+  "move your body. change your life",
+  "you've done hard things before",
+  "get comfortable being uncomfortable",
+  "your future self is watching",
+  "fall seven times, get up eight",
+  "the only bad workout is the one that didn't happen",
+  "consistency is the secret weapon",
+  "breathe. grind. repeat",
+  // Quirky strength
+  "the dumbbells aren't going to lift themselves.",
+  "your muscles are confused. that's the point.",
+  "progressive overload is just controlled suffering.",
+  "rest 60 seconds. or 45. we won't tell.",
+  "the bar doesn't care about your feelings.",
+  "form first. ego second. never the other way.",
+  "your PR from last month is today's warm-up.",
+  "the gym remembered you. it's not happy.",
+  "three sets is a suggestion. four is respect.",
+  "every rep is a negotiation you win.",
+  // Strict strength
+  "put the phone down. pick the weight up.",
+  "no talking. only lifting.",
+  "you didn't come here to watch other people work.",
+  "the weights don't move themselves. neither should you.",
+  "last rep same as the first. no excuses.",
+  "weak links don't survive progressive overload.",
+  "your warm-up weight is someone else's max. act accordingly.",
+  // Cringy strength
+  "today's workout brought to you by yesterday's rest day.",
+  "your future abs are counting every rep.",
+      "gainz don't lie. neither does the scale.",
+  "you're not sore. you're improving.",
   "today's effort is tomorrow's result","train hard or go home",
   "you are stronger than you think","make your body your strongest asset",
   "suffering today, stronger tomorrow","champions aren't born, they're built",
@@ -63,17 +124,17 @@ const QUOTES = [
 ]
 
 const WORKOUT_NAMES = {
-  upper_strength: ["The Press Conference","Arm Day Intervention","Deltoid Drama","Shoulder Season","The Chest Manifesto","Pushing My Luck","Arm Yourself Well","The Bicep Agenda","Chest To Impress","The Shoulder Situation","Upper Management","The Iron Session","Push Day Warrior","Upper Cut","Steel Arms","Chest Day Legend","The Builder","Arms Race","Chest Code","The Lat Awakening","Push Season","Iron Will Upper","Heavy Hitter","The Press Gang","Torso Boss","Chest Day Certified","Arm & Dangerous","Upper Limits","The Push Doctrine","Built From The Top","Pressing Matters","No Days Off Upper","The Chest Chronicles"],
+  upper_strength: ["The Press Conference","Arm Day Intervention","Deltoid Drama","Shoulder Season","The Chest Manifesto","Pushing My Luck","Arm Yourself Well","The Bicep Agenda","Chest To Impress","The Shoulder Situation","Upper Management","The Iron Session","Push Day Warrior","Upper Cut","Steel Arms","Chest Day Legend","The Builder","Arms Race","Chest Code","The Lat Awakening","Push Season","Chest Day Certified","The Chest Chronicles","Bicep City","The Push Manifesto","The Pull Report","Lats Last","Your Shirt Doesn't Fit Anymore","The Mirror Inspector","Push Day Propaganda","Pressing Charges","The Lat Pull Gospel","Sleeves Optional","Chest Day Feels","Your Tank Top Called"],
   upper_hiit:     ["Flap Your Arms","The Sweaty Shoulder","Push Til It's Awkward","Arms Going Nowhere","The Arm Emergency","Chest Panic","Shoulder Chaos","Push And Pray","Burning From The Waist Up","The Flail Method","Sweat From The Neck Up","Arms On Fire","The Shoulder Shuffle","Push Hard Cry Later","Arm Yourself","No Shirt No Problem","Hot Arms Summer","Cardio With Attitude","Chest On The Run","The Flapping Falcon","Sweat Lodge Upper","Breathless Upper","Arms In A Hurry","Upper Chaos Theory","Chest Burner","Speed Arms","The Shoulder Sprint","Upper Body Alarm","Arms Like Whoa","Chest Scramble","Breathe Later"],
   upper_combo:    ["Push Pull Think","The Arm Situation","Chest Day Plot Twist","Shoulders Everywhere","Mixed Up Arms","The Confused Upper","Push Hard Think Later","Upper Body Chaos","Arms At War","Part One Of Many","The Upper Hand","Chest & Friends","All Arms Everything","Shaken Not Stirred","Push Pull Chaos","The Upper Remix","Strength Meets Speed Upper","Chest By Force","The Arm Experiment","Upper Hybrid","Push The Limit","Chest And Sweat","The Arm Mashup","Iron Cardio Upper","The Upper Fusion","Push Pull Ignite"],
-  lower_strength: ["The Leg Situation","Glutes On Trial","Thigh Court","Quad Goals","The Great Squat Off","No Skipping Legs","Hamstring Theory","Lunge Or Die","The Glute Report","Squat Don't Stop","Leg Day Therapy","Squats & Thoughts","Thighs Like Thunder","Leg Season","Don't Skip This","The Squat Agenda","Below Average Day","Quadzilla","The Glute Gospel","Hamstring Highway","Thighmaster","Knee Bender","The Squat Chronicles","Leg Day Lore","The Lower Order","Hinge Nation","Quad Certified","The Glute Manifesto","Built From The Ground Up","No Skipping","Heavy Legs","The Leg Files"],
+  lower_strength: ["Glutes On Trial","The Great Squat Off","No Skipping Legs","Hamstring Theory","The Glute Report","Squat Don't Stop","Leg Day Therapy","Squats & Thoughts","Thighs Like Thunder","The Squat Agenda","Quadzilla","The Glute Gospel","Hamstring Highway","Thighmaster","Knee Bender","The Squat Chronicles","The Glute Manifesto","The Leg Files","Leg Day Revenge","The Quad Chronicles","Squat Or Regret","The Lunge Report","Deadlift Season","Your Legs Are Filing A Complaint","The Day After Leg Day","Hamstrings Have Entered The Chat","No Skipping Leg Day. Ever.","Squat Deep Or Go Home","Booty By Wednesday","Thicc By Thursday"],
   lower_hiit:     ["Jump For Your Life","The Burning Legs","Thigh Emergency","Legs Why","Cardio From The Waist Down","Jump It Out","Leg Day Speed Run","Can't Feel My Legs","The Leg Sprint","Bounce Or Bust","Jump Around Jump Around","The Thigh Fry","Run Don't Walk","Legs Akimbo","Can't Sit Down","Jumping To Conclusions","Hot Legs Summer","Thighs On Fire","Bounce House","Squat Sprint","The Leg Alarm","Jump Or Regret","Cardio Legs","Speed Squats","The Burning Descent","Legs No Chill","Jump Season","Quad Scramble","The Lower Blitz","Legs In Flames","Sprint And Squat"],
   lower_combo:    ["The Leg Experience","Thighs Wide Shut","Squat Plot Twist","Legs With Attitude","The Full Leg Situation","Lower Body Chaos","Squat Hard Think Never","Jump Squat Repeat","The Glute Agenda","Leg Day Remix","Legs But Make It Spicy","Thighs & Vibes","Squat Goals","Leg Day Unplugged","Lower Your Standards For Rest","Legs Plus","The Glute Remix","Strength Meets Jump","The Lower Hybrid","Squat And Burn","Lunge And Launch","The Leg Fusion","Lower Body Ignite","Thigh High Effort","Jump Lift Repeat","The Leg Experiment","Squats By Force"],
-  whole_strength: ["Top To Bottom","The Grand Tour","Muscle Conference","All Systems Lift","The Full Sweep","Nothing Left Out","The Complete Situation","Every Single Muscle","Muscles Everywhere","The Body Agenda","No Muscle Left Behind","Built Different","All Of It","The Complete Package","Every Muscle Meeting","Whole Lotta Gains","Top To Toe","The Full Package","Head To Heels","All Muscles Present","No Muscle Left Behind","The Grand Design","Full Body Certified","The Complete Grind","Built Everywhere","From Neck To Knee","Total Architecture","The Everything Session","Whole Lotta Work","All Systems Lift","The Body Project"],
-  whole_hiit:     ["Full Panic Mode","Everything Is On Fire","The Complete Meltdown","Cardio Everything","The Total Chaos","No Part Left Unsweat","Burn The Whole Thing","Running From Nothing","Full Body Question Mark","The Everything Sprint","Everything Everywhere","Maximum Chaos","Body By Suffering","Sweat All Over","All Systems Go","Cardio Is Life Now","Full Meltdown","No Survivors","Everything Burns","Total Chaos","All Over Fire","The Full Alarm","Body By Sweat","Complete Destruction","Head To Toe Inferno","Full Panic","All Systems Burning","The Everything Sprint","Total Body Blitz","No Part Left Behind","Cardio All Day"],
-  amrap_hiit:     ["The 12 Minute War","No Clock No Problem","AMRAP And Repeat","Round And Round","The Loop","12 Minutes Of Truth","Keep Moving","Non Stop","Go Until Done","The Endless Circuit","No Stopping Now","All Out AMRAP","The Repeater","Round Trip","Lap It Up","12 And Out","Grind The Clock","The Loop Hole","Keep The Pace","Rounds For Days"],
-  lucky7_hiit:    ["Lucky 7s","The Magnificent 7","Seven And Done","The Drop Game","Down To One","Seven Rounds Of Fun","The Elimination","Drop It Low","Lucky Strike","Seven Deep","The Final 7","One By One","The Countdown","Seven Strong","Lucky Number Seven","Drop Zone","The 7 Drop","Last One Standing","Survive The Seven","The Lucky Circuit"],
-  whole_combo:    ["The Full Chaos","Maximum Suffering In Style","The Grand Mess","All Of The Above","Nothing Makes Sense","Full Send No Return","The Complete Disaster","Every Muscle For Itself","The Whole Situation","Total Commitment","The Kitchen Sink","Chaos & Order","Full Body Panic","The Works","Maximum Effort","Full Send","The Big One","The Ultimate Mix","Full Body Remix","Strength Plus Speed","The Complete Experiment","Built And Burned","All Of It And More","The Full Fusion","Total Body Ignite","Every Muscle Every Gear","The Grand Hybrid","Complete The Mission","Full Send Full Build"],
+  whole_strength: ["Top To Bottom","All Systems Lift","The Full Sweep","Every Single Muscle","Muscles Everywhere","No Muscle Left Behind","The Complete Package","Every Muscle Meeting","Top To Toe","The Full Package","Head To Heels","All Muscles Present","Full Body Certified","Built Everywhere","Total Architecture","The Everything Session","No Muscle Left Out","The Full Audit","Total Body Takeover","Your Whole Body Just Sighed","Everything Hurts Tomorrow","No Muscle Gets The Day Off","The Everything Bagel Of Workouts","No Excuses. All Muscles. Now.","Sweat From Head To Toe And Everything Between"],
+  whole_hiit:     ["Full Panic Mode","Everything Is On Fire","The Complete Meltdown","Cardio Everything","The Total Chaos","Running From Nothing","Everything Everywhere","Maximum Chaos","Body By Suffering","Sweat All Over","All Systems Go","Everything Burns","Body By Sweat","Complete Destruction","Head To Toe Inferno","All Systems Burning","Cardio All Day","Total Chaos Cardio","Everything Is Fine. This Is Fine.","Your Lungs Would Like To Negotiate","No Breaks. Full Body. All In.","You Will Finish This. Non-Negotiable."],
+  amrap_hiit:     ["The 12 Minute War","AMRAP And Repeat","Round And Round","The Loop","12 Minutes Of Truth","Keep Moving","The Endless Circuit","No Stopping Now","All Out AMRAP","The Repeater","Round Trip","12 And Out","The Loop Hole","Keep The Pace","Rounds For Days","Loop Till You Drop","Round And Round We Go","Keep The Loop Alive","Laps For Days","12 Minutes To Nowhere And Back","How Many Rounds Was That","One More. Definitely One More.","The Clock Is Judging You Right Now","Maximum Rounds Or Maximum Regret","Loop It Till You Love It"],
+  lucky7_hiit:    ["The Magnificent 7","Seven And Done","The Drop Game","Down To One","Seven Rounds Of Fun","The Elimination","Drop It Low","Lucky Strike","Seven Deep","The Final 7","One By One","The 7 Drop","Last One Standing","Survive The Seven","Seven Reasons To Question Your Choices","Down To One. Still Standing.","The Elimination Round","Seven Rounds. No Exceptions.","777 Jackpot Of Suffering"],
+  whole_combo:    ["The Full Chaos","Maximum Suffering In Style","The Grand Mess","All Of The Above","Nothing Makes Sense","Full Send No Return","Total Commitment","Chaos & Order","Full Body Panic","Maximum Effort","The Ultimate Mix","Full Body Remix","Strength Plus Speed","All Of It And More","Total Body Ignite","The Grand Hybrid","Full Send Full Build"],
   legs_shoulders_strength: ["Legs & Delts Day","The Boulder Shoulder Squat","Thighs And Tries","Below And Above","Quad Meets Shoulder","The Custom Job","Legs Up Shoulders Back","Delts And Squats United","Boulder Season","The Delt Gospel","Shoulders Certified","The Press Project","Shoulders By Design","Iron Delts","The Delt Agenda","Caps And Delts","Shoulder Day Lore","Raise The Bar"],
   legs_shoulders_hiit:     ["Legs And Shoulders On Fire","The Custom Burn","Thighs And Delts Inferno","Squat And Shoulder Chaos","The Personal Destroyer","Custom Cardio Chaos"],
   legs_shoulders_combo:    ["The Custom Session","Legs Shoulders Everything","The Personal Mix","Quad And Delt Combo","Your Workout Your Rules","The Tailored Chaos"],
@@ -324,6 +385,36 @@ export default function WorkoutPage({ onGenerate }) {
   function showFlash(msg) {
     setFlashMsg(msg)
     setTimeout(() => setFlashMsg(''), 2800)
+  }
+
+  async function handleSwapHiit(id) {
+    // Swap a single HIIT exercise in AMRAP or Lucky7s
+    if (!hiitData) return
+    try {
+      const res  = await fetch('/api/swap', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ exerciseId: id, category: 'hiit', style: 'hiit' })
+      })
+      const data = await res.json()
+      if (!res.ok || !data.replacement) return
+      const r = data.replacement
+      if (hiitData.type === 'amrap') {
+        setHiitData(prev => ({
+          ...prev,
+          exercises: prev.exercises.map(e => e.id === id ? r : e)
+        }))
+      } else if (hiitData.type === 'lucky7') {
+        // Update six array and rebuild rounds
+        const newSix = hiitData.six.map(e => e.id === id ? r : e)
+        const newBurner = hiitData.burner?.id === id ? r : hiitData.burner
+        const sorted = [...newSix].sort((a,b) => (a.intensity||3)-(b.intensity||3))
+        const rounds = []
+        for (let i=0; i<7; i++) {
+          rounds.push([...sorted.slice(i), ...(newBurner?[newBurner]:[])])
+        }
+        setHiitData(prev => ({ ...prev, six: newSix, burner: newBurner, rounds }))
+      }
+    } catch(e) { console.error('swap failed', e) }
   }
 
   async function handleSwap(circuitKey, id, replacement) {
@@ -662,6 +753,7 @@ export default function WorkoutPage({ onGenerate }) {
           </div>
           <Lucky7s
             data={hiitData}
+            onSwap={handleSwapHiit}
             onAddCore={() => handleAddCircuit('core')}
           />
           {coreRound && coreRound.length > 0 && (
@@ -714,6 +806,7 @@ export default function WorkoutPage({ onGenerate }) {
           </div>
           <AMRAPTimer
             data={hiitData}
+            onSwap={handleSwapHiit}
             onAddCore={() => handleAddCircuit('core')}
             onAddCircuit3={() => handleAddCircuit('circuit3')}
             onAnotherAMRAP={amrapCount < 3 && !amrapLoading ? async () => {
