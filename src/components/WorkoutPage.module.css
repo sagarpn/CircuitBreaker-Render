@@ -989,7 +989,7 @@
 }
 .workoutTitle {
   font-family: var(--display);
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -1124,4 +1124,58 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+
+/* ── B1 Compact Header ── */
+.workoutInfo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.infoDot {
+  color: var(--border);
+  font-size: 10px;
+}
+.workoutBtnRow {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding-bottom: 4px;
+}
+.headerBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 16px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+}
+.headerBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(232,247,42,0.05);
+}
+.headerBtnSaved {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.headerBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
 }

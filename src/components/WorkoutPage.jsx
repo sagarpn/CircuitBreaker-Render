@@ -266,6 +266,22 @@ export default function WorkoutPage({ onGenerate }) {
 
   const delay = ms => new Promise(r => setTimeout(r, ms))
 
+  function getWorkoutTypeShort() {
+    if (hiitData) {
+      if (hiitData.type === 'amrap')  return 'HIIT · AMRAP'
+      if (hiitData.type === 'lucky7') return 'HIIT · Lucky 7s'
+      return 'HIIT · Circuit'
+    }
+    if (style === 'combo') return 'HIIT + Strength'
+    if (style === 'hiit')  return 'HIIT · Circuit'
+    if (style === 'strength') {
+      if (focus === 'upper') return 'Upper · Strength'
+      if (focus === 'lower') return 'Lower · Strength'
+      return 'Whole Body · Strength'
+    }
+    return 'Workout'
+  }
+
   function getWorkoutTypeLabel() {
     if (hiitData) {
       if (hiitData.type === 'amrap')   return 'HIIT AMRAP'
@@ -724,32 +740,25 @@ export default function WorkoutPage({ onGenerate }) {
       {hiitData && generated && hiitData.type === 'lucky7' && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
-            <div className={styles.workoutHeaderTop}>
-              <h2 className={styles.workoutTitle}>{workoutName}</h2>
-              <div className={styles.workoutActions}>
-
-                <button className={styles.actionBtn} onClick={() => {
-                  const lines = [`🏋️ ${workoutName}`, '', 'LUCKY 7s']
-                  hiitData.six.forEach((e,i) => lines.push(`  ${i+1}. ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`))
-                  if (hiitData.burner) lines.push(`  7. ${hiitData.burner.name} — BURNER`)
-                  lines.push('', 'circuitbreaker.onrender.com')
-                  navigator.clipboard?.writeText(lines.join('\n')).then(()=>alert('Copied!'))
-                }} title="Copy">📋</button>
-                <button className={`${styles.actionBtnSave} ${workoutSaved?styles.actionBtnSaved:''}`}
-                  onClick={saveWorkout} disabled={workoutSaved} title="Save">
-                  {workoutSaved ? '⭐' : '☆'}
-                </button>
-              </div>
+            <h2 className={styles.workoutTitle}>{workoutName}</h2>
+            <div className={styles.workoutInfo}>
+              <span>HIIT · Lucky 7s</span>
+              <span className={styles.infoDot}>·</span>
+              <span>7 rounds · {(hiitData.six||[]).length + 1} exercises</span>
             </div>
-            <div className={styles.workoutTags}>
-              <span className={styles.tag}>HIIT</span>
-              <span className={styles.tag}>Lucky 7s</span>
+            <div className={styles.workoutBtnRow}>
+              <button className={styles.headerBtn} onClick={() => {
+                const lines = [`🏋️ ${workoutName}`, '', 'LUCKY 7s']
+                hiitData.six.forEach((e,i) => lines.push(`  ${i+1}. ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`))
+                if (hiitData.burner) lines.push(`  7. ${hiitData.burner.name} — BURNER`)
+                lines.push('', 'circuitbreaker.onrender.com')
+                navigator.clipboard?.writeText(lines.join('\n')).then(()=>alert('Copied!'))
+              }}>📋 Copy</button>
+              <button className={`${styles.headerBtn} ${workoutSaved?styles.headerBtnSaved:''}`}
+                onClick={saveWorkout} disabled={workoutSaved}>
+                {workoutSaved ? '⭐ Saved' : '☆ Save'}
+              </button>
             </div>
-          </div>
-          <div className={styles.workoutSummary}>
-            <span className={styles.summaryMuscles}>7 rounds · {(hiitData.six||[]).length + 1} exercises</span>
-            <span className={styles.summaryDot}>·</span>
-            <span className={styles.summaryExtra}>one exercise drops each round</span>
           </div>
           <Lucky7s
             data={hiitData}
@@ -778,31 +787,24 @@ export default function WorkoutPage({ onGenerate }) {
       {hiitData && generated && hiitData.type === 'amrap' && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
-            <div className={styles.workoutHeaderTop}>
-              <h2 className={styles.workoutTitle}>{workoutName}</h2>
-              <div className={styles.workoutActions}>
-
-                <button className={styles.actionBtn} onClick={() => {
-                  const lines = [`🏋️ ${workoutName}`, '', 'AMRAP — 12 min, as many rounds as possible']
-                  ;(hiitData.exercises||[]).forEach((e,i) => lines.push(`  ${i+1}. ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`))
-                  lines.push('', 'circuitbreaker.onrender.com')
-                  navigator.clipboard?.writeText(lines.join('\n')).then(()=>alert('Copied!'))
-                }} title="Copy">📋</button>
-                <button className={`${styles.actionBtnSave} ${workoutSaved?styles.actionBtnSaved:''}`}
-                  onClick={saveWorkout} disabled={workoutSaved} title="Save">
-                  {workoutSaved ? '⭐' : '☆'}
-                </button>
-              </div>
+            <h2 className={styles.workoutTitle}>{workoutName}</h2>
+            <div className={styles.workoutInfo}>
+              <span>HIIT · AMRAP</span>
+              <span className={styles.infoDot}>·</span>
+              <span>12 min · {(hiitData.exercises||[]).length} exercises</span>
             </div>
-            <div className={styles.workoutTags}>
-              <span className={styles.tag}>HIIT</span>
-              <span className={styles.tag}>AMRAP</span>
+            <div className={styles.workoutBtnRow}>
+              <button className={styles.headerBtn} onClick={() => {
+                const lines = [`🏋️ ${workoutName}`, '', 'AMRAP — 12 min, as many rounds as possible']
+                ;(hiitData.exercises||[]).forEach((e,i) => lines.push(`  ${i+1}. ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`))
+                lines.push('', 'circuitbreaker.onrender.com')
+                navigator.clipboard?.writeText(lines.join('\n')).then(()=>alert('Copied!'))
+              }}>📋 Copy</button>
+              <button className={`${styles.headerBtn} ${workoutSaved?styles.headerBtnSaved:''}`}
+                onClick={saveWorkout} disabled={workoutSaved}>
+                {workoutSaved ? '⭐ Saved' : '☆ Save'}
+              </button>
             </div>
-          </div>
-          <div className={styles.workoutSummary}>
-            <span className={styles.summaryMuscles}>12 min · {(hiitData.exercises||[]).length} exercises</span>
-            <span className={styles.summaryDot}>·</span>
-            <span className={styles.summaryExtra}>loop as many rounds as you can</span>
           </div>
           <AMRAPTimer
             data={hiitData}
@@ -843,53 +845,41 @@ export default function WorkoutPage({ onGenerate }) {
       {workout && generated && !hiitData && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
-            <div className={styles.workoutHeaderTop}>
-              <h2 className={styles.workoutTitle}>{workoutName}</h2>
-              <div className={styles.workoutActions}>
-                <button className={styles.actionBtn} onClick={() => {
-                  const fmt = (exs) => (exs||[]).map(e =>
-                    `  • ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`
-                  ).join('\n')
-                  const lines = [`🏋️ ${workoutName}`,'','CIRCUIT 1',fmt(workout.circuit1),'','CIRCUIT 2',fmt(workout.circuit2)]
-                  if (circuit3) { lines.push('','CIRCUIT 3',fmt(circuit3)) }
-                  lines.push('','circuitbreaker.onrender.com')
-                  navigator.clipboard?.writeText(lines.join('\n'))
-                    .then(()=>alert('Copied!')).catch(()=>alert('Could not copy'))
-                }} title="Copy workout">📋</button>
-                <button
-                  className={`${styles.actionBtnSave} ${workoutSaved ? styles.actionBtnSaved : ''}`}
-                  onClick={saveWorkout} disabled={workoutSaved}
-                  title={workoutSaved ? 'Saved' : 'Save workout'}>
-                  {workoutSaved ? '⭐' : '☆'}
-                </button>
-              </div>
-            </div>
-            <div className={styles.workoutTags}>
-              {focus && FOCUS_LABELS[focus] && (
-                <span className={styles.tag}>{FOCUS_LABELS[focus]}</span>
-              )}
-              <span className={styles.tag}>{STYLE_LABELS[style]}</span>
+            <h2 className={styles.workoutTitle}>{workoutName}</h2>
+            {workout && (() => {
+              const c1ex = workout.circuit1 || []
+              const c2ex = workout.circuit2 || []
+              const total = c1ex.length + c2ex.length
+              const muscles = [...new Set([...c1ex,...c2ex]
+                .filter(e => e.display_muscle)
+                .map(e => e.display_muscle)
+              )].slice(0,3).join(' · ') || ''
+              return (
+                <div className={styles.workoutInfo}>
+                  <span>{getWorkoutTypeShort()}</span>
+                  {muscles && <><span className={styles.infoDot}>·</span><span>{muscles}</span></>}
+                  <span className={styles.infoDot}>·</span>
+                  <span>{total} exercises</span>
+                </div>
+              )
+            })()}
+            <div className={styles.workoutBtnRow}>
+              <button className={styles.headerBtn} onClick={() => {
+                const fmt = (exs) => (exs||[]).map(e =>
+                  `  • ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`
+                ).join('\n')
+                const lines = [`🏋️ ${workoutName}`,'','CIRCUIT 1',fmt(workout.circuit1),'','CIRCUIT 2',fmt(workout.circuit2)]
+                if (circuit3) { lines.push('','CIRCUIT 3',fmt(circuit3)) }
+                lines.push('','circuitbreaker.onrender.com')
+                navigator.clipboard?.writeText(lines.join('\n'))
+                  .then(()=>alert('Copied!')).catch(()=>alert('Could not copy'))
+              }}>📋 Copy</button>
+              <button className={`${styles.headerBtn} ${workoutSaved?styles.headerBtnSaved:''}`}
+                onClick={saveWorkout} disabled={workoutSaved}>
+                {workoutSaved ? '⭐ Saved' : '☆ Save'}
+              </button>
             </div>
           </div>
-
-          {/* Workout summary — one line */}
-          {workout && (() => {
-            const c1ex = workout.circuit1 || []
-            const c2ex = workout.circuit2 || []
-            const total = c1ex.length + c2ex.length
-            const muscles = [...new Set([...c1ex,...c2ex]
-              .filter(e => e.display_muscle)
-              .map(e => e.display_muscle)
-            )].slice(0,3).join(' · ') || (focus === 'upper' ? 'Upper Body' : focus === 'lower' ? 'Lower Body' : focus === 'whole' ? 'Full Body' : 'HIIT')
-            return (
-              <div className={styles.workoutSummary}>
-                <span className={styles.summaryMuscles}>{muscles}</span>
-                <span className={styles.summaryDot}>·</span>
-                <span className={styles.summaryCount}>{total} exercises</span>
-                <span className={styles.summaryExtra}> — add a Core or Burner round for extra results</span>
-              </div>
-            )
-          })()}
 
           <Circuit label="Circuit 1" number={1} exercises={workout.circuit1}
             focus={focus} style={style} hasDumbbells={style!=='hiit'} hasPullupBar={false}
