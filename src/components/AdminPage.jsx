@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './AdminPage.module.css'
 
 const CATEGORIES = ['upper', 'lower', 'core', 'hiit']
@@ -54,15 +54,8 @@ export default function AdminPage() {
   const [dlOpen,       setDlOpen]       = useState(false)
   const [dlFilters,    setDlFilters]    = useState({})
   const [dlCount,      setDlCount]      = useState(0)
-  const [uploadFile,   setUploadFile]   = useState(null)
-  const [uploadParsed, setUploadParsed] = useState(null)
-  const [validateRes,  setValidateRes]  = useState(null)
-  const [validating,   setValidating]   = useState(false)
-  const [uploading,    setUploading]    = useState(false)
-  const [uploadDone,   setUploadDone]   = useState(null)
   const [backupInfo,   setBackupInfo]   = useState(null)
   const [backupMsg,    setBackupMsg]    = useState('')
-  const fileInputRef = useRef(null)
 
   async function checkAuth() {
     const res = await fetch('/api/admin/verify', { headers: { 'x-admin-password': password } })
@@ -198,64 +191,8 @@ export default function AdminPage() {
   }
 
   // ── Upload flow ───────────────────────────────────────────
-  async function handleFileSelect(e) {
-    const file = e.target.files[0]
-    if (!file) return
-    setUploadFile(file); setValidateRes(null); setUploadDone(null)
 
-    // Parse TSV/Excel
-    try {
-      const text    = await file.text()
-      const SEP     = '\t'
-      const allRows = text.split('\n').filter(Boolean)
-      // Skip section headers like "=== EXERCISES ==="
-      const dataRows = allRows.filter(r => !r.startsWith('==='))
-      const headers  = dataRows[0].split(SEP).map(h => h.trim())
-      const exList   = dataRows.slice(1).map(line => {
-        const vals = line.split(SEP)
-        const obj  = {}
-        headers.forEach((h, i) => { obj[h] = (vals[i]||'').trim() })
-        return obj
-      }).filter(ex => ex.name)
-      setUploadParsed(exList)
 
-      // Auto-validate
-      setValidating(true)
-      const res  = await fetch('/api/admin/validate-upload', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-admin-password': password },
-        body: JSON.stringify({ exercises: exList })
-      })
-      const data = await res.json()
-      setValidateRes(data)
-      setValidating(false)
-    } catch(err) {
-      setValidating(false)
-      setValidateRes({ error: 'Could not parse file: ' + err.message })
-    }
-    if (fileInputRef.current) fileInputRef.current.value = ''
-  }
-
-  async function confirmUpload() {
-    if (!uploadParsed) return
-    setUploading(true)
-    try {
-      const res  = await fetch('/api/admin/upload-exercises', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-admin-password': password },
-        body: JSON.stringify({ exercises: uploadParsed })
-      })
-      const data = await res.json()
-      setUploadDone(data)
-      setValidateRes(null); setUploadFile(null); setUploadParsed(null)
-      loadExercises()
-    } catch(err) { alert('Upload error: ' + err.message) }
-    setUploading(false)
-  }
-
-  function cancelUpload() {
-    setUploadFile(null); setUploadParsed(null); setValidateRes(null)
-  }
 
   // ── Backup / Restore ──────────────────────────────────────
   async function doBackup() {
@@ -410,119 +347,7 @@ export default function AdminPage() {
             )}
           </div>
 
-          {/* ── UPLOAD section ── */}
-          <div className={styles.vaultSection}>
-            <div className={styles.vaultSectionTitle}>
-              <span className={styles.vaultIcon}>⬆</span>
-              <span>Upload Exercises</span>
-            </div>
-
-            {!uploadFile && !uploadDone && (
-              <div className={styles.uploadZone}>
-                <label className={styles.uploadLabel}>
-                  <span>Tap to select your Excel / TSV file</span>
-                  <input ref={fileInputRef} type="file" accept=".xls,.xlsx,.tsv,.txt"
-                    onChange={handleFileSelect} style={{display:'none'}} />
-                </label>
-              </div>
-            )}
-
-            {validating && (
-              <div className={styles.validateLoading}>Checking file...</div>
-            )}
-
-            {validateRes && !validateRes.error && (
-              <div className={styles.validateCard}>
-                <div className={styles.validateTitle}>✅ File looks good</div>
-                <div className={styles.validateRows}>
-                  <div className={styles.validateRow}>
-                    <span>Rows detected</span><span>{validateRes.total}</span>
-                  </div>
-                  <div className={styles.validateRow + ' ' + styles.validateAdd}>
-                    <span>Will be added (new)</span><span>{validateRes.will_add}</span>
-                  </div>
-                  <div className={styles.validateRow}>
-                    <span>Will be updated</span><span>{validateRes.will_update}</span>
-                  </div>
-                  {validateRes.will_delete > 0 && (
-                    <div className={styles.validateRow + ' ' + styles.validateErr}>
-                      <span>Will be deleted (action=delete)</span><span>{validateRes.will_delete}</span>
-                    </div>
-                  )}
-                  {validateRes.skipped > 0 && (
-                    <div className={styles.validateRow + ' ' + styles.validateWarn}>
-                      <span>Skipped (blank name)</span><span>{validateRes.skipped}</span>
-                    </div>
-                  )}
-                </div>
-                {validateRes.will_add > 0 && (
-                  <div className={styles.notFoundNote}>
-                    New names: {validateRes.not_found.slice(0,5).join(', ')}
-                    {validateRes.not_found_count > 5 ? ' +' + (validateRes.not_found_count-5) + ' more' : ''}
-                  </div>
-                )}
-                {validateRes.will_delete > 0 && (
-                  <div className={styles.deleteWarning}>
-                    ⚠️ {validateRes.will_delete} exercise{validateRes.will_delete!==1?'s':''} will be permanently deleted from the database.
-                  </div>
-                )}
-                <div className={styles.validateActions}>
-                  <button className={styles.cancelBtn} onClick={cancelUpload}>Cancel</button>
-                  <button className={styles.confirmBtn} onClick={confirmUpload} disabled={uploading}>
-                    {uploading ? 'Uploading...' : 'Confirm & Apply'}
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {validateRes?.error && (
-              <div className={styles.validateError}>
-                {validateRes.error}
-                <button className={styles.cancelBtn} onClick={cancelUpload} style={{marginTop:8}}>Try again</button>
-              </div>
-            )}
-
-            {uploadDone && (
-              <div className={styles.uploadDone}>
-                <div className={styles.validateTitle}>✅ Upload complete</div>
-                <div className={styles.validateRows}>
-                  <div className={styles.validateRow + ' ' + styles.validateAdd}>
-                    <span>Added</span><span>{uploadDone.added}</span>
-                  </div>
-                  <div className={styles.validateRow}>
-                    <span>Updated</span><span>{uploadDone.updated}</span>
-                  </div>
-                  {uploadDone.deleted > 0 && (
-                    <div className={styles.validateRow + ' ' + styles.validateErr}>
-                      <span>Deleted</span><span>{uploadDone.deleted}</span>
-                    </div>
-                  )}
-                  {uploadDone.skipped > 0 && (
-                    <div className={styles.validateRow + ' ' + styles.validateWarn}>
-                      <span>Skipped</span><span>{uploadDone.skipped}</span>
-                    </div>
-                  )}
-                  {uploadDone.errors?.length > 0 && (
-                    <div className={styles.validateRow + ' ' + styles.validateErr}>
-                      <span>Errors</span><span>{uploadDone.errors.length}</span>
-                    </div>
-                  )}
-                  <div className={styles.validateRow}>
-                    <span>Total in DB</span><span>{uploadDone.total_in_db}</span>
-                  </div>
-                  {uploadDone.active_in_db && (
-                    <div className={styles.validateRow + ' ' + styles.validateAdd}>
-                      <span>Active (not flagged)</span><span>{uploadDone.active_in_db}</span>
-                    </div>
-                  )}
-                </div>
-                <button className={styles.cancelBtn} onClick={() => setUploadDone(null)} style={{marginTop:12}}>
-                  Upload another file
-                </button>
-              </div>
-            )}
-          </div>
-
+          
           {/* ── BACKUP section ── */}
           <div className={styles.vaultSection}>
             <div className={styles.vaultSectionTitle}>

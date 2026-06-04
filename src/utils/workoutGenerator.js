@@ -498,102 +498,91 @@ export function generateWorkout(exercises, answers) {
 // 6 exercises (HIIT + 1 core) sorted low→high intensity
 // + 1 HIIT burner always last
 // Drop lowest intensity exercise each round
-export function generateLucky7s(exercises, hasDumbbells = false) {
+export function generateLucky7s(exercises) {
   const usedIds = new Set()
+  function isActive(e) { return !e.flagged && !e.system_flagged }
+  function isL7(e)     { return e.lucky7 === 'yes' }
+  function isBW(e) {
+    const eq = Array.isArray(e.equipment) ? e.equipment : []
+    return eq.length === 0 || eq.every(q => !q || q === 'none')
+  }
+  function isReps(e) {
+    const r = (e.reps || '').toLowerCase()
+    return e.format !== 'timed' && !r.includes('second') && !r.includes('hold')
+  }
 
-  // HIIT regular — bodyweight only
-  const hiitPool = shuffle(exercises.filter(e =>
-    e.category === 'hiit' && !isBurner(e) && !e.flagged && !e.system_flagged &&
-    (() => { const eq = Array.isArray(e.equipment)?e.equipment:[];
-             return eq.length === 0 || eq.every(q => q === 'none') })()
-  ))
-
-  // Core regular — bodyweight only, non-timed preferred
-  const corePool = shuffle(exercises.filter(e =>
-    e.category === 'core' && !isBurner(e) && !e.flagged && !e.system_flagged &&
-    (() => { const eq = Array.isArray(e.equipment)?e.equipment:[];
-             return eq.length === 0 || eq.every(q => q === 'none') })()
-  ))
-
-  // HIIT burners
+  // Pools — lucky7 tagged, bodyweight, rep-based
+  // Balance: at least 3 lower, at least 1 core, max 1 upper
+  const lowerPool  = shuffle(exercises.filter(e =>
+    e.category==='lower' && isActive(e) && isL7(e) && isBW(e) && isReps(e) && !isBurner(e)))
+  const hiitPool   = shuffle(exercises.filter(e =>
+    e.category==='hiit' && isActive(e) && isL7(e) && isBW(e) && isReps(e) && !isBurner(e)))
+  const corePool   = shuffle(exercises.filter(e =>
+    e.category==='core' && isActive(e) && isL7(e) && isBW(e) && isReps(e) && !isBurner(e)))
   const burnerPool = shuffle(exercises.filter(e =>
-    e.category === 'hiit' && isBurner(e) && !e.flagged && !e.system_flagged
-  ))
+    e.category==='hiit' && isBurner(e) && isActive(e) && isBW(e)))
 
-  // Pick 5 HIIT exercises
-  const hiit5 = hiitPool.slice(0, 5)
-  hiit5.forEach(e => usedIds.add(e.id))
+  const picked = []
+  // 3 lower (>50%)
+  for (const e of lowerPool.slice(0,3)) { picked.push(e); usedIds.add(e.id) }
+  // 1 core
+  const c1 = corePool.find(e=>!usedIds.has(e.id))
+  if (c1) { picked.push(c1); usedIds.add(c1.id) }
+  // Fill to 6 from hiit, lower, core
+  const fill = [...hiitPool,...lowerPool,...corePool].filter(e=>!usedIds.has(e.id))
+  for (const e of fill.slice(0, 6-picked.length)) { picked.push(e); usedIds.add(e.id) }
 
-  // Pick 1 core exercise
-  const coreEx = corePool.find(e => !usedIds.has(e.id))
-  if (coreEx) usedIds.add(coreEx.id)
+  // Sort by intensity low→high
+  const six = picked.sort((a,b) => (a.intensity||3) - (b.intensity||3))
 
-  // Pick burner
-  const burner = burnerPool[0]
+  // Burner (always last, never drops)
+  const burner = burnerPool.find(e=>!usedIds.has(e.id)) || burnerPool[0]
 
-  // Combine 5 HIIT + 1 core, sort by intensity low→high
-  const six = [...hiit5, ...(coreEx ? [coreEx] : [])]
-    .sort((a, b) => (a.intensity || 3) - (b.intensity || 3))
-
-  // Build 7 rounds — drop lowest intensity each round
+  // Build 7 rounds
   const rounds = []
   for (let i = 0; i < 7; i++) {
-    const remaining = six.slice(i) // drop first i exercises
-    rounds.push([...remaining, ...(burner ? [burner] : [])])
+    rounds.push([...six.slice(i), ...(burner ? [burner] : [])])
   }
 
   return { rounds, six, burner: burner || null }
 }
 
-// ── AMRAP ─────────────────────────────────────────────────
-// Single block — 5 bodyweight rep-based exercises
-// User loops through for 12 minutes, as many rounds as possible
-// Ex 1: HIIT explosive/cardio (bodyweight, rep-based)
-// Ex 2: Lower bodyweight (squat/lunge/glute, rep-based)
-// Ex 3: Upper bodyweight (push-up/dip, rep-based)
-// Ex 4: Core rep-based (crunch/v-up/leg raise)
-// Ex 5: Burner — max reps
+// ── AMRAP Generator — V3 ─────────────────────────────────
 export function generateAMRAP(exercises) {
   const usedIds = new Set()
-
+  function isActive(e) { return !e.flagged && !e.system_flagged }
+  function isAmrap(e)  { return e.amrap === 'yes' }
   function isBW(e) {
     const eq = Array.isArray(e.equipment) ? e.equipment : []
     return eq.length === 0 || eq.every(q => !q || q === 'none')
   }
-
   function isReps(e) {
     const r = (e.reps || '').toLowerCase()
     return !isBurner(e) && e.format !== 'timed' &&
       !r.includes('second') && !r.includes('hold') && !r.includes('failure')
   }
 
-  const hiitPool  = shuffle(exercises.filter(e =>
-    e.category === 'hiit' && !isBurner(e) && !e.flagged && !e.system_flagged &&
-    isBW(e) && isReps(e)
-  ))
-  const lowerPool = shuffle(exercises.filter(e =>
-    e.category === 'lower' && !isBurner(e) && !e.flagged && !e.system_flagged &&
-    isBW(e) && isReps(e)
-  ))
-  const upperPool = shuffle(exercises.filter(e =>
-    e.category === 'upper' && !isBurner(e) && !e.flagged && !e.system_flagged &&
-    isBW(e) && isReps(e)
-  ))
-  const corePool  = shuffle(exercises.filter(e =>
-    e.category === 'core' && !isBurner(e) && !e.flagged && !e.system_flagged &&
-    isBW(e) && isReps(e)
-  ))
+  const lowerPool  = shuffle(exercises.filter(e =>
+    e.category==='lower' && isActive(e) && isAmrap(e) && isBW(e) && isReps(e) && !isBurner(e)))
+  const hiitPool   = shuffle(exercises.filter(e =>
+    e.category==='hiit' && isActive(e) && isAmrap(e) && isBW(e) && isReps(e) && !isBurner(e)))
+  const upperPool  = shuffle(exercises.filter(e =>
+    e.category==='upper' && isActive(e) && isAmrap(e) && isBW(e) && isReps(e) && !isBurner(e)))
+  const corePool   = shuffle(exercises.filter(e =>
+    e.category==='core' && isActive(e) && isAmrap(e) && isBW(e) && isReps(e) && !isBurner(e)))
   const burnerPool = shuffle(exercises.filter(e =>
-    (e.category === 'hiit' || e.category === 'core') &&
-    isBurner(e) && !e.flagged && !e.system_flagged
-  ))
+    isActive(e) && isBurner(e) && isBW(e)))
 
   const picked = []
-  const h1 = hiitPool[0];  if (h1) { picked.push(h1); usedIds.add(h1.id) }
   const l1 = lowerPool[0]; if (l1) { picked.push(l1); usedIds.add(l1.id) }
-  const u1 = upperPool[0]; if (u1) { picked.push(u1); usedIds.add(u1.id) }
-  const c1 = corePool[0];  if (c1) { picked.push(c1); usedIds.add(c1.id) }
-  const b1 = burnerPool[0];if (b1) { picked.push(b1); usedIds.add(b1.id) }
+  const h1 = hiitPool.find(e=>!usedIds.has(e.id)) || lowerPool.find(e=>!usedIds.has(e.id))
+  if (h1) { picked.push(h1); usedIds.add(h1.id) }
+  const u1 = upperPool.find(e=>!usedIds.has(e.id))
+  if (u1) { picked.push(u1); usedIds.add(u1.id) }
+  const c1 = corePool.find(e=>!usedIds.has(e.id))
+  if (c1) { picked.push(c1); usedIds.add(c1.id) }
+  const b1 = burnerPool.find(e=>!usedIds.has(e.id))
+  if (b1) { picked.push(b1); usedIds.add(b1.id) }
 
   return { exercises: picked }
 }
