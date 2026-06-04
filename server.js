@@ -534,7 +534,7 @@ app.post('/api/admin/exercises', requireAdmin, async (req, res) => {
   const { name, category, equipment, reps, description,
           muscle_group, intensity, amrap, lucky7, compound, burner } = req.body
   if (!name || !category || !reps) return res.status(400).json({ error: 'name, category, reps required' })
-  const { rows: maxId } = await pool.query('SELECT COALESCE(MAX(CAST(id AS BIGINT)), 0) + 1 as next_id FROM exercises WHERE id ~ \'^\\\\d+$\'')
+  const { rows: maxId } = await pool.query("SELECT COALESCE(MAX(CAST(id AS BIGINT)), 0) + 1 as next_id FROM exercises WHERE id ~ '^\\d+$'")
   const id   = maxId[0].next_id.toString()
   const tags = burner === 'yes' ? 'burnout' : ''
   const fmt  = burner === 'yes' ? 'timed' : 'reps'
