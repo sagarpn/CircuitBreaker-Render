@@ -73,9 +73,12 @@ const distPath = path.join(__dirname, 'dist')
 if (fs.existsSync(distPath)) app.use(express.static(distPath))
 
 // ── Database connection ───────────────────────────────────
+const dbUrl = process.env.DATABASE_URL || ''
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false,
+  connectionString: dbUrl,
+  ssl: dbUrl.includes('supabase') || dbUrl.includes('ssl')
+    ? { rejectUnauthorized: false }
+    : (dbUrl ? { rejectUnauthorized: false } : false),
 })
 
 // ── DB init — create tables + seed exercises if empty ────

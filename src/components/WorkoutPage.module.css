@@ -976,7 +976,9 @@
 .workoutHeader {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  gap: 0;
+  padding: 20px 16px 16px;
   padding: 16px 16px 14px;
   border-bottom: 2px solid var(--border);
   background: var(--surface);
@@ -991,6 +993,7 @@
   font-family: var(--display);
   font-size: 30px;
   font-weight: 900;
+  text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--accent);
@@ -1170,6 +1173,73 @@
   border-color: var(--accent);
   color: var(--accent);
   background: rgba(232,247,42,0.05);
+}
+.headerBtnSaved {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.headerBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+
+/* ── D1 Centered Header ── */
+.headerLine {
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.3;
+  border-radius: 1px;
+  margin: 10px 0;
+}
+.headerInfoRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+.headerDot {
+  font-size: 6px;
+  color: var(--border);
+}
+.headerMuscles {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  margin-bottom: 12px;
+}
+.headerBtnRow {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.headerBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px 14px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+}
+.headerBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 .headerBtnSaved {
   border-color: var(--accent);

@@ -741,12 +741,16 @@ export default function WorkoutPage({ onGenerate }) {
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
             <h2 className={styles.workoutTitle}>{workoutName}</h2>
-            <div className={styles.workoutInfo}>
+            <div className={styles.headerLine} />
+            <div className={styles.headerInfoRow}>
               <span>HIIT · Lucky 7s</span>
-              <span className={styles.infoDot}>·</span>
+              <span className={styles.headerDot}>·</span>
               <span>7 rounds · {(hiitData.six||[]).length + 1} exercises</span>
             </div>
-            <div className={styles.workoutBtnRow}>
+            <div className={styles.headerMuscles}>
+              {[...new Set((hiitData.six||[]).filter(e=>e.display_muscle).map(e=>e.display_muscle))].slice(0,3).join(' · ')}
+            </div>
+            <div className={styles.headerBtnRow}>
               <button className={styles.headerBtn} onClick={() => {
                 const lines = [`🏋️ ${workoutName}`, '', 'LUCKY 7s']
                 hiitData.six.forEach((e,i) => lines.push(`  ${i+1}. ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`))
@@ -788,12 +792,16 @@ export default function WorkoutPage({ onGenerate }) {
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
             <h2 className={styles.workoutTitle}>{workoutName}</h2>
-            <div className={styles.workoutInfo}>
+            <div className={styles.headerLine} />
+            <div className={styles.headerInfoRow}>
               <span>HIIT · AMRAP</span>
-              <span className={styles.infoDot}>·</span>
+              <span className={styles.headerDot}>·</span>
               <span>12 min · {(hiitData.exercises||[]).length} exercises</span>
             </div>
-            <div className={styles.workoutBtnRow}>
+            <div className={styles.headerMuscles}>
+              {[...new Set((hiitData.exercises||[]).filter(e=>e.display_muscle).map(e=>e.display_muscle))].slice(0,3).join(' · ')}
+            </div>
+            <div className={styles.headerBtnRow}>
               <button className={styles.headerBtn} onClick={() => {
                 const lines = [`🏋️ ${workoutName}`, '', 'AMRAP — 12 min, as many rounds as possible']
                 ;(hiitData.exercises||[]).forEach((e,i) => lines.push(`  ${i+1}. ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`))
@@ -846,6 +854,7 @@ export default function WorkoutPage({ onGenerate }) {
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
             <h2 className={styles.workoutTitle}>{workoutName}</h2>
+            <div className={styles.headerLine} />
             {workout && (() => {
               const c1ex = workout.circuit1 || []
               const c2ex = workout.circuit2 || []
@@ -854,16 +863,16 @@ export default function WorkoutPage({ onGenerate }) {
                 .filter(e => e.display_muscle)
                 .map(e => e.display_muscle)
               )].slice(0,3).join(' · ') || ''
-              return (
-                <div className={styles.workoutInfo}>
+              return (<>
+                <div className={styles.headerInfoRow}>
                   <span>{getWorkoutTypeShort()}</span>
-                  {muscles && <><span className={styles.infoDot}>·</span><span>{muscles}</span></>}
-                  <span className={styles.infoDot}>·</span>
+                  <span className={styles.headerDot}>·</span>
                   <span>{total} exercises</span>
                 </div>
-              )
+                {muscles && <div className={styles.headerMuscles}>{muscles}</div>}
+              </>)
             })()}
-            <div className={styles.workoutBtnRow}>
+            <div className={styles.headerBtnRow}>
               <button className={styles.headerBtn} onClick={() => {
                 const fmt = (exs) => (exs||[]).map(e =>
                   `  • ${e.name} — ${(e.reps||'').replace(/^\d+\s+sets?\s*[x×]\s*/i,'').trim()}`
