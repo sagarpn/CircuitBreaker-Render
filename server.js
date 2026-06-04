@@ -199,7 +199,7 @@ async function initDB() {
           const dbRow = existingMap.get(key)
           try {
             await client.query(
-              ``UPDATE exercises SET category=$1, equipment=$2, reps=$3, description=$4, tags=$5, format=$6,
+              `UPDATE exercises SET category=$1, equipment=$2, reps=$3, description=$4, tags=$5, format=$6,
                muscle_group=$7, is_compound=$8, slot_order=$9, display_muscle=$10,
                intensity=$11, system_flagged=false,
                amrap=$12, lucky7=$13, hiit_eligible=$14, bodyweight_tag=$15,
@@ -213,10 +213,7 @@ async function initDB() {
                ex.amrap||null, ex.lucky7||null, ex.hiit_eligible||null,
                ex.bodyweight||null, ex.burner||null, ex.core_burner||null,
                ex.hiit_burner||null, ex.timed||null, ex.compound||null,
-               ex.unilateral||null, ex.plyometric||null, dbRow.id], ex.reps || '',
-               ex.description || '', tags, format,
-               ex.muscle_group||null, ex.is_compound||false, ex.ex_order||null,
-               ex.display_muscle||null, ex.intensity||null, dbRow.id]
+               ex.unilateral||null, ex.plyometric||null, dbRow.id]
             )
             updated++
           } catch (e) {
@@ -224,10 +221,10 @@ async function initDB() {
           }
         } else {
           try {
-            const { rows: maxRow } = await client.query('SELECT COALESCE(MAX(CAST(id AS BIGINT)), 0) + 1 as next_id FROM exercises WHERE id ~ \'^\\\\d+$\'')
-          const id = maxRow[0].next_id.toString()
+            const { rows: maxRow } = await client.query("SELECT COALESCE(MAX(CAST(id AS BIGINT)), 0) + 1 as next_id FROM exercises WHERE id ~ '^\\d+$'")
+            const id = maxRow[0].next_id.toString()
             await client.query(
-              ``INSERT INTO exercises (id,name,category,equipment,reps,description,flagged,tags,format,
+              `INSERT INTO exercises (id,name,category,equipment,reps,description,flagged,tags,format,
                muscle_group,is_compound,slot_order,display_muscle,intensity,system_flagged,
                amrap,lucky7,hiit_eligible,bodyweight_tag,burner_tag,core_burner,hiit_burner,
                timed_tag,compound_tag,unilateral_tag,plyometric_tag)
@@ -239,10 +236,7 @@ async function initDB() {
                ex.amrap||null, ex.lucky7||null, ex.hiit_eligible||null,
                ex.bodyweight||null, ex.burner||null, ex.core_burner||null,
                ex.hiit_burner||null, ex.timed||null, ex.compound||null,
-               ex.unilateral||null, ex.plyometric||null],
-               ex.reps || '', ex.description || '', false, tags, format,
-               ex.muscle_group||null, ex.is_compound||false, ex.ex_order||null,
-               ex.display_muscle||null]
+               ex.unilateral||null, ex.plyometric||null]
             )
             added++
           } catch (e) {
