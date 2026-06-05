@@ -372,7 +372,13 @@ export default function WorkoutPage({ onGenerate }) {
   async function handleAddCircuit(type = 'circuit3') {
     setLoadingC3(type)
     try {
-      const allUsedIds = [...workout.circuit1, ...workout.circuit2, ...(circuit3||[])].map(e => e.id)
+      let allUsedIds = []
+      if (workout) {
+        allUsedIds = [...(workout.circuit1||[]), ...(workout.circuit2||[]), ...(circuit3||[])].map(e => e.id)
+      } else if (hiitData) {
+        if (hiitData.type === 'amrap') allUsedIds = (hiitData.exercises||[]).map(e => e.id)
+        else if (hiitData.type === 'lucky7') allUsedIds = [...(hiitData.six||[]), ...(hiitData.burner ? [hiitData.burner] : [])].map(e => e.id)
+      }
       const res  = await fetch('/api/generate-circuit', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
