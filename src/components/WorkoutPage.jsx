@@ -740,6 +740,7 @@ export default function WorkoutPage({ onGenerate }) {
       {hiitData && generated && hiitData.type === 'lucky7' && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
+            <div className={styles.workoutHeaderInner}>
             <h2 className={styles.workoutTitle}>{workoutName}</h2>
             {quote && <div className={styles.headerQuote}>"{quote}"</div>}
             <div className={styles.headerFadeLine} />
@@ -765,6 +766,7 @@ export default function WorkoutPage({ onGenerate }) {
                   {workoutSaved ? '⭐ Saved' : '☆ Save'}
                 </button>
               </div>
+            </div>
             </div>
           </div>
           <Lucky7s
@@ -794,6 +796,7 @@ export default function WorkoutPage({ onGenerate }) {
       {hiitData && generated && hiitData.type === 'amrap' && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
+            <div className={styles.workoutHeaderInner}>
             <h2 className={styles.workoutTitle}>{workoutName}</h2>
             {quote && <div className={styles.headerQuote}>"{quote}"</div>}
             <div className={styles.headerFadeLine} />
@@ -818,6 +821,7 @@ export default function WorkoutPage({ onGenerate }) {
                   {workoutSaved ? '⭐ Saved' : '☆ Save'}
                 </button>
               </div>
+            </div>
             </div>
           </div>
           <AMRAPTimer
@@ -859,6 +863,7 @@ export default function WorkoutPage({ onGenerate }) {
       {workout && generated && !hiitData && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
+            <div className={styles.workoutHeaderInner}>
             <h2 className={styles.workoutTitle}>{workoutName}</h2>
             {quote && <div className={styles.headerQuote}>"{quote}"</div>}
             <div className={styles.headerFadeLine} />
@@ -897,6 +902,7 @@ export default function WorkoutPage({ onGenerate }) {
                 </div>
               </>)
             })()}
+            </div>
           </div>
 
           <Circuit label="Circuit 1" number={1} exercises={workout.circuit1}
