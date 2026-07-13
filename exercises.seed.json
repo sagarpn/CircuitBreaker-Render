@@ -444,7 +444,7 @@
   {
     "id": "14",
     "name": "DB Side Plank Raise",
-    "description": "Side plank holding a dumbbell on top hip. Raise arm to ceiling and lower. Each side.",
+    "description": "Side plank holding a dumbbell on top hip. Raise arm to ceiling and lower.",
     "category": "core",
     "hiit": null,
     "strength": null,
@@ -1430,7 +1430,7 @@
   {
     "id": "43",
     "name": "Side Plank",
-    "description": "Stack feet, hips up on one forearm. Hold steady, don't sag. Each side.",
+    "description": "Stack feet, hips up on one forearm. Hold steady, don't sag.",
     "category": "core",
     "hiit": null,
     "strength": null,
@@ -1498,7 +1498,7 @@
   {
     "id": "45",
     "name": "Single Leg Bridge Hold",
-    "description": "One leg extended, drive hips up on planted foot. Hold at the top. Each side.",
+    "description": "One leg extended, drive hips up on planted foot. Hold at the top.",
     "category": "core",
     "hiit": null,
     "strength": null,
@@ -4014,7 +4014,7 @@
   {
     "id": "119",
     "name": "Alternating Jump Lunge",
-    "description": "Jump and switch legs mid-air continuously. Land soft, go again. Each side.",
+    "description": "Jump and switch lunge legs in the air continuously \u2014 sustained power.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -4082,7 +4082,7 @@
   {
     "id": "121",
     "name": "Angled Reverse Lunge",
-    "description": "Step back at a 45 degree angle instead of straight. Each side.",
+    "description": "Step back at a 45 degree angle instead of straight.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -4252,7 +4252,7 @@
   {
     "id": "126",
     "name": "Curtsy Lunge to Knee Drive",
-    "description": "Step one foot behind and across, lower into a lunge, drive that knee forward as you stand. Each side.",
+    "description": "Step one foot behind and across, lower into a lunge, drive that knee forward as you stand",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -4286,7 +4286,7 @@
   {
     "id": "127",
     "name": "Curtsy Lunge to Single Arm Press",
-    "description": "Step behind into curtsy lunge, press same side arm overhead as you stand up. Each side.",
+    "description": "Step behind into curtsy lunge, press same side arm overhead as you stand up",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -4320,7 +4320,7 @@
   {
     "id": "128",
     "name": "DB Bulgarian Split Squat",
-    "description": "Rear foot on a chair, dumbbell in each hand. Lower on the front leg. Drive up. Each side.",
+    "description": "Rear foot on a chair, dumbbell in each hand. Lower on the front leg. Drive up.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -4558,7 +4558,7 @@
   {
     "id": "135",
     "name": "DB Reverse Lunges",
-    "description": "Step back into lunge, dumbbells at sides. Each side.",
+    "description": "Step back into lunge, dumbbells at sides",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -4626,7 +4626,7 @@
   {
     "id": "137",
     "name": "DB Single Leg Deadlift",
-    "description": "Hinge on one leg holding dumbbells, extend other leg back. Each side.",
+    "description": "Hinge on one leg holding dumbbells, extend other leg back",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -4660,7 +4660,7 @@
   {
     "id": "138",
     "name": "DB Single Leg Hip Thrust",
-    "description": "One leg extended, dumbbell on hip. Drive up on the planted foot. Squeeze. Each side.",
+    "description": "One leg extended, dumbbell on hip. Drive up on the planted foot. Squeeze.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -4694,7 +4694,7 @@
   {
     "id": "139",
     "name": "DB Split Squat",
-    "description": "Split stance, dumbbells at sides. Lower straight down. Drive up. Each side.",
+    "description": "Split stance, dumbbells at sides. Lower straight down. Drive up.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -4762,7 +4762,7 @@
   {
     "id": "141",
     "name": "DB Squat to Reverse Lunge",
-    "description": "Squat, stand, step back into reverse lunge \u2014 alternating legs. Each side.",
+    "description": "Squat, stand, step back into reverse lunge \u2014 alternating legs",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -5306,7 +5306,7 @@
   {
     "id": "157",
     "name": "Front Hold Reverse Lunge",
-    "description": "Hold dumbbells at shoulders, step back into a lunge. Each side.",
+    "description": "Hold dumbbells at shoulders, step back into a lunge.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -5476,7 +5476,7 @@
   {
     "id": "162",
     "name": "Goblet Lateral Lunge",
-    "description": "Dumbbell at chest. Step wide into a lateral lunge, stay upright. Push back. Each side.",
+    "description": "Dumbbell at chest. Step wide into a lateral lunge, stay upright. Push back.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -5748,7 +5748,7 @@
   {
     "id": "170",
     "name": "Jump Split Squats",
-    "description": "Split squat position. Jump and switch legs mid-air. Land soft each side.",
+    "description": "Split squat position, jump and switch legs in mid-air",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -5764,7 +5764,7 @@
     "bodyweight": "yes",
     "dumbbells": "",
     "bench": "",
-    "reps": "3 sets x 12 reps each side",
+    "reps": "3 sets x 12 reps",
     "sets": "3",
     "to_failure": null,
     "timed": "",
@@ -5816,7 +5816,7 @@
   {
     "id": "172",
     "name": "Kickstand Deadlift",
-    "description": "Back foot on toes for balance only. Hinge forward on the front leg, flat back. Each side.",
+    "description": "Back foot on toes for balance only. Hinge forward on the front leg, flat back.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -5918,7 +5918,7 @@
   {
     "id": "175",
     "name": "Lateral Lunges",
-    "description": "Step wide to the side, bend that knee, keep other leg straight. Each side.",
+    "description": "Step wide to the side, bend that knee, keep other leg straight",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -5952,7 +5952,7 @@
   {
     "id": "176",
     "name": "Lateral Lunge to Balance",
-    "description": "Lateral lunge, push back and hold on one leg at the top. Complete all reps then switch.",
+    "description": "Lateral lunge, push back and hold on one leg at the top \u2014 adds balance challenge.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -5968,7 +5968,7 @@
     "bodyweight": "yes",
     "dumbbells": "",
     "bench": "",
-    "reps": "12 reps each side",
+    "reps": "12 reps",
     "sets": null,
     "to_failure": null,
     "timed": "",
@@ -5986,7 +5986,7 @@
   {
     "id": "177",
     "name": "Lateral Lunge to Hammer Curl",
-    "description": "Step into lateral lunge. As you push back, curl both dumbbells. Smooth flow. Each side.",
+    "description": "Step into lateral lunge. As you push back, curl both dumbbells. Smooth flow.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -6020,7 +6020,7 @@
   {
     "id": "178",
     "name": "Lateral Lunge to Lateral Raise",
-    "description": "Step wide into lateral lunge, raise arms to shoulder height as you return to centre. Each side.",
+    "description": "Step wide into lateral lunge, raise arms to shoulder height as you return to centre",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -6360,7 +6360,7 @@
   {
     "id": "188",
     "name": "Reverse Lunges",
-    "description": "Step backward into lunge \u2014 easier on knees than forward. Each side.",
+    "description": "Step backward into lunge \u2014 easier on knees than forward",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -6394,7 +6394,7 @@
   {
     "id": "189",
     "name": "Reverse Lunge to Bicep Curl",
-    "description": "Step back into lunge, curl both dumbbells as you drive back to standing. Each side.",
+    "description": "Step back into lunge, curl both dumbbells as you drive back to standing.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -6428,7 +6428,7 @@
   {
     "id": "190",
     "name": "Reverse Lunge to Front Raise",
-    "description": "Step back into lunge, raise both arms forward to shoulder height as you stand. Each side.",
+    "description": "Step back into lunge, raise both arms forward to shoulder height as you stand",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -6462,7 +6462,7 @@
   {
     "id": "191",
     "name": "Reverse Lunge to Shoulder Press",
-    "description": "Step back into a lunge, press both dumbbells overhead as you drive back to standing. Each side.",
+    "description": "Step back into a lunge, press both dumbbells overhead as you drive back to standing",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -6496,7 +6496,7 @@
   {
     "id": "192",
     "name": "Single Leg Glute Bridge",
-    "description": "One leg extended. Drive hips up on the planted foot. Squeeze hard at top. Each side.",
+    "description": "One leg extended. Drive hips up on the planted foot. Squeeze hard at top.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -6530,7 +6530,7 @@
   {
     "id": "193",
     "name": "Skater Hop to Hold",
-    "description": "Leap to one side, land on one foot and hold the balance. Hop back. Each side.",
+    "description": "Lateral bound, land on one leg and hold the balance briefly before hopping back.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -6546,7 +6546,7 @@
     "bodyweight": "yes",
     "dumbbells": "",
     "bench": "",
-    "reps": "12 reps each side",
+    "reps": "12 reps",
     "sets": null,
     "to_failure": null,
     "timed": "",
@@ -6700,7 +6700,7 @@
   {
     "id": "198",
     "name": "Split Squat Hold",
-    "description": "Hold the bottom of a split squat, back knee hovering. 30 seconds each side.",
+    "description": "Hold the bottom of a split squat with back knee just above floor \u2014 for time.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -6716,7 +6716,7 @@
     "bodyweight": "yes",
     "dumbbells": "",
     "bench": "",
-    "reps": "30 seconds each side",
+    "reps": "30 seconds",
     "sets": null,
     "to_failure": null,
     "timed": "yes",
@@ -6734,7 +6734,7 @@
   {
     "id": "199",
     "name": "Split Squats",
-    "description": "Stationary lunge position, lower back knee toward floor. Each side.",
+    "description": "Stationary lunge position, lower back knee toward floor",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -7142,7 +7142,7 @@
   {
     "id": "211",
     "name": "Staggered Stance Deadlift",
-    "description": "One foot slightly behind the other. Hinge on the front leg, flat back. Stand. Each side.",
+    "description": "One foot slightly behind the other. Hinge on the front leg, flat back. Stand.",
     "category": "lower",
     "hiit": null,
     "strength": "yes",
@@ -8230,7 +8230,7 @@
   {
     "id": "243",
     "name": "Concentration Curl",
-    "description": "Sit with elbow braced on inner thigh, curl one dumbbell slowly. Each side.",
+    "description": "Sit with elbow braced on inner thigh, curl one dumbbell slowly.",
     "category": "upper",
     "hiit": null,
     "strength": "yes",
@@ -9182,7 +9182,7 @@
   {
     "id": "271",
     "name": "DB Lateral Lunge + Raise",
-    "description": "Lateral lunge while raising dumbbells to shoulder height. Each side.",
+    "description": "Lateral lunge while raising dumbbells to shoulder height",
     "category": "upper",
     "hiit": null,
     "strength": "yes",
@@ -9794,7 +9794,7 @@
   {
     "id": "289",
     "name": "DB Single Arm Row",
-    "description": "Brace one hand on your thigh, row dumbbell to hip. Each side.",
+    "description": "Brace one hand on your thigh, row dumbbell to hip.",
     "category": "upper",
     "hiit": null,
     "strength": "yes",
@@ -9896,7 +9896,7 @@
   {
     "id": "292",
     "name": "DB Spider Curl",
-    "description": "Lean forward at 45 degrees, curl one arm at a time hanging straight down. Each side.",
+    "description": "Lean forward at 45 degrees, curl one arm at a time hanging straight down.",
     "category": "upper",
     "hiit": null,
     "strength": "yes",
@@ -10406,7 +10406,7 @@
   {
     "id": "307",
     "name": "Dumbbell Woodchop",
-    "description": "Hold one dumbbell, rotate and chop diagonally from shoulder to opposite hip. Each side.",
+    "description": "Hold one dumbbell, rotate and chop diagonally from shoulder down to opposite hip.",
     "category": "upper",
     "hiit": null,
     "strength": "yes",
@@ -10422,7 +10422,7 @@
     "bodyweight": "yes",
     "dumbbells": "",
     "bench": "",
-    "reps": "3 sets x 10 reps each side",
+    "reps": "3 sets x 10 reps",
     "sets": "3",
     "to_failure": null,
     "timed": "",
@@ -11018,7 +11018,7 @@
   {
     "id": "325",
     "name": "Kneeling Single Arm Row",
-    "description": "One knee on floor. Row dumbbell to hip with the other arm. Full squeeze. Each side.",
+    "description": "One knee on floor. Row dumbbell to hip with the other arm. Full squeeze.",
     "category": "upper",
     "hiit": null,
     "strength": "yes",
@@ -11120,7 +11120,7 @@
   {
     "id": "328",
     "name": "Lawnmower Row",
-    "description": "Wide stance, pull one dumbbell up and back like starting a lawnmower. Each side.",
+    "description": "Wide stance, pull one dumbbell up and back like starting a lawnmower.",
     "category": "upper",
     "hiit": null,
     "strength": "yes",
@@ -11936,7 +11936,7 @@
   {
     "id": "352",
     "name": "Single Arm DB Fly",
-    "description": "Lie on floor, one arm opens wide to floor while other stays stable. Each side.",
+    "description": "Lie on floor, one arm opens wide to floor while other stays stable.",
     "category": "upper",
     "hiit": null,
     "strength": "yes",
@@ -11970,7 +11970,7 @@
   {
     "id": "353",
     "name": "Single Arm Overhead Press",
-    "description": "Press one dumbbell straight overhead, keep core tight. Each side.",
+    "description": "Press one dumbbell straight overhead, keep core tight.",
     "category": "upper",
     "hiit": null,
     "strength": "yes",
@@ -12004,7 +12004,7 @@
   {
     "id": "354",
     "name": "Single Arm Press with Offset Hold",
-    "description": "Hold one dumbbell at chest. Press the other up. Complete all reps then switch sides.",
+    "description": "Hold one dumbbell at chest. Press the other one up. Switch after your reps.",
     "category": "upper",
     "hiit": null,
     "strength": "yes",
@@ -12020,7 +12020,7 @@
     "bodyweight": "yes",
     "dumbbells": "",
     "bench": "",
-    "reps": "12 reps each side",
+    "reps": "12 reps",
     "sets": null,
     "to_failure": null,
     "timed": "",
@@ -12174,7 +12174,7 @@
   {
     "id": "359",
     "name": "Staggered Push-Up",
-    "description": "One hand forward, one back. Push-up, then switch hand positions. Each side.",
+    "description": "One hand forward, one hand back. Do a push-up. Switch hand positions next rep.",
     "category": "upper",
     "hiit": null,
     "strength": "yes",
@@ -12190,7 +12190,7 @@
     "bodyweight": "yes",
     "dumbbells": "",
     "bench": "",
-    "reps": "12 reps each side",
+    "reps": "12 reps",
     "sets": null,
     "to_failure": null,
     "timed": "",
@@ -12242,7 +12242,7 @@
   {
     "id": "361",
     "name": "Step Back Single Arm Press",
-    "description": "Step one leg back as you press one dumbbell. Each side.",
+    "description": "Step one leg back as you press one dumbbell.",
     "category": "upper",
     "hiit": null,
     "strength": "yes",
@@ -12310,7 +12310,7 @@
   {
     "id": "363",
     "name": "Supported Single Arm Reverse Fly",
-    "description": "Hand supported on thigh in a hinge, fly one arm out to side. Each side.",
+    "description": "Hand supported on thigh in a hinge, fly one arm out to side.",
     "category": "upper",
     "hiit": null,
     "strength": "yes",

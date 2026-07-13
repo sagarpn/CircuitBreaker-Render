@@ -1,3 +1,4 @@
+// CircuitBreaker v3.2
 /**
  * server.js — CircuitBreaker Backend
  *
@@ -331,6 +332,27 @@ function requireAdmin(req, res, next) {
 // ─────────────────────────────────────────────────────────
 // PUBLIC ROUTES
 // ─────────────────────────────────────────────────────────
+
+app.get('/api/version', (req, res) => res.json({ version: '3.2', built: '2026-06-06' }))
+
+// ── Keepalive — write + delete unique row to keep Supabase active ──
+app.get('/api/keepalive', async (req, res) => {
+  try {
+    const guid = 'ka_' + Date.now() + '_' + Math.random().toString(36).slice(2, 9)
+    await pool.query(
+      `INSERT INTO history (id, workout_name, focus, style, circuit1, circuit2, date, time)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
+      [guid, 'keepalive', 'whole', 'strength',
+       JSON.stringify([]), JSON.stringify([]),
+       new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short' }),
+       new Date().toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' })]
+    )
+    await pool.query('DELETE FROM history WHERE id=$1', [guid])
+    res.json({ ok: true, guid, ts: new Date().toISOString() })
+  } catch(e) {
+    res.status(500).json({ ok: false, error: e.message })
+  }
+})
 
 app.get('/api/exercises', async (req, res) => {
   try { res.json(await getExercises()) }

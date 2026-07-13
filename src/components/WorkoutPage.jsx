@@ -1,3 +1,4 @@
+// CircuitBreaker v3.2
 import React, { useState, useEffect, useRef } from 'react'
 import Circuit      from './Circuit'
 import FloatingTimer from './FloatingTimer'
@@ -746,10 +747,9 @@ export default function WorkoutPage({ onGenerate }) {
       {hiitData && generated && hiitData.type === 'lucky7' && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
-            <div className={styles.workoutHeaderInner}>
             <h2 className={styles.workoutTitle}>{workoutName}</h2>
             {quote && <div className={styles.headerQuote}>"{quote}"</div>}
-            <div className={styles.headerFadeLine} />
+            <div className={styles.headerFadeLine}></div>
             <div className={styles.headerInfoRow}>
               <span>HIIT · Lucky 7s</span>
               <span className={styles.headerDot}>·</span>
@@ -772,7 +772,6 @@ export default function WorkoutPage({ onGenerate }) {
                   {workoutSaved ? '⭐ Saved' : '☆ Save'}
                 </button>
               </div>
-            </div>
             </div>
           </div>
           <Lucky7s
@@ -802,10 +801,9 @@ export default function WorkoutPage({ onGenerate }) {
       {hiitData && generated && hiitData.type === 'amrap' && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
-            <div className={styles.workoutHeaderInner}>
             <h2 className={styles.workoutTitle}>{workoutName}</h2>
             {quote && <div className={styles.headerQuote}>"{quote}"</div>}
-            <div className={styles.headerFadeLine} />
+            <div className={styles.headerFadeLine}></div>
             <div className={styles.headerInfoRow}>
               <span>HIIT · AMRAP</span>
               <span className={styles.headerDot}>·</span>
@@ -827,7 +825,6 @@ export default function WorkoutPage({ onGenerate }) {
                   {workoutSaved ? '⭐ Saved' : '☆ Save'}
                 </button>
               </div>
-            </div>
             </div>
           </div>
           <AMRAPTimer
@@ -869,10 +866,9 @@ export default function WorkoutPage({ onGenerate }) {
       {workout && generated && !hiitData && (
         <div className={`${styles.workout} fade-up`}>
           <div className={styles.workoutHeader}>
-            <div className={styles.workoutHeaderInner}>
             <h2 className={styles.workoutTitle}>{workoutName}</h2>
             {quote && <div className={styles.headerQuote}>"{quote}"</div>}
-            <div className={styles.headerFadeLine} />
+            <div className={styles.headerFadeLine}></div>
             {workout && (() => {
               const c1ex = workout.circuit1 || []
               const c2ex = workout.circuit2 || []
@@ -908,7 +904,6 @@ export default function WorkoutPage({ onGenerate }) {
                 </div>
               </>)
             })()}
-            </div>
           </div>
 
           <Circuit label="Circuit 1" number={1} exercises={workout.circuit1}
