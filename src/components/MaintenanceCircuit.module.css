@@ -1,0 +1,291 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  padding-bottom: 60px;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 10px 0;
+  padding: 18px 14px 14px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(180deg, rgba(232,247,42,0.04) 0%, #090909 50%);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 20%, rgba(232,247,42,0.15) 50%, transparent 80%);
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 15%, rgba(232,247,42,0.5) 50%, transparent 85%);
+}
+.title {
+  font-family: var(--display);
+  font-size: clamp(20px, 6vw, 30px);
+  font-weight: 900;
+  color: var(--accent);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  text-shadow: 0 0 40px rgba(232,247,42,0.25);
+}
+.headerLine {
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.3;
+  border-radius: 1px;
+  margin: 10px 0 6px;
+}
+.quote {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-style: italic;
+  color: rgba(255,255,255,0.25);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+  padding: 0 8px;
+}
+.headerFadeLine {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  margin-bottom: 8px;
+}
+.meta {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 3px;
+}
+.restNote {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: rgba(255,255,255,0.25);
+  text-align: center;
+  font-style: italic;
+}
+
+/* ── Groups ── */
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 10px 0;
+}
+
+/* ── Card (pair or solo) ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.soloCard {
+  border-left: 3px solid rgba(232,247,42,0.2);
+}
+.cardDone {
+  border-color: rgba(232,247,42,0.3);
+  opacity: 0.75;
+}
+.cardLabel {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 14px 0;
+  opacity: 0.6;
+}
+
+/* ── Pair divider ── */
+.pairDivider {
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 8px;
+}
+.pairDivider::before,
+.pairDivider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.pairDivider span {
+  font-family: var(--sans);
+  font-size: 9px;
+  color: rgba(255,255,255,0.2);
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  font-style: italic;
+}
+
+/* ── Station ── */
+.station {
+  padding: 8px 0 4px;
+  transition: opacity 0.2s;
+}
+.stationDone {
+  opacity: 0.5;
+}
+.stationHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.stationNum {
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--accent);
+  opacity: 0.5;
+  min-width: 22px;
+  text-align: center;
+}
+.stationInfo {
+  flex: 1;
+  min-width: 0;
+}
+.stationName {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.stationMeta {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.perSideBadge {
+  background: rgba(232,247,42,0.08);
+  color: rgba(232,247,42,0.6);
+  border: 1px solid rgba(232,247,42,0.15);
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 600;
+  padding: 1px 5px;
+  letter-spacing: 0.3px;
+}
+.timedBadge {
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  font-size: 9px;
+  padding: 1px 5px;
+}
+
+/* ── Set dots ── */
+.setDots {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 6px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.setDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(232,247,42,0.3);
+  background: transparent;
+  transition: all 0.15s;
+}
+.setDotDone {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── Chevron ── */
+.chevron {
+  font-size: 9px;
+  color: var(--muted);
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+/* ── Station body (expanded) ── */
+.stationBody {
+  padding: 4px 14px 10px 46px;
+}
+.stationDesc {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+.setTracker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.setTrackerLabel {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.setBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+}
+.setBtnDone {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+
+/* ── Footer ── */
+.footer {
+  padding: 20px 16px 0;
+  text-align: center;
+}
+.footerNote {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  font-style: italic;
+  margin: 0;
+}
