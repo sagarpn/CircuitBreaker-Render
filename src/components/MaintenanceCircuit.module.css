@@ -251,3 +251,68 @@
   color: rgba(255,255,255,0.18);
   font-style: italic;
 }
+
+/* ── Tabs ── */
+.tabs {
+  display: flex;
+  margin: 12px 10px 0;
+  background: var(--surface);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 11px 8px;
+  background: transparent;
+  border: none;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+}
+.tab:first-child {
+  border-right: 1px solid var(--border);
+}
+.tabActive {
+  background: var(--surface2);
+  color: var(--text);
+}
+.tabCount {
+  background: rgba(232,247,42,0.12);
+  color: var(--accent);
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+}
+
+/* ── Equipment note ── */
+.equipNote {
+  margin: 8px 10px 0;
+  padding: 8px 12px;
+  background: rgba(232,247,42,0.05);
+  border: 1px solid rgba(232,247,42,0.12);
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: rgba(232,247,42,0.5);
+  font-style: italic;
+}
+
+/* ── Equipment badge ── */
+.equipBadge {
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  font-size: 9px;
+  padding: 1px 5px;
+}

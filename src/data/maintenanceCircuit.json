@@ -155,7 +155,7 @@
       "description": "Press palm against forehead, side, then back of head. Push hard against your hand without letting head move. 10s each direction.",
       "format": "timed",
       "sets": 3,
-      "reps": "Hold 10s × 4 directions",
+      "reps": "Hold 10s \u00d7 4 directions",
       "perSide": false,
       "pairing": "pair",
       "pairId": 5,
@@ -208,6 +208,19 @@
       "pairing": "pair",
       "pairId": 7,
       "pairPosition": 2
+    },
+    {
+      "id": 17,
+      "name": "Y-W-V Raises",
+      "description": "Lie face down. Do 12-15 reps in each position: Y \u2014 arms overhead thumbs up. W \u2014 elbows bent at 90\u00b0 at shoulder height, lift by pinching shoulder blades. V \u2014 arms at 45\u00b0, thumbs up. Rest briefly between each. Don't shrug \u2014 think shoulder blades into back pockets.",
+      "format": "reps",
+      "sets": 2,
+      "reps": "12-15 reps each position",
+      "perSide": false,
+      "pairing": "solo",
+      "pairId": null,
+      "pairPosition": null,
+      "equipment": "none"
     }
   ]
 }
