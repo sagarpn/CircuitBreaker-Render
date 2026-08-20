@@ -4,9 +4,9 @@ import styles from './NutritionPage.module.css'
 import foodDb from '../data/nutritionFoods.json'
 
 const PHASES = [
-  { number: 1, label: 'Phase 1', start: '2026-08-17', end: '2026-09-15' },
-  { number: 2, label: 'Phase 2', start: '2026-09-16', end: '2026-10-15' },
-  { number: 3, label: 'Phase 3', start: '2026-10-16', end: '2026-11-14' },
+  { number: 1, label: 'Day 30 Checkpoint', start: '2026-08-17', end: '2026-09-15' },
+  { number: 2, label: 'Day 60 Checkpoint', start: '2026-09-16', end: '2026-10-15' },
+  { number: 3, label: 'Day 90 Checkpoint', start: '2026-10-16', end: '2026-11-14' },
 ]
 const START_DATE = '2026-08-17'
 const TOTAL_DAYS = 90
@@ -120,112 +120,227 @@ function StreakCalendar({ loggedDates }) {
 
 // ── Food entry picker ─────────────────────────────────────
 const ALL_FOODS = [...foodDb.proteins, ...foodDb.carbs]
+const OATS_FOOD = foodDb.proteins.find(f => f.id === 'overnight_oats')
+const MANUAL_FOOD = foodDb.proteins.find(f => f.id === 'manual')
+const PROTEIN_LIST = foodDb.proteins.filter(f => f.id !== 'overnight_oats' && f.id !== 'manual')
 
-function FoodEntryForm({ date, onAdded }) {
+function FoodSection({ title, kind, foodList, date, onAdded }) {
   const [foodId, setFoodId] = useState('')
   const [amount, setAmount] = useState('')
+  const [oatsChecked, setOatsChecked] = useState(false)
+  const [manualOpen, setManualOpen] = useState(false)
+  const [manualName, setManualName] = useState('')
   const [manualProtein, setManualProtein] = useState('')
   const [manualCarbs, setManualCarbs] = useState('')
   const [saving, setSaving] = useState(false)
+  const [warn, setWarn] = useState('')
 
-  const food = ALL_FOODS.find(f => f.id === foodId)
-  const isManual = foodId === 'manual'
+  const food = foodList.find(f => f.id === foodId)
   const isUnitFood = food && food.unit === 'unit'
 
   const preview = useMemo(() => {
+    if (manualOpen) return { protein: parseFloat(manualProtein)||0, carbs: parseFloat(manualCarbs)||0 }
+    if (oatsChecked && kind==='protein') return { protein: OATS_FOOD.protein_per_unit, carbs: OATS_FOOD.carbs_per_unit }
     if (!food) return null
-    if (isManual) {
-      return { protein: parseFloat(manualProtein)||0, carbs: parseFloat(manualCarbs)||0 }
-    }
     if (isUnitFood) {
       const units = parseFloat(amount) || 0
       return { protein: round1(units * food.protein_per_unit), carbs: round1(units * (food.carbs_per_unit||0)) }
     }
     const g = parseFloat(amount) || 0
-    return {
-      protein: round1(g * (food.protein_per100||0) / 100),
-      carbs: round1(g * (food.carbs_per100||0) / 100)
-    }
-  }, [food, amount, manualProtein, manualCarbs, isManual, isUnitFood])
+    return { protein: round1(g * (food.protein_per100||0) / 100), carbs: round1(g * (food.carbs_per100||0) / 100) }
+  }, [food, amount, manualProtein, manualCarbs, manualOpen, oatsChecked, isUnitFood, kind])
 
   async function addEntry() {
-    if (!food) return
+    setWarn('')
+    let name, amt, unit
+    if (manualOpen) {
+      if (!manualName.trim()) { setWarn('Enter a name for this food'); return }
+      if (!manualProtein && !manualCarbs) { setWarn('Enter protein or carb grams'); return }
+      name = manualName.trim(); amt = 1; unit = 'manual'
+    } else if (oatsChecked) {
+      name = OATS_FOOD.name; amt = 1; unit = 'unit'
+    } else {
+      if (!food) { setWarn('Pick a food first'); return }
+      if (!amount || parseFloat(amount) <= 0) { setWarn(`Add the amount for ${food.name}`); return }
+      name = food.name; amt = parseFloat(amount); unit = food.unit
+    }
     setSaving(true)
     try {
-      const amt = isManual ? 1 : (parseFloat(amount)||0)
       await api('/entries', { method:'POST', body: JSON.stringify({
-        date,
-        food_id: food.id,
-        food_name: food.name,
-        amount: amt,
-        unit: food.unit,
-        protein_g: preview.protein,
-        carbs_g: preview.carbs
+        date, food_id: manualOpen ? 'manual' : (oatsChecked ? 'overnight_oats' : food.id),
+        food_name: name, amount: amt, unit,
+        protein_g: preview.protein, carbs_g: preview.carbs
       })})
-      setFoodId(''); setAmount(''); setManualProtein(''); setManualCarbs('')
+      setFoodId(''); setAmount(''); setOatsChecked(false)
+      setManualOpen(false); setManualName(''); setManualProtein(''); setManualCarbs('')
       onAdded()
     } catch(e) { alert(e.message) }
     setSaving(false)
   }
 
   return (
-    <div className={styles.foodEntryForm}>
-      <label className={styles.field}>
-        <span>Food</span>
-        <select value={foodId} onChange={e=>{setFoodId(e.target.value); setAmount('')}} className={styles.input}>
-          <option value="">— pick a food —</option>
-          <optgroup label="Protein">
-            {foodDb.proteins.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
-          </optgroup>
-          <optgroup label="Carbs">
-            {foodDb.carbs.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
-          </optgroup>
-        </select>
-      </label>
+    <div className={styles.foodSection}>
+      <h4 className={styles.foodSectionTitle}>{title}</h4>
 
-      {food && food.note && <div className={styles.foodNote}>{food.note}</div>}
+      {kind === 'protein' && (
+        <label className={styles.oatsCheck}>
+          <input type="checkbox" checked={oatsChecked}
+            onChange={e => { setOatsChecked(e.target.checked); if(e.target.checked){ setFoodId(''); setManualOpen(false) } }} />
+          <span>🥣 Overnight Oats (1 serving) — auto-calculated</span>
+        </label>
+      )}
+      {oatsChecked && <div className={styles.foodNote}>{OATS_FOOD.note}</div>}
 
-      {food && isManual && (
-        <div className={styles.formGrid2}>
+      {!oatsChecked && !manualOpen && (
+        <>
+          <select value={foodId} onChange={e=>{setFoodId(e.target.value); setAmount(''); setWarn('')}} className={styles.input}>
+            <option value="">— pick a {kind} —</option>
+            {foodList.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
+          </select>
+
+          {food && isUnitFood && (
+            <label className={styles.field}>
+              <span>How many</span>
+              <input type="number" step="1" className={styles.input} value={amount}
+                onChange={e=>{setAmount(e.target.value); setWarn('')}} placeholder="e.g. 1" />
+            </label>
+          )}
+          {food && !isUnitFood && (
+            <label className={styles.field}>
+              <span>Amount (grams, cooked weight)</span>
+              <input type="number" className={styles.input} value={amount}
+                onChange={e=>{setAmount(e.target.value); setWarn('')}} placeholder="e.g. 200" />
+            </label>
+          )}
+        </>
+      )}
+
+      {!oatsChecked && (
+        <button className={styles.manualToggle} onClick={()=>{setManualOpen(v=>!v); setFoodId(''); setWarn('')}}>
+          {manualOpen ? '← back to food list' : '+ Manual entry (type grams directly)'}
+        </button>
+      )}
+
+      {manualOpen && (
+        <div className={styles.manualBox}>
           <label className={styles.field}>
-            <span>Protein (g)</span>
-            <input type="number" className={styles.input} value={manualProtein}
-              onChange={e=>setManualProtein(e.target.value)} placeholder="e.g. 25" />
+            <span>Food name</span>
+            <input type="text" className={styles.input} value={manualName}
+              onChange={e=>{setManualName(e.target.value); setWarn('')}} placeholder="e.g. Turkey burger" />
           </label>
-          <label className={styles.field}>
-            <span>Carbs (g)</span>
-            <input type="number" className={styles.input} value={manualCarbs}
-              onChange={e=>setManualCarbs(e.target.value)} placeholder="e.g. 10" />
-          </label>
+          <div className={styles.formGrid2}>
+            <label className={styles.field}>
+              <span>Protein (g)</span>
+              <input type="number" className={styles.input} value={manualProtein}
+                onChange={e=>{setManualProtein(e.target.value); setWarn('')}} placeholder="e.g. 25" />
+            </label>
+            <label className={styles.field}>
+              <span>Carbs (g)</span>
+              <input type="number" className={styles.input} value={manualCarbs}
+                onChange={e=>{setManualCarbs(e.target.value); setWarn('')}} placeholder="e.g. 10" />
+            </label>
+          </div>
         </div>
       )}
 
-      {food && isUnitFood && (
-        <label className={styles.field}>
-          <span>How many {food.unit === 'unit' ? '(units)' : ''}</span>
-          <input type="number" step="1" className={styles.input} value={amount}
-            onChange={e=>setAmount(e.target.value)} placeholder="e.g. 1" />
-        </label>
-      )}
-
-      {food && !isManual && !isUnitFood && (
-        <label className={styles.field}>
-          <span>Amount (grams, cooked weight)</span>
-          <input type="number" className={styles.input} value={amount}
-            onChange={e=>setAmount(e.target.value)} placeholder="e.g. 200" />
-        </label>
-      )}
-
-      {food && preview && (preview.protein > 0 || preview.carbs > 0) && (
+      {preview && (preview.protein > 0 || preview.carbs > 0) && (
         <div className={styles.previewRow}>
           <span className={styles.previewPill}>{preview.protein}g protein</span>
           <span className={styles.previewPillCarb}>{preview.carbs}g carbs</span>
         </div>
       )}
 
-      <button className={styles.addBtn} onClick={addEntry} disabled={!food || saving}>
-        {saving ? 'Adding...' : '+ Add Entry'}
+      {warn && <div className={styles.warnText}>⚠ {warn}</div>}
+
+      <button className={styles.addBtn} onClick={addEntry} disabled={saving}>
+        {saving ? 'Adding...' : `+ Add ${kind === 'protein' ? 'Protein' : 'Carb'}`}
       </button>
+    </div>
+  )
+}
+
+// ── Entry row with inline edit ────────────────────────────
+function EntryRow({ entry, onDeleted, onSaved }) {
+  const [editing, setEditing] = useState(false)
+  const [amount, setAmount] = useState(entry.amount)
+  const [protein, setProtein] = useState(entry.protein_g)
+  const [carbs, setCarbs] = useState(entry.carbs_g)
+  const [saving, setSaving] = useState(false)
+
+  const origFood = ALL_FOODS.find(f => f.id === entry.food_id)
+
+  useEffect(() => {
+    if (!editing || !origFood || origFood.unit === 'manual') return
+    const amt = parseFloat(amount) || 0
+    if (origFood.unit === 'unit') {
+      setProtein(round1(amt * (origFood.protein_per_unit||0)))
+      setCarbs(round1(amt * (origFood.carbs_per_unit||0)))
+    } else if (origFood.unit === 'g') {
+      setProtein(round1(amt * (origFood.protein_per100||0) / 100))
+      setCarbs(round1(amt * (origFood.carbs_per100||0) / 100))
+    }
+  }, [amount, editing])
+
+  async function del() {
+    await api('/entries/'+entry.id, { method:'DELETE' })
+    onDeleted()
+  }
+
+  async function save() {
+    setSaving(true)
+    try {
+      await api('/entries/'+entry.id, { method:'DELETE' })
+      await api('/entries', { method:'POST', body: JSON.stringify({
+        date: entry.date, food_id: entry.food_id, food_name: entry.food_name,
+        amount: parseFloat(amount)||0, unit: entry.unit,
+        protein_g: parseFloat(protein)||0, carbs_g: parseFloat(carbs)||0
+      })})
+      setEditing(false)
+      onSaved()
+    } catch(e) { alert(e.message) }
+    setSaving(false)
+  }
+
+  if (editing) {
+    return (
+      <div className={styles.entryEditBox}>
+        <span className={styles.entryName}>{entry.food_name}</span>
+        {entry.unit !== 'manual' && (
+          <label className={styles.field}>
+            <span>{entry.unit === 'unit' ? 'How many' : 'Grams'}</span>
+            <input type="number" className={styles.input} value={amount} onChange={e=>setAmount(e.target.value)} />
+          </label>
+        )}
+        <div className={styles.formGrid2}>
+          <label className={styles.field}>
+            <span>Protein (g)</span>
+            <input type="number" className={styles.input} value={protein} onChange={e=>setProtein(e.target.value)} />
+          </label>
+          <label className={styles.field}>
+            <span>Carbs (g)</span>
+            <input type="number" className={styles.input} value={carbs} onChange={e=>setCarbs(e.target.value)} />
+          </label>
+        </div>
+        <div className={styles.entryEditBtns}>
+          <button className={styles.saveBtnSmall} onClick={save} disabled={saving}>{saving?'Saving...':'Save'}</button>
+          <button className={styles.cancelBtn} onClick={()=>setEditing(false)}>Cancel</button>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className={styles.entryRow}>
+      <div className={styles.entryInfo}>
+        <span className={styles.entryName}>{entry.food_name}</span>
+        <span className={styles.entryAmount}>
+          {entry.unit === 'unit' ? `× ${entry.amount}` : entry.unit === 'manual' ? 'manual' : `${entry.amount}g`} · {entry.protein_g}g P / {entry.carbs_g}g C
+        </span>
+      </div>
+      <div className={styles.entryBtns}>
+        <button className={styles.editBtn} onClick={()=>setEditing(true)}>✎</button>
+        <button className={styles.delBtn} onClick={del}>✕</button>
+      </div>
     </div>
   )
 }
@@ -318,15 +433,18 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh }) {
         )}
       </div>
 
-      {/* Food log */}
+      {/* Food log — split protein / carbs */}
       <div className={styles.formCard}>
         <h3 className={styles.formTitle}>Add Food — {fmtDate(date)}</h3>
-        <FoodEntryForm date={date} onAdded={refresh} />
+        <FoodSection title="Protein" kind="protein" foodList={PROTEIN_LIST} date={date} onAdded={refresh} />
+        <div className={styles.foodDivider} />
+        <FoodSection title="Carbs" kind="carb" foodList={foodDb.carbs} date={date} onAdded={refresh} />
       </div>
 
-      {/* Today's entries list */}
+      {/* History for selected day — editable */}
       {dayEntries.length > 0 && (
         <div className={styles.historyCard}>
+          <h3 className={styles.formTitle}>History — {fmtDate(date)}</h3>
           <div className={styles.dayTotalsRow}>
             <div className={styles.dayTotal}>
               <span className={styles.dayTotalVal}>{dayTotals.protein}g</span>
@@ -342,15 +460,7 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh }) {
           </div>
           <div className={styles.entryList}>
             {dayEntries.map(e => (
-              <div key={e.id} className={styles.entryRow}>
-                <div className={styles.entryInfo}>
-                  <span className={styles.entryName}>{e.food_name}</span>
-                  <span className={styles.entryAmount}>
-                    {e.unit === 'unit' ? `× ${e.amount}` : `${e.amount}g`} · {e.protein_g}g P / {e.carbs_g}g C
-                  </span>
-                </div>
-                <button className={styles.delBtn} onClick={()=>delEntry(e.id)}>✕</button>
-              </div>
+              <EntryRow key={e.id} entry={e} onDeleted={refresh} onSaved={refresh} />
             ))}
           </div>
         </div>
@@ -688,7 +798,7 @@ export default function NutritionPage() {
         {[
           {k:'daily', label:'Daily'},
           {k:'weekly', label:'Weekly'},
-          {k:'phases', label:'30-Day'},
+          {k:'phases', label:'Checkpoints'},
           {k:'summary', label:'Summary'},
         ].map(t => (
           <button key={t.k}
