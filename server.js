@@ -187,6 +187,31 @@ async function initDB() {
         updated_at  TIMESTAMPTZ DEFAULT NOW()
       )
     `)
+    // Food log entries — multiple per day, never destructively overwritten
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS nutrition_entries (
+        id          TEXT PRIMARY KEY,
+        date        TEXT NOT NULL,
+        food_id     TEXT NOT NULL,
+        food_name   TEXT NOT NULL,
+        amount      NUMERIC NOT NULL,
+        unit        TEXT NOT NULL,
+        protein_g   NUMERIC NOT NULL DEFAULT 0,
+        carbs_g     NUMERIC NOT NULL DEFAULT 0,
+        created_at  TIMESTAMPTZ DEFAULT NOW()
+      )
+    `)
+    await client.query(`CREATE INDEX IF NOT EXISTS idx_nutrition_entries_date ON nutrition_entries(date)`)
+    // Water — one entry per day, upserted by date
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS nutrition_water (
+        id          TEXT PRIMARY KEY,
+        date        TEXT UNIQUE NOT NULL,
+        ounces      NUMERIC NOT NULL,
+        created_at  TIMESTAMPTZ DEFAULT NOW(),
+        updated_at  TIMESTAMPTZ DEFAULT NOW()
+      )
+    `)
     await client.query(`
       CREATE TABLE IF NOT EXISTS nutrition_weekly (
         id           TEXT PRIMARY KEY,
@@ -212,12 +237,14 @@ async function initDB() {
       CREATE TABLE IF NOT EXISTS nutrition_settings (
         id                 TEXT PRIMARY KEY DEFAULT 'default',
         protein_target_g   INTEGER DEFAULT 170,
-        baseline_weight_lb NUMERIC DEFAULT 217
+        baseline_weight_lb NUMERIC DEFAULT 217,
+        water_target_oz    NUMERIC DEFAULT 100
       )
     `)
+    await client.query(`ALTER TABLE nutrition_settings ADD COLUMN IF NOT EXISTS water_target_oz NUMERIC DEFAULT 100`).catch(()=>{})
     await client.query(`
-      INSERT INTO nutrition_settings (id, protein_target_g, baseline_weight_lb)
-      VALUES ('default', 170, 217)
+      INSERT INTO nutrition_settings (id, protein_target_g, baseline_weight_lb, water_target_oz)
+      VALUES ('default', 170, 217, 100)
       ON CONFLICT (id) DO NOTHING
     `)
 
@@ -935,11 +962,11 @@ app.get('/api/nutrition/settings', requireNutritionPin, async (req, res) => {
 })
 
 app.put('/api/nutrition/settings', requireNutritionPin, async (req, res) => {
-  const { protein_target_g, baseline_weight_lb } = req.body
+  const { protein_target_g, baseline_weight_lb, water_target_oz } = req.body
   try {
     await pool.query(
-      `UPDATE nutrition_settings SET protein_target_g=$1, baseline_weight_lb=$2 WHERE id='default'`,
-      [protein_target_g || 170, baseline_weight_lb || 217]
+      `UPDATE nutrition_settings SET protein_target_g=$1, baseline_weight_lb=$2, water_target_oz=$3 WHERE id='default'`,
+      [protein_target_g || 170, baseline_weight_lb || 217, water_target_oz || 100]
     )
     res.json({ ok: true })
   } catch (e) { res.status(500).json({ error: e.message }) }
@@ -972,6 +999,58 @@ app.post('/api/nutrition/daily', requireNutritionPin, async (req, res) => {
 app.delete('/api/nutrition/daily/:id', requireNutritionPin, async (req, res) => {
   try {
     await pool.query('DELETE FROM nutrition_daily WHERE id=$1', [req.params.id])
+    res.json({ ok: true })
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+// ── Food entries (multiple per day) ──
+app.get('/api/nutrition/entries', requireNutritionPin, async (req, res) => {
+  try {
+    const { rows } = await pool.query(`SELECT * FROM nutrition_entries ORDER BY date DESC, created_at DESC`)
+    res.json(rows)
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+app.post('/api/nutrition/entries', requireNutritionPin, async (req, res) => {
+  const { date, food_id, food_name, amount, unit, protein_g, carbs_g } = req.body
+  if (!date || !food_name) return res.status(400).json({ error: 'date and food_name required' })
+  const id = 'ne_' + Date.now() + '_' + Math.random().toString(36).slice(2,7)
+  try {
+    await pool.query(
+      `INSERT INTO nutrition_entries (id, date, food_id, food_name, amount, unit, protein_g, carbs_g)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
+      [id, date, food_id||'manual', food_name, amount||0, unit||'g', protein_g||0, carbs_g||0]
+    )
+    res.json({ ok: true, id })
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+app.delete('/api/nutrition/entries/:id', requireNutritionPin, async (req, res) => {
+  try {
+    await pool.query('DELETE FROM nutrition_entries WHERE id=$1', [req.params.id])
+    res.json({ ok: true })
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+// ── Water (one entry per day, upserted) ──
+app.get('/api/nutrition/water', requireNutritionPin, async (req, res) => {
+  try {
+    const { rows } = await pool.query(`SELECT * FROM nutrition_water ORDER BY date DESC`)
+    res.json(rows)
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+app.post('/api/nutrition/water', requireNutritionPin, async (req, res) => {
+  const { date, ounces } = req.body
+  if (!date) return res.status(400).json({ error: 'date required' })
+  const id = 'nw_water_' + date
+  try {
+    await pool.query(
+      `INSERT INTO nutrition_water (id, date, ounces, updated_at)
+       VALUES ($1,$2,$3,NOW())
+       ON CONFLICT (date) DO UPDATE SET ounces=$3, updated_at=NOW()`,
+      [id, date, ounces || 0]
+    )
     res.json({ ok: true })
   } catch (e) { res.status(500).json({ error: e.message }) }
 })

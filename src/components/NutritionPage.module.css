@@ -184,51 +184,50 @@
 .calendarWrap {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 12px 14px;
+  border-radius: 12px;
+  padding: 8px 10px;
   margin-bottom: 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.35);
 }
 .calendarLegend {
   display: flex;
-  gap: 14px;
-  margin-bottom: 10px;
+  gap: 8px;
   font-family: var(--sans);
-  font-size: 10px;
+  font-size: 8px;
   color: var(--muted);
 }
-.calendarLegend span { display: flex; align-items: center; gap: 4px; }
+.calendarLegend span { display: flex; align-items: center; gap: 3px; }
 .dotLogged, .dotEmpty, .dotToday {
   display: inline-block;
-  width: 8px; height: 8px;
-  border-radius: 2px;
+  width: 5px; height: 5px;
+  border-radius: 1px;
 }
 .dotLogged { background: var(--accent); }
 .dotEmpty { background: rgba(255,255,255,0.08); border: 1px solid var(--border); }
-.dotToday { background: transparent; border: 1.5px solid var(--accent); }
+.dotToday { background: transparent; border: 1px solid var(--accent); }
 
 .calendarGrid {
   display: grid;
-  grid-template-columns: repeat(15, 1fr);
-  gap: 3px;
+  grid-template-columns: repeat(18, 1fr);
+  gap: 2px;
 }
 .calDay {
   aspect-ratio: 1;
-  border-radius: 2px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 1px;
+  background: rgba(255,255,255,0.05);
+  border: none;
+  min-width: 0;
 }
 .calDayLogged {
   background: var(--accent);
-  border-color: var(--accent);
 }
 .calDayToday {
-  border: 1.5px solid var(--accent);
+  border: 1px solid var(--accent);
 }
 .calDayFuture {
   background: transparent;
-  border-style: dashed;
-  opacity: 0.4;
+  border: 1px dashed rgba(255,255,255,0.08);
+  opacity: 0.5;
 }
 
 /* ── Forms ── */
@@ -410,3 +409,179 @@
   color: var(--muted);
   margin-top: 3px;
 }
+
+/* ── Compact calendar (v2) ── */
+.calendarTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.calendarCount {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ── Date card ── */
+.dateCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+}
+.editingBadge {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--accent);
+  background: rgba(232,247,42,0.06);
+  border: 1px solid rgba(232,247,42,0.15);
+  border-radius: 6px;
+  padding: 5px 8px;
+  margin-top: 6px;
+}
+
+/* ── Error banner ── */
+.errorBanner {
+  background: rgba(255,107,107,0.08);
+  border: 1px solid rgba(255,107,107,0.2);
+  color: #ff8a8a;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-family: var(--sans);
+  font-size: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.retryBtn {
+  background: rgba(255,107,107,0.15);
+  border: 1px solid rgba(255,107,107,0.3);
+  color: #ff8a8a;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ── Food entry form ── */
+.foodEntryForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.formGrid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: end;
+}
+.foodNote {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  font-style: italic;
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 6px;
+}
+.previewRow {
+  display: flex;
+  gap: 8px;
+}
+.previewPill, .previewPillCarb {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.previewPill { background: rgba(88,214,141,0.12); color: #58d68d; }
+.previewPillCarb { background: rgba(122,162,247,0.12); color: #7aa2f7; }
+.addBtn {
+  padding: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+.addBtn:disabled { opacity: 0.35; border-color: var(--border); color: var(--muted); }
+
+/* ── Day totals + entry list ── */
+.dayTotalsRow {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.dayTotal {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: var(--surface2);
+  border-radius: 10px;
+  padding: 10px;
+}
+.dayTotalVal {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text);
+}
+.dayTotalLabel {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--muted);
+}
+.entryList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.entryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+}
+.entryInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.entryName {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+.entryAmount {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--muted);
+}
+.saveBtnSmall {
+  padding: 9px 14px;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  align-self: end;
+}
+.saveBtnSmall:disabled { opacity: 0.5; }
