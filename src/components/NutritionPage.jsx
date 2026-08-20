@@ -129,11 +129,12 @@ const MANUAL_FOOD = foodDb.proteins.find(f => f.id === 'manual')
 const PROTEIN_LIST = foodDb.proteins.filter(f => f.id !== 'overnight_oats' && f.id !== 'manual')
 const ALL_ENTRY_FOODS = [...PROTEIN_LIST, ...foodDb.carbs]
 
-function OatsBlock({ date, onAdded }) {
-  const [checked, setChecked] = useState(false)
+function OatsBlock({ date, onAdded, alreadyLogged }) {
   const [saving, setSaving] = useState(false)
 
-  async function add() {
+  async function toggle(e) {
+    if (alreadyLogged || saving) return
+    if (!e.target.checked) return
     setSaving(true)
     try {
       await api('/entries', { method:'POST', body: JSON.stringify({
@@ -141,44 +142,74 @@ function OatsBlock({ date, onAdded }) {
         amount: 1, unit: 'unit',
         protein_g: OATS_FOOD.protein_per_unit, carbs_g: OATS_FOOD.carbs_per_unit
       })})
-      setChecked(false)
       onAdded()
-    } catch(e) { alert(e.message) }
+    } catch(e2) { alert(e2.message) }
     setSaving(false)
   }
 
   return (
     <div className={styles.oatsBlock}>
-      <label className={styles.oatsCheck}>
-        <input type="checkbox" checked={checked} onChange={e=>setChecked(e.target.checked)} />
-        <span>🥣 Overnight Oats (1 serving) — auto-calculated</span>
+      <label className={`${styles.oatsCheck} ${alreadyLogged ? styles.oatsCheckLocked : ''}`}>
+        <input type="checkbox" checked={alreadyLogged} disabled={alreadyLogged || saving} onChange={toggle} />
+        <span>
+          {alreadyLogged
+            ? `✓ Logged for ${fmtDate(date)} — ${OATS_FOOD.protein_per_unit}g protein / ${OATS_FOOD.carbs_per_unit}g carbs`
+            : saving ? 'Adding...' : `🥣 Overnight Oats (1 serving) — ${OATS_FOOD.protein_per_unit}g protein / ${OATS_FOOD.carbs_per_unit}g carbs`}
+        </span>
       </label>
-      {checked && (
-        <>
-          <div className={styles.foodNote}>{OATS_FOOD.note}</div>
-          <div className={styles.previewRow}>
-            <span className={styles.previewPill}>{OATS_FOOD.protein_per_unit}g protein</span>
-            <span className={styles.previewPillCarb}>{OATS_FOOD.carbs_per_unit}g carbs</span>
-          </div>
-          <button className={styles.addBtn} onClick={add} disabled={saving}>
-            {saving ? 'Adding...' : '+ Add Overnight Oats'}
-          </button>
-        </>
-      )}
+      {!alreadyLogged && <div className={styles.foodNote}>{OATS_FOOD.note}</div>}
     </div>
   )
 }
 
-function FoodSection({ date, onAdded }) {
+function FoodSection({ date, onAdded, allEntries }) {
   const [foodId, setFoodId] = useState('')
   const [amount, setAmount] = useState('')
+  const [manualOpen, setManualOpen] = useState(false)
   const [manualName, setManualName] = useState('')
   const [manualProtein, setManualProtein] = useState('')
   const [manualCarbs, setManualCarbs] = useState('')
   const [saving, setSaving] = useState(false)
   const [warn, setWarn] = useState('')
+  const [quickSaving, setQuickSaving] = useState(null)
 
-  const isManual = foodId === '__manual__'
+  const recentFoods = useMemo(() => {
+    const seen = new Set()
+    const out = []
+    for (const e of allEntries) {
+      if (e.food_id === 'manual' || e.food_id === 'overnight_oats') continue
+      if (seen.has(e.food_id)) continue
+      seen.add(e.food_id)
+      out.push(e)
+      if (out.length >= 5) break
+    }
+    return out
+  }, [allEntries])
+
+  async function quickAdd(recent) {
+    setQuickSaving(recent.id)
+    try {
+      const known = ALL_ENTRY_FOODS.find(f => f.id === recent.food_id)
+      let protein = recent.protein_g, carbs = recent.carbs_g
+      if (known) {
+        if (known.unit === 'unit') {
+          protein = round1(recent.amount * (known.protein_per_unit||0))
+          carbs = round1(recent.amount * (known.carbs_per_unit||0))
+        } else {
+          protein = round1(recent.amount * (known.protein_per100||0) / 100)
+          carbs = round1(recent.amount * (known.carbs_per100||0) / 100)
+        }
+      }
+      await api('/entries', { method:'POST', body: JSON.stringify({
+        date, food_id: recent.food_id, food_name: recent.food_name,
+        amount: recent.amount, unit: recent.unit, protein_g: protein, carbs_g: carbs
+      })})
+      onAdded()
+    } catch(e) { alert(e.message) }
+    setQuickSaving(null)
+  }
+
+  const isManual = manualOpen
   const food = ALL_ENTRY_FOODS.find(f => f.id === foodId)
   const isUnitFood = food && food.unit === 'unit'
 
@@ -212,7 +243,7 @@ function FoodSection({ date, onAdded }) {
         food_name: name, amount: amt, unit,
         protein_g: preview.protein, carbs_g: preview.carbs
       })})
-      setFoodId(''); setAmount(''); setManualName(''); setManualProtein(''); setManualCarbs('')
+      setFoodId(''); setAmount(''); setManualOpen(false); setManualName(''); setManualProtein(''); setManualCarbs('')
       onAdded()
     } catch(e) { alert(e.message) }
     setSaving(false)
@@ -224,16 +255,34 @@ function FoodSection({ date, onAdded }) {
 
   return (
     <div className={styles.foodSection}>
-      <select value={foodId} onChange={e=>{setFoodId(e.target.value); setAmount(''); setWarn('')}} className={styles.input}>
-        <option value="">— pick a food —</option>
-        <option value="__manual__">✎ Other (type manually)</option>
-        <optgroup label="Protein">
-          {PROTEIN_LIST.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
-        </optgroup>
-        <optgroup label="Carbs">
-          {foodDb.carbs.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
-        </optgroup>
-      </select>
+      {!isManual && recentFoods.length > 0 && (
+        <div className={styles.recentRow}>
+          {recentFoods.map(r => (
+            <button key={r.food_id} className={styles.recentChip}
+              onClick={()=>quickAdd(r)} disabled={quickSaving===r.id}>
+              {quickSaving===r.id ? '...' : `${r.food_name} ${r.unit==='unit' ? `×${r.amount}` : `${r.amount}g`}`}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {!isManual && (
+        <select value={foodId} onChange={e=>{setFoodId(e.target.value); setAmount(''); setWarn('')}} className={styles.input}>
+          <option value="">— pick a food —</option>
+          <optgroup label="Protein">
+            {PROTEIN_LIST.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
+          </optgroup>
+          <optgroup label="Carbs">
+            {foodDb.carbs.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
+          </optgroup>
+        </select>
+      )}
+
+      <button className={styles.manualToggle} onClick={()=>{setManualOpen(v=>!v); setFoodId(''); setAmount(''); setWarn('')}}>
+        {isManual ? '← back to food list' : '+ Manual entry (type grams directly)'}
+      </button>
+
+      {!isManual && food && food.note && <div className={styles.foodNote}>{food.note}</div>}
 
       {!isManual && (
         <label className={styles.field}>
@@ -454,40 +503,41 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
 
       {/* Date picker + edit indicator */}
       <div className={styles.dateCard}>
-        <label className={styles.field}>
-          <span>Date</span>
-          <input type="date" value={date} onChange={e=>setDate(e.target.value)} className={styles.input} />
-        </label>
+        <div className={styles.dateRow}>
+          <label className={styles.field}>
+            <span>Date</span>
+            <input type="date" value={date} onChange={e=>setDate(e.target.value)} className={styles.input} />
+          </label>
+          {date !== today && (
+            <button className={styles.todayChip} onClick={()=>setDate(today)}>Today</button>
+          )}
+        </div>
         {isEditingDay && (
           <div className={styles.editingBadge}>✎ Editing {fmtDateFull(date)} — already has data, changes will update it</div>
         )}
       </div>
 
-      {/* Food log — split protein / carbs */}
-      <div className={styles.formCard}>
-        <h3 className={styles.formTitle}>Add Food — {fmtDate(date)}</h3>
-        <OatsBlock date={date} onAdded={refresh} />
-        <div className={styles.foodDivider} />
-        <FoodSection date={date} onAdded={refresh} />
-      </div>
+      {/* Sticky day totals — always visible while scrolling */}
+      {dayEntries.length > 0 && (
+        <div className={styles.stickyTotals}>
+          <div className={styles.dayTotal}>
+            <span className={styles.dayTotalVal}>{dayTotals.protein}g</span>
+            <span className={styles.dayTotalLabel}>protein</span>
+            {dayTotals.protein >= target
+              ? <span className={styles.pillHit}>✓ hit {target}g</span>
+              : <span className={styles.pillMiss}>{round1(target-dayTotals.protein)}g to go</span>}
+          </div>
+          <div className={styles.dayTotal}>
+            <span className={styles.dayTotalVal}>{dayTotals.carbs}g</span>
+            <span className={styles.dayTotalLabel}>carbs</span>
+          </div>
+        </div>
+      )}
 
-      {/* History for selected day — editable */}
+      {/* History for selected day — editable, shown right after date so you see what you've logged */}
       {dayEntries.length > 0 && (
         <div className={styles.historyCard}>
           <h3 className={styles.formTitle}>History — {fmtDate(date)}</h3>
-          <div className={styles.dayTotalsRow}>
-            <div className={styles.dayTotal}>
-              <span className={styles.dayTotalVal}>{dayTotals.protein}g</span>
-              <span className={styles.dayTotalLabel}>protein</span>
-              {dayTotals.protein >= target
-                ? <span className={styles.pillHit}>✓ hit {target}g</span>
-                : <span className={styles.pillMiss}>{round1(target-dayTotals.protein)}g to go</span>}
-            </div>
-            <div className={styles.dayTotal}>
-              <span className={styles.dayTotalVal}>{dayTotals.carbs}g</span>
-              <span className={styles.dayTotalLabel}>carbs</span>
-            </div>
-          </div>
           <div className={styles.entryList}>
             {dayEntries.map(e => (
               <EntryRow key={e.id} entry={e} onDeleted={refresh} onSaved={refresh} />
@@ -495,6 +545,14 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
           </div>
         </div>
       )}
+
+      {/* Food log */}
+      <div className={styles.formCard}>
+        <h3 className={styles.formTitle}>Add Food — {fmtDate(date)}</h3>
+        <OatsBlock date={date} onAdded={refresh} alreadyLogged={dayEntries.some(e => e.food_id === 'overnight_oats')} />
+        <div className={styles.foodDivider} />
+        <FoodSection date={date} onAdded={refresh} allEntries={entries} />
+      </div>
 
       {/* One card: water + veg + workout, one Save Day action */}
       <div className={styles.formCard}>

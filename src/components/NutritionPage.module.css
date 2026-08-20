@@ -702,3 +702,70 @@
   margin-top: 6px;
   font-style: italic;
 }
+
+.oatsCheckLocked {
+  background: rgba(88,214,141,0.06);
+  border-color: rgba(88,214,141,0.2);
+  color: #58d68d;
+  cursor: default;
+}
+
+/* ── Today chip ── */
+.dateRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+.dateRow .field { flex: 1; }
+.todayChip {
+  padding: 9px 14px;
+  background: rgba(232,247,42,0.08);
+  border: 1px solid rgba(232,247,42,0.25);
+  color: var(--accent);
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ── Sticky day totals ── */
+.stickyTotals {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  gap: 8px;
+  background: #090909;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.5);
+}
+
+/* ── Recent foods chips ── */
+.recentRow {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+}
+.recentRow::-webkit-scrollbar { display: none; }
+.recentChip {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 20px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.recentChip:hover { border-color: var(--accent); color: var(--accent); }
+.recentChip:disabled { opacity: 0.5; }

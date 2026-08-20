@@ -15,6 +15,13 @@
       "carbs_per100": 0
     },
     {
+      "id": "eggs",
+      "name": "Eggs (large)",
+      "unit": "unit",
+      "protein_per_unit": 6,
+      "carbs_per_unit": 0.6
+    },
+    {
       "id": "beef",
       "name": "Beef (lean)",
       "unit": "g",
@@ -103,8 +110,9 @@
       "id": "white_rice_quinoa",
       "name": "White Rice + Quinoa",
       "unit": "g",
-      "carbs_per100": 25,
-      "protein_per100": 3.8
+      "carbs_per100": 24.7,
+      "protein_per100": 3.6,
+      "note": "1 cup rice + 1 cup quinoa + 4 cups water, cooked and mixed"
     },
     {
       "id": "brown_rice",
