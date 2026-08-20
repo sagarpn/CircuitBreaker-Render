@@ -556,34 +556,6 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
 
   return (
     <div>
-      {/* Day-status checklist — quick glance at what's left */}
-      {(() => {
-        const proteinDone = dayEntries.length > 0
-        const vegDone = veg !== ''
-        const workoutDone = workout !== ''
-        const waterDone = waterOz !== '' && parseFloat(waterOz) > 0
-        return (
-          <div className={styles.statusRow}>
-            <div className={`${styles.statusItem} ${proteinDone ? styles.statusDone : ''}`}>
-              <span className={styles.statusIcon}>🥩</span>
-              <span className={styles.statusLabel}>Protein</span>
-            </div>
-            <div className={`${styles.statusItem} ${vegDone ? styles.statusDone : ''}`}>
-              <span className={styles.statusIcon}>🥦</span>
-              <span className={styles.statusLabel}>Veg</span>
-            </div>
-            <div className={`${styles.statusItem} ${workoutDone ? styles.statusDone : ''}`}>
-              <span className={styles.statusIcon}>💪</span>
-              <span className={styles.statusLabel}>Workout</span>
-            </div>
-            <div className={`${styles.statusItem} ${waterDone ? styles.statusDone : ''}`}>
-              <span className={styles.statusIcon}>💧</span>
-              <span className={styles.statusLabel}>Water</span>
-            </div>
-          </div>
-        )
-      })()}
-
       <StreakCalendar loggedDates={loggedDates} phaseStart={phaseStart} phaseNumber={phaseNumber} />
 
       {/* Date picker + edit indicator */}
@@ -649,6 +621,29 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
             {dayTotals.extraCal > 0 && (
               <div className={styles.targetToday}>Includes +{dayTotals.extraCal} kcal from fats/oils not shown in protein/carbs</div>
             )}
+          </div>
+        )
+      })()}
+
+      {/* Day-status checklist — veg / workout / water for the selected day */}
+      {(() => {
+        const vegDone = veg !== ''
+        const workoutDone = workout !== ''
+        const waterDone = waterOz !== '' && parseFloat(waterOz) > 0
+        return (
+          <div className={styles.statusRow}>
+            <div className={`${styles.statusItem} ${vegDone ? styles.statusDone : ''}`}>
+              <span className={styles.statusIcon}>🥦</span>
+              <span className={styles.statusLabel}>Veg</span>
+            </div>
+            <div className={`${styles.statusItem} ${workoutDone ? styles.statusDone : ''}`}>
+              <span className={styles.statusIcon}>💪</span>
+              <span className={styles.statusLabel}>Workout</span>
+            </div>
+            <div className={`${styles.statusItem} ${waterDone ? styles.statusDone : ''}`}>
+              <span className={styles.statusIcon}>💧</span>
+              <span className={styles.statusLabel}>Water</span>
+            </div>
           </div>
         )
       })()}
