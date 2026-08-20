@@ -772,12 +772,15 @@
 
 /* ── Phase target card ── */
 .targetCard {
-  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #0d0d0d;
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 10px 12px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+  box-shadow: 0 3px 14px rgba(0,0,0,0.5);
 }
 .targetHead { margin-bottom: 8px; }
 .targetPhase {
@@ -797,13 +800,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
 }
 .targetVal {
   font-family: var(--display);
   font-size: 15px;
   font-weight: 900;
   color: var(--text);
+}
+.targetVal small {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.3);
+  margin-left: 1px;
 }
 .targetLabel {
   font-family: var(--sans);
@@ -834,3 +843,91 @@
   padding: 10px 8px;
   margin: 4px 0 2px;
 }
+
+/* ── Veg toggle buttons ── */
+.vegToggleRow {
+  display: flex;
+  gap: 6px;
+}
+.vegToggleBtn {
+  flex: 1;
+  padding: 9px 6px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.vegToggleActiveGood {
+  background: rgba(88,214,141,0.12);
+  border-color: rgba(88,214,141,0.4);
+  color: #58d68d;
+}
+.vegToggleActiveBad {
+  background: rgba(255,107,107,0.1);
+  border-color: rgba(255,107,107,0.35);
+  color: #ff8a8a;
+}
+
+/* ── Amount preset chips ── */
+.presetRow {
+  display: flex;
+  gap: 6px;
+}
+.presetChip {
+  flex: 1;
+  padding: 6px 4px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.presetChip:hover { border-color: var(--accent); color: var(--accent); }
+.presetChipActive {
+  background: rgba(232,247,42,0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Day status checklist ── */
+.statusRow {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.statusItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  opacity: 0.4;
+  transition: all 0.2s;
+}
+.statusIcon { font-size: 16px; filter: grayscale(1); }
+.statusLabel {
+  font-family: var(--sans);
+  font-size: 8px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.statusDone {
+  opacity: 1;
+  border-color: rgba(232,247,42,0.3);
+  background: rgba(232,247,42,0.04);
+}
+.statusDone .statusIcon { filter: none; }
+.statusDone .statusLabel { color: var(--accent); }

@@ -339,6 +339,17 @@ function FoodSection({ date, onAdded, allEntries }) {
         </label>
       )}
 
+      {!isManual && food && !isUnitFood && (
+        <div className={styles.presetRow}>
+          {[100, 150, 200].map(g => (
+            <button key={g} className={`${styles.presetChip} ${String(amount)===String(g) ? styles.presetChipActive : ''}`}
+              onClick={()=>{setAmount(String(g)); setWarn('')}}>
+              {g}g
+            </button>
+          ))}
+        </div>
+      )}
+
       {isManual && (
         <div className={styles.manualBox}>
           <label className={styles.field}>
@@ -545,6 +556,34 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
 
   return (
     <div>
+      {/* Day-status checklist — quick glance at what's left */}
+      {(() => {
+        const proteinDone = dayEntries.length > 0
+        const vegDone = veg !== ''
+        const workoutDone = workout !== ''
+        const waterDone = waterOz !== '' && parseFloat(waterOz) > 0
+        return (
+          <div className={styles.statusRow}>
+            <div className={`${styles.statusItem} ${proteinDone ? styles.statusDone : ''}`}>
+              <span className={styles.statusIcon}>🥩</span>
+              <span className={styles.statusLabel}>Protein</span>
+            </div>
+            <div className={`${styles.statusItem} ${vegDone ? styles.statusDone : ''}`}>
+              <span className={styles.statusIcon}>🥦</span>
+              <span className={styles.statusLabel}>Veg</span>
+            </div>
+            <div className={`${styles.statusItem} ${workoutDone ? styles.statusDone : ''}`}>
+              <span className={styles.statusIcon}>💪</span>
+              <span className={styles.statusLabel}>Workout</span>
+            </div>
+            <div className={`${styles.statusItem} ${waterDone ? styles.statusDone : ''}`}>
+              <span className={styles.statusIcon}>💧</span>
+              <span className={styles.statusLabel}>Water</span>
+            </div>
+          </div>
+        )
+      })()}
+
       <StreakCalendar loggedDates={loggedDates} phaseStart={phaseStart} phaseNumber={phaseNumber} />
 
       {/* Date picker + edit indicator */}
@@ -563,10 +602,15 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
         )}
       </div>
 
-      {/* Phase target — protein/carbs/calories/activity goals for current phase */}
+      {/* Phase target + today's intake — merged into one progress card */}
       {(() => {
         const t = PHASE_TARGETS[phaseNumber]
         const estCalories = round1(dayTotals.protein*4 + dayTotals.carbs*4 + dayTotals.extraCal)
+        const weekAvgs = rangeAverages(entries, dailyLogs, addDays(today, -6), today)
+        const proteinLeft = round1(t.protein - dayTotals.protein)
+        const carbsLeft = round1(t.carbs - dayTotals.carbs)
+        const calLeft = round1(t.calories - estCalories)
+        const workoutsLeft = t.workouts - weekAvgs.workoutCount
         return (
           <div className={styles.targetCard}>
             <div className={styles.targetHead}>
@@ -574,50 +618,40 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
             </div>
             <div className={styles.targetGrid}>
               <div className={styles.targetItem}>
-                <span className={styles.targetVal}>{t.protein}g</span>
-                <span className={styles.targetLabel}>protein target</span>
+                <span className={styles.targetVal}>{dayTotals.protein}<small>/{t.protein}g</small></span>
+                <span className={styles.targetLabel}>protein</span>
+                {proteinLeft <= 0
+                  ? <span className={styles.pillHit}>✓ hit</span>
+                  : <span className={styles.pillMiss}>{proteinLeft}g to go</span>}
               </div>
               <div className={styles.targetItem}>
-                <span className={styles.targetVal}>{t.carbs}g</span>
-                <span className={styles.targetLabel}>carbs target</span>
+                <span className={styles.targetVal}>{dayTotals.carbs}<small>/{t.carbs}g</small></span>
+                <span className={styles.targetLabel}>carbs</span>
+                {carbsLeft <= 0
+                  ? <span className={styles.pillHit}>✓ hit</span>
+                  : <span className={styles.pillMiss}>{carbsLeft}g to go</span>}
               </div>
               <div className={styles.targetItem}>
-                <span className={styles.targetVal}>{t.calories}</span>
-                <span className={styles.targetLabel}>kcal target</span>
+                <span className={styles.targetVal}>{estCalories}<small>/{t.calories}</small></span>
+                <span className={styles.targetLabel}>kcal</span>
+                {calLeft <= 0
+                  ? <span className={styles.pillHit}>✓ hit</span>
+                  : <span className={styles.pillMiss}>{calLeft} to go</span>}
               </div>
               <div className={styles.targetItem}>
-                <span className={styles.targetVal}>{t.workouts}/wk</span>
+                <span className={styles.targetVal}>{weekAvgs.workoutCount}<small>/{t.workouts}/wk</small></span>
                 <span className={styles.targetLabel}>activity</span>
+                {workoutsLeft <= 0
+                  ? <span className={styles.pillHit}>✓ hit</span>
+                  : <span className={styles.pillMiss}>{workoutsLeft} to go</span>}
               </div>
             </div>
-            {dayEntries.length > 0 && (
-              <div className={styles.targetToday}>
-                Today's estimate: <b>{estCalories} kcal</b> (protein + carbs × 4{dayTotals.extraCal>0 ? ` + ${dayTotals.extraCal} kcal from fats/oils` : ' — fat not tracked'})
-                {estCalories >= t.calories
-                  ? <span className={styles.pillHit}> ✓ at target</span>
-                  : <span className={styles.pillMiss}> {round1(t.calories-estCalories)} kcal to go</span>}
-              </div>
+            {dayTotals.extraCal > 0 && (
+              <div className={styles.targetToday}>Includes +{dayTotals.extraCal} kcal from fats/oils not shown in protein/carbs</div>
             )}
           </div>
         )
       })()}
-
-      {/* Sticky day totals — always visible while scrolling */}
-      {dayEntries.length > 0 && (
-        <div className={styles.stickyTotals}>
-          <div className={styles.dayTotal}>
-            <span className={styles.dayTotalVal}>{dayTotals.protein}g</span>
-            <span className={styles.dayTotalLabel}>protein</span>
-            {dayTotals.protein >= target
-              ? <span className={styles.pillHit}>✓ hit {target}g</span>
-              : <span className={styles.pillMiss}>{round1(target-dayTotals.protein)}g to go</span>}
-          </div>
-          <div className={styles.dayTotal}>
-            <span className={styles.dayTotalVal}>{dayTotals.carbs}g</span>
-            <span className={styles.dayTotalLabel}>carbs</span>
-          </div>
-        </div>
-      )}
 
       {/* History for selected day — editable, shown right after date so you see what you've logged */}
       {dayEntries.length > 0 && (
@@ -648,14 +682,21 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
             <input type="number" className={styles.input} value={waterOz}
               onChange={e=>setWaterOz(e.target.value)} placeholder="e.g. 80" />
           </label>
-          <label className={styles.field}>
+          <div className={styles.field}>
             <span>Vegetables</span>
-            <select value={veg} onChange={e=>setVeg(e.target.value)} className={styles.input}>
-              <option value="">— not logged —</option>
-              <option value="satisfied">Satisfied</option>
-              <option value="not_satisfied">Not satisfied</option>
-            </select>
-          </label>
+            <div className={styles.vegToggleRow}>
+              <button
+                className={`${styles.vegToggleBtn} ${veg==='satisfied' ? styles.vegToggleActiveGood : ''}`}
+                onClick={()=>setVeg(veg==='satisfied' ? '' : 'satisfied')}>
+                ✓ Satisfied
+              </button>
+              <button
+                className={`${styles.vegToggleBtn} ${veg==='not_satisfied' ? styles.vegToggleActiveBad : ''}`}
+                onClick={()=>setVeg(veg==='not_satisfied' ? '' : 'not_satisfied')}>
+                ✗ Not satisfied
+              </button>
+            </div>
+          </div>
         </div>
         <label className={styles.field}>
           <span>Workout</span>
