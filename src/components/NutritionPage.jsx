@@ -8,6 +8,20 @@ const PHASES = [
   { number: 2, label: 'Day 60 Checkpoint', start: '2026-09-16', end: '2026-10-15' },
   { number: 3, label: 'Day 90 Checkpoint', start: '2026-10-16', end: '2026-11-14' },
 ]
+const PHASE_TARGETS = {
+  1: { name: 'Foundation',    protein: 170, carbs: 225, calories: 2500, workouts: 3 },
+  2: { name: 'Tightening',    protein: 175, carbs: 200, calories: 2300, workouts: 4 },
+  3: { name: 'Optimization',  protein: 185, carbs: 175, calories: 2100, workouts: 5 },
+}
+const WORKOUT_INTENSITY = {
+  'Rest day': 0,
+  'Walk/light cardio': 1,
+  'Other': 2,
+  'Strength (extra)': 3,
+  'Volleyball': 3,
+  'Orangetheory': 4,
+}
+const INTENSITY_LABELS = ['None', 'Low', 'Normal', 'High', 'Very Intense']
 const START_DATE = '2026-08-17'
 const TOTAL_DAYS = 90
 const WORKOUT_OPTIONS = ['', 'Orangetheory', 'Volleyball', 'Walk/light cardio', 'Strength (extra)', 'Rest day', 'Other']
@@ -46,6 +60,36 @@ function currentPhase(iso) {
   return PHASES[2]
 }
 function round1(n) { return Math.round(n*10)/10 }
+
+// Compute averages for a date range [startIso, endIso] inclusive
+function rangeAverages(entries, dailyLogs, startIso, endIso) {
+  const byDate = {}
+  entries.forEach(e => {
+    if (e.date < startIso || e.date > endIso) return
+    if (!byDate[e.date]) byDate[e.date] = { protein: 0, carbs: 0, extraCal: 0 }
+    byDate[e.date].protein += parseFloat(e.protein_g||0)
+    byDate[e.date].carbs += parseFloat(e.carbs_g||0)
+    byDate[e.date].extraCal += parseFloat(e.extra_calories||0)
+  })
+  const dates = Object.keys(byDate)
+  const days = dates.length
+  const avgProtein = days ? round1(dates.reduce((s,d)=>s+byDate[d].protein,0)/days) : 0
+  const avgCarbs = days ? round1(dates.reduce((s,d)=>s+byDate[d].carbs,0)/days) : 0
+  const avgExtraCal = days ? round1(dates.reduce((s,d)=>s+byDate[d].extraCal,0)/days) : 0
+  const avgCalories = round1(avgProtein*4 + avgCarbs*4 + avgExtraCal)
+
+  const logsInRange = dailyLogs.filter(d => d.date >= startIso && d.date <= endIso)
+  const workoutCount = logsInRange.filter(d => d.workout_type && d.workout_type !== 'Rest day').length
+
+  const intensityVals = logsInRange
+    .map(d => WORKOUT_INTENSITY[d.workout_type])
+    .filter(v => v !== undefined)
+  const avgIntensity = intensityVals.length
+    ? Math.round(intensityVals.reduce((a,b)=>a+b,0)/intensityVals.length)
+    : null
+
+  return { avgProtein, avgCarbs, avgCalories, workoutCount, avgIntensity, daysWithData: days }
+}
 
 async function api(path, opts={}) {
   const res = await fetch('/api/nutrition' + path, {
@@ -140,7 +184,8 @@ function OatsBlock({ date, onAdded, alreadyLogged }) {
       await api('/entries', { method:'POST', body: JSON.stringify({
         date, food_id: 'overnight_oats', food_name: OATS_FOOD.name,
         amount: 1, unit: 'unit',
-        protein_g: OATS_FOOD.protein_per_unit, carbs_g: OATS_FOOD.carbs_per_unit
+        protein_g: OATS_FOOD.protein_per_unit, carbs_g: OATS_FOOD.carbs_per_unit,
+        extra_calories: OATS_FOOD.extra_cal_per_unit || 0
       })})
       onAdded()
     } catch(e2) { alert(e2.message) }
@@ -153,8 +198,8 @@ function OatsBlock({ date, onAdded, alreadyLogged }) {
         <input type="checkbox" checked={alreadyLogged} disabled={alreadyLogged || saving} onChange={toggle} />
         <span>
           {alreadyLogged
-            ? `✓ Logged for ${fmtDate(date)} — ${OATS_FOOD.protein_per_unit}g protein / ${OATS_FOOD.carbs_per_unit}g carbs`
-            : saving ? 'Adding...' : `🥣 Overnight Oats (1 serving) — ${OATS_FOOD.protein_per_unit}g protein / ${OATS_FOOD.carbs_per_unit}g carbs`}
+            ? `✓ Logged for ${fmtDate(date)} — ${OATS_FOOD.protein_per_unit}g protein / ${OATS_FOOD.carbs_per_unit}g carbs / +${OATS_FOOD.extra_cal_per_unit} kcal fats`
+            : saving ? 'Adding...' : `🥣 Overnight Oats (1 serving) — ${OATS_FOOD.protein_per_unit}g protein / ${OATS_FOOD.carbs_per_unit}g carbs / +${OATS_FOOD.extra_cal_per_unit} kcal fats`}
         </span>
       </label>
       {!alreadyLogged && <div className={styles.foodNote}>{OATS_FOOD.note}</div>}
@@ -407,7 +452,7 @@ function EntryRow({ entry, onDeleted, onSaved }) {
       <div className={styles.entryInfo}>
         <span className={styles.entryName}>{entry.food_name}</span>
         <span className={styles.entryAmount}>
-          {entry.unit === 'unit' ? `× ${entry.amount}` : entry.unit === 'manual' ? 'manual' : `${entry.amount}g`} · {entry.protein_g}g P / {entry.carbs_g}g C
+          {entry.unit === 'unit' ? `× ${entry.amount}` : entry.unit === 'manual' ? 'manual' : `${entry.amount}g`} · {entry.protein_g}g P / {entry.carbs_g}g C{parseFloat(entry.extra_calories||0) > 0 ? ` / +${entry.extra_calories} kcal` : ''}
         </span>
       </div>
       <div className={styles.entryBtns}>
@@ -426,7 +471,7 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
   const [waterOz, setWaterOz] = useState('')
   const [savingMeta, setSavingMeta] = useState(false)
 
-  const target = settings?.protein_target_g || 170
+  const target = PHASE_TARGETS[phaseNumber]?.protein || settings?.protein_target_g || 170
   const waterTarget = settings?.water_target_oz || 100
 
   const existingDaily = dailyLogs.find(d => d.date === date)
@@ -447,7 +492,8 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
   const dayTotals = useMemo(() => {
     const protein = dayEntries.reduce((s,e)=> s + parseFloat(e.protein_g||0), 0)
     const carbs   = dayEntries.reduce((s,e)=> s + parseFloat(e.carbs_g||0), 0)
-    return { protein: round1(protein), carbs: round1(carbs) }
+    const extraCal = dayEntries.reduce((s,e)=> s + parseFloat(e.extra_calories||0), 0)
+    return { protein: round1(protein), carbs: round1(carbs), extraCal: round1(extraCal) }
   }, [dayEntries])
 
   async function saveDay() {
@@ -516,6 +562,45 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
           <div className={styles.editingBadge}>✎ Editing {fmtDateFull(date)} — already has data, changes will update it</div>
         )}
       </div>
+
+      {/* Phase target — protein/carbs/calories/activity goals for current phase */}
+      {(() => {
+        const t = PHASE_TARGETS[phaseNumber]
+        const estCalories = round1(dayTotals.protein*4 + dayTotals.carbs*4 + dayTotals.extraCal)
+        return (
+          <div className={styles.targetCard}>
+            <div className={styles.targetHead}>
+              <span className={styles.targetPhase}>Phase {phaseNumber} · {t.name}</span>
+            </div>
+            <div className={styles.targetGrid}>
+              <div className={styles.targetItem}>
+                <span className={styles.targetVal}>{t.protein}g</span>
+                <span className={styles.targetLabel}>protein target</span>
+              </div>
+              <div className={styles.targetItem}>
+                <span className={styles.targetVal}>{t.carbs}g</span>
+                <span className={styles.targetLabel}>carbs target</span>
+              </div>
+              <div className={styles.targetItem}>
+                <span className={styles.targetVal}>{t.calories}</span>
+                <span className={styles.targetLabel}>kcal target</span>
+              </div>
+              <div className={styles.targetItem}>
+                <span className={styles.targetVal}>{t.workouts}/wk</span>
+                <span className={styles.targetLabel}>activity</span>
+              </div>
+            </div>
+            {dayEntries.length > 0 && (
+              <div className={styles.targetToday}>
+                Today's estimate: <b>{estCalories} kcal</b> (protein + carbs × 4{dayTotals.extraCal>0 ? ` + ${dayTotals.extraCal} kcal from fats/oils` : ' — fat not tracked'})
+                {estCalories >= t.calories
+                  ? <span className={styles.pillHit}> ✓ at target</span>
+                  : <span className={styles.pillMiss}> {round1(t.calories-estCalories)} kcal to go</span>}
+              </div>
+            )}
+          </div>
+        )
+      })()}
 
       {/* Sticky day totals — always visible while scrolling */}
       {dayEntries.length > 0 && (
@@ -588,7 +673,7 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
 }
 
 // ── Weekly Tab ────────────────────────────────────────────
-function WeeklyTab({ weeklyLogs, refresh }) {
+function WeeklyTab({ weeklyLogs, entries, dailyLogs, refresh }) {
   const [weekEnding, setWeekEnding] = useState(todayStr())
   const [weight, setWeight] = useState('')
   const [beers, setBeers] = useState('')
@@ -619,9 +704,34 @@ function WeeklyTab({ weeklyLogs, refresh }) {
   }
 
   const sorted = [...weeklyLogs].sort((a,b)=> a.week_ending < b.week_ending ? -1 : 1)
+  const weekStart = addDays(weekEnding, -6)
+  const avgs = rangeAverages(entries, dailyLogs, weekStart, weekEnding)
 
   return (
     <div>
+      <div className={styles.formCard}>
+        <h3 className={styles.formTitle}>This Week — {fmtDate(weekStart)} to {fmtDate(weekEnding)}</h3>
+        <div className={styles.weekAvgGrid}>
+          <div className={styles.targetItem}>
+            <span className={styles.targetVal}>{avgs.avgProtein}g</span>
+            <span className={styles.targetLabel}>avg protein</span>
+          </div>
+          <div className={styles.targetItem}>
+            <span className={styles.targetVal}>{avgs.avgCarbs}g</span>
+            <span className={styles.targetLabel}>avg carbs</span>
+          </div>
+          <div className={styles.targetItem}>
+            <span className={styles.targetVal}>{avgs.avgCalories}</span>
+            <span className={styles.targetLabel}>avg kcal</span>
+          </div>
+          <div className={styles.targetItem}>
+            <span className={styles.targetVal}>{avgs.workoutCount}</span>
+            <span className={styles.targetLabel}>workouts</span>
+          </div>
+        </div>
+        <div className={styles.safetyNote}>Based on {avgs.daysWithData} day{avgs.daysWithData===1?'':'s'} logged this week</div>
+      </div>
+
       <div className={styles.formCard}>
         <h3 className={styles.formTitle}>Weekly Weigh-In</h3>
         {existing && <div className={styles.editingBadge}>✎ Editing week of {fmtDateFull(weekEnding)}</div>}
@@ -680,7 +790,7 @@ function WeeklyTab({ weeklyLogs, refresh }) {
 }
 
 // ── 30-Day Check-in Tab ──────────────────────────────────
-function PhaseTab({ phases, settings, refresh }) {
+function PhaseTab({ phases, settings, entries, dailyLogs, refresh }) {
   const [editing, setEditing] = useState({})
   const [saving, setSaving] = useState({})
 
@@ -723,6 +833,35 @@ function PhaseTab({ phases, settings, refresh }) {
               <span className={styles.phaseDates}>{fmtDate(p.start)} – {fmtDate(p.end)}</span>
             </div>
             {hasData && <div className={styles.editingBadge}>✎ Has saved data — editing will update it</div>}
+            {(() => {
+              const avgs = rangeAverages(entries, dailyLogs, p.start, p.end)
+              const t = PHASE_TARGETS[p.number]
+              return (
+                <div className={styles.phaseAvgBox}>
+                  <div className={styles.weekAvgGrid}>
+                    <div className={styles.targetItem}>
+                      <span className={styles.targetVal}>{avgs.avgProtein}g</span>
+                      <span className={styles.targetLabel}>avg protein / {t.protein}g target</span>
+                    </div>
+                    <div className={styles.targetItem}>
+                      <span className={styles.targetVal}>{avgs.avgCarbs}g</span>
+                      <span className={styles.targetLabel}>avg carbs / {t.carbs}g target</span>
+                    </div>
+                    <div className={styles.targetItem}>
+                      <span className={styles.targetVal}>{avgs.avgCalories}</span>
+                      <span className={styles.targetLabel}>avg kcal / {t.calories} target</span>
+                    </div>
+                    <div className={styles.targetItem}>
+                      <span className={styles.targetVal}>{avgs.workoutCount}</span>
+                      <span className={styles.targetLabel}>workouts / {t.workouts}/wk target</span>
+                    </div>
+                  </div>
+                  {avgs.avgIntensity !== null && (
+                    <div className={styles.safetyNote}>Avg intensity: {INTENSITY_LABELS[avgs.avgIntensity]}</div>
+                  )}
+                </div>
+              )
+            })()}
             <label className={styles.field}>
               <span>Weight (lb)</span>
               <input type="number" step="0.1" className={styles.input}
@@ -782,6 +921,27 @@ function SummaryTab({ dailyLogs, weeklyLogs, entries, water, settings }) {
   const daysTracked = new Set([...datesWithProtein, ...dailyLogs.map(d=>d.date), ...water.map(w=>w.date)]).size
   const avgWater = water.length ? round1(water.reduce((s,w)=>s+parseFloat(w.ounces||0),0) / water.length) : 0
 
+  const carbsByDate = useMemo(() => {
+    const m = {}
+    entries.forEach(e => { m[e.date] = (m[e.date]||0) + parseFloat(e.carbs_g||0) })
+    return m
+  }, [entries])
+  const extraCalByDate = useMemo(() => {
+    const m = {}
+    entries.forEach(e => { m[e.date] = (m[e.date]||0) + parseFloat(e.extra_calories||0) })
+    return m
+  }, [entries])
+  const avgCalories = datesWithProtein.length
+    ? round1(datesWithProtein.reduce((s,d)=> s + (proteinByDate[d]*4 + (carbsByDate[d]||0)*4 + (extraCalByDate[d]||0)), 0) / datesWithProtein.length)
+    : 0
+
+  const intensityVals = dailyLogs
+    .map(d => WORKOUT_INTENSITY[d.workout_type])
+    .filter(v => v !== undefined)
+  const avgIntensity = intensityVals.length
+    ? Math.round(intensityVals.reduce((a,b)=>a+b,0)/intensityVals.length)
+    : null
+
   function saveReflection(v) {
     setReflection(v)
     localStorage.setItem('nutrition_reflection', v)
@@ -793,7 +953,9 @@ function SummaryTab({ dailyLogs, weeklyLogs, entries, water, settings }) {
     { label: 'Protein Hit Rate', value: `${proteinHitRate}%`, accent: proteinHitRate >= 70 },
     { label: 'Veg Satisfied', value: `${vegRate}%`, accent: vegRate >= 70 },
     { label: 'Avg Water', value: `${avgWater}oz` },
+    { label: 'Avg Calories', value: avgCalories ? `${avgCalories}` : '—' },
     { label: 'Workouts Logged', value: workoutCount },
+    { label: 'Avg Intensity', value: avgIntensity !== null ? INTENSITY_LABELS[avgIntensity] : '—' },
     { label: 'Total Beers', value: totalBeers },
     { label: 'Days Tracked', value: `${daysTracked} / ${TOTAL_DAYS}` },
   ]
@@ -901,8 +1063,8 @@ export default function NutritionPage() {
         ) : (
           <>
             {tab === 'daily'   && <DailyTab settings={settings} dailyLogs={dailyLogs} entries={entries} water={water} refresh={loadAll} today={today} phaseStart={phaseStart} phaseEnd={phaseEnd} phaseNumber={phase.number} />}
-            {tab === 'weekly'  && <WeeklyTab weeklyLogs={weeklyLogs} refresh={loadAll} />}
-            {tab === 'phases'  && <PhaseTab phases={phases} settings={settings} refresh={loadAll} />}
+            {tab === 'weekly'  && <WeeklyTab weeklyLogs={weeklyLogs} entries={entries} dailyLogs={dailyLogs} refresh={loadAll} />}
+            {tab === 'phases'  && <PhaseTab phases={phases} settings={settings} entries={entries} dailyLogs={dailyLogs} refresh={loadAll} />}
             {tab === 'summary' && <SummaryTab dailyLogs={dailyLogs} weeklyLogs={weeklyLogs} entries={entries} water={water} settings={settings} />}
           </>
         )}

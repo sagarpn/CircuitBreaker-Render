@@ -90,7 +90,8 @@
       "unit": "unit",
       "protein_per_unit": 46,
       "carbs_per_unit": 56,
-      "note": "100g oats mix (72.7g oats + 9.1g chia + 18.2g Greek yogurt) + 1 scoop whey + 10g collagen"
+      "note": "100g oats mix (72.7g oats + 9.1g chia + 18.2g Greek yogurt) + 1 scoop whey + 10g collagen + 10g fish oil + 5g creatine + 30g nuts (+100 kcal from fats)",
+      "extra_cal_per_unit": 100
     },
     {
       "id": "manual",

@@ -769,3 +769,68 @@
 }
 .recentChip:hover { border-color: var(--accent); color: var(--accent); }
 .recentChip:disabled { opacity: 0.5; }
+
+/* ── Phase target card ── */
+.targetCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+}
+.targetHead { margin-bottom: 8px; }
+.targetPhase {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.targetGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.targetItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.targetVal {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--text);
+}
+.targetLabel {
+  font-family: var(--sans);
+  font-size: 8px;
+  color: var(--muted);
+  text-align: center;
+}
+.targetToday {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-family: var(--sans);
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+}
+.targetToday b { color: var(--text); }
+
+/* ── Weekly / phase averages ── */
+.weekAvgGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.phaseAvgBox {
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+  padding: 10px 8px;
+  margin: 4px 0 2px;
+}

@@ -198,9 +198,11 @@ async function initDB() {
         unit        TEXT NOT NULL,
         protein_g   NUMERIC NOT NULL DEFAULT 0,
         carbs_g     NUMERIC NOT NULL DEFAULT 0,
+        extra_calories NUMERIC NOT NULL DEFAULT 0,
         created_at  TIMESTAMPTZ DEFAULT NOW()
       )
     `)
+    await client.query(`ALTER TABLE nutrition_entries ADD COLUMN IF NOT EXISTS extra_calories NUMERIC NOT NULL DEFAULT 0`).catch(()=>{})
     await client.query(`CREATE INDEX IF NOT EXISTS idx_nutrition_entries_date ON nutrition_entries(date)`)
     // Water — one entry per day, upserted by date
     await client.query(`
@@ -1012,14 +1014,14 @@ app.get('/api/nutrition/entries', requireNutritionPin, async (req, res) => {
 })
 
 app.post('/api/nutrition/entries', requireNutritionPin, async (req, res) => {
-  const { date, food_id, food_name, amount, unit, protein_g, carbs_g } = req.body
+  const { date, food_id, food_name, amount, unit, protein_g, carbs_g, extra_calories } = req.body
   if (!date || !food_name) return res.status(400).json({ error: 'date and food_name required' })
   const id = 'ne_' + Date.now() + '_' + Math.random().toString(36).slice(2,7)
   try {
     await pool.query(
-      `INSERT INTO nutrition_entries (id, date, food_id, food_name, amount, unit, protein_g, carbs_g)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
-      [id, date, food_id||'manual', food_name, amount||0, unit||'g', protein_g||0, carbs_g||0]
+      `INSERT INTO nutrition_entries (id, date, food_id, food_name, amount, unit, protein_g, carbs_g, extra_calories)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
+      [id, date, food_id||'manual', food_name, amount||0, unit||'g', protein_g||0, carbs_g||0, extra_calories||0]
     )
     res.json({ ok: true, id })
   } catch (e) { res.status(500).json({ error: e.message }) }
