@@ -101,14 +101,7 @@ function StreakCalendar({ loggedDates }) {
 
   return (
     <div className={styles.calendarWrap}>
-      <div className={styles.calendarTop}>
-        <div className={styles.calendarLegend}>
-          <span><i className={styles.dotLogged}/>logged</span>
-          <span><i className={styles.dotEmpty}/>not logged</span>
-          <span><i className={styles.dotToday}/>today</span>
-        </div>
-        <div className={styles.calendarCount}>{loggedCount}/{TOTAL_DAYS}</div>
-      </div>
+      <div className={styles.calendarCount}>{loggedCount}/{TOTAL_DAYS}</div>
       <div className={styles.calendarGrid}>
         {days.map(d => (
           <div

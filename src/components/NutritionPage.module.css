@@ -182,52 +182,50 @@
 
 /* ── Streak calendar ── */
 .calendarWrap {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 8px 10px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.35);
-}
-.calendarLegend {
   display: flex;
+  align-items: center;
   gap: 8px;
+  padding: 4px 2px;
+  margin-bottom: 10px;
+}
+.calendarTop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.calendarLegend { display: none; }
+.calendarCount {
   font-family: var(--sans);
-  font-size: 8px;
-  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
 }
-.calendarLegend span { display: flex; align-items: center; gap: 3px; }
-.dotLogged, .dotEmpty, .dotToday {
-  display: inline-block;
-  width: 5px; height: 5px;
-  border-radius: 1px;
-}
-.dotLogged { background: var(--accent); }
-.dotEmpty { background: rgba(255,255,255,0.08); border: 1px solid var(--border); }
-.dotToday { background: transparent; border: 1px solid var(--accent); }
-
 .calendarGrid {
-  display: grid;
-  grid-template-columns: repeat(18, 1fr);
-  gap: 2px;
+  display: flex;
+  gap: 1px;
+  flex: 1;
+  height: 14px;
+  overflow: hidden;
 }
 .calDay {
-  aspect-ratio: 1;
+  flex: 1;
+  height: 100%;
+  min-width: 2px;
   border-radius: 1px;
-  background: rgba(255,255,255,0.05);
-  border: none;
-  min-width: 0;
+  background: rgba(255,255,255,0.06);
 }
 .calDayLogged {
   background: var(--accent);
 }
 .calDayToday {
-  border: 1px solid var(--accent);
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
 }
 .calDayFuture {
   background: transparent;
-  border: 1px dashed rgba(255,255,255,0.08);
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 /* ── Forms ── */
