@@ -204,7 +204,7 @@
 }
 .calendarGrid {
   display: grid;
-  grid-template-columns: repeat(90, 1fr);
+  grid-template-columns: repeat(30, 1fr);
   gap: 1px;
   flex: 1;
   height: 16px;

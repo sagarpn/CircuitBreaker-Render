@@ -13,7 +13,11 @@ const TOTAL_DAYS = 90
 const WORKOUT_OPTIONS = ['', 'Orangetheory', 'Volleyball', 'Walk/light cardio', 'Strength (extra)', 'Rest day', 'Other']
 
 function todayStr() {
-  return new Date().toISOString().slice(0,10)
+  const d = new Date()
+  const y = d.getFullYear()
+  const m = String(d.getMonth()+1).padStart(2,'0')
+  const day = String(d.getDate()).padStart(2,'0')
+  return `${y}-${m}-${day}`
 }
 function fmtDate(iso) {
   if (!iso) return ''
@@ -86,22 +90,22 @@ function PinGate({ onUnlock }) {
 }
 
 // ── Compact streak calendar — small dot grid ──────────────
-function StreakCalendar({ loggedDates }) {
+function StreakCalendar({ loggedDates, phaseStart, phaseNumber }) {
   const today = todayStr()
   const days = useMemo(() => {
     const arr = []
-    for (let i=0; i<TOTAL_DAYS; i++) {
-      const iso = addDays(START_DATE, i)
+    for (let i=0; i<30; i++) {
+      const iso = addDays(phaseStart, i)
       arr.push({ iso, logged: loggedDates.has(iso), isToday: iso===today, isFuture: iso>today })
     }
     return arr
-  }, [loggedDates, today])
+  }, [loggedDates, today, phaseStart])
 
   const loggedCount = days.filter(d=>d.logged).length
 
   return (
     <div className={styles.calendarWrap}>
-      <div className={styles.calendarCount}>{loggedCount}/{TOTAL_DAYS}</div>
+      <div className={styles.calendarCount}>P{phaseNumber} · {loggedCount}/30</div>
       <div className={styles.calendarGrid}>
         {days.map(d => (
           <div
@@ -123,6 +127,7 @@ const ALL_FOODS = [...foodDb.proteins, ...foodDb.carbs]
 const OATS_FOOD = foodDb.proteins.find(f => f.id === 'overnight_oats')
 const MANUAL_FOOD = foodDb.proteins.find(f => f.id === 'manual')
 const PROTEIN_LIST = foodDb.proteins.filter(f => f.id !== 'overnight_oats' && f.id !== 'manual')
+const ALL_ENTRY_FOODS = [...PROTEIN_LIST, ...foodDb.carbs]
 
 function OatsBlock({ date, onAdded }) {
   const [checked, setChecked] = useState(false)
@@ -164,21 +169,21 @@ function OatsBlock({ date, onAdded }) {
   )
 }
 
-function FoodSection({ title, kind, foodList, date, onAdded }) {
+function FoodSection({ date, onAdded }) {
   const [foodId, setFoodId] = useState('')
   const [amount, setAmount] = useState('')
-  const [manualOpen, setManualOpen] = useState(false)
   const [manualName, setManualName] = useState('')
   const [manualProtein, setManualProtein] = useState('')
   const [manualCarbs, setManualCarbs] = useState('')
   const [saving, setSaving] = useState(false)
   const [warn, setWarn] = useState('')
 
-  const food = foodList.find(f => f.id === foodId)
+  const isManual = foodId === '__manual__'
+  const food = ALL_ENTRY_FOODS.find(f => f.id === foodId)
   const isUnitFood = food && food.unit === 'unit'
 
   const preview = useMemo(() => {
-    if (manualOpen) return { protein: parseFloat(manualProtein)||0, carbs: parseFloat(manualCarbs)||0 }
+    if (isManual) return { protein: parseFloat(manualProtein)||0, carbs: parseFloat(manualCarbs)||0 }
     if (!food) return null
     if (isUnitFood) {
       const units = parseFloat(amount) || 0
@@ -186,12 +191,12 @@ function FoodSection({ title, kind, foodList, date, onAdded }) {
     }
     const g = parseFloat(amount) || 0
     return { protein: round1(g * (food.protein_per100||0) / 100), carbs: round1(g * (food.carbs_per100||0) / 100) }
-  }, [food, amount, manualProtein, manualCarbs, manualOpen, isUnitFood])
+  }, [food, amount, manualProtein, manualCarbs, isManual, isUnitFood])
 
   async function addEntry() {
     setWarn('')
     let name, amt, unit
-    if (manualOpen) {
+    if (isManual) {
       if (!manualName.trim()) { setWarn('Enter a name for this food'); return }
       if (!manualProtein && !manualCarbs) { setWarn('Enter protein or carb grams'); return }
       name = manualName.trim(); amt = 1; unit = 'manual'
@@ -203,58 +208,59 @@ function FoodSection({ title, kind, foodList, date, onAdded }) {
     setSaving(true)
     try {
       await api('/entries', { method:'POST', body: JSON.stringify({
-        date, food_id: manualOpen ? 'manual' : food.id,
+        date, food_id: isManual ? 'manual' : food.id,
         food_name: name, amount: amt, unit,
         protein_g: preview.protein, carbs_g: preview.carbs
       })})
-      setFoodId(''); setAmount('')
-      setManualOpen(false); setManualName(''); setManualProtein(''); setManualCarbs('')
+      setFoodId(''); setAmount(''); setManualName(''); setManualProtein(''); setManualCarbs('')
       onAdded()
     } catch(e) { alert(e.message) }
     setSaving(false)
   }
 
+  function onKeyDown(e) {
+    if (e.key === 'Enter') { e.preventDefault(); addEntry() }
+  }
+
   return (
     <div className={styles.foodSection}>
-      <h4 className={styles.foodSectionTitle}>{title}</h4>
+      <select value={foodId} onChange={e=>{setFoodId(e.target.value); setAmount(''); setWarn('')}} className={styles.input}>
+        <option value="">— pick a food —</option>
+        <option value="__manual__">✎ Other (type manually)</option>
+        <optgroup label="Protein">
+          {PROTEIN_LIST.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
+        </optgroup>
+        <optgroup label="Carbs">
+          {foodDb.carbs.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
+        </optgroup>
+      </select>
 
-      {!manualOpen && (
-        <>
-          <select value={foodId} onChange={e=>{setFoodId(e.target.value); setAmount(''); setWarn('')}} className={styles.input}>
-            <option value="">— pick a {kind} —</option>
-            {foodList.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
-          </select>
-
-          <label className={styles.field}>
-            <span>{food && isUnitFood ? 'How many' : 'Amount (grams, cooked weight)'}</span>
-            <input type="number" step={food && isUnitFood ? '1' : 'any'} className={styles.input}
-              value={amount} disabled={!food}
-              onChange={e=>{setAmount(e.target.value); setWarn('')}}
-              placeholder={!food ? 'pick a food first' : (isUnitFood ? 'e.g. 1' : 'e.g. 200')} />
-          </label>
-        </>
+      {!isManual && (
+        <label className={styles.field}>
+          <span>{food && isUnitFood ? 'How many' : 'Amount (grams, cooked weight)'}</span>
+          <input type="number" step={food && isUnitFood ? '1' : 'any'} className={styles.input}
+            value={amount} disabled={!food} onKeyDown={onKeyDown}
+            onChange={e=>{setAmount(e.target.value); setWarn('')}}
+            placeholder={!food ? 'pick a food first' : (isUnitFood ? 'e.g. 1' : 'e.g. 200')} />
+        </label>
       )}
 
-      <button className={styles.manualToggle} onClick={()=>{setManualOpen(v=>!v); setFoodId(''); setWarn('')}}>
-        {manualOpen ? '← back to food list' : '+ Manual entry (type grams directly)'}
-      </button>
-
-      {manualOpen && (
+      {isManual && (
         <div className={styles.manualBox}>
           <label className={styles.field}>
             <span>Food name</span>
-            <input type="text" className={styles.input} value={manualName}
+            <input type="text" className={styles.input} value={manualName} onKeyDown={onKeyDown}
               onChange={e=>{setManualName(e.target.value); setWarn('')}} placeholder="e.g. Turkey burger" />
           </label>
           <div className={styles.formGrid2}>
             <label className={styles.field}>
               <span>Protein (g)</span>
-              <input type="number" className={styles.input} value={manualProtein}
+              <input type="number" className={styles.input} value={manualProtein} onKeyDown={onKeyDown}
                 onChange={e=>{setManualProtein(e.target.value); setWarn('')}} placeholder="e.g. 25" />
             </label>
             <label className={styles.field}>
               <span>Carbs (g)</span>
-              <input type="number" className={styles.input} value={manualCarbs}
+              <input type="number" className={styles.input} value={manualCarbs} onKeyDown={onKeyDown}
                 onChange={e=>{setManualCarbs(e.target.value); setWarn('')}} placeholder="e.g. 10" />
             </label>
           </div>
@@ -271,7 +277,7 @@ function FoodSection({ title, kind, foodList, date, onAdded }) {
       {warn && <div className={styles.warnText}>⚠ {warn}</div>}
 
       <button className={styles.addBtn} onClick={addEntry} disabled={saving}>
-        {saving ? 'Adding...' : `+ Add ${kind === 'protein' ? 'Protein' : 'Carb'}`}
+        {saving ? 'Adding...' : '+ Add Entry'}
       </button>
     </div>
   )
@@ -364,13 +370,12 @@ function EntryRow({ entry, onDeleted, onSaved }) {
 }
 
 // ── Daily tab ──────────────────────────────────────────────
-function DailyTab({ settings, dailyLogs, entries, water, refresh }) {
+function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseStart, phaseEnd, phaseNumber }) {
   const [date, setDate]   = useState(todayStr())
   const [veg, setVeg]     = useState('')
   const [workout, setWorkout] = useState('')
   const [waterOz, setWaterOz] = useState('')
   const [savingMeta, setSavingMeta] = useState(false)
-  const [savingWater, setSavingWater] = useState(false)
 
   const target = settings?.protein_target_g || 170
   const waterTarget = settings?.water_target_oz || 100
@@ -396,13 +401,18 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh }) {
     return { protein: round1(protein), carbs: round1(carbs) }
   }, [dayEntries])
 
-  async function saveMeta() {
+  async function saveDay() {
     if (!date) { alert('Pick a valid date first'); return }
-    const hadExisting = !!(existingDaily?.vegetables || existingDaily?.workout_type)
-    if (!veg && !workout && hadExisting) {
-      alert(`Not overwriting — ${fmtDateFull(date)} already has Veg/Workout saved. Fill in a value to change it, or leave both blank and don't press Save.`)
+    const wAmt = waterOz ? parseFloat(waterOz) : null
+    if (wAmt !== null && (isNaN(wAmt) || wAmt <= 0)) { alert('Water amount must be a positive number'); return }
+
+    const nothingNew = !veg && !workout && !waterOz
+    const hadExisting = !!(existingDaily?.vegetables || existingDaily?.workout_type || existingWater)
+    if (nothingNew && hadExisting) {
+      alert(`Not overwriting — ${fmtDateFull(date)} already has data saved. Fill in a value to change it.`)
       return
     }
+
     setSavingMeta(true)
     try {
       await api('/daily', { method:'POST', body: JSON.stringify({
@@ -411,28 +421,12 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh }) {
         vegetables: veg || existingDaily?.vegetables || null,
         workout_type: workout || existingDaily?.workout_type || null
       })})
+      if (wAmt !== null) {
+        await api('/water', { method:'POST', body: JSON.stringify({ date, ounces: wAmt }) })
+      }
       refresh()
     } catch(e) { alert(e.message) }
     setSavingMeta(false)
-  }
-
-  async function saveWater() {
-    if (!date) { alert('Pick a valid date first'); return }
-    const amt = parseFloat(waterOz)
-    if ((!waterOz || isNaN(amt) || amt <= 0) && existingWater) {
-      alert(`Not overwriting — ${fmtDateFull(date)} already has ${existingWater.ounces}oz saved. Enter a new positive amount to change it.`)
-      return
-    }
-    if (waterOz && (isNaN(amt) || amt <= 0)) {
-      alert('Water amount must be a positive number')
-      return
-    }
-    setSavingWater(true)
-    try {
-      await api('/water', { method:'POST', body: JSON.stringify({ date, ounces: amt || 0 })})
-      refresh()
-    } catch(e) { alert(e.message) }
-    setSavingWater(false)
   }
 
   async function delEntry(id) {
@@ -456,7 +450,7 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh }) {
 
   return (
     <div>
-      <StreakCalendar loggedDates={loggedDates} />
+      <StreakCalendar loggedDates={loggedDates} phaseStart={phaseStart} phaseNumber={phaseNumber} />
 
       {/* Date picker + edit indicator */}
       <div className={styles.dateCard}>
@@ -474,9 +468,7 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh }) {
         <h3 className={styles.formTitle}>Add Food — {fmtDate(date)}</h3>
         <OatsBlock date={date} onAdded={refresh} />
         <div className={styles.foodDivider} />
-        <FoodSection title="Protein" kind="protein" foodList={PROTEIN_LIST} date={date} onAdded={refresh} />
-        <div className={styles.foodDivider} />
-        <FoodSection title="Carbs" kind="carb" foodList={foodDb.carbs} date={date} onAdded={refresh} />
+        <FoodSection date={date} onAdded={refresh} />
       </div>
 
       {/* History for selected day — editable */}
@@ -504,25 +496,15 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh }) {
         </div>
       )}
 
-      {/* Water */}
+      {/* One card: water + veg + workout, one Save Day action */}
       <div className={styles.formCard}>
-        <h3 className={styles.formTitle}>Water — {fmtDate(date)}</h3>
+        <h3 className={styles.formTitle}>Day Summary — {fmtDate(date)}</h3>
         <div className={styles.formGrid2}>
           <label className={styles.field}>
-            <span>Ounces · target {waterTarget}oz</span>
+            <span>Water (oz) · target {waterTarget}oz</span>
             <input type="number" className={styles.input} value={waterOz}
               onChange={e=>setWaterOz(e.target.value)} placeholder="e.g. 80" />
           </label>
-          <button className={styles.saveBtnSmall} onClick={saveWater} disabled={savingWater}>
-            {savingWater ? 'Saving...' : existingWater ? 'Update Water' : 'Save Water'}
-          </button>
-        </div>
-      </div>
-
-      {/* Veg + workout */}
-      <div className={styles.formCard}>
-        <h3 className={styles.formTitle}>Vegetables &amp; Workout</h3>
-        <div className={styles.formGrid2}>
           <label className={styles.field}>
             <span>Vegetables</span>
             <select value={veg} onChange={e=>setVeg(e.target.value)} className={styles.input}>
@@ -531,14 +513,14 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh }) {
               <option value="not_satisfied">Not satisfied</option>
             </select>
           </label>
-          <label className={styles.field}>
-            <span>Workout</span>
-            <select value={workout} onChange={e=>setWorkout(e.target.value)} className={styles.input}>
-              {WORKOUT_OPTIONS.map(w => <option key={w} value={w}>{w || '— none logged —'}</option>)}
-            </select>
-          </label>
         </div>
-        <button className={styles.saveBtn} onClick={saveMeta} disabled={savingMeta}>
+        <label className={styles.field}>
+          <span>Workout</span>
+          <select value={workout} onChange={e=>setWorkout(e.target.value)} className={styles.input}>
+            {WORKOUT_OPTIONS.map(w => <option key={w} value={w}>{w || '— none logged —'}</option>)}
+          </select>
+        </label>
+        <button className={styles.saveBtn} onClick={saveDay} disabled={savingMeta}>
           {savingMeta ? 'Saving...' : isEditingDay ? 'Update Day' : 'Save Day'}
         </button>
         <div className={styles.safetyNote}>Blank fields never erase saved data — only filled-in values are updated.</div>
@@ -791,6 +773,7 @@ export default function NutritionPage() {
   const [phases, setPhases]         = useState([])
   const [settings, setSettings]     = useState(null)
   const [loading, setLoading]       = useState(true)
+  const [initialLoaded, setInitialLoaded] = useState(false)
   const [error, setError]           = useState('')
 
   function onUnlock() {
@@ -799,13 +782,14 @@ export default function NutritionPage() {
   }
 
   async function loadAll() {
-    setLoading(true)
+    if (!initialLoaded) setLoading(true)
     setError('')
     try {
       const [d, en, wt, w, p, s] = await Promise.all([
         api('/daily'), api('/entries'), api('/water'), api('/weekly'), api('/phases'), api('/settings')
       ])
       setDailyLogs(d); setEntries(en); setWater(wt); setWeeklyLogs(w); setPhases(p); setSettings(s)
+      setInitialLoaded(true)
     } catch(e) {
       setError('Could not load data. Your saved entries are safe — check your connection and reload.')
       console.error(e)
@@ -822,6 +806,8 @@ export default function NutritionPage() {
   const phase = currentPhase(today)
   const phaseIdx = PHASES.findIndex(p => p.number === phase.number)
   const dayInPhase = Math.min(Math.max(dayIndex(today) - phaseIdx*30 + 1, 1), 30)
+  const phaseStart = PHASES[phaseIdx].start
+  const phaseEnd = PHASES[phaseIdx].end
 
   return (
     <div className={styles.page}>
@@ -852,11 +838,11 @@ export default function NutritionPage() {
 
       <div className={styles.content}>
         {error && <div className={styles.errorBanner}>{error} <button onClick={loadAll} className={styles.retryBtn}>Retry</button></div>}
-        {loading ? (
+        {!initialLoaded ? (
           <div className={styles.loading}>Loading...</div>
         ) : (
           <>
-            {tab === 'daily'   && <DailyTab settings={settings} dailyLogs={dailyLogs} entries={entries} water={water} refresh={loadAll} />}
+            {tab === 'daily'   && <DailyTab settings={settings} dailyLogs={dailyLogs} entries={entries} water={water} refresh={loadAll} today={today} phaseStart={phaseStart} phaseEnd={phaseEnd} phaseNumber={phase.number} />}
             {tab === 'weekly'  && <WeeklyTab weeklyLogs={weeklyLogs} refresh={loadAll} />}
             {tab === 'phases'  && <PhaseTab phases={phases} settings={settings} refresh={loadAll} />}
             {tab === 'summary' && <SummaryTab dailyLogs={dailyLogs} weeklyLogs={weeklyLogs} entries={entries} water={water} settings={settings} />}
