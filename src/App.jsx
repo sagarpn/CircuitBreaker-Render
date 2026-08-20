@@ -1,22 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import WorkoutPage         from './components/WorkoutPage'
 import AdminPage           from './components/AdminPage'
 import MaintenanceCircuit  from './components/MaintenanceCircuit'
+import NutritionPage       from './components/NutritionPage'
 import styles              from './App.module.css'
 
 function getPage() {
   const hash = window.location.hash
   if (hash === '#admin')       return 'admin'
   if (hash === '#maintenance') return 'maintenance'
+  if (hash === '#nutrition')   return 'nutrition'
   return 'workout'
 }
 
 export default function App() {
   const [page, setPage] = useState(getPage)
 
+  useEffect(() => {
+    function onHashChange() { setPage(getPage()) }
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
+
   function goTo(p) {
     window.location.hash = p === 'admin' ? '#admin' : p === 'maintenance' ? '#maintenance' : ''
     setPage(p)
+  }
+
+  // Nutrition page renders standalone — no main nav shown
+  if (page === 'nutrition') {
+    return <NutritionPage />
   }
 
   return (

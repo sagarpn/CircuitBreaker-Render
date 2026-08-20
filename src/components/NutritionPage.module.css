@@ -1,0 +1,412 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  padding-bottom: 60px;
+}
+
+/* ── PIN Gate ── */
+.pinPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.pinCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  max-width: 320px;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.pinIcon { font-size: 32px; margin-bottom: 10px; }
+.pinTitle {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  margin: 0 0 4px;
+}
+.pinSub {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+.pinInput {
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: 12px;
+  padding: 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: var(--sans);
+  margin-bottom: 12px;
+}
+.pinInput:focus { outline: none; border-color: var(--accent); }
+.pinError {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-bottom: 12px;
+  font-family: var(--sans);
+}
+.pinBtn {
+  width: 100%;
+  padding: 12px;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ── Header — G3b style ── */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 10px 0;
+  padding: 18px 14px 14px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(180deg, rgba(232,247,42,0.04) 0%, #090909 50%);
+  box-shadow: 0 3px 14px rgba(0,0,0,0.5);
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 20%, rgba(232,247,42,0.15) 50%, transparent 80%);
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 15%, rgba(232,247,42,0.5) 50%, transparent 85%);
+}
+.headerTag {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 6px;
+}
+.title {
+  font-family: var(--display);
+  font-size: clamp(20px, 6vw, 28px);
+  font-weight: 900;
+  color: var(--accent);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  text-shadow: 0 0 40px rgba(232,247,42,0.25);
+}
+.headerAccentLine {
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0.3;
+  border-radius: 1px;
+  margin: 10px 0 10px;
+}
+.dayBadgeRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dayBadge {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.phaseBadge {
+  background: rgba(232,247,42,0.1);
+  color: var(--accent);
+  border: 1px solid rgba(232,247,42,0.2);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ── Tabs ── */
+.tabs {
+  display: flex;
+  margin: 12px 10px 0;
+  background: var(--surface);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.tab {
+  flex: 1;
+  padding: 11px 4px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.tab:last-child { border-right: none; }
+.tabActive { background: var(--surface2); color: var(--accent); }
+
+.content { padding: 12px 10px 0; }
+.loading {
+  text-align: center;
+  color: var(--muted);
+  font-family: var(--sans);
+  padding: 40px 0;
+  font-size: 13px;
+}
+
+/* ── Streak calendar ── */
+.calendarWrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+}
+.calendarLegend {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 10px;
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--muted);
+}
+.calendarLegend span { display: flex; align-items: center; gap: 4px; }
+.dotLogged, .dotEmpty, .dotToday {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+}
+.dotLogged { background: var(--accent); }
+.dotEmpty { background: rgba(255,255,255,0.08); border: 1px solid var(--border); }
+.dotToday { background: transparent; border: 1.5px solid var(--accent); }
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  gap: 3px;
+}
+.calDay {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.calDayLogged {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.calDayToday {
+  border: 1.5px solid var(--accent);
+}
+.calDayFuture {
+  background: transparent;
+  border-style: dashed;
+  opacity: 0.4;
+}
+
+/* ── Forms ── */
+.formCard, .historyCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+}
+.formTitle {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 12px;
+}
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.field span {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.input, .textarea {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 10px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.input:focus, .textarea:focus { outline: none; border-color: var(--accent); }
+.textarea { resize: vertical; font-family: var(--sans); }
+
+.pillHit, .pillMiss {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  width: fit-content;
+  margin-top: 2px;
+}
+.pillHit { background: rgba(88,214,141,0.12); color: #58d68d; }
+.pillMiss { background: rgba(255,107,107,0.1); color: #ff8a8a; }
+
+.saveBtn {
+  width: 100%;
+  padding: 11px;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+.saveBtn:disabled { opacity: 0.5; }
+
+/* ── Tables ── */
+.tableWrap { overflow-x: auto; }
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 12px;
+}
+.table th {
+  text-align: left;
+  color: rgba(255,255,255,0.3);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.table td {
+  padding: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text);
+  white-space: nowrap;
+}
+.emptyRow {
+  text-align: center;
+  color: var(--muted);
+  padding: 20px !important;
+}
+.tagHit, .tagMiss {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 5px;
+}
+.tagHit { background: rgba(88,214,141,0.12); color: #58d68d; }
+.tagMiss { background: rgba(255,107,107,0.1); color: #ff8a8a; }
+.delBtn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.2);
+  cursor: pointer;
+  font-size: 13px;
+}
+.delBtn:hover { color: #ff6b6b; }
+
+/* ── Phase cards ── */
+.phaseGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.phaseCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.phaseHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.phaseLabel {
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--accent);
+}
+.phaseDates {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ── Summary stats ── */
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.statCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 10px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+}
+.statValue {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text);
+}
+.statAccent { color: var(--accent); }
+.statLabel {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 3px;
+}

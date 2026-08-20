@@ -175,6 +175,52 @@ async function initDB() {
       )
     `)
 
+    // ── Nutrition tracker tables ──────────────────────────
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS nutrition_daily (
+        id          TEXT PRIMARY KEY,
+        date        TEXT UNIQUE NOT NULL,
+        protein_g   INTEGER,
+        vegetables  TEXT,
+        workout_type TEXT,
+        created_at  TIMESTAMPTZ DEFAULT NOW(),
+        updated_at  TIMESTAMPTZ DEFAULT NOW()
+      )
+    `)
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS nutrition_weekly (
+        id           TEXT PRIMARY KEY,
+        week_ending  TEXT UNIQUE NOT NULL,
+        weight_lb    NUMERIC,
+        beers_count  INTEGER,
+        created_at   TIMESTAMPTZ DEFAULT NOW(),
+        updated_at   TIMESTAMPTZ DEFAULT NOW()
+      )
+    `)
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS nutrition_phase_checkin (
+        id           TEXT PRIMARY KEY,
+        phase_number INTEGER UNIQUE NOT NULL,
+        weight_lb    NUMERIC,
+        waist_in     NUMERIC,
+        notes        TEXT,
+        created_at   TIMESTAMPTZ DEFAULT NOW(),
+        updated_at   TIMESTAMPTZ DEFAULT NOW()
+      )
+    `)
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS nutrition_settings (
+        id                 TEXT PRIMARY KEY DEFAULT 'default',
+        protein_target_g   INTEGER DEFAULT 170,
+        baseline_weight_lb NUMERIC DEFAULT 217
+      )
+    `)
+    await client.query(`
+      INSERT INTO nutrition_settings (id, protein_target_g, baseline_weight_lb)
+      VALUES ('default', 170, 217)
+      ON CONFLICT (id) DO NOTHING
+    `)
+
     // ── Seed sync — full upsert with tags/format, auto-flag removed exercises
     // Rules:
     //   1. INSERT new exercises (in seed but not in DB)
@@ -864,6 +910,125 @@ app.post('/api/admin/restore', requireAdmin, async (req, res) => {
     await client.query('ROLLBACK')
     res.status(500).json({ error: e.message })
   } finally { client.release() }
+})
+
+// ─────────────────────────────────────────────────────────
+// NUTRITION ROUTES
+// ─────────────────────────────────────────────────────────
+
+function requireNutritionPin(req, res, next) {
+  if (req.headers['x-nutrition-pin'] !== '2233') {
+    setTimeout(() => res.status(401).json({ error: 'Invalid PIN' }), 400)
+    return
+  }
+  next()
+}
+
+app.get('/api/nutrition/verify', requireNutritionPin, (req, res) => res.json({ ok: true }))
+
+// ── Settings ──
+app.get('/api/nutrition/settings', requireNutritionPin, async (req, res) => {
+  try {
+    const { rows } = await pool.query(`SELECT * FROM nutrition_settings WHERE id='default'`)
+    res.json(rows[0] || { protein_target_g: 170, baseline_weight_lb: 217 })
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+app.put('/api/nutrition/settings', requireNutritionPin, async (req, res) => {
+  const { protein_target_g, baseline_weight_lb } = req.body
+  try {
+    await pool.query(
+      `UPDATE nutrition_settings SET protein_target_g=$1, baseline_weight_lb=$2 WHERE id='default'`,
+      [protein_target_g || 170, baseline_weight_lb || 217]
+    )
+    res.json({ ok: true })
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+// ── Daily log ──
+app.get('/api/nutrition/daily', requireNutritionPin, async (req, res) => {
+  try {
+    const { rows } = await pool.query(`SELECT * FROM nutrition_daily ORDER BY date DESC`)
+    res.json(rows)
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+app.post('/api/nutrition/daily', requireNutritionPin, async (req, res) => {
+  const { date, protein_g, vegetables, workout_type } = req.body
+  if (!date) return res.status(400).json({ error: 'date required' })
+  const id = 'nd_' + date
+  try {
+    await pool.query(
+      `INSERT INTO nutrition_daily (id, date, protein_g, vegetables, workout_type, updated_at)
+       VALUES ($1,$2,$3,$4,$5,NOW())
+       ON CONFLICT (date) DO UPDATE SET
+         protein_g=$3, vegetables=$4, workout_type=$5, updated_at=NOW()`,
+      [id, date, protein_g || null, vegetables || null, workout_type || null]
+    )
+    res.json({ ok: true })
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+app.delete('/api/nutrition/daily/:id', requireNutritionPin, async (req, res) => {
+  try {
+    await pool.query('DELETE FROM nutrition_daily WHERE id=$1', [req.params.id])
+    res.json({ ok: true })
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+// ── Weekly weigh-in ──
+app.get('/api/nutrition/weekly', requireNutritionPin, async (req, res) => {
+  try {
+    const { rows } = await pool.query(`SELECT * FROM nutrition_weekly ORDER BY week_ending DESC`)
+    res.json(rows)
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+app.post('/api/nutrition/weekly', requireNutritionPin, async (req, res) => {
+  const { week_ending, weight_lb, beers_count } = req.body
+  if (!week_ending) return res.status(400).json({ error: 'week_ending required' })
+  const id = 'nw_' + week_ending
+  try {
+    await pool.query(
+      `INSERT INTO nutrition_weekly (id, week_ending, weight_lb, beers_count, updated_at)
+       VALUES ($1,$2,$3,$4,NOW())
+       ON CONFLICT (week_ending) DO UPDATE SET
+         weight_lb=$3, beers_count=$4, updated_at=NOW()`,
+      [id, week_ending, weight_lb || null, beers_count || null]
+    )
+    res.json({ ok: true })
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+app.delete('/api/nutrition/weekly/:id', requireNutritionPin, async (req, res) => {
+  try {
+    await pool.query('DELETE FROM nutrition_weekly WHERE id=$1', [req.params.id])
+    res.json({ ok: true })
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+// ── 30-day phase check-in ──
+app.get('/api/nutrition/phases', requireNutritionPin, async (req, res) => {
+  try {
+    const { rows } = await pool.query(`SELECT * FROM nutrition_phase_checkin ORDER BY phase_number ASC`)
+    res.json(rows)
+  } catch (e) { res.status(500).json({ error: e.message }) }
+})
+
+app.post('/api/nutrition/phases', requireNutritionPin, async (req, res) => {
+  const { phase_number, weight_lb, waist_in, notes } = req.body
+  if (!phase_number) return res.status(400).json({ error: 'phase_number required' })
+  const id = 'np_' + phase_number
+  try {
+    await pool.query(
+      `INSERT INTO nutrition_phase_checkin (id, phase_number, weight_lb, waist_in, notes, updated_at)
+       VALUES ($1,$2,$3,$4,$5,NOW())
+       ON CONFLICT (phase_number) DO UPDATE SET
+         weight_lb=$3, waist_in=$4, notes=$5, updated_at=NOW()`,
+      [id, phase_number, weight_lb || null, waist_in || null, notes || '']
+    )
+    res.json({ ok: true })
+  } catch (e) { res.status(500).json({ error: e.message }) }
 })
 
 // Catch-all: serve frontend
