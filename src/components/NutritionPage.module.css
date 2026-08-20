@@ -687,3 +687,18 @@
   font-size: 12px;
   cursor: pointer;
 }
+
+.oatsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.safetyNote {
+  font-family: var(--sans);
+  font-size: 9px;
+  color: rgba(255,255,255,0.2);
+  text-align: center;
+  margin-top: 6px;
+  font-style: italic;
+}
