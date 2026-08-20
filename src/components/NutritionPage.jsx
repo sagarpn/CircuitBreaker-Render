@@ -81,6 +81,10 @@ function rangeAverages(entries, dailyLogs, startIso, endIso) {
   const logsInRange = dailyLogs.filter(d => d.date >= startIso && d.date <= endIso)
   const workoutCount = logsInRange.filter(d => d.workout_type && d.workout_type !== 'Rest day').length
 
+  const drinksCount = entries
+    .filter(e => e.date >= startIso && e.date <= endIso && DRINK_IDS.has(e.food_id))
+    .reduce((s,e)=> s + parseFloat(e.amount||0), 0)
+
   const intensityVals = logsInRange
     .map(d => WORKOUT_INTENSITY[d.workout_type])
     .filter(v => v !== undefined)
@@ -88,7 +92,7 @@ function rangeAverages(entries, dailyLogs, startIso, endIso) {
     ? Math.round(intensityVals.reduce((a,b)=>a+b,0)/intensityVals.length)
     : null
 
-  return { avgProtein, avgCarbs, avgCalories, workoutCount, avgIntensity, daysWithData: days }
+  return { avgProtein, avgCarbs, avgCalories, workoutCount, drinksCount, avgIntensity, daysWithData: days }
 }
 
 async function api(path, opts={}) {
@@ -171,7 +175,9 @@ const ALL_FOODS = [...foodDb.proteins, ...foodDb.carbs]
 const OATS_FOOD = foodDb.proteins.find(f => f.id === 'overnight_oats')
 const MANUAL_FOOD = foodDb.proteins.find(f => f.id === 'manual')
 const PROTEIN_LIST = foodDb.proteins.filter(f => f.id !== 'overnight_oats' && f.id !== 'manual')
-const ALL_ENTRY_FOODS = [...PROTEIN_LIST, ...foodDb.carbs]
+const DRINKS_LIST = foodDb.drinks || []
+const ALL_ENTRY_FOODS = [...PROTEIN_LIST, ...foodDb.carbs, ...DRINKS_LIST]
+const DRINK_IDS = new Set(DRINKS_LIST.map(d => d.id))
 
 function OatsBlock({ date, onAdded, alreadyLogged }) {
   const [saving, setSaving] = useState(false)
@@ -235,19 +241,21 @@ function FoodSection({ date, onAdded, allEntries }) {
     setQuickSaving(recent.id)
     try {
       const known = ALL_ENTRY_FOODS.find(f => f.id === recent.food_id)
-      let protein = recent.protein_g, carbs = recent.carbs_g
+      let protein = recent.protein_g, carbs = recent.carbs_g, extraCal = recent.extra_calories||0
       if (known) {
         if (known.unit === 'unit') {
           protein = round1(recent.amount * (known.protein_per_unit||0))
           carbs = round1(recent.amount * (known.carbs_per_unit||0))
+          extraCal = round1(recent.amount * (known.extra_cal_per_unit||0))
         } else {
           protein = round1(recent.amount * (known.protein_per100||0) / 100)
           carbs = round1(recent.amount * (known.carbs_per100||0) / 100)
+          extraCal = 0
         }
       }
       await api('/entries', { method:'POST', body: JSON.stringify({
         date, food_id: recent.food_id, food_name: recent.food_name,
-        amount: recent.amount, unit: recent.unit, protein_g: protein, carbs_g: carbs
+        amount: recent.amount, unit: recent.unit, protein_g: protein, carbs_g: carbs, extra_calories: extraCal
       })})
       onAdded()
     } catch(e) { alert(e.message) }
@@ -259,14 +267,18 @@ function FoodSection({ date, onAdded, allEntries }) {
   const isUnitFood = food && food.unit === 'unit'
 
   const preview = useMemo(() => {
-    if (isManual) return { protein: parseFloat(manualProtein)||0, carbs: parseFloat(manualCarbs)||0 }
+    if (isManual) return { protein: parseFloat(manualProtein)||0, carbs: parseFloat(manualCarbs)||0, extraCal: 0 }
     if (!food) return null
     if (isUnitFood) {
       const units = parseFloat(amount) || 0
-      return { protein: round1(units * food.protein_per_unit), carbs: round1(units * (food.carbs_per_unit||0)) }
+      return {
+        protein: round1(units * food.protein_per_unit),
+        carbs: round1(units * (food.carbs_per_unit||0)),
+        extraCal: round1(units * (food.extra_cal_per_unit||0))
+      }
     }
     const g = parseFloat(amount) || 0
-    return { protein: round1(g * (food.protein_per100||0) / 100), carbs: round1(g * (food.carbs_per100||0) / 100) }
+    return { protein: round1(g * (food.protein_per100||0) / 100), carbs: round1(g * (food.carbs_per100||0) / 100), extraCal: 0 }
   }, [food, amount, manualProtein, manualCarbs, isManual, isUnitFood])
 
   async function addEntry() {
@@ -286,7 +298,7 @@ function FoodSection({ date, onAdded, allEntries }) {
       await api('/entries', { method:'POST', body: JSON.stringify({
         date, food_id: isManual ? 'manual' : food.id,
         food_name: name, amount: amt, unit,
-        protein_g: preview.protein, carbs_g: preview.carbs
+        protein_g: preview.protein, carbs_g: preview.carbs, extra_calories: preview.extraCal||0
       })})
       setFoodId(''); setAmount(''); setManualOpen(false); setManualName(''); setManualProtein(''); setManualCarbs('')
       onAdded()
@@ -319,6 +331,9 @@ function FoodSection({ date, onAdded, allEntries }) {
           </optgroup>
           <optgroup label="Carbs">
             {foodDb.carbs.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
+          </optgroup>
+          <optgroup label="Drinks">
+            {DRINKS_LIST.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
           </optgroup>
         </select>
       )}
@@ -394,9 +409,10 @@ function EntryRow({ entry, onDeleted, onSaved }) {
   const [amount, setAmount] = useState(entry.amount)
   const [protein, setProtein] = useState(entry.protein_g)
   const [carbs, setCarbs] = useState(entry.carbs_g)
+  const [extraCal, setExtraCal] = useState(entry.extra_calories || 0)
   const [saving, setSaving] = useState(false)
 
-  const origFood = ALL_FOODS.find(f => f.id === entry.food_id)
+  const origFood = ALL_ENTRY_FOODS.find(f => f.id === entry.food_id)
 
   useEffect(() => {
     if (!editing || !origFood || origFood.unit === 'manual') return
@@ -404,9 +420,11 @@ function EntryRow({ entry, onDeleted, onSaved }) {
     if (origFood.unit === 'unit') {
       setProtein(round1(amt * (origFood.protein_per_unit||0)))
       setCarbs(round1(amt * (origFood.carbs_per_unit||0)))
+      setExtraCal(round1(amt * (origFood.extra_cal_per_unit||0)))
     } else if (origFood.unit === 'g') {
       setProtein(round1(amt * (origFood.protein_per100||0) / 100))
       setCarbs(round1(amt * (origFood.carbs_per100||0) / 100))
+      setExtraCal(0)
     }
   }, [amount, editing])
 
@@ -422,7 +440,7 @@ function EntryRow({ entry, onDeleted, onSaved }) {
       await api('/entries', { method:'POST', body: JSON.stringify({
         date: entry.date, food_id: entry.food_id, food_name: entry.food_name,
         amount: parseFloat(amount)||0, unit: entry.unit,
-        protein_g: parseFloat(protein)||0, carbs_g: parseFloat(carbs)||0
+        protein_g: parseFloat(protein)||0, carbs_g: parseFloat(carbs)||0, extra_calories: parseFloat(extraCal)||0
       })})
       setEditing(false)
       onSaved()
@@ -599,16 +617,14 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
               <div className={styles.targetItem}>
                 <span className={styles.targetVal}>{dayTotals.carbs}<small>/{t.carbs}g</small></span>
                 <span className={styles.targetLabel}>carbs</span>
-                {carbsLeft <= 0
-                  ? <span className={styles.pillHit}>✓ hit</span>
-                  : <span className={styles.pillMiss}>{carbsLeft}g to go</span>}
+                {carbsLeft >= 0
+                  ? <span className={styles.pillHit}>{carbsLeft}g left</span>
+                  : <span className={styles.pillMiss}>{Math.abs(carbsLeft)}g over</span>}
               </div>
               <div className={styles.targetItem}>
                 <span className={styles.targetVal}>{estCalories}<small>/{t.calories}</small></span>
                 <span className={styles.targetLabel}>kcal</span>
-                {calLeft <= 0
-                  ? <span className={styles.pillHit}>✓ hit</span>
-                  : <span className={styles.pillMiss}>{calLeft} to go</span>}
+                <span className={styles.pillNeutral}>{Math.abs(calLeft)} {calLeft>=0?'left':'over'}</span>
               </div>
               <div className={styles.targetItem}>
                 <span className={styles.targetVal}>{weekAvgs.workoutCount}<small>/{t.workouts}/wk</small></span>
@@ -712,21 +728,18 @@ function DailyTab({ settings, dailyLogs, entries, water, refresh, today, phaseSt
 function WeeklyTab({ weeklyLogs, entries, dailyLogs, refresh }) {
   const [weekEnding, setWeekEnding] = useState(todayStr())
   const [weight, setWeight] = useState('')
-  const [beers, setBeers] = useState('')
   const [saving, setSaving] = useState(false)
 
   const existing = weeklyLogs.find(w => w.week_ending === weekEnding)
   useEffect(() => {
     setWeight(existing?.weight_lb != null ? String(existing.weight_lb) : '')
-    setBeers(existing?.beers_count != null ? String(existing.beers_count) : '')
   }, [weekEnding, existing])
 
   async function save() {
     setSaving(true)
     try {
       await api('/weekly', { method:'POST', body: JSON.stringify({
-        week_ending: weekEnding, weight_lb: weight ? parseFloat(weight) : null,
-        beers_count: beers ? parseInt(beers) : null
+        week_ending: weekEnding, weight_lb: weight ? parseFloat(weight) : null
       })})
       refresh()
     } catch(e) { alert(e.message) }
@@ -764,6 +777,10 @@ function WeeklyTab({ weeklyLogs, entries, dailyLogs, refresh }) {
             <span className={styles.targetVal}>{avgs.workoutCount}</span>
             <span className={styles.targetLabel}>workouts</span>
           </div>
+          <div className={styles.targetItem}>
+            <span className={styles.targetVal}>{avgs.drinksCount}</span>
+            <span className={styles.targetLabel}>drinks</span>
+          </div>
         </div>
         <div className={styles.safetyNote}>Based on {avgs.daysWithData} day{avgs.daysWithData===1?'':'s'} logged this week</div>
       </div>
@@ -780,10 +797,6 @@ function WeeklyTab({ weeklyLogs, entries, dailyLogs, refresh }) {
             <span>Weight (lb)</span>
             <input type="number" step="0.1" value={weight} onChange={e=>setWeight(e.target.value)} className={styles.input} placeholder="e.g. 214.5" />
           </label>
-          <label className={styles.field}>
-            <span>Beers this week</span>
-            <input type="number" value={beers} onChange={e=>setBeers(e.target.value)} className={styles.input} placeholder="e.g. 3" />
-          </label>
         </div>
         <button className={styles.saveBtn} onClick={save} disabled={saving}>
           {saving ? 'Saving...' : existing ? 'Update Week' : 'Save Week'}
@@ -794,7 +807,7 @@ function WeeklyTab({ weeklyLogs, entries, dailyLogs, refresh }) {
         <h3 className={styles.formTitle}>History</h3>
         <div className={styles.tableWrap}>
           <table className={styles.table}>
-            <thead><tr><th>Week ending</th><th>Weight</th><th>Δ</th><th>Beers</th><th></th></tr></thead>
+            <thead><tr><th>Week ending</th><th>Weight</th><th>Δ</th><th></th></tr></thead>
             <tbody>
               {weeklyLogs.map(w => {
                 const idx = sorted.findIndex(x=>x.id===w.id)
@@ -811,7 +824,6 @@ function WeeklyTab({ weeklyLogs, entries, dailyLogs, refresh }) {
                         </span>
                       ) : '—'}
                     </td>
-                    <td>{w.beers_count ?? '—'}</td>
                     <td><button className={styles.delBtn} onClick={()=>del(w.id)}>✕</button></td>
                   </tr>
                 )
@@ -892,9 +904,7 @@ function PhaseTab({ phases, settings, entries, dailyLogs, refresh }) {
                       <span className={styles.targetLabel}>workouts / {t.workouts}/wk target</span>
                     </div>
                   </div>
-                  {avgs.avgIntensity !== null && (
-                    <div className={styles.safetyNote}>Avg intensity: {INTENSITY_LABELS[avgs.avgIntensity]}</div>
-                  )}
+                  <div className={styles.safetyNote}>{avgs.drinksCount} total drinks this phase{avgs.avgIntensity !== null ? ` · Avg intensity: ${INTENSITY_LABELS[avgs.avgIntensity]}` : ''}</div>
                 </div>
               )
             })()}
@@ -953,7 +963,9 @@ function SummaryTab({ dailyLogs, weeklyLogs, entries, water, settings }) {
   const vegRate = withVeg.length ? Math.round(100 * withVeg.filter(d=>d.vegetables==='satisfied').length / withVeg.length) : 0
 
   const workoutCount = dailyLogs.filter(d => d.workout_type && d.workout_type !== 'Rest day').length
-  const totalBeers = weeklyLogs.reduce((s,w) => s + (w.beers_count||0), 0)
+  const totalDrinks = entries
+    .filter(e => DRINK_IDS.has(e.food_id))
+    .reduce((s,e) => s + parseFloat(e.amount||0), 0)
   const daysTracked = new Set([...datesWithProtein, ...dailyLogs.map(d=>d.date), ...water.map(w=>w.date)]).size
   const avgWater = water.length ? round1(water.reduce((s,w)=>s+parseFloat(w.ounces||0),0) / water.length) : 0
 
@@ -992,7 +1004,7 @@ function SummaryTab({ dailyLogs, weeklyLogs, entries, water, settings }) {
     { label: 'Avg Calories', value: avgCalories ? `${avgCalories}` : '—' },
     { label: 'Workouts Logged', value: workoutCount },
     { label: 'Avg Intensity', value: avgIntensity !== null ? INTENSITY_LABELS[avgIntensity] : '—' },
-    { label: 'Total Beers', value: totalBeers },
+    { label: 'Total Drinks', value: totalDrinks },
     { label: 'Days Tracked', value: `${daysTracked} / ${TOTAL_DAYS}` },
   ]
 

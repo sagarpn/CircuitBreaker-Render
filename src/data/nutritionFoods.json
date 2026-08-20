@@ -143,5 +143,39 @@
       "carbs_per100": 12,
       "protein_per100": 2.4
     }
+  ],
+  "drinks": [
+    {
+      "id": "beer_light",
+      "name": "Light Beer (12oz)",
+      "unit": "unit",
+      "protein_per_unit": 0,
+      "carbs_per_unit": 4,
+      "extra_cal_per_unit": 96
+    },
+    {
+      "id": "beer_regular",
+      "name": "Beer (12oz)",
+      "unit": "unit",
+      "protein_per_unit": 0,
+      "carbs_per_unit": 13,
+      "extra_cal_per_unit": 121
+    },
+    {
+      "id": "beer_ipa",
+      "name": "IPA (12oz)",
+      "unit": "unit",
+      "protein_per_unit": 0,
+      "carbs_per_unit": 21,
+      "extra_cal_per_unit": 169
+    },
+    {
+      "id": "whiskey",
+      "name": "Whiskey (1 shot)",
+      "unit": "unit",
+      "protein_per_unit": 0,
+      "carbs_per_unit": 0,
+      "extra_cal_per_unit": 100
+    }
   ]
 }

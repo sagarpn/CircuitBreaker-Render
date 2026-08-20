@@ -294,6 +294,7 @@
 }
 .pillHit { background: rgba(88,214,141,0.12); color: #58d68d; }
 .pillMiss { background: rgba(255,107,107,0.1); color: #ff8a8a; }
+.pillNeutral { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 10px; width: fit-content; margin-top: 2px; }
 
 .saveBtn {
   width: 100%;
